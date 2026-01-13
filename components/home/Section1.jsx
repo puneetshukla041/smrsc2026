@@ -2,6 +2,19 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { Monoton } from 'next/font/google';
+import localFont from 'next/font/local';
+
+const monoton = Monoton({
+  weight: '400',
+  subsets: ['latin'],
+});
+
+// Configure the local Roba font
+const roba = localFont({
+  src: '../../public/fonts/Roba-Regular.ttf',
+  variable: '--font-roba',
+});
 
 const Section1 = () => {
   return (
@@ -50,6 +63,7 @@ const Section1 = () => {
           }}
           className="relative"
         >
+          {/* Background Image layer */}
           <Image
             src="/images/home/section1/image1.png"
             alt="SMRSC 2026 Hero"
@@ -57,6 +71,44 @@ const Section1 = () => {
             style={{ objectFit: 'contain' }}
             priority
           />
+
+          {/* SMRSC Text */}
+          <h1 
+            className={`${monoton.className} absolute z-30 whitespace-nowrap`}
+            style={{
+              color: '#E1C583',
+              fontSize: '90px',
+              fontWeight: '400',
+              lineHeight: '150%',
+              textTransform: 'capitalize',
+              left: '379px', 
+              top: '39%',
+              margin: 0,
+            }}
+          >
+            SMRSC
+          </h1>
+
+          {/* 2026 Stacked Text - Precise Figma Vertical Positioning */}
+          <div 
+            className={`${roba.className} absolute z-30`}
+            style={{
+              color: '#E1C583',
+              textAlign: 'center',
+              fontSize: '160px',
+              fontStyle: 'normal',
+              fontWeight: '400',
+              letterSpacing: '-1.76px',
+              textTransform: 'capitalize',
+              left: '763px', 
+              margin: 0,
+            }}
+          >
+            {/* 20: Exactly 251px from top */}
+            <div style={{ position: 'absolute', top: '251px', lineHeight: '1' }}>20</div>
+            {/* 26: Exactly 371px from top */}
+            <div style={{ position: 'absolute', top: '371px', lineHeight: '1' }}>26</div>
+          </div>
 
           {/* Indicators */}
           <div className="absolute bottom-[5%] left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
