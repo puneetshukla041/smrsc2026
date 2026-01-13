@@ -10,7 +10,6 @@ const monoton = Monoton({
   subsets: ['latin'],
 });
 
-// Configure the local Roba font
 const roba = localFont({
   src: '../../public/fonts/Roba-Regular.ttf',
   variable: '--font-roba',
@@ -20,17 +19,13 @@ const Section1 = () => {
   return (
     <section className="relative w-full flex justify-center items-center overflow-x-clip">
       
-      {/* Cinematic Breathing Glow - Always Live */}
+      {/* Cinematic Breathing Glow */}
       <motion.div 
         animate={{ 
           opacity: [0.4, 0.7, 0.4],
           scale: [1, 1.15, 1],
         }}
-        transition={{ 
-          duration: 10, 
-          repeat: Infinity, 
-          ease: "easeInOut" 
-        }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         className="absolute z-0 pointer-events-none"
         style={{
           width: '70%',
@@ -63,7 +58,6 @@ const Section1 = () => {
           }}
           className="relative"
         >
-          {/* Background Image layer */}
           <Image
             src="/images/home/section1/image1.png"
             alt="SMRSC 2026 Hero"
@@ -78,9 +72,6 @@ const Section1 = () => {
             style={{
               color: '#E1C583',
               fontSize: '90px',
-              fontWeight: '400',
-              lineHeight: '150%',
-              textTransform: 'capitalize',
               left: '379px', 
               top: '39%',
               margin: 0,
@@ -89,25 +80,55 @@ const Section1 = () => {
             SMRSC
           </h1>
 
-          {/* 2026 Stacked Text - Precise Figma Vertical Positioning */}
+          {/* 2026 Stacked Text */}
           <div 
             className={`${roba.className} absolute z-30`}
             style={{
               color: '#E1C583',
               textAlign: 'center',
               fontSize: '160px',
-              fontStyle: 'normal',
-              fontWeight: '400',
               letterSpacing: '-1.76px',
-              textTransform: 'capitalize',
               left: '763px', 
-              margin: 0,
             }}
           >
-            {/* 20: Exactly 251px from top */}
             <div style={{ position: 'absolute', top: '251px', lineHeight: '1' }}>20</div>
-            {/* 26: Exactly 371px from top */}
             <div style={{ position: 'absolute', top: '371px', lineHeight: '1' }}>26</div>
+          </div>
+
+          {/* GLOBAL EVENT - Corrected Margins */}
+          <div 
+            className="absolute z-30 whitespace-nowrap"
+            style={{
+              color: '#FFF',
+              textShadow: '0 2px 4px rgba(0, 0, 0, 0.20)',
+              fontFamily: '"Blauer Nue", sans-serif',
+              fontSize: '36px',
+              fontWeight: '600',
+              lineHeight: '150%',
+              textTransform: 'capitalize',
+              left: '981px',
+              top: '336px',
+            }}
+          >
+            GLOBAL EVENT
+          </div>
+
+          {/* 3rd EDITION - Corrected Margins */}
+          <div 
+            className="absolute z-30 whitespace-nowrap"
+            style={{
+              color: '#FFF',
+              textShadow: '0 2px 4px rgba(0, 0, 0, 0.20)',
+              fontFamily: '"Blauer Nue", sans-serif',
+              fontSize: '84px',
+              fontWeight: '600',
+              lineHeight: '150%',
+              textTransform: 'capitalize',
+              left: '981px', // Fixed mistake: changed from 377px to 981px
+              bottom: '364px',
+            }}
+          >
+            3rd EDITION
           </div>
 
           {/* Indicators */}
