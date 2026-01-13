@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 2, 9, 26; /* This is #02091A */
+  --background-end-rgb: 2, 9, 26;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: #02091A; /* Your specific hex code */
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Ensure all sections inherit this or stay transparent */
+section {
+  background-color: transparent;
+}
