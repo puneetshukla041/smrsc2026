@@ -18,6 +18,7 @@ const Section3 = () => {
 
   const currentIndex = ((page % images.length) + images.length) % images.length;
 
+  // Removed the ": number" type annotation for .jsx compatibility
   const paginate = (newDirection) => {
     setPage([page + newDirection, newDirection]);
   };
@@ -39,7 +40,7 @@ const Section3 = () => {
     }),
   };
 
-  // Content Styles (From Original)
+  // Content Styles
   const textStyle = {
     color: '#E3F5F6',
     textAlign: 'center',
@@ -72,8 +73,8 @@ const Section3 = () => {
     zIndex: -1, 
   };
 
-  // Applied Properties: 48x48, padding 10px, gap 10px, centered
-  const arrowBtnClass = "flex w-[48px] h-[48px] p-[10px] justify-center items-center gap-[10px] rounded-full bg-white/5 hover:bg-white/10 transition-all border border-white/10 shrink-0 z-50 active:scale-95";
+  // Includes 'cursor-pointer' as requested
+  const arrowBtnClass = "flex w-[48px] h-[48px] p-[10px] justify-center items-center gap-[10px] rounded-full bg-white/5 hover:bg-white/10 transition-all border border-white/10 shrink-0 z-50 active:scale-95 cursor-pointer";
 
   return (
     <section className="relative w-full overflow-hidden bg-black">
@@ -190,7 +191,7 @@ const Section3 = () => {
             <button
               key={idx}
               onClick={() => setPage([idx, idx > currentIndex ? 1 : -1])}
-              className={`h-2 transition-all duration-300 rounded-full ${
+              className={`h-2 transition-all duration-300 rounded-full cursor-pointer ${
                 currentIndex === idx ? "w-10 bg-[#E1C583]" : "w-2 bg-white/20 hover:bg-white/40"
               }`}
             />
