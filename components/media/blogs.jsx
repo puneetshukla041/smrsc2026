@@ -1,25 +1,29 @@
 'use client';
 import React from 'react';
+import Link from 'next/link'; // Added import for redirection
 
-// Data updated to include .png paths and the text from your screenshot
+// Data updated to include .png paths, text, and the link paths
 const blogsData = [
   {
     id: 1,
     image: '/images/media/blog1.png',
     title: 'Are We Building, or Just Branding?',
-    subtitle: 'A Hard Question for Atmanirbhar Bharat'
+    subtitle: 'A Hard Question for Atmanirbhar Bharat',
+    link: '/media/blog1' // Added redirection path
   },
   {
     id: 2,
     image: '/images/media/blog2.png',
     title: 'When Distance Decides Survival',
-    subtitle: 'How Telesurgery is Redefining Equity in Indian Healthcare'
+    subtitle: 'How Telesurgery is Redefining Equity in Indian Healthcare',
+    link: '/media/blog2' // Added redirection path
   },
   {
     id: 3,
     image: '/images/media/blog3.png',
     title: 'MantrAsana:',
-    subtitle: 'The Future of Remote Surgery Begins Here'
+    subtitle: 'The Future of Remote Surgery Begins Here',
+    link: '/media/blog3' // Added redirection path
   }
 ];
 
@@ -27,9 +31,10 @@ const Blogs = () => {
   return (
     <div className="w-full flex flex-wrap justify-center gap-10 pb-10 px-4 md:px-0">
       {blogsData.map((blog) => (
-        <div 
+        <Link 
+          href={blog.link}
           key={blog.id}
-          // Using your exact 434x412 dimensions and 20px radius
+          // EXACT same classes - UI will not change
           className="relative w-full max-w-[434px] h-[412px] rounded-[20px] overflow-hidden shrink-0 group cursor-pointer shadow-lg flex justify-center items-end pb-[15px]"
         >
           {/* Background Image Layer */}
@@ -74,7 +79,7 @@ const Blogs = () => {
               {blog.subtitle}
             </p>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
