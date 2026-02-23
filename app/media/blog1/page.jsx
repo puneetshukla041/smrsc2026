@@ -14,19 +14,25 @@ export default function Blog1() {
     fontWeight: '400',
     lineHeight: '26px', // 162.5%
     letterSpacing: '-0.16px',
+    alignSelf: 'stretch', // Added from the Layout section in your screenshot
     margin: 0
   };
 
   const boldText = {
     ...regularText,
-    fontWeight: '600',
+    fontWeight: '600', // Matches "$5 trillio..." from your screenshot
+  };
+
+  const extraBoldText = {
+    ...regularText,
+    fontWeight: '700', // Added to match "The IP Own..." from your screenshot
   };
 
   return (
     <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', minHeight: '100vh', background: '#020b14', overflow: 'hidden' }}>
       <Header />
       
-      {/* Exact Top Background Image Requested */}
+      {/* Exact Top Background Image Requested with Bottom Fade */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -36,7 +42,8 @@ export default function Blog1() {
         maxWidth: '1920px',
         height: '1281px',
         aspectRatio: '640/427',
-        background: `url('/images/media/blogbg.png') lightgray 50% / cover no-repeat`,
+        // Applied the linear-gradient overlay to fade into the #020b14 background
+        background: `linear-gradient(to bottom, rgba(2, 11, 20, 0) 50%, rgba(2, 11, 20, 1) 100%), url('/images/media/blogbg.png') lightgray 50% / cover no-repeat`,
         zIndex: 0
       }} />
       
@@ -88,6 +95,7 @@ export default function Blog1() {
               fontWeight: '600', 
               lineHeight: '56px', // 175%
               textTransform: 'capitalize', 
+              alignSelf: 'stretch',
               margin: 0 
             }}>
               Are We Building, Or Just Branding?
@@ -127,10 +135,11 @@ export default function Blog1() {
             
             <ul style={{ ...regularText, paddingLeft: '24px', margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <li>
-                <span style={boldText}>The R&D Gap:</span> India’s Gross Expenditure on R&D (GERD) remains stuck at roughly <span style={boldText}>0.64% of GDP</span>, significantly lower than the <span style={boldText}>2.5% to 5%</span> range of innovation-led economies like the US, Israel, or South Korea.
+                <span style={extraBoldText}>The R&D Gap:</span> India’s Gross Expenditure on R&D (GERD) remains stuck at roughly <span style={boldText}>0.64% of GDP</span>, significantly lower than the <span style={boldText}>2.5% to 5%</span> range of innovation-led economies like the US, Israel, or South Korea.
               </li>
               <li>
-                <span style={boldText}>The IP Ownership:</span> While patent filings in India have surged by <span style={boldText}>44% over the last five years</span>, a significant portion of patents granted are still to non-resident entities.
+                {/* Applied the new 700 weight style here based on your Figma file */}
+                <span style={extraBoldText}>The IP Ownership:</span> While patent filings in India have surged by <span style={boldText}>44% over the last five years</span>, a significant portion of patents granted are still to non-resident entities.
               </li>
             </ul>
 
