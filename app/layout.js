@@ -6,6 +6,7 @@ import GlobalPreloader from "../components/common/GlobalPreloader"; // <-- Add t
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
+  
   subsets: ["latin"],
 });
 
