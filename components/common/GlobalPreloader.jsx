@@ -65,9 +65,10 @@ const ASSETS_TO_PRELOAD = [
   "/vercel.svg",
 
   // --- MEDIA PAGE ---
-  "/images/media/blog1.webp",
-  "/images/media/blog2.webp",
-  "/images/media/blog3.webp",
+  "/images/media/blog1.png",
+  "/images/media/blog2.png",
+  "/images/media/blog3.png",
+  "/images/media/blogbg.png",
   "/images/media/image1.webp",
   "/images/media/media1.webp",
   "/images/media/media2.webp",
@@ -98,7 +99,7 @@ const ASSETS_TO_PRELOAD = [
   "/images/visit/venue5.webp",
   "/images/visit/venue6.webp",
 
-  // --- PAST EVENTS (2024 & 2025) ---
+  // --- PAST EVENTS (2024) ---
   "/images/pastevent/24/image1.webp",
   "/images/pastevent/24/image2.webp",
   "/images/pastevent/24/image3.webp",
@@ -111,6 +112,8 @@ const ASSETS_TO_PRELOAD = [
   "/images/pastevent/24/image10.webp",
   "/images/pastevent/24/image11.webp",
   "/images/pastevent/24/image12.webp",
+
+  // --- PAST EVENTS (2025) ---
   "/images/pastevent/2025/image1.webp",
   "/images/pastevent/2025/image2.webp",
   "/images/pastevent/2025/image3.webp",
@@ -124,7 +127,7 @@ const ASSETS_TO_PRELOAD = [
   "/images/pastevent/2025/image11.webp",
   "/images/pastevent/2025/image12.webp",
 
-  // --- ABOUT PAGE (Committees, Faculty, etc.) ---
+  // --- ABOUT PAGE & SECTIONS ---
   "/images/about/section1/image1.webp",
   "/images/about/section1/img1.webp",
   "/images/about/section1/mobile.webp",
@@ -141,20 +144,30 @@ const ASSETS_TO_PRELOAD = [
   "/images/about/benifit/image4.webp",
   "/images/about/faculty/image1.png",
   "/images/about/faculty/image1.webp",
+
+  // --- COMMITTEE PERSONNEL ---
   "/images/about/committe/krawal.png",
   "/images/about/committe/somash.png",
   "/images/about/committe/sudhir.png",
   "/images/about/committe/vishwa.png",
-  
-  // Note: Add your per1.webp to per34.webp loops here if needed, 
-  // I kept it to the main structural images so we don't crash the browser cache limit.
-  "/images/about/cardiac/per1.webp",
-  "/images/about/urology/per1.webp",
-  "/images/about/general/per1.webp"
+  ...Array.from({ length: 34 }, (_, i) => `/images/about/committe/per${i + 1}.webp`),
+
+  // --- CARDIAC PERSONNEL ---
+  ...Array.from({ length: 25 }, (_, i) => `/images/about/cardiac/per${i + 1}.webp`),
+
+  // --- UROLOGY PERSONNEL & IMAGES ---
+  "/images/about/urology/clippath.webp",
+  ...Array.from({ length: 14 }, (_, i) => `/images/about/urology/image${i + 1}.webp`),
+  ...Array.from({ length: 34 }, (_, i) => `/images/about/urology/per${i + 1}.webp`),
+
+  // --- GENERAL PERSONNEL ---
+  "/images/about/general/per1.webp",
+  "/images/about/general/per2.webp",
+  "/images/about/general/per3.webp",
+  "/images/about/general/per4.webp"
 ];
 
 // --- VIDEOS ---
-// Videos are heavy, we fetch them differently
 const VIDEOS_TO_PRELOAD = [
   "/videos/Color.webm",
   "/videos/smrsc24.webm",
@@ -163,16 +176,13 @@ const VIDEOS_TO_PRELOAD = [
 
 export default function GlobalPreloader() {
   useEffect(() => {
-    // We wait 3 SECONDS before starting so we NEVER steal internet speed 
-    // from the page the user is currently looking at.
     const startPreloading = async () => {
-      // 1. Loop through and aggressively fetch the FULL files into the disk cache
+      // 1. Preload Assets
       for (const src of ASSETS_TO_PRELOAD) {
         try {
-          // Using fetch with 'force-cache' prevents the 0.1kb issue
           fetch(src, { cache: 'force-cache', mode: 'no-cors' });
         } catch (e) {
-          console.error("Failed to preload:", src);
+          console.error("Failed to preload asset:", src);
         }
       }
 
@@ -184,7 +194,6 @@ export default function GlobalPreloader() {
       }
     };
 
-    // requestIdleCallback tells the browser "only do this when you have free time"
     const timer = setTimeout(() => {
       if ('requestIdleCallback' in window) {
         requestIdleCallback(startPreloading);
@@ -196,5 +205,5 @@ export default function GlobalPreloader() {
     return () => clearTimeout(timer);
   }, []);
 
-  return null; // This component is entirely invisible
+  return null;
 }
