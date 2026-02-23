@@ -2,10 +2,11 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Timer from "../components/ui/CountdownTimer"; 
 import SmoothScroll from "../components/common/SmoothScroll"; 
-import GlobalPreloader from "../components/common/GlobalPreloader"; 
+import GlobalPreloader from "../components/common/GlobalPreloader"; // <-- Add this import
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
+  
   subsets: ["latin"],
 });
 
@@ -30,14 +31,14 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <SmoothScroll />
         
-        {/* Aggressive Preloader placed at the top of body for early execution */}
-        <GlobalPreloader />
-        
         {children}
         
         <div className="md:hidden">
           <Timer />
         </div>
+
+        {/* 🚀 The silent background loader */}
+        <GlobalPreloader />
       </body>
     </html>
   );
