@@ -22,6 +22,7 @@ const Section2Content = () => {
     "Chief Guests",
     "Faculty"
   ];
+  
 
   // Function to handle tab changes and update URL
   const handleTabChange = (item) => {
