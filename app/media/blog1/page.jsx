@@ -4,46 +4,15 @@ import Link from 'next/link';
 import Header from '../../../components/common/Header'; 
 import Footer from '../../../components/common/footer'; 
 
-// --- Raw Blog Data with Markdown-like Bold syntax (**) ---
-const rawBlogData = [
-  { text: "Are We Building, Or Just Branding?", type: 'h1' },
-  { text: "**A Hard Question for Atmanirbhar Bharat**", type: 'p' },
-  { text: "There is a quiet, resonant pride that comes with the words Made in India. It is a phrase that carries the weight of history and the ambition of a nation that no longer wants to be seen merely as a massive consumer market—but as a global maker. But as we accelerate toward a **$5 trillion economy**, an uncomfortable question has begun to surface: **When we say \"Made in India,\" do we mean engineered in India—or merely assembled here?** The difference isn't semantic. It is structural. It is the difference between a nation that owns its future and one that merely rents its progress.", type: 'p' },
-  { text: "**The \"Costume\" of Self-Reliance**", type: 'p' },
-  { text: "In several high-technology sectors, a pattern is emerging. Advanced systems arrive at our shores largely complete—sometimes fully built, sometimes in semi-knocked-down (SKD) kits. A logo changes. A housing is redesigned. Final assembly takes place domestically. We see record-breaking production numbers, yet the \"depth\" of that manufacturing remains thin. Consider the electronics sector: while mobile phone production has skyrocketed **28x since 2014** (reaching **₹5.5 lakh crore in FY25**), much of this growth is driven by final-stage assembly.", type: 'p' },
-  { text: "On paper, these products qualify as indigenous. **In spirit, do they?**", type: 'p' },
-  { text: "While dependence on finished imports has dropped, our reliance on foreign \"brains\"—the integrated circuits and core components—remains acute. For instance, imports of integrated circuits touched **$5.46 billion in the first half of 2025 alone**, with a staggering **88% sourced from a single neighbor**. This isn't an argument against global trade. No country develops in a vacuum; technology transfer and partnerships are the fuel of economic evolution. But when import-dependence begins to wear the costume of self-reliance, the line between progress and perception blurs, we aren't just building products; we are building vulnerabilities.", type: 'p' },
-  { text: "Atmanirbhar Bharat was never meant to be a branding exercise. It was meant to be a capability revolution.", type: 'p' },
-  { text: "**The Hard Path vs. The Easy Label**", type: 'p' },
-  { text: "Real self-reliance is inconvenient. It is slow, expensive, and demands a high tolerance for public failure. Rebranding imported systems is the \"easy\" path to hitting quarterly production targets, but building core architecture is what creates lasting power.", type: 'p' },
-  { text: "Consider the \"Power of the Blueprint\":", type: 'p' },
-  { text: "**The R&D Gap:** India’s Gross Expenditure on R&D (GERD) remains stuck at roughly **0.64% of GDP**, significantly lower than the **2.5% to 5%** range of innovation-led economies like the US, Israel, or South Korea.", type: 'li' },
-  { text: "**The IP Ownership:** While patent filings in India have surged by **44% over the last five years**, a significant portion of patents granted are still to non-resident entities.", type: 'li' },
-  { text: "If the **firmware** is written elsewhere..", type: 'p' },
-  { text: "If the **critical components** are sourced elsewhere...", type: 'p' },
-  { text: "If the **Design IP** is owned elsewhere...", type: 'p' },
-  { text: "...then the **strategic control** sits elsewhere. The product may carry an Indian badge, but it does not carry Indian sovereignty. **Blueprints are power.**", type: 'p' },
-  { text: "**A Crisis of Confidence?**", type: 'p' },
-  { text: "This raises a question not of policy, but of confidence.", type: 'p' },
-  { text: "India sends missions to the Moon at a fraction of global costs. We built the world’s most sophisticated digital public infrastructure. We are the world's pharmaceutical backbone.", type: 'p' },
-  { text: "**So why, in advanced technology, do we still default to celebrating assembly as innovation?**", type: 'p' },
-  { text: "It isn't a lack of intelligence or scale. What our engineers often lack is **ecosystem patience**—the willingness of capital and policy to back long-gestation \"deep tech\" instead of chasing the quick wins of white-labeling. Currently, medium and high-technology activities account for only about **46.3% of India's total manufacturing value added**. To become a global leader, that number needs to reflect original design, not just high-tech assembly.", type: 'p' },
-  { text: "**Beyond the Slogan**", type: 'p' },
-  { text: "The danger is subtle: if rebranded imports become our new \"normal,\" we risk signaling to the next generation that our ambition ends at modification. We risk falling into a \"Middle-Income Trap\" where we provide the labor, but others provide the ideas.", type: 'p' },
-  { text: "Atmanirbhar Bharat cannot become a slogan that tolerates technological dependency under domestic packaging. Self-reliance isn't about isolationism; it’s about **negotiating from a position of strength**. And strength only comes from design ownership.", type: 'p' },
-  { text: "The next decade will define India's identity: will we be a true originator of high-complexity systems, or remains a sophisticated assembler with world-class branding?", type: 'p' },
-  { text: "The real test of our progress isn't how many products carry the Indian flag. It is how many products begin as a spark in an Indian engineer’s mind—and end as a global benchmark.", type: 'p' }
-];
-
 export default function Blog1() {
-  // Shared styles
+  // Shared text styles to keep code clean and match your exact properties
   const regularText = {
     color: '#03101F',
     fontFamily: 'Manrope, sans-serif',
     fontSize: '16px',
     fontStyle: 'normal',
     fontWeight: '400',
-    lineHeight: '26px',
+    lineHeight: '26px', // 162.5%
     letterSpacing: '-0.16px',
     margin: 0
   };
@@ -53,35 +22,11 @@ export default function Blog1() {
     fontWeight: '600',
   };
 
-  const h1Style = {
-    color: '#003A84', 
-    fontFamily: 'Manrope, sans-serif', 
-    fontSize: '32px', 
-    fontStyle: 'normal', 
-    fontWeight: '600', 
-    lineHeight: '56px', 
-    textTransform: 'capitalize', 
-    margin: 0 
-  };
-
-  // Helper to parse **bold** syntax instantly
-  const renderTextWithBold = (text) => {
-    const parts = text.split('**');
-    return parts.map((part, index) => {
-      const isBold = index % 2 !== 0; // Everything between the ** will be at odd indices
-      return (
-        <span key={index} style={isBold ? boldText : undefined}>
-          {part}
-        </span>
-      );
-    });
-  };
-
   return (
     <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', minHeight: '100vh', background: '#020b14', overflow: 'hidden' }}>
       <Header />
       
-      {/* Absolute Background Image */}
+      {/* Exact Top Background Image Requested */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -101,30 +46,26 @@ export default function Blog1() {
         display: 'flex', 
         justifyContent: 'center', 
         alignItems: 'flex-start', 
-        paddingTop: '260px', // Exact 260px from the top header
+        paddingTop: '160px', // Pushes content down past the fixed header
         paddingBottom: '80px',
-        zIndex: 1 
+        zIndex: 1 // Keeps the content above the absolute background
       }}>
         
-        {/* The White Card Container */}
-        <div 
-          style={{ 
-            position: 'relative',
-            display: 'flex', 
-            width: '1380px', 
-            margin: '0 270px', // Exact 270px margin on left and right
-            maxWidth: 'calc(100% - 40px)', // Fallback to ensure it doesn't break on small screens
-            padding: '32px 80px', 
-            flexDirection: 'column', 
-            justifyContent: 'center',
-            alignItems: 'center',
-            background: '#FFF',
-            gap: '36px',
-            borderRadius: '8px', 
-            boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)'
-          }}
-        >
-
+        {/* The White Card Container - Exact Properties Applied */}
+        <div style={{ 
+          display: 'flex', 
+          width: '1380px', 
+          maxWidth: '90%', // Fallback for smaller screens
+          padding: '32px 80px', 
+          flexDirection: 'column', 
+          justifyContent: 'center',
+          alignItems: 'center',
+          background: '#FFF',
+          gap: '36px',
+          borderRadius: '8px', // Optional: adds a slight curve to the corners of the white box if needed
+          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)' // Optional: helps separate the white box from the dark background
+        }}>
+          
           {/* Top Meta Data (Back Link & Date) */}
           <div style={{ width: '100%', maxWidth: '1193px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#666', fontFamily: 'Manrope', fontSize: '14px' }}>
             <Link href="/media" style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', textDecoration: 'none', color: 'inherit' }}>
@@ -139,22 +80,100 @@ export default function Blog1() {
           {/* Text Content Area */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', width: '100%', maxWidth: '1193px' }}>
             
-            {rawBlogData.map((block, index) => {
-              if (block.type === 'h1') {
-                return <h1 key={index} style={h1Style}>{renderTextWithBold(block.text)}</h1>;
-              }
-              if (block.type === 'li') {
-                return (
-                  <div key={index} style={{ display: 'flex', gap: '8px', paddingLeft: '24px' }}>
-                    <span style={regularText}>•</span>
-                    <div style={regularText}>{renderTextWithBold(block.text)}</div>
-                  </div>
-                );
-              }
-              return <p key={index} style={regularText}>{renderTextWithBold(block.text)}</p>;
-            })}
+            <h1 style={{ 
+              color: '#003A84', 
+              fontFamily: 'Manrope, sans-serif', 
+              fontSize: '32px', 
+              fontStyle: 'normal', 
+              fontWeight: '600', 
+              lineHeight: '56px', // 175%
+              textTransform: 'capitalize', 
+              margin: 0 
+            }}>
+              Are We Building, Or Just Branding?
+            </h1>
+            
+            <p style={boldText}>A Hard Question for Atmanirbhar Bharat</p>
 
-            {/* Bottom Back Button */}
+            <p style={regularText}>
+              There is a quiet, resonant pride that comes with the words Made in India. It is a phrase that carries the weight of history and the ambition of a nation that no longer wants to be seen merely as a massive consumer market—but as a global maker. But as we accelerate toward a <span style={boldText}>$5 trillion economy</span>, an uncomfortable question has begun to surface: <span style={boldText}>When we say "Made in India," do we mean engineered in India—or merely assembled here?</span> The difference isn't semantic. It is structural. It is the difference between a nation that owns its future and one that merely rents its progress.
+            </p>
+
+            <p style={boldText}>The "Costume" of Self-Reliance</p>
+
+            <p style={regularText}>
+              In several high-technology sectors, a pattern is emerging. Advanced systems arrive at our shores largely complete—sometimes fully built, sometimes in semi-knocked-down (SKD) kits. A logo changes. A housing is redesigned. Final assembly takes place domestically. We see record-breaking production numbers, yet the "depth" of that manufacturing remains thin. Consider the electronics sector: while mobile phone production has skyrocketed <span style={boldText}>28x since 2014</span> (reaching <span style={boldText}>₹5.5 lakh crore in FY25</span>), much of this growth is driven by final-stage assembly.
+            </p>
+
+            <p style={regularText}>
+              On paper, these products qualify as indigenous. <span style={boldText}>In spirit, do they?</span>
+            </p>
+
+            <p style={regularText}>
+              While dependence on finished imports has dropped, our reliance on foreign "brains"—the integrated circuits and core components—remains acute. For instance, imports of integrated circuits touched <span style={boldText}>$5.46 billion in the first half of 2025 alone</span>, with a staggering <span style={boldText}>88% sourced from a single neighbor</span>. This isn't an argument against global trade. No country develops in a vacuum; technology transfer and partnerships are the fuel of economic evolution. But when import-dependence begins to wear the costume of self-reliance, the line between progress and perception blurs, we aren't just building products; we are building vulnerabilities.
+            </p>
+
+            <p style={regularText}>
+              Atmanirbhar Bharat was never meant to be a branding exercise. It was meant to be a capability revolution.
+            </p>
+
+            <p style={boldText}>The Hard Path vs. The Easy Label</p>
+
+            <p style={regularText}>
+              Real self-reliance is inconvenient. It is slow, expensive, and demands a high tolerance for public failure. Rebranding imported systems is the "easy" path to hitting quarterly production targets, but building core architecture is what creates lasting power.
+            </p>
+
+            <p style={regularText}>Consider the "Power of the Blueprint":</p>
+            
+            <ul style={{ ...regularText, paddingLeft: '24px', margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <li>
+                <span style={boldText}>The R&D Gap:</span> India’s Gross Expenditure on R&D (GERD) remains stuck at roughly <span style={boldText}>0.64% of GDP</span>, significantly lower than the <span style={boldText}>2.5% to 5%</span> range of innovation-led economies like the US, Israel, or South Korea.
+              </li>
+              <li>
+                <span style={boldText}>The IP Ownership:</span> While patent filings in India have surged by <span style={boldText}>44% over the last five years</span>, a significant portion of patents granted are still to non-resident entities.
+              </li>
+            </ul>
+
+            <p style={regularText}>
+              If the <span style={boldText}>firmware</span> is written elsewhere..<br/>
+              If the <span style={boldText}>critical components</span> are sourced elsewhere...<br/>
+              If the <span style={boldText}>Design IP</span> is owned elsewhere...<br/>
+              ...then the <span style={boldText}>strategic control</span> sits elsewhere. The product may carry an Indian badge, but it does not carry Indian sovereignty. <span style={boldText}>Blueprints are power.</span>
+            </p>
+
+            <p style={boldText}>
+              A Crisis of Confidence?<br/>
+              <span style={regularText}>This raises a question not of policy, but of confidence.</span><br/>
+              <span style={regularText}>India sends missions to the Moon at a fraction of global costs. We built the world’s most sophisticated digital public infrastructure. We are the world's pharmaceutical backbone.</span>
+            </p>
+
+            <p style={boldText}>
+              So why, in advanced technology, do we still default to celebrating assembly as innovation?
+            </p>
+
+            <p style={regularText}>
+              It isn't a lack of intelligence or scale. What our engineers often lack is <span style={boldText}>ecosystem patience</span>—the willingness of capital and policy to back long-gestation "deep tech" instead of chasing the quick wins of white-labeling. Currently, medium and high-technology activities account for only about <span style={boldText}>46.3% of India's total manufacturing value added</span>. To become a global leader, that number needs to reflect original design, not just high-tech assembly.
+            </p>
+
+            <p style={boldText}>Beyond the Slogan</p>
+
+            <p style={regularText}>
+              The danger is subtle: if rebranded imports become our new "normal," we risk signaling to the next generation that our ambition ends at modification. We risk falling into a "Middle-Income Trap" where we provide the labor, but others provide the ideas.
+            </p>
+
+            <p style={regularText}>
+              Atmanirbhar Bharat cannot become a slogan that tolerates technological dependency under domestic packaging. Self-reliance isn't about isolationism; it’s about <span style={boldText}>negotiating from a position of strength</span>. And strength only comes from design ownership.
+            </p>
+
+            <p style={regularText}>
+              The next decade will define India's identity: will we be a true originator of high-complexity systems, or remains a sophisticated assembler with world-class branding?
+            </p>
+
+            <p style={regularText}>
+              The real test of our progress isn't how many products carry the Indian flag. It is how many products begin as a spark in an Indian engineer’s mind—and end as a global benchmark.
+            </p>
+
+            {/* Bottom Back Button matching your specs perfectly */}
             <div style={{ marginTop: '16px' }}>
               <Link href="/media" style={{ display: 'flex', width: '48px', height: '48px', padding: '20px', justifyContent: 'center', alignItems: 'center', gap: '10px', borderRadius: '50px', background: '#CE921B', cursor: 'pointer' }}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style={{ width: '24px', height: '24px', flexShrink: 0 }}>
@@ -166,6 +185,7 @@ export default function Blog1() {
         </div>
       </main>
 
+      {/* Wrapping the footer to ensure it stays above the absolute background */}
       <div style={{ zIndex: 1, position: 'relative' }}>
         <Footer />
       </div>
