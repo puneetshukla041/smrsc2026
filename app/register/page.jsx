@@ -21,7 +21,7 @@ const FAQSection = () => {
     },
     {
       question: "I did not receive a confirmation email. What should I do?",
-      answer: "Please check your spam or junk folder first. If you still cannot find it, please contact our support team with your transaction ID, and we will resend the confirmation immediately."
+      answer: "Please check your spam folder. If not received, contact the support team with your transaction details."
     },
     {
       question: "Is reimbursement available for international surgeons?",
