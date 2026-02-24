@@ -2,13 +2,12 @@
 
 import { useEffect } from 'react';
 
-// This is the master list of all your assets updated to match your directory listing
 const ASSETS_TO_PRELOAD = [
   // --- FONTS ---
   "/fonts/BlauerNue.otf",
   "/fonts/Roba-Regular.ttf",
 
-  // --- EXPLORE PAGE ---
+  // --- EXPLORE ---
   "/images/explore/hero.webp",
   "/images/explore/image1.webp",
   "/images/explore/image2.webp",
@@ -20,7 +19,7 @@ const ASSETS_TO_PRELOAD = [
   "/images/explore/image8.webp",
   "/images/explore/mobile.png",
 
-  // --- HOME PAGE ---
+  // --- HOME ---
   "/images/home/section1/image2.webp",
   "/images/home/section1/mobileimg.png",
   "/images/home/section2/card.webp",
@@ -56,11 +55,7 @@ const ASSETS_TO_PRELOAD = [
   "/images/home/section6/mobile.webp",
   "/images/home/section6/image1.png",
 
-  // --- LOGOS ---
-  "/logos/header.png",
-  "/logos/ssilogo.png",
-
-  // --- MEDIA PAGE ---
+  // --- MEDIA ---
   "/images/media/blog1.png",
   "/images/media/blog2.png",
   "/images/media/blog3.png",
@@ -73,7 +68,7 @@ const ASSETS_TO_PRELOAD = [
   "/images/media/press1.webp",
   "/images/media/press2.webp",
 
-  // --- VISIT PAGE ---
+  // --- VISIT ---
   "/images/visit/airport.webp",
   "/images/visit/hero.webp",
   "/images/visit/image.webp",
@@ -95,40 +90,23 @@ const ASSETS_TO_PRELOAD = [
   "/images/visit/venue5.webp",
   "/images/visit/venue6.webp",
 
-  // --- PAST EVENTS ---
+  // --- LOGOS ---
+  "/logos/header.png",
+  "/logos/ssilogo.png",
+
+  // --- DYNAMIC RANGES ---
   ...Array.from({ length: 12 }, (_, i) => `/images/pastevent/2025/image${i + 1}.webp`),
   ...Array.from({ length: 12 }, (_, i) => `/images/pastevent/24/image${i + 1}.webp`),
-
-  // --- ABOUT SECTIONS ---
-  "/images/about/section1/image1.webp",
-  "/images/about/section1/img1.webp",
-  "/images/about/section1/mobile.webp",
   ...Array.from({ length: 7 }, (_, i) => `/images/about/section2/image${i + 1}.webp`),
   ...Array.from({ length: 4 }, (_, i) => `/images/about/benifit/image${i + 1}.webp`),
-  "/images/about/faculty/image1.png",
-  "/images/about/faculty/image1.webp",
-
-  // --- COMMITTEE (Files are named 1.webp, 2.webp, etc.) ---
   ...Array.from({ length: 38 }, (_, i) => `/images/about/committe/${i + 1}.webp`),
-
-  // --- CARDIAC PERSONNEL ---
   ...Array.from({ length: 25 }, (_, i) => `/images/about/cardiac/per${i + 1}.webp`),
-
-  // --- GENERAL PERSONNEL ---
-  "/images/about/general/per1.webp",
-  "/images/about/general/per2.webp",
-  "/images/about/general/per3.webp",
-  "/images/about/general/per4.webp",
-
-  // --- UROLOGY PERSONNEL & IMAGES ---
-  "/images/about/urology/clippath.webp",
+  ...Array.from({ length: 4 }, (_, i) => `/images/about/general/per${i + 1}.webp`),
   ...Array.from({ length: 14 }, (_, i) => `/images/about/urology/image${i + 1}.webp`),
-  // Urology per list includes gaps/specific ranges per your list
   ...Array.from({ length: 8 }, (_, i) => `/images/about/urology/per${i + 1}.webp`),
-  ...Array.from({ length: 14 }, (_, i) => `/images/about/urology/per${i + 21}.webp`), // covers per21 to per34
+  ...Array.from({ length: 14 }, (_, i) => `/images/about/urology/per${i + 21}.webp`),
 ];
 
-// --- VIDEOS ---
 const VIDEOS_TO_PRELOAD = [
   "/videos/Color.webm",
   "/videos/smrsc24.webm",
@@ -136,33 +114,19 @@ const VIDEOS_TO_PRELOAD = [
 
 export default function GlobalPreloader() {
   useEffect(() => {
-    const startPreloading = async () => {
-      // 1. Preload Assets
-      for (const src of ASSETS_TO_PRELOAD) {
-        try {
-          fetch(src, { cache: 'force-cache', mode: 'no-cors' });
-        } catch (e) {
-          console.error("Failed to preload asset:", src);
-        }
-      }
-
-      // 2. Preload Videos
-      for (const src of VIDEOS_TO_PRELOAD) {
-        try {
-          fetch(src, { cache: 'force-cache', mode: 'no-cors' });
-        } catch (e) {}
-      }
+    const preloadAll = async () => {
+      const allMedia = [...ASSETS_TO_PRELOAD, ...VIDEOS_TO_PRELOAD];
+      
+      // Fire everything at once
+      await Promise.all(
+        allMedia.map(src => 
+          fetch(src, { cache: 'force-cache', mode: 'no-cors' })
+            .catch(() => {/* fail silently */})
+        )
+      );
     };
 
-    const timer = setTimeout(() => {
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(startPreloading);
-      } else {
-        startPreloading();
-      }
-    }, 3000);
-
-    return () => clearTimeout(timer);
+    preloadAll();
   }, []);
 
   return null;
