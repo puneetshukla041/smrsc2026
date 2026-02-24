@@ -136,9 +136,13 @@ const ExpandedTimerContent = () => {
         <TimeUnit value={formatTime(timeLeft.seconds)} label="Sec" />
       </div>
 
-      <motion.div
+      <motion.a
+        href="https://indiattitude.eventsair.com/smrsc-2026/registration-form"
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={(e) => e.stopPropagation()} // Prevents the parent from closing when clicking the button
         layout // Ensures the button slides into place smoothly
-        className="flex h-7 items-center justify-center rounded-full px-3 text-[9px] font-bold text-white uppercase tracking-wider transition-transform active:scale-95 cursor-not-allowed whitespace-nowrap"
+        className="flex h-7 items-center justify-center rounded-full px-3 text-[9px] font-bold text-white uppercase tracking-wider transition-transform active:scale-95 cursor-pointer whitespace-nowrap"
         style={{
           background: "linear-gradient(180deg, #CE921B 0%, #B88218 100%)",
           boxShadow:
@@ -146,8 +150,8 @@ const ExpandedTimerContent = () => {
           textShadow: "0px 1px 2px rgba(0,0,0,0.2)",
         }}
       >
-        Registration Opening Soon
-      </motion.div>
+        Register Now
+      </motion.a>
     </motion.div>
   );
 };
