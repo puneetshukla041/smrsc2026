@@ -25,7 +25,7 @@ const FAQSection = () => {
     },
     {
       question: "Is reimbursement available for international surgeons?",
-      answer: "Reimbursement availability depends on your sponsorship status or hospital affiliation. We recommend checking with your institution's funding department or applying for our travel grants if eligible."
+      answer: "International surgeons are be eligible for reimbursement of up to USD 5,000, covering travel and accommodation expenses. Reimbursements are subject to prior approval by the organizing committee and submission of valid supporting documentation in accordance with event policy guidelines."
     },
     {
       question: "Do you provide visa assistance?",
