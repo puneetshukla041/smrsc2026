@@ -36,7 +36,7 @@ const FAQSection = () => {
     },
     {
       question: "Are there hands-on or training components?",
-      answer: "Absolutely. We have dedicated 'Dry Lab' sessions and simulator zones where attendees can get hands-on experience with the latest robotic consoles under expert supervision."
+      answer: "Selected sessions include focused discussions and training-oriented content designed to support surgical education and skill advancement."
     },
     {
       question: "How do I register for SMRSC 2026?",
