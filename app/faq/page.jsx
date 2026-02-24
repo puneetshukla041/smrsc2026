@@ -101,10 +101,20 @@ const FAQPage = () => {
     <>
       <Header />
       
-      <main className="min-h-screen w-full bg-[#000000] text-white pt-40 pb-32 px-6 flex flex-col items-center relative overflow-hidden">
+      {/* Updated background color to #02091A */}
+      <main className="min-h-screen w-full bg-[#02091A] text-white pt-40 pb-32 px-6 flex flex-col items-center relative overflow-hidden">
         
-        {/* Dynamic Background Mesh - Neutral White/Gray Tint */}
-        <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[120vw] h-[100vh] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/10 via-black/0 to-transparent blur-[120px] pointer-events-none opacity-40 animate-pulse-slow -z-10" />
+        {/* Left Side Glow */}
+        <div 
+          className="absolute top-[10%] left-[-300px] pointer-events-none -z-10 rounded-full"
+          style={{
+            width: '809px',
+            height: '829px',
+            background: 'linear-gradient(88deg, #02639E 36.79%, #206C9B 112.55%)',
+            opacity: 0.4,
+            filter: 'blur(200px)'
+          }}
+        />
         
         <div className="w-full max-w-[1000px] flex flex-col z-10">
           
@@ -139,7 +149,7 @@ const FAQPage = () => {
                 <motion.div 
                   key={index} 
                   variants={itemVariants}
-                  className="group relative cursor-pointer" // cursor-pointer added here
+                  className="group relative cursor-pointer"
                   onClick={() => toggleFAQ(index)}
                 >
                   {/* Glass Card Background - Neutral Monochrome */}
