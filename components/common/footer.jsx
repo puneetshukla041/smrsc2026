@@ -109,9 +109,16 @@ const Footer = () => {
               <Link href="/media" style={linkStyle} className="hover:text-[#E3F5F6] transition-colors">
                 Media
               </Link>
-              <Link href="/register" style={linkStyle} className="hover:text-[#E3F5F6] transition-colors">
+              {/* UPDATED: Register Now Link */}
+              <a 
+                href="https://indiattitude.eventsair.com/smrsc-2026/registration-form"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={linkStyle} 
+                className="hover:text-[#E3F5F6] transition-colors"
+              >
                 Register now
-              </Link>
+              </a>
               <Link href="/contactus" style={linkStyle} className="hover:text-[#E3F5F6] transition-colors">
                 Contact us
               </Link>
