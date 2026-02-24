@@ -44,7 +44,7 @@ const FAQPage = () => {
     },
     {
       question: "Is reimbursement available for international surgeons?",
-      answer: "International surgeons are eligible for reimbursement of up to USD 5,000, covering travel and accommodation expenses. Reimbursements are subject to prior approval by the organizing committee and submission of valid supporting documentation in accordance with event policy guidelines."
+      answer: "International surgeons are eligible for reimbursement of up to USD 5,000 covering travel and accommodation expenses. Reimbursements are subject to prior approval by the organizing committee and submission of valid supporting documentation in accordance with event policy guidelines."
     },
     {
       question: "Can I attend sessions outside my specialty?",
