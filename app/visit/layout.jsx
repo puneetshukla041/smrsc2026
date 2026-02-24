@@ -21,7 +21,7 @@ const FAQSection = () => {
   const faqs = [
     {
       question: "How can I find my session hall inside the venue?",
-      answer: "Digital signage and volunteer guides will be stationed throughout the venue to assist you. You can also refer to the interactive venue map available on our mobile app."
+      answer: "You can use the website’s search feature to locate your session and access step-by-step directions within the venue."
     },
     {
       question: "Are taxis and ride-sharing services available?",
