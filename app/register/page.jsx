@@ -17,7 +17,7 @@ const FAQSection = () => {
   const faqs = [
     {
       question: "What payment methods are accepted?",
-      answer: "We accept all major credit cards (Visa, Mastercard, Amex), debit cards, and direct bank transfers. All transactions are processed through our secure payment gateway."
+      answer: "Major credit and debit cards, along with supported online payment gateways, are accepted during checkout."
     },
     {
       question: "I did not receive a confirmation email. What should I do?",
