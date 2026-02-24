@@ -135,7 +135,7 @@ const Footer = () => {
                 </svg>
             </a>
             <a href="https://teams.microsoft.com/l/message/19:11530ac0-0153-455f-bf9a-274d1cc1995d_1f599023-a430-499c-9056-404cf5107e88@unq.gbl.spaces/1771906141203?context=%7B%22contextType%22%3A%22chat%22%7D" className="text-white hover:text-[#E3F5F6] transition-colors"><Instagram size={20} /></a>
-            <a href="#" className="text-white hover:text-[#E3F5F6] transition-colors"><Linkedin size={20} /></a>
+            <a href="https://www.linkedin.com/company/ssinnovationsgroup/" className="text-white hover:text-[#E3F5F6] transition-colors"><Linkedin size={20} /></a>
             <a href="mailto:smrsc@ssinnovations.org" className="text-white hover:text-[#E3F5F6] transition-colors"><Mail size={20} /></a>
             <a href="tel:+918130027337" className="text-white hover:text-[#E3F5F6] transition-colors"><Phone size={20} /></a>
           </div>
