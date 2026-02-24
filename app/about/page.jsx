@@ -24,7 +24,7 @@ const FAQSection = () => {
   const faqs = [
     {
       question: "Will there be live surgical demonstrations?",
-      answer: "Yes. Live robotic surgical demonstrations are a core component of SMRSC 2026, featuring real-time feeds from top global institutes directly to the conference venue."
+      answer: "Yes, live robotic procedures across multiple specialties are a key component of the conference."
     },
     {
       question: "What kind of technologies will be showcased?",
