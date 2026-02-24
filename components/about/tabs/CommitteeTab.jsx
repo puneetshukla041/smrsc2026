@@ -3,7 +3,6 @@ import React from 'react';
 import Image from 'next/image';
 
 const CommitteeTab = () => {
-  // Data for the top organizing committee based on the image provided
   const organizingCommittee = [
     {
       title: "Organizing Chairman",
@@ -47,17 +46,19 @@ const CommitteeTab = () => {
   const descStyle = { color: '#FFF', fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 400, lineHeight: '18px', opacity: 0.8 };
 
   return (
-    <div className="w-full animate-in fade-in duration-700 min-h-[50vh] pb-20 px-4 md:px-10">
+    // 1. Applied xl:px-[270px] to lock in the exact 270px gap from the screen edges on large monitors.
+    <div className="w-full animate-in fade-in duration-700 min-h-[50vh] pb-20 px-4 lg:px-10 xl:px-[270px]">
       
-      {/* Organizing Committee Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 items-start justify-center max-w-[1400px] mx-auto pt-10">
+      {/* 2. Switched to flex + justify-between. Removed max-w-[1400px] and mx-auto.
+          This forces item 1 to the far left, item 4 to the far right, and evenly spaces 2 and 3. */}
+      <div className="flex flex-col xl:flex-row flex-wrap justify-between items-start w-full pt-10 gap-y-10">
         {organizingCommittee.map((member, idx) => (
-          <div key={idx} className="flex flex-col items-center w-full">
+          <div key={idx} className="flex flex-col items-center w-full xl:w-auto">
             <h3 style={baseHeadingStyle} className="h-[64px] flex items-end justify-center">
               {member.title}
             </h3>
             
-            {/* Image Container with fixed 300x301 dimensions */}
+            {/* Image Container */}
             <div className="relative rounded-[16px] overflow-hidden shadow-lg" style={{ width: '300px', height: '301px' }}>
               <Image 
                 src={member.src} 
