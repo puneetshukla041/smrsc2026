@@ -32,7 +32,7 @@ const FAQSection = () => {
     },
     {
       question: "Is SMRSC academic or industry-focused?",
-      answer: "SMRSC is a unique convergence of both. It offers rigorous academic sessions and CME credits while deeply integrating industry innovations and engineering dialogues."
+      answer: "SMRSC bridges clinical practice and technological innovation, combining academic discussions with real-world applications."
     },
     {
       question: "Are there hands-on or training components?",
