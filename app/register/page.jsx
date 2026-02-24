@@ -178,7 +178,7 @@ const FAQSection = () => {
           whileTap={{ scale: 0.95 }}
           className="group relative flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full overflow-hidden cursor-pointer hover:bg-gray-200 transition-colors"
         >
-          <span className="relative z-10 font-manrope font-semibold text-sm tracking-wide">View all FAQs</span>
+
           <motion.div
             className="relative z-10"
             initial={{ x: 0 }}
