@@ -28,7 +28,7 @@ const FAQSection = () => {
     },
     {
       question: "What kind of technologies will be showcased?",
-      answer: "The conference will showcase the latest advancements in the SSI Mantra surgical robot system, 3D visualization tech, telesurgery capabilities, and AI-driven surgical analytics."
+      answer: "The conference features robotic platforms, telesurgery solutions, advanced surgical instruments, training technologies, and connected surgical systems."
     },
     {
       question: "Is SMRSC academic or industry-focused?",
