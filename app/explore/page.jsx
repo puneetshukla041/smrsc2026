@@ -48,7 +48,7 @@ const FAQSection = () => {
     },
     {
       question: "Can I attend sessions outside my selected specialty?",
-      answer: "Absolutely. Your pass grants you access to all open sessions regardless of specialty, allowing you to explore cross-disciplinary topics."
+      answer: "Yes, all attendees can explore and attend sessions across specialties."
     }
   ];
 
