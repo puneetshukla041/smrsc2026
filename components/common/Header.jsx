@@ -58,7 +58,6 @@ const NAV_LINKS = [
       { name: "SMRSC 2024", href: "/pastevents?tab=2024" }, 
     ]
   },
-  // UPDATED SECTION: Contact Us is now a dropdown
   { 
     name: "Contact Us", 
     href: "/contactus",
@@ -86,14 +85,13 @@ const MOBILE_VARIANTS = {
 };
 
 /* -------------------------------------------------------------------------- */
-/* MAIN COMPONENT                              */
+/* MAIN COMPONENT                                                             */
 /* -------------------------------------------------------------------------- */
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [hoveredLink, setHoveredLink] = useState(null);
-  const [registerBtnText, setRegisterBtnText] = useState("Register Now");
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [mounted, setMounted] = useState(false);
   
@@ -114,16 +112,13 @@ export default function Header() {
     setMounted(true);
     
     const prefetchPages = () => {
-      // List of all major routes in the application
       const routesToPrefetch = [
         '/about', '/explore', '/visit/venue', '/visit/hotels', '/visit/places', 
         '/media', '/pastevents', '/contactus', '/register', '/faq'
       ];
       
-      // Delay by 1 second so it doesn't compete with the initial homepage render
       setTimeout(() => {
         routesToPrefetch.forEach(route => {
-          // This forces Next.js to fetch the page component code in the background
           router.prefetch(route);
         });
       }, 1000);
@@ -275,17 +270,18 @@ export default function Header() {
             >
               <Search size={22} strokeWidth={2.5} />
             </motion.button>
-            <motion.div
+            <motion.a
+              href="https://indiattitude.eventsair.com/smrsc-2026/registration-form"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onHoverStart={() => setRegisterBtnText("Coming Soon")}
-              onHoverEnd={() => setRegisterBtnText("Register Now")}
-              className="cursor-not-allowed"
+              className="cursor-pointer"
             >
               <div className="flex items-center justify-center gap-2 rounded-full bg-[#CE921B] px-6 py-2.5 text-[14px] font-bold text-white uppercase tracking-wider shadow-lg shadow-[#CE921B]/20 hover:bg-[#B88218] transition-all min-w-[160px] text-center">
-                {registerBtnText}
+                Register Now
               </div>
-            </motion.div>
+            </motion.a>
           </div>
 
           <div className="lg:hidden flex items-center gap-4 relative z-[120]">

@@ -17,7 +17,7 @@ const Section1 = () => {
     border: "1px solid #FFF",
     background: "linear-gradient(180deg, #E5B648 0%, #C8890C 100%), radial-gradient(231% 135.8% at 0.9% 2.98%, rgba(255, 255, 255, 0.80) 0%, rgba(255, 255, 255, 0.20) 100%)",
     backdropFilter: "blur(21px)",
-    cursor: "not-allowed", 
+    cursor: "pointer", // Changed from "not-allowed"
     boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.15)",
     textDecoration: "none",
   };
@@ -49,7 +49,7 @@ const Section1 = () => {
         }}
       />
 
-      {/* --- DESKTOP VIEW (Removed opacity delay so it paints instantly) --- */}
+      {/* --- DESKTOP VIEW --- */}
       <div className="relative z-10 w-full max-w-[1440px] mx-auto px-4 md:px-8 hidden md:flex justify-center items-center">
         <div className="relative w-full" style={{ aspectRatio: "1693 / 861" }}>
           
@@ -64,7 +64,10 @@ const Section1 = () => {
             style={{ objectFit: "contain" }}
           />
 
-          <motion.div 
+          <motion.a 
+            href="https://indiattitude.eventsair.com/smrsc-2026/registration-form"
+            target="_blank"
+            rel="noopener noreferrer"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
@@ -73,12 +76,12 @@ const Section1 = () => {
             style={buttonContainerStyle} 
             className="absolute bottom-[10%] left-1/2 -translate-x-1/2 z-20 origin-center scale-90 lg:scale-100"
           >
-            <span style={buttonTextStyle}>Registration Opening Soon</span>
-          </motion.div>
+            <span style={buttonTextStyle}>Register Now</span>
+          </motion.a>
         </div>
       </div>
 
-      {/* --- MOBILE VIEW (Removed opacity delay so it paints instantly) --- */}
+      {/* --- MOBILE VIEW --- */}
       <div className="relative z-10 w-full flex md:hidden justify-center px-6">
         <div
           style={{ width: "350px", height: "592px", aspectRatio: "81 / 137", borderRadius: "4px 100px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)" }}
@@ -96,7 +99,10 @@ const Section1 = () => {
             style={{ objectFit: "cover" }}
           />
 
-          <motion.div 
+          <motion.a 
+            href="https://indiattitude.eventsair.com/smrsc-2026/registration-form"
+            target="_blank"
+            rel="noopener noreferrer"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
@@ -105,8 +111,8 @@ const Section1 = () => {
             style={{ ...buttonContainerStyle, width: "240px", height: "45px" }} 
             className="absolute bottom-[8%] z-20"
           >
-            <span style={{ ...buttonTextStyle, fontSize: "16px" }}>Registration Opening Soon</span>
-          </motion.div>
+            <span style={{ ...buttonTextStyle, fontSize: "16px" }}>Register Now</span>
+          </motion.a>
         </div>
       </div>
     </section>
