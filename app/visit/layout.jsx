@@ -33,7 +33,7 @@ const FAQSection = () => {
     },
     {
       question: "Does SMRSC provide hotel bookings?",
-      answer: "We have partnered with several hotels near the venue to offer exclusive discounted rates for attendees. You can book directly through the 'Hotels' tab on this page."
+      answer: "Attendees are responsible for booking accommodation directly with hotels. "
     }
   ];
 
