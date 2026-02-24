@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 
-// This is the master list of all your assets
+// This is the master list of all your assets updated to match your directory listing
 const ASSETS_TO_PRELOAD = [
   // --- FONTS ---
   "/fonts/BlauerNue.otf",
@@ -10,7 +10,6 @@ const ASSETS_TO_PRELOAD = [
 
   // --- EXPLORE PAGE ---
   "/images/explore/hero.webp",
-  "/images/explore/mobile.png",
   "/images/explore/image1.webp",
   "/images/explore/image2.webp",
   "/images/explore/image3.webp",
@@ -19,6 +18,7 @@ const ASSETS_TO_PRELOAD = [
   "/images/explore/image6.webp",
   "/images/explore/image7.webp",
   "/images/explore/image8.webp",
+  "/images/explore/mobile.png",
 
   // --- HOME PAGE ---
   "/images/home/section1/image2.webp",
@@ -56,13 +56,9 @@ const ASSETS_TO_PRELOAD = [
   "/images/home/section6/mobile.webp",
   "/images/home/section6/image1.png",
 
-  // --- LOGOS & ICONS ---
+  // --- LOGOS ---
   "/logos/header.png",
   "/logos/ssilogo.png",
-  "/file.svg",
-  "/globe.svg",
-  "/next.svg",
-  "/vercel.svg",
 
   // --- MEDIA PAGE ---
   "/images/media/blog1.png",
@@ -99,79 +95,43 @@ const ASSETS_TO_PRELOAD = [
   "/images/visit/venue5.webp",
   "/images/visit/venue6.webp",
 
-  // --- PAST EVENTS (2024) ---
-  "/images/pastevent/24/image1.webp",
-  "/images/pastevent/24/image2.webp",
-  "/images/pastevent/24/image3.webp",
-  "/images/pastevent/24/image4.webp",
-  "/images/pastevent/24/image5.webp",
-  "/images/pastevent/24/image6.webp",
-  "/images/pastevent/24/image7.webp",
-  "/images/pastevent/24/image8.webp",
-  "/images/pastevent/24/image9.webp",
-  "/images/pastevent/24/image10.webp",
-  "/images/pastevent/24/image11.webp",
-  "/images/pastevent/24/image12.webp",
+  // --- PAST EVENTS ---
+  ...Array.from({ length: 12 }, (_, i) => `/images/pastevent/2025/image${i + 1}.webp`),
+  ...Array.from({ length: 12 }, (_, i) => `/images/pastevent/24/image${i + 1}.webp`),
 
-  // --- PAST EVENTS (2025) ---
-  "/images/pastevent/2025/image1.webp",
-  "/images/pastevent/2025/image2.webp",
-  "/images/pastevent/2025/image3.webp",
-  "/images/pastevent/2025/image4.webp",
-  "/images/pastevent/2025/image5.webp",
-  "/images/pastevent/2025/image6.webp",
-  "/images/pastevent/2025/image7.webp",
-  "/images/pastevent/2025/image8.webp",
-  "/images/pastevent/2025/image9.webp",
-  "/images/pastevent/2025/image10.webp",
-  "/images/pastevent/2025/image11.webp",
-  "/images/pastevent/2025/image12.webp",
-
-  // --- ABOUT PAGE & SECTIONS ---
+  // --- ABOUT SECTIONS ---
   "/images/about/section1/image1.webp",
   "/images/about/section1/img1.webp",
   "/images/about/section1/mobile.webp",
-  "/images/about/section2/image1.webp",
-  "/images/about/section2/image2.webp",
-  "/images/about/section2/image3.webp",
-  "/images/about/section2/image4.webp",
-  "/images/about/section2/image5.webp",
-  "/images/about/section2/image6.webp",
-  "/images/about/section2/image7.webp",
-  "/images/about/benifit/image1.webp",
-  "/images/about/benifit/image2.webp",
-  "/images/about/benifit/image3.webp",
-  "/images/about/benifit/image4.webp",
+  ...Array.from({ length: 7 }, (_, i) => `/images/about/section2/image${i + 1}.webp`),
+  ...Array.from({ length: 4 }, (_, i) => `/images/about/benifit/image${i + 1}.webp`),
   "/images/about/faculty/image1.png",
   "/images/about/faculty/image1.webp",
 
-  // --- COMMITTEE PERSONNEL ---
-  "/images/about/committe/krawal.png",
-  "/images/about/committe/somash.png",
-  "/images/about/committe/sudhir.png",
-  "/images/about/committe/vishwa.png",
-  ...Array.from({ length: 34 }, (_, i) => `/images/about/committe/per${i + 1}.webp`),
+  // --- COMMITTEE (Files are named 1.webp, 2.webp, etc.) ---
+  ...Array.from({ length: 38 }, (_, i) => `/images/about/committe/${i + 1}.webp`),
 
   // --- CARDIAC PERSONNEL ---
   ...Array.from({ length: 25 }, (_, i) => `/images/about/cardiac/per${i + 1}.webp`),
-
-  // --- UROLOGY PERSONNEL & IMAGES ---
-  "/images/about/urology/clippath.webp",
-  ...Array.from({ length: 14 }, (_, i) => `/images/about/urology/image${i + 1}.webp`),
-  ...Array.from({ length: 34 }, (_, i) => `/images/about/urology/per${i + 1}.webp`),
 
   // --- GENERAL PERSONNEL ---
   "/images/about/general/per1.webp",
   "/images/about/general/per2.webp",
   "/images/about/general/per3.webp",
-  "/images/about/general/per4.webp"
+  "/images/about/general/per4.webp",
+
+  // --- UROLOGY PERSONNEL & IMAGES ---
+  "/images/about/urology/clippath.webp",
+  ...Array.from({ length: 14 }, (_, i) => `/images/about/urology/image${i + 1}.webp`),
+  // Urology per list includes gaps/specific ranges per your list
+  ...Array.from({ length: 8 }, (_, i) => `/images/about/urology/per${i + 1}.webp`),
+  ...Array.from({ length: 14 }, (_, i) => `/images/about/urology/per${i + 21}.webp`), // covers per21 to per34
 ];
 
 // --- VIDEOS ---
 const VIDEOS_TO_PRELOAD = [
   "/videos/Color.webm",
   "/videos/smrsc24.webm",
-  "/videos/smrsc25.webm"
 ];
 
 export default function GlobalPreloader() {
