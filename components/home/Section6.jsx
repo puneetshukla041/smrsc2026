@@ -1,12 +1,10 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const Section6 = () => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  const registerBtnStyle = { display: 'flex', width: '301px', padding: '16px 24px', justifyContent: 'center', alignItems: 'center', gap: '5px', borderRadius: '24px', background: '#F8FFFF', border: 'none', cursor: 'not-allowed', zIndex: 20, boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.15)', textDecoration: 'none' };
+  const registerBtnStyle = { display: 'flex', width: '301px', padding: '16px 24px', justifyContent: 'center', alignItems: 'center', gap: '5px', borderRadius: '24px', background: '#F8FFFF', border: 'none', cursor: 'pointer', zIndex: 20, boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.15)', textDecoration: 'none' };
   const registerBtnTextStyle = { color: '#191B1B', fontFamily: "'Manrope', sans-serif", fontSize: '16px', fontStyle: 'normal', fontWeight: '600', lineHeight: '20px' };
 
   const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.3, delayChildren: 0.2 } } };
@@ -39,16 +37,17 @@ const Section6 = () => {
             <Image src="/images/home/section6/mobile.webp" alt="SMRSC 2026 Transformation Mobile" fill sizes="350px" className="object-cover block md:hidden" unoptimized={true} loading="eager" />
 
             {/* BUTTON */}
-            <motion.div 
-              onHoverStart={() => setIsHovered(true)} 
-              onHoverEnd={() => setIsHovered(false)} 
+            <motion.a 
+              href="https://indiattitude.eventsair.com/smrsc-2026/registration-form"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }} 
               whileTap={{ scale: 0.95 }} 
               style={registerBtnStyle} 
               className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 md:top-[450px] md:translate-y-0"
             >
-              <span style={registerBtnTextStyle}>{isHovered ? "Coming Soon" : "Registration Opening Soon"}</span>
-            </motion.div>
+              <span style={registerBtnTextStyle}>Register Now</span>
+            </motion.a>
 
           </div>
         </motion.div>
