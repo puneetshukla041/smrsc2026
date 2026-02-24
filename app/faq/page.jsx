@@ -32,7 +32,7 @@ const FAQPage = () => {
     },
     {
       question: "How do I register?",
-      answer: "Registration details can be found on our official portal. The process includes selecting your pass type, workshops, and accommodation options if needed." 
+      answer: "Registration can be completed through the official website using the “Register Now” button. A confirmation email will be sent upon successful payment." 
     },
     {
       question: "What payment methods are accepted?",
