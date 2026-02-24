@@ -29,7 +29,7 @@ const FAQSection = () => {
     },
     {
       question: "Which visa category should I apply under?",
-      answer: "International attendees should generally apply for a Business or Conference Visa. We provide an official invitation letter upon registration to support your application."
+      answer: "International participants are advised to apply under the Tourist Visa category, subject to eligibility and applicable regulations."
     },
     {
       question: "Does SMRSC provide hotel bookings?",
