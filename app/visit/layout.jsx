@@ -25,7 +25,7 @@ const FAQSection = () => {
     },
     {
       question: "Are taxis and ride-sharing services available?",
-      answer: "Yes, the venue has a dedicated pick-up and drop-off zone for Uber, Lyft, and local taxis. Concierge services at the entrance can also assist with booking rides."
+      answer: "Yes, app-based cab services and taxis are widely available throughout New Delhi."
     },
     {
       question: "Which visa category should I apply under?",
