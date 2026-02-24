@@ -40,11 +40,11 @@ const FAQSection = () => {
   const faqs = [
     {
       question: "How can I find my session location at the venue?",
-      answer: "You can find session locations on the digital screens throughout the venue or by checking the specific session details in the 'Schedule' tab above."
+      answer: "Use the website’s search feature to locate sessions and access step-by-step venue navigation."
     },
     {
       question: "Can I personalise my experience?",
-      answer: "Yes! You can filter sessions by specialty using the tabs above and bookmark your favorite events to create a personalized itinerary."
+      answer: "Yes, you can select your specialty to view relevant sessions and faculty."
     },
     {
       question: "Can I attend sessions outside my selected specialty?",
