@@ -29,7 +29,7 @@ const FAQSection = () => {
     },
     {
       question: "Do you provide visa assistance?",
-      answer: "Yes. Once your registration is confirmed, we can issue an official Letter of Invitation to support your visa application process at the nearest embassy."
+      answer: "The organizing team can provide general guidance. International attendees are advised to apply under the Tourist Visa category, subject to applicable regulations. Visa applications must be completed through official government channels."
     }
   ];
 
