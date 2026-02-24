@@ -40,7 +40,7 @@ const FAQSection = () => {
     },
     {
       question: "How do I register for SMRSC 2026?",
-      answer: "Registration is strictly online via our official portal. Early bird access is currently open. Please visit the 'Register' page for pass details and pricing."
+      answer: "Registration can be completed through the official website using the “Register Now” button. A confirmation email will be sent upon successful payment."
     }
   ];
 
