@@ -49,7 +49,7 @@ const LogoScroller = () => {
   const duplicatedLogos = [...logos, ...logos];
 
   return (
-    <div className="relative w-full max-w-[1380px] mt-32 overflow-hidden flex items-center">
+    <div className="relative w-full max-w-[1380px] mt-12 md:mt-16 overflow-hidden flex items-center">
       
       {/* Premium gradient fade edges */}
       <div className="absolute left-0 top-0 w-16 md:w-32 h-full bg-gradient-to-r from-[#020617] to-transparent z-10 pointer-events-none"></div>
@@ -137,8 +137,8 @@ const AboutTab = () => {
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                       unoptimized={true}
-                      loading="eager"         
-                      fetchPriority="low"     
+                      loading="eager"        
+                      fetchPriority="low"    
                     />
                   </div>
                   <div className="flex flex-col justify-center items-start gap-1 p-4 md:py-[10px] md:px-[24px] w-full max-w-full md:max-w-[644px] h-auto min-h-[80px] md:h-[92px] rounded-[16px] bg-black/40 border border-white/10">
@@ -168,8 +168,8 @@ const AboutTab = () => {
                         fill 
                         className="object-cover"
                         unoptimized={true}
-                        loading="eager"         
-                        fetchPriority="low"     
+                        loading="eager"        
+                        fetchPriority="low"    
                       />
                     </div>
                     <div className={`flex flex-col justify-center gap-1 w-full md:w-[580px] h-auto min-h-[140px] md:h-[195px] p-6 md:py-[10px] md:px-[24px] rounded-[16px] bg-black/40 relative mt-[-20px] md:mt-0 md:bg-opacity-40 z-0 md:z-auto ${isImageRight ? 'items-start md:mr-[40px]' : 'items-start md:items-end md:ml-[40px]'}`} style={{ alignItems: isImageRight ? 'flex-start' : undefined }}>
@@ -183,9 +183,14 @@ const AboutTab = () => {
       </div>
 
       {/* --- MOVED LOGO SCROLLER TO THE BOTTOM --- */}
-      <FadeInView delay={200}>
-        <LogoScroller />
-      </FadeInView>
+      <div className="w-full max-w-[1380px] mt-24 md:mt-[200px]">
+        <FadeInView delay={200}>
+          <h3 className="text-[#F8FFFF] text-[28px] md:text-[36px] font-medium leading-tight md:leading-[40px]" style={{ fontFamily: "'Blauer Nue', sans-serif" }}>
+            In association with
+          </h3>
+          <LogoScroller />
+        </FadeInView>
+      </div>
 
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500&display=swap');
