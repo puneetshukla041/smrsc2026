@@ -36,12 +36,12 @@ const Section2 = () => {
     { id: 4, img: "/images/home/section2/image4.webp", x: 500, y: 100 },
   ];
 
-  // Fixed, elegant positions for sparkles around the cards
+  // Fixed, elegant positions for the micro water drops
   const sparklePositions = [
-    { top: '-5%', left: '-5%' },
-    { top: '15%', right: '-8%' },
-    { bottom: '-2%', left: '25%' },
-    { bottom: '20%', right: '-5%' },
+    { top: '-2%', left: '-2%' },
+    { top: '15%', right: '-4%' },
+    { bottom: '-1%', left: '25%' },
+    { bottom: '20%', right: '-3%' },
   ];
 
   const titleStyle = { color: '#FFF', textAlign: 'center', fontFamily: '"Blauer Nue", sans-serif', fontStyle: 'normal', fontWeight: '600', lineHeight: '150%', letterSpacing: '-0.704px', textTransform: 'capitalize' };
@@ -96,7 +96,7 @@ const Section2 = () => {
             />
           </motion.div>
 
-          {/* ================= CARDS & SPARKLES ================= */}
+          {/* ================= CARDS & MICRO WATER DROPS ================= */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:block w-full max-w-4xl px-6 md:px-0">
             {cards.map((card, i) => (
               <motion.div
@@ -108,7 +108,7 @@ const Section2 = () => {
                 className="flex items-center justify-center pointer-events-auto mx-auto"
               >
                 
-                {/* 🌟 Elegant Stationary Twinkling Sparkles */}
+                {/* 💧 Subdued Micro Water Drops */}
                 {!isMobile && sparklePositions.map((pos, idx) => (
                   <motion.div
                     key={`sparkle-${card.id}-${idx}`}
@@ -116,13 +116,13 @@ const Section2 = () => {
                     style={pos}
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{
-                      opacity: [0, 1, 0.4, 1],
-                      scale: [0, 1, 0.8, 1],
+                      opacity: [0, 0.3, 0.1, 0.3], // Faint, subtle opacity shift
+                      scale: [0, 0.6, 0.6, 0.6],   // Micro scale (60% of original size), no pulsing
                     }}
                     viewport={{ once: true, margin: "-10%" }}
                     transition={{
-                      duration: 3 + Math.random() * 2, // Randomize twinkle speed
-                      delay: 0.5 + (i * 0.1) + (idx * 0.1), // Wait for card to appear
+                      duration: 6 + (idx % 2), // 6-7 seconds long (very slow)
+                      delay: 0.8 + (i * 0.1) + (idx * 0.1), // Wait for card to settle
                       repeat: Infinity,
                       repeatType: "reverse",
                       ease: "easeInOut"
