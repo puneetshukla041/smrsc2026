@@ -2,6 +2,20 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
+// --- Your SVG Sparkle Component ---
+const SparkleBubble = ({ className = "" }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    width="10" 
+    height="10" 
+    viewBox="0 0 10 10" 
+    fill="none"
+    className={`w-[9.218px] h-[9.218px] transform -rotate-[66.571deg] ${className}`}
+  >
+    <circle cx="4.61078" cy="4.61112" r="4.60917" transform="rotate(-76.2652 4.61078 4.61112)" fill="#225CF0"/>
+  </svg>
+);
+
 const Section2 = () => {
   const [windowWidth, setWindowWidth] = useState(0);
 
@@ -12,7 +26,7 @@ const Section2 = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const isMobile = windowWidth < 768; 
+  const isMobile = windowWidth > 0 && windowWidth < 768; 
   const isLaptop = windowWidth >= 768 && windowWidth < 1440; 
 
   const cards = [
@@ -47,6 +61,18 @@ const Section2 = () => {
     visible: { scale: 1, opacity: 1, transition: { duration: 0.8, type: "spring", delay: 0.2 } }
   };
 
+  // Sparkles shooting out of the cards when they appear
+  const burstVariants = {
+    hidden: { x: 0, y: 0, scale: 0, opacity: 0 },
+    visible: (custom) => ({
+      x: custom.targetX,
+      y: custom.targetY,
+      scale: [0, 1, 0], // Scale up to normal size, then shrink away
+      opacity: [0, 1, 0], // Fade in, then fade out
+      transition: { duration: 2, delay: custom.delay, ease: "easeOut" }
+    })
+  };
+
   return (
     <section className="relative w-full min-h-screen flex flex-col md:justify-center items-center overflow-hidden bg-transparent py-20 md:py-0">
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
@@ -74,7 +100,7 @@ const Section2 = () => {
             />
           </motion.div>
 
-          {/* ================= CARDS ================= */}
+          {/* ================= CARDS & BURST EFFECTS ================= */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:block w-full max-w-4xl px-6 md:px-0">
             {cards.map((card, i) => (
               <motion.div
@@ -85,9 +111,32 @@ const Section2 = () => {
                 }}
                 className="flex items-center justify-center pointer-events-auto mx-auto"
               >
-                <motion.div custom={i} animate="float" variants={floatVariants} className="relative w-full h-full flex items-center justify-center">
+                
+                {/* 🌟 Particle Burst (Shoots out from behind the card) */}
+                {!isMobile && Array.from({ length: 8 }).map((_, burstIdx) => {
+                  const angle = (burstIdx / 8) * Math.PI * 2;
+                  const distance = Math.random() * 60 + 120; // Shoot outward 120px to 180px
+                  return (
+                    <motion.div
+                      key={`burst-${card.id}-${burstIdx}`}
+                      custom={{
+                        targetX: Math.cos(angle) * distance,
+                        targetY: Math.sin(angle) * distance,
+                        delay: 0.2 + (i * 0.1) + Math.random() * 0.3 // Timed to happen right as the card arrives
+                      }}
+                      variants={burstVariants}
+                      className="absolute left-1/2 top-1/2 pointer-events-none z-0 flex items-center justify-center"
+                      style={{ marginLeft: '-4.609px', marginTop: '-4.609px' }} // Center the 9.218px SVG
+                    >
+                      <SparkleBubble />
+                    </motion.div>
+                  );
+                })}
+
+                <motion.div custom={i} animate="float" variants={floatVariants} className="relative w-full h-full flex items-center justify-center z-10">
                   <img src={card.img} alt={`Clinical Outcome ${i + 1}`} style={{ width: '100%', height: '100%', objectFit: 'contain' }} className="select-none pointer-events-none" draggable={false} />
                 </motion.div>
+
               </motion.div>
             ))}
           </div>
