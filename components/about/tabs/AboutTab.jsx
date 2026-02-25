@@ -218,5 +218,4 @@ const AboutTab = () => {
   );
 
 };
-
 export default AboutTab;
