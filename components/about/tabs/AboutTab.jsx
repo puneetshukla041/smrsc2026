@@ -49,33 +49,40 @@ const LogoScroller = () => {
   const duplicatedLogos = [...logos, ...logos];
 
   return (
-    <div className="relative w-full max-w-[1380px] mt-32 overflow-hidden flex items-center">
+    <div className="w-full max-w-[1380px] mt-32 flex flex-col items-center">
       
-      {/* Premium gradient fade edges */}
-      <div className="absolute left-0 top-0 w-16 md:w-32 h-full bg-gradient-to-r from-[#020617] to-transparent z-10 pointer-events-none"></div>
-      <div className="absolute right-0 top-0 w-16 md:w-32 h-full bg-gradient-to-l from-[#020617] to-transparent z-10 pointer-events-none"></div>
+      {/* Heading */}
+      <h3 className="text-[#F8FFFF] text-[24px] md:text-[32px] font-medium leading-tight mb-8" style={{ fontFamily: "'Blauer Nue', sans-serif" }}>
+        In Association With
+      </h3>
+      <div className="h-1 w-16 bg-[#CE921B] rounded-full mb-12"></div>
 
-      {/* Scrolling Container */}
-      <div className="flex w-max animate-scroll-lr hover:pause-scroll">
-        {duplicatedLogos.map((src, index) => (
-          <div 
-            key={index} 
-            className="flex justify-center items-center w-[140px] md:w-[200px] px-6 transition-transform duration-300 hover:scale-110 cursor-pointer"
-          >
-            <div className="relative w-full h-[50px] md:h-[70px]">
-              {/* Removed opacity classes so they are always in full color */}
-              <Image 
-                src={src} 
-                alt={`Logo ${index}`} 
-                fill 
-                className="object-contain" 
-                unoptimized={true}
-                loading="eager"
-                fetchPriority="low"
-              />
+      <div className="relative w-full overflow-hidden flex items-center">
+        {/* Premium gradient fade edges */}
+        <div className="absolute left-0 top-0 w-16 md:w-32 h-full bg-gradient-to-r from-[#020617] to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute right-0 top-0 w-16 md:w-32 h-full bg-gradient-to-l from-[#020617] to-transparent z-10 pointer-events-none"></div>
+
+        {/* Scrolling Container */}
+        <div className="flex w-max animate-scroll-lr hover:pause-scroll">
+          {duplicatedLogos.map((src, index) => (
+            <div 
+              key={index} 
+              className="flex justify-center items-center w-[140px] md:w-[200px] px-6 transition-transform duration-300 hover:scale-110 cursor-pointer"
+            >
+              <div className="relative w-full h-[50px] md:h-[70px]">
+                <Image 
+                  src={src} 
+                  alt={`Logo ${index}`} 
+                  fill 
+                  className="object-contain" 
+                  unoptimized={true}
+                  loading="eager"
+                  fetchPriority="low"
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -100,7 +107,7 @@ const AboutTab = () => {
   const benefitTextStyle = { color: '#E3F5F6', fontFamily: "'Manrope', sans-serif", fontStyle: 'normal', fontWeight: 500 };
 
   return (
-    <div className="flex flex-col w-full pb-20 px-4 md:px-0">
+    <div className="flex flex-col items-center w-full pb-20 px-4 md:px-0">
       
       <FadeInView>
         <p className="w-full max-w-[1380px] text-[#E3F5F6] text-xl md:text-[32px] font-medium leading-relaxed md:leading-[40px] mb-12 md:mb-[215px]" style={{ fontFamily: "'Manrope', sans-serif" }}>
@@ -182,7 +189,6 @@ const AboutTab = () => {
         </div>
       </div>
 
-      {/* --- MOVED LOGO SCROLLER TO THE BOTTOM --- */}
       <FadeInView delay={200}>
         <LogoScroller />
       </FadeInView>
