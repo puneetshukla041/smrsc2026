@@ -30,7 +30,7 @@ const CommitteeTab = () => {
     { name: "Dr. Dieter Broering", role: "King Faisal Specialist Hospital and Research Centre, Riyadh, Saudi Arabia", src: "/images/about/committe/21.webp" },
     { name: "Dr. Constantino Castillo", role: "St. Luke's Medical Center, Philippines", src: "/images/about/committe/22.webp" },
     { name: "Dr. Rabbie Hanna", role: "Warith International Cancer Institute, Karbala, Iraq", src: "/images/about/committe/23.webp" },
-    { name: "Dr. Niraj Baidya", role: "B&B Hospital, Gwarko, Nepal", src: "/images/about/committe/24.webp" },
+    { name: "Dr. Niraj Baidya", role: "B&B Hospital, Gwarko, Nepal", src: "/images/about/committe/39.webp" },
   ];
 
   // --- DATA: National Committee (UPDATED: 24 - 39) ---
@@ -52,7 +52,7 @@ const CommitteeTab = () => {
     { name: "Dr. Priya Bhave Chittawar", role: "Her Health Hospital, Bhopal, MP", src: "/images/about/committe/36.webp" },
     { name: "Dr. Leena Mehrotra", role: "Apex Hospital, Moradabad, UP", src: "/images/about/committe/37.webp" },
     { name: "Dr. Manjiri Somashekhar", role: "Aster CMI Bangalore, Aster RV Bangalore", src: "/images/about/committe/38.webp" },
-    { name: "Dr. Sanjiv Haribhakti", role: "Kaizen Hospital, Ahmedabad, GJ", src: "/images/about/committe/39.webp" },
+    { name: "Dr. Sanjiv Haribhakti", role: "Kaizen Hospital, Ahmedabad, GJ", src: "/images/about/committe/40.webp" },
   ];
 
   // --- STYLES ---
