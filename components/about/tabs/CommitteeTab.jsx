@@ -30,11 +30,10 @@ const CommitteeTab = () => {
     { name: "Dr. Dieter Broering", role: "King Faisal Specialist Hospital and Research Centre, Riyadh, Saudi Arabia", src: "/images/about/committe/21.webp" },
     { name: "Dr. Constantino Castillo", role: "St. Luke's Medical Center, Philippines", src: "/images/about/committe/22.webp" },
     { name: "Dr. Rabbie Hanna", role: "Warith International Cancer Institute, Karbala, Iraq", src: "/images/about/committe/23.webp" },
-    // Note: Kept 24 here as per previous array structure, adjust if this needs to change based on your local files!
     { name: "Dr. Niraj Baidya", role: "B&B Hospital, Gwarko, Nepal", src: "/images/about/committe/24.webp" },
   ];
 
-  // --- DATA: National Committee (UPDATED: 24 - 31) ---
+  // --- DATA: National Committee (UPDATED: 24 - 39) ---
   const nationalCommittee = [
     { name: "Dr. Sudhir K Rawal", role: "Rajiv Gandhi Cancer Institute and Research Center, Delhi", src: "/images/about/committe/24.webp" },
     { name: "Dr. Somashekhar SP", role: "Aster DM Healthcare", src: "/images/about/committe/25.webp" },
@@ -44,6 +43,16 @@ const CommitteeTab = () => {
     { name: "Dr. Magan Mehrotra", role: "Apex Hospital, Moradabad, UP", src: "/images/about/committe/29.webp" },
     { name: "Dr. Chandra Mohan Vaddi", role: "Preeti Urology & Kidney Hospital, Telangana, Hyderabad", src: "/images/about/committe/30.webp" },
     { name: "Dr. Venkatesh Munikrishnan", role: "Apollo Hospitals, Chennai", src: "/images/about/committe/31.webp" },
+    
+    // === NEWLY ADDED: 8 More Members (Rows 3 & 4) ===
+    { name: "Dr. Lalitaditya Malik", role: "Manipal Hospitals, Jaipur, RJ", src: "/images/about/committe/32.webp" },
+    { name: "Dr. Harish Badami", role: "Malla Reddy Narayana Multispeciality Hospital, Hyderabad", src: "/images/about/committe/33.webp" },
+    { name: "Dr. Nitin Rajput", role: "Medanta - The Medicity, Gurugram, Haryana", src: "/images/about/committe/34.webp" },
+    { name: "Dr. Ritesh Mongha", role: "Marengo Asia Hospitals, Faridabad, Haryana", src: "/images/about/committe/35.webp" },
+    { name: "Dr. Priya Bhave Chittawar", role: "Her Health Hospital, Bhopal, MP", src: "/images/about/committe/36.webp" },
+    { name: "Dr. Leena Mehrotra", role: "Apex Hospital, Moradabad, UP", src: "/images/about/committe/37.webp" },
+    { name: "Dr. Manjiri Somashekhar", role: "Aster CMI Bangalore, Aster RV Bangalore", src: "/images/about/committe/38.webp" },
+    { name: "Dr. Sanjiv Haribhakti", role: "Kaizen Hospital, Ahmedabad, GJ", src: "/images/about/committe/39.webp" },
   ];
 
   // --- STYLES ---
@@ -183,11 +192,12 @@ const CommitteeTab = () => {
             <div key={idx} className="flex flex-col items-start">
               
               <div style={gridImageStyle}>
+                {/* REMOVED: hover:scale-105 transition-transform duration-500 */}
                 <Image 
                   src={member.src} 
                   alt={member.name} 
                   fill 
-                  className="object-cover object-top hover:scale-105 transition-transform duration-500"
+                  className="object-cover object-top"
                 />
               </div>
 
@@ -210,11 +220,12 @@ const CommitteeTab = () => {
             <div key={idx} className="flex flex-col items-start">
               
               <div style={gridImageStyle}>
+                {/* REMOVED: hover:scale-105 transition-transform duration-500 */}
                 <Image 
                   src={member.src} 
                   alt={member.name} 
                   fill 
-                  className="object-cover object-top hover:scale-105 transition-transform duration-500"
+                  className="object-cover object-top"
                 />
               </div>
 
