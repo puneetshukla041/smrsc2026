@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Clock } from "lucide-react";
+import { Clock, Dumbbell } from "lucide-react";
 
 // --- Helper Functions ---
 const formatTime = (val) => (val < 10 ? `0${val}` : `${val}`);
@@ -38,8 +38,10 @@ const RollingDigit = ({ digit }) => {
         >
           {digit}
         </motion.span>
+        
       </AnimatePresence>
     </div>
+    
   );
 };
 
