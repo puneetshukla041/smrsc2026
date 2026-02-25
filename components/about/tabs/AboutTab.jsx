@@ -216,6 +216,7 @@ const AboutTab = () => {
       `}</style>
     </div>
   );
-  
+
 };
+
 export default AboutTab;
