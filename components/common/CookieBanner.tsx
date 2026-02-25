@@ -53,7 +53,7 @@ const CookieBanner = () => {
           </Link>
           <button 
             onClick={handleDismiss} // Dismisses banner on accept
-            className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-[#3FD0D4] text-[#02091A] hover:bg-opacity-90 transition-colors text-center text-sm font-semibold whitespace-nowrap"
+            className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-[#3FD0D4] text-[#02091A] hover:bg-opacity-90 transition-colors text-center text-sm font-semibold whitespace-nowrap cursor-pointer"
           >
             Accept All
           </button>
