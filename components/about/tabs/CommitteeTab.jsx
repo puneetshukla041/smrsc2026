@@ -50,7 +50,7 @@ const CommitteeTab = () => {
   };
 
   // 2. Image Containers
-  // Top Section (Standard)
+  // Top Section
   const topImageStyle = {
     position: 'relative',
     borderRadius: '12px', 
@@ -59,13 +59,13 @@ const CommitteeTab = () => {
     height: '390px',
   };
 
-  // Grid Section (Now matches Top Section Size)
+  // Grid Section 
   const gridImageStyle = {
     position: 'relative',
     borderRadius: '12px',
     overflow: 'hidden',
-    width: '305px',   // UPDATED: Matches top images
-    height: '390px',  // UPDATED: Matches top images
+    width: '305px',   
+    height: '390px',  
     filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))', 
   };
 
@@ -109,7 +109,7 @@ const CommitteeTab = () => {
           </div>
           <div style={textWrapperStyle}>
             <div style={nameStyle}>Dr. Sudhir Srivastava</div>
-            <div style={descStyle}>Founder, Chairman and CEO SS Innovations, INDIA</div>
+            <div style={descStyle}>Founder, Chairman and CEO SS Innovations International, Inc.</div>
           </div>
         </div>
 
@@ -123,16 +123,16 @@ const CommitteeTab = () => {
               </div>
               <div style={textWrapperStyle}>
                 <div style={nameStyle}>Dr. Sudhir K Rawal</div>
-                <div style={descStyle}>Rajiv Gandhi Cancer Institute and Research Center</div>
+                <div style={descStyle}>Rajiv Gandhi Cancer Institute and Research Center, Delhi</div>
               </div>
             </div>
             <div className="flex flex-col">
               <div style={topImageStyle}>
-                <Image src="/images/about/committe/3.webp" alt="Dr. S.P. Somashekhar" fill className="object-contain" />
+                <Image src="/images/about/committe/3.webp" alt="Dr. Somashekhar SP" fill className="object-contain" />
               </div>
               <div style={textWrapperStyle}>
-                <div style={nameStyle}>Dr. S.P. Somashekhar</div>
-                <div style={descStyle}>Aster CMI Hospital, Bangalore</div>
+                <div style={nameStyle}>Dr. Somashekhar SP</div>
+                <div style={descStyle}>Aster DM Healthcare</div>
               </div>
             </div>
           </div>
@@ -142,26 +142,24 @@ const CommitteeTab = () => {
         <div className="flex flex-col items-center flex-1">
           <h3 style={secretaryHeadingStyle}>Organizing Secretary</h3>
           <div style={topImageStyle}>
-            <Image src="/images/about/committe/4.webp" alt="Dr. Minu Bajpai" fill className="object-contain" />
+            <Image src="/images/about/committe/4.webp" alt="Dr. Vishwa Srivastava" fill className="object-contain" />
           </div>
           <div style={textWrapperStyle}>
-            <div style={nameStyle}>Dr. Minu Bajpai</div>
-            <div style={descStyle}>VMMC & Safdarjung Hospital, New Delhi</div>
+            <div style={nameStyle}>Dr. Vishwa Srivastava</div>
+            <div style={descStyle}>President & COO, SS Innovations</div>
           </div>
         </div>
 
       </div>
 
       {/* ================= SECTION 2: INTERNATIONAL COMMITTEE GRID ================= */}
-      <div className="w-full px-6 xl:px-0">
+      <div className="w-full px-6 xl:pl-0 xl:pr-[270px]">
         <h3 style={internationalHeadingStyle}>Scientific Organizing Committee International</h3>
         
-        {/* Grid layout with uniform spacing */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-12 gap-x-[60px]">
+        <div className="flex flex-wrap justify-center sm:justify-between gap-y-12 gap-x-6 xl:gap-x-0">
           {internationalCommittee.map((member, idx) => (
             <div key={idx} className="flex flex-col items-start">
               
-              {/* Image Container (Now 305px x 390px) */}
               <div style={gridImageStyle}>
                 <Image 
                   src={member.src} 
@@ -171,7 +169,6 @@ const CommitteeTab = () => {
                 />
               </div>
 
-              {/* Text Content (Width matched to 305px) */}
               <div style={textWrapperStyle}>
                 <div style={nameStyle}>{member.name}</div>
                 <div style={descStyle}>{member.role}</div>
