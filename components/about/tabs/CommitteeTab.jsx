@@ -134,11 +134,11 @@ const CommitteeTab = () => {
         
         {/* Organizing Chairman */}
         <div className="flex flex-col items-center flex-1">
-          <h3 style={chairmanHeadingStyle}>Organizing Chairman</h3>
-          <div style={topImageStyle}>
+          <h3 style={chairmanHeadingStyle} className="mobile-fix-width">Organizing Chairman</h3>
+          <div style={topImageStyle} className="mobile-fix-img">
             <Image src="/images/about/committe/1.webp" alt="Dr. Sudhir Srivastava" fill className="object-contain" />
           </div>
-          <div style={textWrapperStyle}>
+          <div style={textWrapperStyle} className="mobile-fix-width">
             <div style={nameStyle}>Dr. Sudhir Srivastava</div>
             <div style={descStyle}>Founder, Chairman and CEO SS Innovations International, Inc.</div>
           </div>
@@ -146,22 +146,22 @@ const CommitteeTab = () => {
 
         {/* Organizing Co-Chairpersons */}
         <div className="flex flex-col items-center flex-[1.5]">
-          <h3 style={coChairHeadingStyle}>Organizing Co-Chairpersons</h3>
+          <h3 style={coChairHeadingStyle} className="mobile-fix-width mobile-fix-wrap">Organizing Co-Chairpersons</h3>
           <div className="flex flex-col md:flex-row gap-6">
             <div className="flex flex-col">
-              <div style={topImageStyle}>
+              <div style={topImageStyle} className="mobile-fix-img">
                 <Image src="/images/about/committe/2.webp" alt="Dr. Sudhir K Rawal" fill className="object-contain" />
               </div>
-              <div style={textWrapperStyle}>
+              <div style={textWrapperStyle} className="mobile-fix-width">
                 <div style={nameStyle}>Dr. Sudhir K Rawal</div>
                 <div style={descStyle}>Rajiv Gandhi Cancer Institute and Research Center, Delhi</div>
               </div>
             </div>
             <div className="flex flex-col">
-              <div style={topImageStyle}>
+              <div style={topImageStyle} className="mobile-fix-img">
                 <Image src="/images/about/committe/3.webp" alt="Dr. Somashekhar SP" fill className="object-contain" />
               </div>
-              <div style={textWrapperStyle}>
+              <div style={textWrapperStyle} className="mobile-fix-width">
                 <div style={nameStyle}>Dr. Somashekhar SP</div>
                 <div style={descStyle}>Aster DM Healthcare</div>
               </div>
@@ -171,11 +171,11 @@ const CommitteeTab = () => {
 
         {/* Organizing Secretary */}
         <div className="flex flex-col items-center flex-1">
-          <h3 style={secretaryHeadingStyle}>Organizing Secretary</h3>
-          <div style={topImageStyle}>
+          <h3 style={secretaryHeadingStyle} className="mobile-fix-width">Organizing Secretary</h3>
+          <div style={topImageStyle} className="mobile-fix-img">
             <Image src="/images/about/committe/4.webp" alt="Dr. Vishwa Srivastava" fill className="object-contain" />
           </div>
-          <div style={textWrapperStyle}>
+          <div style={textWrapperStyle} className="mobile-fix-width">
             <div style={nameStyle}>Dr. Vishwa Srivastava</div>
             <div style={descStyle}>President & COO, SS Innovations</div>
           </div>
@@ -185,14 +185,13 @@ const CommitteeTab = () => {
 
       {/* ================= SECTION 2: INTERNATIONAL COMMITTEE GRID ================= */}
       <div className="w-full px-6 xl:pl-0 xl:pr-[270px]">
-        <h3 style={sectionHeadingStyle}>Scientific Organizing Committee International</h3>
+        <h3 style={sectionHeadingStyle} className="mobile-fix-width">Scientific Organizing Committee International</h3>
         
         <div className="flex flex-wrap justify-center sm:justify-between gap-y-12 gap-x-6 xl:gap-x-0">
           {internationalCommittee.map((member, idx) => (
-            <div key={idx} className="flex flex-col items-start">
+            <div key={idx} className="flex flex-col items-start w-full sm:w-auto mobile-fix-items-center">
               
-              <div style={gridImageStyle}>
-                {/* REMOVED: hover:scale-105 transition-transform duration-500 */}
+              <div style={gridImageStyle} className="mobile-fix-img">
                 <Image 
                   src={member.src} 
                   alt={member.name} 
@@ -201,7 +200,7 @@ const CommitteeTab = () => {
                 />
               </div>
 
-              <div style={textWrapperStyle}>
+              <div style={textWrapperStyle} className="mobile-fix-width">
                 <div style={nameStyle}>{member.name}</div>
                 <div style={descStyle}>{member.role}</div>
               </div>
@@ -213,14 +212,13 @@ const CommitteeTab = () => {
 
       {/* ================= SECTION 3: NATIONAL COMMITTEE GRID ================= */}
       <div className="w-full px-6 xl:pl-0 xl:pr-[270px]">
-        <h3 style={sectionHeadingStyle}>Scientific Committee National</h3>
+        <h3 style={sectionHeadingStyle} className="mobile-fix-width">Scientific Committee National</h3>
         
         <div className="flex flex-wrap justify-center sm:justify-between gap-y-12 gap-x-6 xl:gap-x-0">
           {nationalCommittee.map((member, idx) => (
-            <div key={idx} className="flex flex-col items-start">
+            <div key={idx} className="flex flex-col items-start w-full sm:w-auto mobile-fix-items-center">
               
-              <div style={gridImageStyle}>
-                {/* REMOVED: hover:scale-105 transition-transform duration-500 */}
+              <div style={gridImageStyle} className="mobile-fix-img">
                 <Image 
                   src={member.src} 
                   alt={member.name} 
@@ -229,7 +227,7 @@ const CommitteeTab = () => {
                 />
               </div>
 
-              <div style={textWrapperStyle}>
+              <div style={textWrapperStyle} className="mobile-fix-width">
                 <div style={nameStyle}>{member.name}</div>
                 <div style={descStyle}>{member.role}</div>
               </div>
@@ -239,9 +237,30 @@ const CommitteeTab = () => {
         </div>
       </div>
 
-      {/* Font Import */}
+      {/* Font Import & Mobile Fixes */}
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap');
+
+        /* MOBILE RESPONSIVE FIXES ONLY (Desktop remains exactly as requested) */
+        @media (max-width: 767px) {
+          .mobile-fix-width {
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+          .mobile-fix-wrap {
+            white-space: normal !important;
+          }
+          .mobile-fix-img {
+            width: 100% !important;
+            max-width: 305px !important;
+            height: auto !important;
+            aspect-ratio: 305 / 390 !important;
+          }
+          .mobile-fix-items-center {
+            align-items: center !important;
+            text-align: center !important;
+          }
+        }
       `}</style>
     </div>
   );

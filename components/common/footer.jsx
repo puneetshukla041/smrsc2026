@@ -154,7 +154,7 @@ const Footer = () => {
 
           {/* Legal Links */}
           <div className="flex flex-wrap justify-center gap-2 md:gap-6 text-center">
-              <Link href="#" style={bottomLinkStyle} className="hover:text-white">Cookies</Link>
+              <Link href="/cookies" style={bottomLinkStyle} className="hover:text-white">Cookies</Link>
               <span style={bottomLinkStyle}>|</span>
               <Link href="#" style={bottomLinkStyle} className="hover:text-white">Privacy Policy</Link>
               <span style={bottomLinkStyle}>|</span>
