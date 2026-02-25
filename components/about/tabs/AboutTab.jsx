@@ -38,6 +38,48 @@ const FadeInView = ({ children, delay = 0 }) => {
   );
 };
 
+// ==========================================
+//   NEW: INFINITE LOGO SCROLLER COMPONENT
+// ==========================================
+const LogoScroller = () => {
+  // Generate array of 12 logo paths
+  const logos = Array.from({ length: 12 }, (_, i) => `/logos/animation/${i + 1}.png`);
+  
+  // Duplicate the array so the loop is perfectly seamless
+  const duplicatedLogos = [...logos, ...logos];
+
+  return (
+    <div className="relative w-full max-w-[1380px] mt-20 overflow-hidden flex items-center">
+      
+      {/* Optional: Premium gradient fade edges to make the logos smoothly appear/disappear */}
+      <div className="absolute left-0 top-0 w-16 md:w-32 h-full bg-gradient-to-r from-[#020617] to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute right-0 top-0 w-16 md:w-32 h-full bg-gradient-to-l from-[#020617] to-transparent z-10 pointer-events-none"></div>
+
+      {/* Scrolling Container */}
+      <div className="flex w-max animate-scroll-lr hover:pause-scroll">
+        {duplicatedLogos.map((src, index) => (
+          <div 
+            key={index} 
+            className="flex justify-center items-center w-[140px] md:w-[200px] px-6 transition-transform duration-300 hover:scale-110 cursor-pointer"
+          >
+            <div className="relative w-full h-[50px] md:h-[70px]">
+              <Image 
+                src={src} 
+                alt={`Logo ${index}`} 
+                fill 
+                className="object-contain opacity-50 hover:opacity-100 transition-opacity duration-300" 
+                unoptimized={true}
+                loading="eager"
+                fetchPriority="low"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const AboutTab = () => {
   const conferenceCards = [
     { text: "National & International Renowned Faculty", src: "/images/about/section2/image1.webp" },
@@ -71,8 +113,13 @@ const AboutTab = () => {
         </div>
       </FadeInView>
 
+      {/* --- ADDED LOGO SCROLLER HERE --- */}
+      <FadeInView delay={200}>
+        <LogoScroller />
+      </FadeInView>
+
       <FadeInView>
-        <div className="w-full max-w-[1380px] mt-20 md:mt-[300px]">
+        <div className="w-full max-w-[1380px] mt-20 md:mt-[220px]">
           <div className="flex flex-col justify-center h-auto md:h-[47px] text-[#E6E6E6] text-xl md:text-[32px] font-medium leading-tight md:leading-[32px]" style={{ fontFamily: "'Manrope', sans-serif" }}>A global stage for</div>
           <h2 className="text-[#E3F5F6] text-[36px] md:text-[64px] font-semibold leading-tight md:leading-[86px] uppercase mt-2 md:mt-0" style={{ fontFamily: "'Blauer Nue', sans-serif" }}>SURGICAL BREAKTHROUGHS</h2>
         </div>
@@ -141,6 +188,25 @@ const AboutTab = () => {
 
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500&display=swap');
+        
+        /* SCROLLING ANIMATION CSS */
+        @keyframes scrollLr {
+          0% {
+            transform: translateX(-50%);
+          }
+          100% {
+            transform: translateX(0%);
+          }
+        }
+        
+        .animate-scroll-lr {
+          animation: scrollLr 35s linear infinite;
+        }
+
+        /* Pauses the animation when the user hovers over the logos */
+        .pause-scroll:hover {
+          animation-play-state: paused;
+        }
       `}</style>
     </div>
   );
