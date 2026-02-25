@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
@@ -42,14 +42,39 @@ const Section2 = () => {
     visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.8, ease: [0.25, 1, 0.5, 1], delay: 0.3 } }
   };
 
+  const logoVariants = {
+    hidden: { scale: 0, opacity: 0 },
+    visible: { scale: 1, opacity: 1, transition: { duration: 0.8, type: "spring", delay: 0.2 } }
+  };
+
   return (
     <section className="relative w-full min-h-screen flex flex-col md:justify-center items-center overflow-hidden bg-transparent py-20 md:py-0">
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
+        
         <motion.div style={titleStyle} variants={titleVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10%" }} className="relative order-1 md:absolute md:order-none z-30 select-none text-4xl sm:text-5xl lg:text-[64px] mb-12 md:mb-0 md:mt-[350px]">
           Clinical Outcomes
         </motion.div>
 
         <div className="relative order-2 md:order-none md:absolute inset-0 flex flex-col md:block items-center justify-center pointer-events-none">
+          
+          {/* ================= CENTER LOGO ================= */}
+          <motion.div
+            variants={logoVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-10%" }}
+            className={`pointer-events-auto z-30 flex items-center justify-center 
+              ${isMobile ? 'relative mb-10 w-[150px] h-[150px]' : 'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px]'}`}
+          >
+            <img 
+              src="/logos/Isolation_Mode (1).png" 
+              alt="SMRSC 2026 Logo" 
+              className="w-full h-full object-contain pointer-events-none select-none" 
+              draggable={false} 
+            />
+          </motion.div>
+
+          {/* ================= CARDS ================= */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:block w-full max-w-4xl px-6 md:px-0">
             {cards.map((card, i) => (
               <motion.div
@@ -66,6 +91,7 @@ const Section2 = () => {
               </motion.div>
             ))}
           </div>
+          
         </div>
       </div>
     </section>
