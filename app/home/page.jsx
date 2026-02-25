@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import Header from '../../components/common/Header';
 import Footer from '../../components/common/footer';
 import Section1 from '../../components/home/Section1';
+import CookieBanner from '../../components/CookieBanner'; // Add this import
 
 const Section2 = dynamic(() => import('../../components/home/Section2'));
 const Section3 = dynamic(() => import('../../components/home/Section3'));
@@ -83,6 +84,10 @@ const HomePage = () => {
         <Section5 />
         <Section6 />
       </main>
+      
+      {/* 👇 Added Cookie Banner here so it only shows on the Home Page */}
+      <CookieBanner />
+      
       <Footer />
     </div>
   );
