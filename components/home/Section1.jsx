@@ -81,7 +81,7 @@ const Section1 = () => {
   };
 
   return (
-    <section className="relative w-full flex justify-center items-center overflow-x-clip pt-24 pb-12 md:pt-32 md:pb-20">
+    <section className="relative w-full flex justify-center items-center overflow-x-clip pt-20 pb-8 md:pt-24 md:pb-12">
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap');
       `}</style>
@@ -93,15 +93,15 @@ const Section1 = () => {
             width: '1500px',
             height: '850px',
             borderRadius: '100%',
-            // Switched to a radial gradient for a stronger core, increased opacity
             background: 'radial-gradient(circle, rgba(102, 199, 235, 1) 0%, rgba(102, 199, 235, 0.6) 60%, transparent 100%)',
-            filter: 'blur(250px)', // Reduced blur slightly so it doesn't wash out too much
-            mixBlendMode: 'screen', // Gives it that digital "light" pop
+            filter: 'blur(250px)',
+            mixBlendMode: 'screen',
         }}
       />
 
       {/* --- DESKTOP VIEW (CAROUSEL) --- */}
-      <div className="relative z-10 w-full max-w-[1920px] mx-auto hidden md:flex flex-col items-center gap-8 px-10 xl:px-24">
+      {/* Reduced vertical gap to keep dots closer to image */}
+      <div className="relative z-10 w-full max-w-[1920px] mx-auto hidden md:flex flex-col items-center gap-4 px-10 xl:px-24">
         
         {/* Main Carousel Wrapper - Relative container for placing arrows OUTSIDE the track */}
         <div className="relative w-full flex justify-center items-center">
@@ -121,11 +121,12 @@ const Section1 = () => {
           </motion.button>
 
           {/* Image / Carousel Track Container */}
+          {/* Adjusted max-width so the height naturally scales down to fit in screen */}
           <div 
-            className="relative w-full max-w-[1693px] overflow-hidden shadow-2xl" 
+            className="relative w-full max-w-[1100px] xl:max-w-[1300px] overflow-hidden shadow-2xl" 
             style={{ 
               aspectRatio: "175 / 89", 
-              borderRadius: "200px 8px 200px 8px" // Fixed 200/8px border-radius applied to container
+              borderRadius: "200px 8px 200px 8px" 
             }}
           >
             {/* Track - Buttery smooth cubic-bezier easing */}
@@ -143,7 +144,7 @@ const Section1 = () => {
                   <div 
                     className="relative w-full h-full overflow-hidden"
                     style={{ 
-                      borderRadius: "200px 8px 200px 8px" // Applied to ALL images including Image 2
+                      borderRadius: "200px 8px 200px 8px" 
                     }}
                   >
                     <Image
@@ -201,7 +202,7 @@ const Section1 = () => {
         </div>
 
         {/* Premium Animated Pill Indicators (OUTSIDE the track) */}
-        <div className="flex gap-3 z-20 mt-4">
+        <div className="flex gap-3 z-20 mt-2">
           {desktopImages.map((_, index) => (
             <button
               key={index}
