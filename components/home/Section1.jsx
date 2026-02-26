@@ -81,7 +81,8 @@ const Section1 = () => {
   };
 
   return (
-    <section className="relative w-full flex justify-center items-center overflow-x-clip pt-20 pb-8 md:pt-24 md:pb-12">
+    <section className="relative w-full flex justify-center items-center overflow-x-clip pt-32 pb-8 md:pt-[140px] md:pb-12">
+      {/* INCREASED TOP PADDING IN SECTION CLASSNAME: pt-32 md:pt-[140px] to clear the header safely */}
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap');
       `}</style>
@@ -100,7 +101,6 @@ const Section1 = () => {
       />
 
       {/* --- DESKTOP VIEW (CAROUSEL) --- */}
-      {/* Reduced vertical gap to keep dots closer to image */}
       <div className="relative z-10 w-full max-w-[1920px] mx-auto hidden md:flex flex-col items-center gap-4 px-10 xl:px-24">
         
         {/* Main Carousel Wrapper - Relative container for placing arrows OUTSIDE the track */}
@@ -121,7 +121,6 @@ const Section1 = () => {
           </motion.button>
 
           {/* Image / Carousel Track Container */}
-          {/* Adjusted max-width so the height naturally scales down to fit in screen */}
           <div 
             className="relative w-full max-w-[1100px] xl:max-w-[1300px] overflow-hidden shadow-2xl" 
             style={{ 
