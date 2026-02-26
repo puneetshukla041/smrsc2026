@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus, ArrowRight } from 'lucide-react'; 
+import { Plus, Minus, ArrowRight, ArrowLeft } from 'lucide-react'; 
 import Header from '../../components/common/Header'; 
 import Footer from '../../components/common/footer'; 
 
@@ -25,7 +25,7 @@ const FAQSection = () => {
     },
     {
       question: "Is reimbursement available for international surgeons?",
-      answer: "International surgeons are be eligible for reimbursement of up to USD 5,000, covering travel and accommodation expenses. Reimbursements are subject to prior approval by the organizing committee and submission of valid supporting documentation in accordance with event policy guidelines."
+      answer: "International surgeons are eligible for reimbursement of up to USD 5,000, covering travel and accommodation expenses. Reimbursements are subject to prior approval by the organizing committee and submission of valid supporting documentation in accordance with event policy guidelines."
     },
     {
       question: "Do you provide visa assistance?",
@@ -167,20 +167,22 @@ const FAQSection = () => {
 
 // --- Main Page Component ---
 
+// Smooth fade-in animations
 const containerVar = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.2, delayChildren: 0.3 }
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 }
   }
 };
 
 const itemVar = {
-  hidden: { y: 20, opacity: 0 },
+  hidden: { y: 30, opacity: 0, filter: "blur(8px)" },
   show: {
     y: 0,
     opacity: 1,
-    transition: { duration: 0.8, ease: "easeOut" }
+    filter: "blur(0px)",
+    transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] }
   }
 };
 
@@ -197,6 +199,11 @@ const floatVar = {
 };
 
 const RegisterPage = () => {
+  // State to manage the active step (1 = Pricing Tables, 2 = Nationality Card)
+  const [step, setStep] = useState(1);
+  // State for the selected radio button
+  const [nationality, setNationality] = useState('indian');
+
   return (
     <div className="flex flex-col min-h-screen bg-[#020617] overflow-x-hidden relative font-sans">
       <Header />
@@ -214,7 +221,8 @@ const RegisterPage = () => {
         className="fixed bottom-[10%] -right-[10%] sm:right-[5%] w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-[#0BD3D3] opacity-[0.15] blur-[100px] rounded-full pointer-events-none z-0" 
       />
 
-      <main className="flex-grow flex flex-col items-center pt-32 px-4 sm:px-6 relative z-10 w-full">
+      {/* Main content area */}
+      <main className="flex-grow flex flex-col items-center justify-center pt-32 pb-16 px-4 sm:px-6 relative z-10 w-full min-h-screen">
         
         <motion.div 
           variants={containerVar}
@@ -225,67 +233,182 @@ const RegisterPage = () => {
           {/* Registration Title */}
           <motion.h1 
             variants={itemVar}
-            className="text-white font-semibold text-5xl sm:text-6xl md:text-[72px] tracking-tight mb-16"
+            className="text-[#F8FFFF] text-center font-['Blauer_Nue'] text-[48px] sm:text-[60px] md:text-[72px] not-italic font-semibold leading-tight md:leading-[52px] mb-16"
           >
            Register Now
           </motion.h1>
 
-          {/* Pricing Tables Container */}
-          <motion.div variants={itemVar} className="w-full flex flex-col md:flex-row gap-6 md:gap-8 mb-12">
+          {/* AnimatePresence for smooth transitions between steps */}
+          <AnimatePresence mode="wait">
             
-            {/* Indian Delegates Card */}
-            <div className="flex-1 bg-[#091124] rounded-[20px] overflow-hidden border border-[#23355A] shadow-xl text-left">
-              <div className="bg-gradient-to-r from-[#3269B8] to-[#40C9CD] px-6 py-5">
-                <h3 className="text-white text-[17px] font-medium tracking-wide">Indian Delegates Registration (INR)</h3>
-              </div>
-              <div className="px-6 pb-2">
-                <div className="flex justify-between items-center py-5 border-b border-[#1E2E4E] text-white text-[15px]">
-                  <span className="opacity-90">Surgeons</span>
-                  <span className="font-medium">Rs. 5000.00</span>
-                </div>
-                <div className="flex justify-between items-center py-5 border-b border-[#1E2E4E] text-white text-[15px]">
-                  <span className="opacity-90">Students</span>
-                  <span className="font-medium">Rs. 1000.00</span>
-                </div>
-                <div className="flex justify-between items-center py-5 text-white text-[15px]">
-                  <span className="opacity-90">Medical staff</span>
-                  <span className="font-medium">Rs. 1000.00</span>
-                </div>
-              </div>
-            </div>
+            {/* STEP 1: Pricing Tables */}
+            {step === 1 && (
+              <motion.div 
+                key="step-1"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20, filter: "blur(4px)" }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full flex flex-col items-center"
+              >
+                {/* Pricing Tables Container */}
+                <div className="w-full flex flex-col md:flex-row gap-6 md:gap-8 mb-12">
+                  
+                  {/* Indian Delegates Card */}
+                  <div className="flex-1 bg-[#091124] rounded-[20px] overflow-hidden border border-[#23355A] shadow-xl transition-transform duration-500 hover:-translate-y-1 hover:shadow-2xl">
+                    <div className="flex flex-col justify-center items-center p-[20px] gap-[10px] self-stretch rounded-t-[20px] bg-[linear-gradient(90deg,#004398_0.32%,#0BD3D3_100.06%)]">
+                      <h3 className="text-white text-[17px] font-medium tracking-wide text-center">Indian Delegates Registration (INR)</h3>
+                    </div>
+                    <div className="px-6 pb-2 text-left">
+                      <div className="flex justify-between items-center py-5 border-b border-[#1E2E4E] text-white text-[15px]">
+                        <span className="opacity-90">Surgeons</span>
+                        <span className="font-medium">Rs. 5000.00</span>
+                      </div>
+                      <div className="flex justify-between items-center py-5 border-b border-[#1E2E4E] text-white text-[15px]">
+                        <span className="opacity-90">Students</span>
+                        <span className="font-medium">Rs. 1000.00</span>
+                      </div>
+                      <div className="flex justify-between items-center py-5 text-white text-[15px]">
+                        <span className="opacity-90">Medical staff</span>
+                        <span className="font-medium">Rs. 1000.00</span>
+                      </div>
+                    </div>
+                  </div>
 
-            {/* International Delegates Card */}
-            <div className="flex-1 bg-[#091124] rounded-[20px] overflow-hidden border border-[#23355A] shadow-xl text-left">
-              <div className="bg-gradient-to-r from-[#3269B8] to-[#40C9CD] px-6 py-5">
-                <h3 className="text-white text-[17px] font-medium tracking-wide">International Delegates Registration (USD)</h3>
-              </div>
-              <div className="px-6 pb-2">
-                <div className="flex justify-between items-center py-5 border-b border-[#1E2E4E] text-white text-[15px]">
-                  <span className="opacity-90">Surgeons</span>
-                  <span className="font-medium">$ 5000.00</span>
-                </div>
-                <div className="flex justify-between items-center py-5 border-b border-[#1E2E4E] text-white text-[15px]">
-                  <span className="opacity-90">Students</span>
-                  <span className="font-medium">$ 1000.00</span>
-                </div>
-                <div className="flex justify-between items-center py-5 text-white text-[15px]">
-                  <span className="opacity-90">Medical staff</span>
-                  <span className="font-medium">$ 1000.00</span>
-                </div>
-              </div>
-            </div>
+                  {/* International Delegates Card */}
+                  <div className="flex-1 bg-[#091124] rounded-[20px] overflow-hidden border border-[#23355A] shadow-xl transition-transform duration-500 hover:-translate-y-1 hover:shadow-2xl">
+                    <div className="flex flex-col justify-center items-center p-[20px] gap-[10px] self-stretch rounded-t-[20px] bg-[linear-gradient(90deg,#004398_0.32%,#0BD3D3_100.06%)]">
+                      <h3 className="text-white text-[17px] font-medium tracking-wide text-center">International Delegates Registration (USD)</h3>
+                    </div>
+                    <div className="px-6 pb-2 text-left">
+                      <div className="flex justify-between items-center py-5 border-b border-[#1E2E4E] text-white text-[15px]">
+                        <span className="opacity-90">Surgeons</span>
+                        <span className="font-medium">$ 5000.00</span>
+                      </div>
+                      <div className="flex justify-between items-center py-5 border-b border-[#1E2E4E] text-white text-[15px]">
+                        <span className="opacity-90">Students</span>
+                        <span className="font-medium">$ 1000.00</span>
+                      </div>
+                      <div className="flex justify-between items-center py-5 text-white text-[15px]">
+                        <span className="opacity-90">Medical staff</span>
+                        <span className="font-medium">$ 1000.00</span>
+                      </div>
+                    </div>
+                  </div>
 
-          </motion.div>
+                </div>
 
-          {/* Continue Button */}
-          <motion.button 
-            variants={itemVar}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-[#D1923A] hover:bg-[#E5A449] transition-colors text-white text-sm font-medium px-8 py-3 rounded-full flex items-center gap-2 mb-10"
-          >
-            Continue <ArrowRight size={16} strokeWidth={2.5} />
-          </motion.button>
+                {/* Continue Button (Triggers Step 2) */}
+                <motion.button 
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => setStep(2)}
+                  className="group relative inline-flex justify-center items-center py-[12px] pr-[20px] pl-[24px] gap-[8px] rounded-[24px] bg-[#CE921B] hover:bg-[#E5A449] transition-all duration-300 text-white text-sm font-medium mb-10 overflow-hidden shadow-[0_0_20px_rgba(206,146,27,0.2)] hover:shadow-[0_0_30px_rgba(206,146,27,0.4)] cursor-pointer"
+                >
+                  <span className="relative z-10 flex items-center gap-[8px]">
+                    Continue <ArrowRight size={16} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
+                </motion.button>
+              </motion.div>
+            )}
+
+            {/* STEP 2: Nationality Selection Card */}
+            {step === 2 && (
+              <motion.div 
+                key="step-2"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full max-w-[800px] flex flex-col items-center mb-10"
+              >
+                {/* Selection Card */}
+                <div className="w-full bg-[#EEF7F8] rounded-[16px] overflow-hidden flex flex-col shadow-2xl text-left border border-[#40C9CD]/20">
+                  {/* Card Header */}
+                  <div className="flex items-center px-[24px] py-[16px] bg-[linear-gradient(90deg,#2467A7_0%,#40C9CD_100%)]">
+                    <h3 className="text-white text-[16px] font-medium tracking-wide">Nationality</h3>
+                  </div>
+                  
+                  {/* Card Body (Radio Options) */}
+                  <div className="px-8 py-10 flex flex-col gap-8">
+                    
+                    {/* Option 1: Indian */}
+                    <label className="flex items-center gap-4 cursor-pointer group">
+                      <div className="relative flex items-center justify-center w-5 h-5 flex-shrink-0">
+                        <input 
+                          type="radio" 
+                          name="nationality" 
+                          value="indian"
+                          checked={nationality === 'indian'}
+                          onChange={() => setNationality('indian')}
+                          className="sr-only"
+                        />
+                        <div className={`w-full h-full rounded-full border-[1.5px] transition-colors duration-200 flex items-center justify-center ${nationality === 'indian' ? 'border-[#CE921B]' : 'border-gray-400 group-hover:border-gray-500'}`}>
+                          {nationality === 'indian' && (
+                            <motion.div 
+                              layoutId="active-radio"
+                              className="w-[10px] h-[10px] rounded-full bg-[#CE921B]" 
+                            />
+                          )}
+                        </div>
+                      </div>
+                      <span className="text-[#1A2E35] font-medium text-[15px]">Register as Indian Delegates Registration (INR)</span>
+                    </label>
+
+                    {/* Option 2: International */}
+                    <label className="flex items-center gap-4 cursor-pointer group">
+                      <div className="relative flex items-center justify-center w-5 h-5 flex-shrink-0">
+                        <input 
+                          type="radio" 
+                          name="nationality" 
+                          value="international"
+                          checked={nationality === 'international'}
+                          onChange={() => setNationality('international')}
+                          className="sr-only"
+                        />
+                        <div className={`w-full h-full rounded-full border-[1.5px] transition-colors duration-200 flex items-center justify-center ${nationality === 'international' ? 'border-[#CE921B]' : 'border-gray-400 group-hover:border-gray-500'}`}>
+                          {nationality === 'international' && (
+                            <motion.div 
+                              layoutId="active-radio"
+                              className="w-[10px] h-[10px] rounded-full bg-[#CE921B]" 
+                            />
+                          )}
+                        </div>
+                      </div>
+                      <span className="text-[#1A2E35] font-medium text-[15px]">Register as International Delegates Registration (USD)</span>
+                    </label>
+
+                  </div>
+                </div>
+
+                {/* Step 2 Buttons */}
+                <div className="flex gap-4 mt-8">
+                  {/* Back Button */}
+                  <motion.button 
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => setStep(1)}
+                    className="group relative inline-flex justify-center items-center py-[12px] px-[20px] gap-[8px] rounded-[24px] bg-white/10 hover:bg-white/20 border border-white/20 transition-all duration-300 text-white text-sm font-medium"
+                  >
+                    <ArrowLeft size={16} strokeWidth={2.5} className="transition-transform duration-300 group-hover:-translate-x-1" /> Back
+                  </motion.button>
+
+                  {/* Continue to Payment Button */}
+                  <motion.button 
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => console.log(`Proceeding to payment for: ${nationality}`)}
+                    className="group relative inline-flex justify-center items-center py-[12px] pr-[20px] pl-[24px] gap-[8px] rounded-[24px] bg-[#CE921B] hover:bg-[#E5A449] transition-all duration-300 text-white text-sm font-medium overflow-hidden shadow-[0_0_20px_rgba(206,146,27,0.2)] hover:shadow-[0_0_30px_rgba(206,146,27,0.4)] cursor-pointer"
+                  >
+                    <span className="relative z-10 flex items-center gap-[8px]">
+                      Continue to payment <ArrowRight size={16} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-1" />
+                    </span>
+                  </motion.button>
+                </div>
+              </motion.div>
+            )}
+
+          </AnimatePresence>
 
           {/* --- FAQ SECTION --- */}
           <motion.div variants={itemVar} className="w-full flex justify-center">
