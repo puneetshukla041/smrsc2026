@@ -166,9 +166,7 @@ const Section1 = () => {
                   {/* Register Button ONLY on the first slide (image2.webp) */}
                   {index === 0 && (
                     <motion.a 
-                      href="https://indiattitude.eventsair.com/smrsc-2026/registration-form"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href="/register" // Changed this to the internal register page
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.8, delay: 0.4, type: "spring", stiffness: 100 }}
@@ -236,9 +234,7 @@ const Section1 = () => {
           />
 
           <motion.a 
-            href="https://indiattitude.eventsair.com/smrsc-2026/registration-form"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/register" // Changed this to the internal register page
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
