@@ -111,7 +111,7 @@ const Footer = () => {
               </Link>
               {/* UPDATED: Register Now Link */}
               <a 
-                href="https://indiattitude.eventsair.com/smrsc-2026/registration-form"
+                href="/register"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={linkStyle} 
