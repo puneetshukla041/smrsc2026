@@ -46,7 +46,7 @@ const NAV_LINKS = [
     href: "/media", 
     subLinks: [
       { name: "Blogs", href: "/media?tab=blogs" },
-      { name: "Press Release", href: "/media?tab=release" },
+   
       { name: "Media Kit", href: "/media?tab=kit" },
     ]
   },
