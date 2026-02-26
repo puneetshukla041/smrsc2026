@@ -41,46 +41,7 @@ const ASSETS_TO_PRELOAD = [
   "/images/about/cardiac/per25.webp",
 
   // --- ABOUT : COMMITTEE ---
-  "/images/about/committe/1.webp",
-  "/images/about/committe/2.webp",
-  "/images/about/committe/3.webp",
-  "/images/about/committe/4.webp",
-  "/images/about/committe/5.webp",
-  "/images/about/committe/6.webp",
-  "/images/about/committe/7.webp",
-  "/images/about/committe/8.webp",
-  "/images/about/committe/9.webp",
-  "/images/about/committe/10.webp",
-  "/images/about/committe/11.webp",
-  "/images/about/committe/12.webp",
-  "/images/about/committe/13.webp",
-  "/images/about/committe/14.webp",
-  "/images/about/committe/15.webp",
-  "/images/about/committe/16.webp",
-  "/images/about/committe/17.webp",
-  "/images/about/committe/18.webp",
-  "/images/about/committe/19.webp",
-  "/images/about/committe/20.webp",
-  "/images/about/committe/21.webp",
-  "/images/about/committe/22.webp",
-  "/images/about/committe/23.webp",
-  "/images/about/committe/24.webp",
-  "/images/about/committe/25.webp",
-  "/images/about/committe/26.webp",
-  "/images/about/committe/27.webp",
-  "/images/about/committe/28.webp",
-  "/images/about/committe/29.webp",
-  "/images/about/committe/30.webp",
-  "/images/about/committe/31.webp",
-  "/images/about/committe/32.webp",
-  "/images/about/committe/33.webp",
-  "/images/about/committe/34.webp",
-  "/images/about/committe/35.webp",
-  "/images/about/committe/36.webp",
-  "/images/about/committe/37.webp",
-  "/images/about/committe/38.webp",
-  "/images/about/committe/39.webp",
-  "/images/about/committe/40.webp",
+  ...Array.from({ length: 40 }, (_, i) => `/images/about/committe/${i + 1}.webp`),
 
   // --- ABOUT : FACULTY ---
   "/images/about/faculty/image1.png",
@@ -222,32 +183,10 @@ const ASSETS_TO_PRELOAD = [
   "/images/media/press2.webp",
 
   // --- PAST EVENT : 2025 ---
-  "/images/pastevent/2025/image1.webp",
-  "/images/pastevent/2025/image2.webp",
-  "/images/pastevent/2025/image3.webp",
-  "/images/pastevent/2025/image4.webp",
-  "/images/pastevent/2025/image5.webp",
-  "/images/pastevent/2025/image6.webp",
-  "/images/pastevent/2025/image7.webp",
-  "/images/pastevent/2025/image8.webp",
-  "/images/pastevent/2025/image9.webp",
-  "/images/pastevent/2025/image10.webp",
-  "/images/pastevent/2025/image11.webp",
-  "/images/pastevent/2025/image12.webp",
+  ...Array.from({ length: 12 }, (_, i) => `/images/pastevent/2025/image${i + 1}.webp`),
 
   // --- PAST EVENT : 24 ---
-  "/images/pastevent/24/image1.webp",
-  "/images/pastevent/24/image2.webp",
-  "/images/pastevent/24/image3.webp",
-  "/images/pastevent/24/image4.webp",
-  "/images/pastevent/24/image5.webp",
-  "/images/pastevent/24/image6.webp",
-  "/images/pastevent/24/image7.webp",
-  "/images/pastevent/24/image8.webp",
-  "/images/pastevent/24/image9.webp",
-  "/images/pastevent/24/image10.webp",
-  "/images/pastevent/24/image11.webp",
-  "/images/pastevent/24/image12.webp",
+  ...Array.from({ length: 12 }, (_, i) => `/images/pastevent/24/image${i + 1}.webp`),
 
   // --- VISIT ---
   "/images/visit/airport.webp",
@@ -274,21 +213,10 @@ const ASSETS_TO_PRELOAD = [
   // --- LOGOS ---
   "/logos/header.png",
   "/logos/ssilogo.png",
-  
+  "/logos/Isolation_Mode (1).png",
+
   // --- LOGOS : ANIMATION ---
-  "/logos/animation/1.png",
-  "/logos/animation/2.png",
-  "/logos/animation/3.png",
-  "/logos/animation/4.png",
-  "/logos/animation/5.png",
-  "/logos/animation/6.png",
-  "/logos/animation/7.png",
-  "/logos/animation/8.png",
-  "/logos/animation/9.png",
-  "/logos/animation/10.png",
-  "/logos/animation/11.png",
-  "/logos/animation/12.png",
-  "/logos/animation/Isolation_Mode (1).png",
+  ...Array.from({ length: 12 }, (_, i) => `/logos/animation/${i + 1}.png`),
 ];
 
 const VIDEOS_TO_PRELOAD = [
@@ -298,30 +226,19 @@ const VIDEOS_TO_PRELOAD = [
 
 export default function GlobalPreloader() {
   useEffect(() => {
-    // We wrap this in a function to wait for the initial page load to finish
-    // so we don't freeze the user's browser immediately.
-    const forceDownloadAll = () => {
-      // 1. Force Image Downloads via native Image object (Most Aggressive)
-      const imageAssets = ASSETS_TO_PRELOAD.filter(src => src.endsWith('.webp') || src.endsWith('.png'));
-      imageAssets.forEach((src) => {
-        const img = new Image();
-        img.src = src; // This physically forces the browser to fetch and cache the image instantly
-      });
-
-      // 2. Force Fonts & Videos via fetch
-      const otherAssets = [...ASSETS_TO_PRELOAD.filter(src => !src.endsWith('.webp') && !src.endsWith('.png')), ...VIDEOS_TO_PRELOAD];
-      otherAssets.forEach((src) => {
-        fetch(src, { cache: 'force-cache' }).catch(() => {/* fail silently */});
-      });
+    const preloadAll = async () => {
+      const allMedia = [...ASSETS_TO_PRELOAD, ...VIDEOS_TO_PRELOAD];
+      
+      // Fire everything at once
+      await Promise.all(
+        allMedia.map(src => 
+          fetch(src, { cache: 'force-cache', mode: 'no-cors' })
+            .catch(() => {/* fail silently */})
+        )
+      );
     };
 
-    // Wait until the document is fully loaded before aggressively fetching 150+ items
-    if (document.readyState === 'complete') {
-      forceDownloadAll();
-    } else {
-      window.addEventListener('load', forceDownloadAll);
-      return () => window.removeEventListener('load', forceDownloadAll);
-    }
+    preloadAll();
   }, []);
 
   return null;
