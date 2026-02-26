@@ -60,17 +60,17 @@ const Section1 = () => {
     whiteSpace: "nowrap",
   };
 
-  // Glassmorphism Arrow Styling (Upgraded)
+  // Glassmorphism Arrow Styling
   const arrowStyle = {
     display: "flex",
-    width: "56px", // Slightly larger for a better click target
+    width: "56px", 
     height: "56px",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: "100px",
-    background: "rgba(255, 255, 255, 0.03)", // Ultra-subtle fill
+    background: "rgba(255, 255, 255, 0.03)", 
     border: "1px solid rgba(255, 255, 255, 0.15)",
-    backdropFilter: "blur(16px)", // Frosted glass effect
+    backdropFilter: "blur(16px)", 
     color: "#FFF",
     cursor: "pointer",
     position: "absolute",
@@ -86,15 +86,17 @@ const Section1 = () => {
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap');
       `}</style>
 
-      {/* Background Glow */}
+      {/* Enhanced Background Glow */}
       <div 
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0"
         style={{
-            width: '1456px',
-            height: '800px',
+            width: '1500px',
+            height: '850px',
             borderRadius: '100%',
-            background: 'rgba(102, 199, 235, 0.85)',
-            filter: 'blur(350px)',
+            // Switched to a radial gradient for a stronger core, increased opacity
+            background: 'radial-gradient(circle, rgba(102, 199, 235, 1) 0%, rgba(102, 199, 235, 0.6) 60%, transparent 100%)',
+            filter: 'blur(250px)', // Reduced blur slightly so it doesn't wash out too much
+            mixBlendMode: 'screen', // Gives it that digital "light" pop
         }}
       />
 
@@ -109,7 +111,7 @@ const Section1 = () => {
             whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.4)" }}
             whileTap={{ scale: 0.9 }}
             onClick={prevSlide} 
-            style={{ ...arrowStyle, left: "10px", xl: "-80px" }} // Pushed outside the track
+            style={{ ...arrowStyle, left: "10px", xl: "-80px" }} 
             className="hidden lg:flex xl:-left-[80px]"
             aria-label="Previous Slide"
           >
@@ -118,10 +120,13 @@ const Section1 = () => {
             </svg>
           </motion.button>
 
-          {/* Image / Carousel Track Container (Strict sizing applied here) */}
+          {/* Image / Carousel Track Container */}
           <div 
             className="relative w-full max-w-[1693px] overflow-hidden shadow-2xl" 
-            style={{ aspectRatio: "175 / 89", borderRadius: currentSlide === 0 ? "24px" : "8px 200px 8px 200px", transition: "border-radius 0.8s ease" }}
+            style={{ 
+              aspectRatio: "175 / 89", 
+              borderRadius: "200px 8px 200px 8px" // Fixed 200/8px border-radius applied to container
+            }}
           >
             {/* Track - Buttery smooth cubic-bezier easing */}
             <div 
@@ -134,11 +139,11 @@ const Section1 = () => {
               {desktopImages.map((src, index) => (
                 <div key={index} className="relative w-full h-full flex-shrink-0 flex justify-center items-center">
                   
-                  {/* Image Wrapper - Exact Corner Logic */}
+                  {/* Image Wrapper */}
                   <div 
                     className="relative w-full h-full overflow-hidden"
                     style={{ 
-                      borderRadius: index === 0 ? "24px" : "8px 200px 8px 200px" 
+                      borderRadius: "200px 8px 200px 8px" // Applied to ALL images including Image 2
                     }}
                   >
                     <Image
@@ -185,7 +190,7 @@ const Section1 = () => {
             whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.4)" }}
             whileTap={{ scale: 0.9 }}
             onClick={nextSlide} 
-            style={{ ...arrowStyle, right: "10px", xl: "-80px" }} // Pushed outside the track
+            style={{ ...arrowStyle, right: "10px", xl: "-80px" }} 
             className="hidden lg:flex xl:-right-[80px]"
             aria-label="Next Slide"
           >
