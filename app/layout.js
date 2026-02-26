@@ -30,17 +30,17 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         
-        {/* Top Progress Bar - YouTube Style */}
+      {/* Top Progress Bar - YouTube Style (Ultra Smooth Fade-Out) */}
         <NextTopLoader
           color="#0BD3D3"
           initialPosition={0.08}
-          crawlSpeed={200}
-          height={3}
+          crawlSpeed={500}
+          height={2}
           crawl={true}
-          showSpinner={false} // Hidden to match YouTube's clean look
-          easing="ease"
-          speed={200}
-          shadow="0 0 10px #0BD3D3,0 0 5px #0BD3D3"
+          showSpinner={false}
+          easing="ease-in-out" /* <-- Smoothly ramps the animation up and down */
+          speed={1000}         /* <-- 1000ms (1 full second). This forces the fade-out to be slow and graceful! */
+          shadow="0 0 5px #004398"
           zIndex={1600}
         />
 
