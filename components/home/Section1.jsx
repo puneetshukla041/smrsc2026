@@ -100,100 +100,109 @@ const Section1 = () => {
       />
 
       {/* --- DESKTOP VIEW (CAROUSEL) --- */}
-      {/* Container with horizontal padding to make room for the arrows outside the image track */}
-      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-16 md:px-24 hidden md:flex justify-center items-center">
+      {/* Changed to flex-col to allow dots to sit neatly outside underneath the main track */}
+      <div className="relative z-10 w-full max-w-[1800px] mx-auto hidden md:flex flex-col items-center gap-6 px-16 md:px-24">
         
-        {/* Navigation Arrow - Left */}
-        <button 
-          onClick={prevSlide} 
-          style={{ ...arrowStyle, left: "20px" }}
-          className="hover:bg-black/60"
-          aria-label="Previous Slide"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-          </svg>
-        </button>
-
-        {/* Image / Carousel Track Container - REMOVED the shadow and background so it's not a distracting rectangle */}
-        <div className="relative w-full overflow-hidden" style={{ aspectRatio: "1693 / 861" }}>
+        {/* Main Carousel Area including arrows */}
+        <div className="relative w-full flex justify-center items-center">
           
-          {/* Track */}
-          <div 
-            className="flex w-full h-full transition-transform duration-700 ease-in-out"
-            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+          {/* Navigation Arrow - Left */}
+          <button 
+            onClick={prevSlide} 
+            style={{ ...arrowStyle, left: "0px" }}
+            className="hover:bg-black/60"
+            aria-label="Previous Slide"
           >
-            {desktopImages.map((src, index) => (
-              <div key={index} className="relative w-full h-full flex-shrink-0 flex justify-center items-center">
-                
-                {/* Image Wrapper - Conditional Border Radius Applied Here */}
-                <div 
-                  className="relative w-full h-full overflow-hidden"
-                  style={{ 
-                    // Index 0 (Image 2) gets a standard 24px border radius.
-                    // Index > 0 (Images 3-6) get Top-Left:200px, Top-Right:8px, Bottom-Right:200px, Bottom-Left:8px
-                    borderRadius: index === 0 ? "24px" : "200px 8px 200px 8px" 
-                  }}
-                >
-                  <Image
-                    src={src}
-                    alt={`SMRSC 2026 Hero ${index + 2}`}
-                    fill
-                    priority={index === 0} // Only prioritize the first image
-                    fetchPriority={index === 0 ? "high" : "auto"}
-                    loading={index === 0 ? "eager" : "lazy"}
-                    unoptimized={true}
-                    style={{ objectFit: "contain" }}
-                  />
-                </div>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>
+          </button>
 
-                {/* Register Button ONLY on the first slide (image2.webp) */}
-                {index === 0 && (
-                  <motion.a 
-                    href="https://indiattitude.eventsair.com/smrsc-2026/registration-form"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, delay: 0.2 }}
-                    whileHover={{ scale: 1.05 }} 
-                    whileTap={{ scale: 0.95 }} 
-                    style={buttonContainerStyle} 
-                    className="absolute bottom-[10%] left-1/2 -translate-x-1/2 z-20 origin-center scale-90 lg:scale-100"
+          {/* Image / Carousel Track Container */}
+          <div 
+            className="relative w-full max-w-[1693px] overflow-hidden" 
+            style={{ aspectRatio: "175 / 89" }}
+          >
+            {/* Track - Custom cubic-bezier for buttery smooth sliding */}
+            <div 
+              className="flex w-full h-full"
+              style={{ 
+                transform: `translateX(-${currentSlide * 100}%)`,
+                transition: "transform 1.2s cubic-bezier(0.22, 1, 0.36, 1)" 
+              }}
+            >
+              {desktopImages.map((src, index) => (
+                <div key={index} className="relative w-full h-full flex-shrink-0 flex justify-center items-center">
+                  
+                  {/* Image Wrapper - Border Radius reversed for Images 3-6 */}
+                  <div 
+                    className="relative w-full h-full overflow-hidden"
+                    style={{ 
+                      // Index 0 (Image 2) gets a standard 24px border radius.
+                      // Index > 0 (Images 3-6) get Top-Left:8px, Top-Right:200px, Bottom-Right:8px, Bottom-Left:200px
+                      borderRadius: index === 0 ? "24px" : "8px 200px 8px 200px" 
+                    }}
                   >
-                    <span style={buttonTextStyle}>Register Now</span>
-                  </motion.a>
-                )}
-              </div>
-            ))}
+                    <Image
+                      src={src}
+                      alt={`SMRSC 2026 Hero ${index + 2}`}
+                      fill
+                      priority={index === 0} // Only prioritize the first image
+                      fetchPriority={index === 0 ? "high" : "auto"}
+                      loading={index === 0 ? "eager" : "lazy"}
+                      unoptimized={true}
+                      style={{ objectFit: "contain" }}
+                    />
+                  </div>
+
+                  {/* Register Button ONLY on the first slide (image2.webp) */}
+                  {index === 0 && (
+                    <motion.a 
+                      href="https://indiattitude.eventsair.com/smrsc-2026/registration-form"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 1, delay: 0.2 }}
+                      whileHover={{ scale: 1.05 }} 
+                      whileTap={{ scale: 0.95 }} 
+                      style={buttonContainerStyle} 
+                      className="absolute bottom-[10%] left-1/2 -translate-x-1/2 z-20 origin-center scale-90 lg:scale-100"
+                    >
+                      <span style={buttonTextStyle}>Register Now</span>
+                    </motion.a>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Optional: Carousel Indicators (Dots) at the bottom */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-            {desktopImages.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                  currentSlide === index ? "bg-white w-6" : "bg-white/50 hover:bg-white/80"
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
+          {/* Navigation Arrow - Right */}
+          <button 
+            onClick={nextSlide} 
+            style={{ ...arrowStyle, right: "0px" }}
+            className="hover:bg-black/60"
+            aria-label="Next Slide"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </button>
         </div>
 
-        {/* Navigation Arrow - Right */}
-        <button 
-          onClick={nextSlide} 
-          style={{ ...arrowStyle, right: "20px" }}
-          className="hover:bg-black/60"
-          aria-label="Next Slide"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-          </svg>
-        </button>
+        {/* Carousel Indicators (Dots) MOVED OUTSIDE at the bottom */}
+        <div className="flex gap-2 z-20 mt-2">
+          {desktopImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                currentSlide === index ? "bg-white w-6" : "bg-white/30 hover:bg-white/60"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
 
       </div>
 
