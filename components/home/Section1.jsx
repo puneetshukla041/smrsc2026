@@ -59,7 +59,7 @@ const Section1 = () => {
     whiteSpace: "nowrap",
   };
 
-  // Your requested arrow styling + basic visibility colors
+  // Your requested arrow styling
   const arrowStyle = {
     display: "flex",
     width: "48px",
@@ -69,7 +69,7 @@ const Section1 = () => {
     alignItems: "center",
     gap: "10px",
     borderRadius: "100px",
-    background: "rgba(0, 0, 0, 0.4)", // Semi-transparent black for visibility
+    background: "rgba(0, 0, 0, 0.4)", // Semi-transparent background
     border: "1px solid rgba(255, 255, 255, 0.2)",
     backdropFilter: "blur(4px)",
     color: "#FFF",
@@ -100,8 +100,23 @@ const Section1 = () => {
       />
 
       {/* --- DESKTOP VIEW (CAROUSEL) --- */}
-      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-4 md:px-8 hidden md:flex justify-center items-center">
-        <div className="relative w-full overflow-hidden rounded-2xl" style={{ aspectRatio: "1693 / 861" }}>
+      {/* Added extra horizontal padding (px-16 md:px-20) to make room for the arrows outside */}
+      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-16 md:px-20 hidden md:flex justify-center items-center">
+        
+        {/* Navigation Arrow - Left (Placed relative to the outer container) */}
+        <button 
+          onClick={prevSlide} 
+          style={{ ...arrowStyle, left: "10px" }}
+          className="hover:bg-black/60"
+          aria-label="Previous Slide"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+
+        {/* Image / Carousel Track Container */}
+        <div className="relative w-full overflow-hidden rounded-2xl shadow-xl" style={{ aspectRatio: "1693 / 861" }}>
           
           {/* Track */}
           <div 
@@ -109,7 +124,7 @@ const Section1 = () => {
             style={{ transform: `translateX(-${currentSlide * 100}%)` }}
           >
             {desktopImages.map((src, index) => (
-              <div key={index} className="relative w-full h-full flex-shrink-0">
+              <div key={index} className="relative w-full h-full flex-shrink-0 flex justify-center items-center">
                 <Image
                   src={src}
                   alt={`SMRSC 2026 Hero ${index + 2}`}
@@ -142,29 +157,6 @@ const Section1 = () => {
             ))}
           </div>
 
-          {/* Navigation Arrows */}
-          <button 
-            onClick={prevSlide} 
-            style={{ ...arrowStyle, left: "20px" }}
-            className="hover:bg-black/60"
-            aria-label="Previous Slide"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-            </svg>
-          </button>
-          
-          <button 
-            onClick={nextSlide} 
-            style={{ ...arrowStyle, right: "20px" }}
-            className="hover:bg-black/60"
-            aria-label="Next Slide"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-            </svg>
-          </button>
-
           {/* Optional: Carousel Indicators (Dots) at the bottom */}
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
             {desktopImages.map((_, index) => (
@@ -179,6 +171,19 @@ const Section1 = () => {
             ))}
           </div>
         </div>
+
+        {/* Navigation Arrow - Right (Placed relative to the outer container) */}
+        <button 
+          onClick={nextSlide} 
+          style={{ ...arrowStyle, right: "10px" }}
+          className="hover:bg-black/60"
+          aria-label="Next Slide"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>
+
       </div>
 
       {/* --- MOBILE VIEW (UNCHANGED) --- */}
@@ -187,7 +192,6 @@ const Section1 = () => {
           style={{ width: "350px", height: "592px", aspectRatio: "81 / 137", borderRadius: "4px 100px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)" }}
           className="relative flex justify-center shadow-2xl"
         >
-          {/* 👇 Change this to a .webp file immediately! */}
           <Image
             src="/images/home/section1/mobileimg.png" 
             alt="SMRSC 2026 Hero Mobile"
