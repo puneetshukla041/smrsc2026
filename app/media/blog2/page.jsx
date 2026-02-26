@@ -43,7 +43,7 @@ export default function Blog2() {
         height: '1281px',
         aspectRatio: '640/427',
         // Applied the linear-gradient overlay to fade into the #020b14 background
-        background: `linear-gradient(to bottom, rgba(2, 11, 20, 0) 50%, rgba(2, 11, 20, 1) 100%), url('/images/media/blogbg.png') lightgray 50% / cover no-repeat`,
+        background: `linear-gradient(to bottom, rgba(2, 11, 20, 0) 50%, rgba(2, 11, 20, 1) 100%), url('/images/media/blogbg2.webp') lightgray 50% / cover no-repeat`,
         zIndex: 0
       }} />
       
