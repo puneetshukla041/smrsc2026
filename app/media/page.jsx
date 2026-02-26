@@ -66,9 +66,7 @@ const MediaContent = () => {
             <button onClick={() => handleTabChange('blogs')} className={getTabClass('blogs')}>
               Blogs
             </button>
-            <button onClick={() => handleTabChange('release')} className={getTabClass('release')}>
-              Press Release
-            </button>
+           
             <button onClick={() => handleTabChange('kit')} className={getTabClass('kit')}>
               Media Kit
             </button>
