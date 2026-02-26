@@ -6,7 +6,7 @@ import { Plus, Minus, ArrowRight } from 'lucide-react';
 import Header from '../../components/common/Header'; 
 import Footer from '../../components/common/footer'; 
 
-// --- FAQ Component (Matching ExplorePage Design) ---
+// --- FAQ Component ---
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
@@ -63,8 +63,7 @@ const FAQSection = () => {
   };
 
   return (
-    <div className="w-full max-w-[1200px] mt-10 mb-20 relative">
-      {/* Background Glow Effect for Section (Optional, subtle) */}
+    <div className="w-full max-w-[1200px] mt-20 mb-20 relative">
       <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[80vw] h-[50vh] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/5 via-black/0 to-transparent blur-[120px] pointer-events-none opacity-30 -z-10" />
 
       <motion.h2 
@@ -94,7 +93,6 @@ const FAQSection = () => {
               className="group relative cursor-pointer"
               onClick={() => toggleFAQ(index)}
             >
-              {/* Glass Card Background */}
               <motion.div
                 layout
                 className={`absolute inset-0 rounded-2xl border backdrop-blur-sm transition-all duration-500 ${isOpen ? 'bg-white/[0.08] border-white/20' : 'bg-white/[0.02] border-white/[0.05] group-hover:bg-white/[0.05] group-hover:border-white/10'}`}
@@ -146,7 +144,6 @@ const FAQSection = () => {
                       transition={springTransition}
                       className="overflow-hidden"
                     >
-                      {/* FIX: Added text-left to override the parent text-center */}
                       <motion.p 
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 0.7 }}
@@ -164,41 +161,12 @@ const FAQSection = () => {
           );
         })}
       </motion.div>
-
-      {/* Bottom Button */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.5, duration: 0.8 }}
-        className="w-full flex justify-center md:justify-end mt-12"
-      >
-        <motion.button 
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="group relative flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full overflow-hidden cursor-pointer hover:bg-gray-200 transition-colors"
-        >
-
-          <motion.div
-            className="relative z-10"
-            initial={{ x: 0 }}
-            whileHover={{ x: 5 }}
-            transition={{ type: "spring", stiffness: 400, damping: 20 }}
-          >
-              <ArrowRight size={18} />
-          </motion.div>
-          
-          {/* Button Shine Effect */}
-          <div className="absolute inset-0 -translate-x-full group-hover:animate-[shine_1s_infinite] bg-gradient-to-r from-transparent via-gray-400/20 to-transparent z-0" />
-        </motion.button>
-      </motion.div>
     </div>
   );
 };
 
 // --- Main Page Component ---
 
-// Animation Variants
 const containerVar = {
   hidden: { opacity: 0 },
   show: {
@@ -252,41 +220,72 @@ const RegisterPage = () => {
           variants={containerVar}
           initial="hidden"
           animate="show"
-          className="flex flex-col items-center text-center w-full"
+          className="flex flex-col items-center text-center w-full max-w-5xl"
         >
-          {/* Page Title Space */}
+          {/* Registration Title */}
           <motion.h1 
             variants={itemVar}
-            className="text-[#F8FFFF] font-['Blauer_Nue'] font-semibold text-5xl sm:text-7xl lg:text-[84px] leading-tight mb-12"
+            className="text-white font-semibold text-5xl sm:text-6xl md:text-[72px] tracking-tight mb-16"
           >
-           {/* Title Text Can Go Here */}
+           Register Now
           </motion.h1>
 
-          {/* Simple Coming Soon Card */}
-          <motion.div 
-            variants={itemVar}
-            className="w-full max-w-[1200px] relative rounded-[20px] bg-[#0a0a0a]/50 border border-white/5 shadow-2xl flex flex-col overflow-hidden mb-20"
-          >
-            {/* Gradient Top Bar */}
-            <div 
-              className="w-full h-[10px]"
-              style={{
-                background: 'linear-gradient(90deg, rgba(11, 211, 211, 0.80) 2.04%, rgba(34, 92, 240, 0.80) 99.58%)'
-              }}
-            />
-
-            {/* Content Area */}
-            <div className="w-full py-40 flex flex-col items-center justify-center text-center">
-              <div className="relative">
-                {/* Subtle glow effect behind text */}
-                <div className="absolute inset-0 bg-blue-500/20 blur-[60px] rounded-full"></div>
-                
-                <h3 className="text-[#E3F5F6] text-[32px] md:text-[48px] font-semibold font-['Blauer_Nue'] tracking-widest uppercase animate-pulse">
-                  Opening Soon
-                </h3>
+          {/* Pricing Tables Container */}
+          <motion.div variants={itemVar} className="w-full flex flex-col md:flex-row gap-6 md:gap-8 mb-12">
+            
+            {/* Indian Delegates Card */}
+            <div className="flex-1 bg-[#091124] rounded-[20px] overflow-hidden border border-[#23355A] shadow-xl text-left">
+              <div className="bg-gradient-to-r from-[#3269B8] to-[#40C9CD] px-6 py-5">
+                <h3 className="text-white text-[17px] font-medium tracking-wide">Indian Delegates Registration (INR)</h3>
+              </div>
+              <div className="px-6 pb-2">
+                <div className="flex justify-between items-center py-5 border-b border-[#1E2E4E] text-white text-[15px]">
+                  <span className="opacity-90">Surgeons</span>
+                  <span className="font-medium">Rs. 5000.00</span>
+                </div>
+                <div className="flex justify-between items-center py-5 border-b border-[#1E2E4E] text-white text-[15px]">
+                  <span className="opacity-90">Students</span>
+                  <span className="font-medium">Rs. 1000.00</span>
+                </div>
+                <div className="flex justify-between items-center py-5 text-white text-[15px]">
+                  <span className="opacity-90">Medical staff</span>
+                  <span className="font-medium">Rs. 1000.00</span>
+                </div>
               </div>
             </div>
+
+            {/* International Delegates Card */}
+            <div className="flex-1 bg-[#091124] rounded-[20px] overflow-hidden border border-[#23355A] shadow-xl text-left">
+              <div className="bg-gradient-to-r from-[#3269B8] to-[#40C9CD] px-6 py-5">
+                <h3 className="text-white text-[17px] font-medium tracking-wide">International Delegates Registration (USD)</h3>
+              </div>
+              <div className="px-6 pb-2">
+                <div className="flex justify-between items-center py-5 border-b border-[#1E2E4E] text-white text-[15px]">
+                  <span className="opacity-90">Surgeons</span>
+                  <span className="font-medium">$ 5000.00</span>
+                </div>
+                <div className="flex justify-between items-center py-5 border-b border-[#1E2E4E] text-white text-[15px]">
+                  <span className="opacity-90">Students</span>
+                  <span className="font-medium">$ 1000.00</span>
+                </div>
+                <div className="flex justify-between items-center py-5 text-white text-[15px]">
+                  <span className="opacity-90">Medical staff</span>
+                  <span className="font-medium">$ 1000.00</span>
+                </div>
+              </div>
+            </div>
+
           </motion.div>
+
+          {/* Continue Button */}
+          <motion.button 
+            variants={itemVar}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-[#D1923A] hover:bg-[#E5A449] transition-colors text-white text-sm font-medium px-8 py-3 rounded-full flex items-center gap-2 mb-10"
+          >
+            Continue <ArrowRight size={16} strokeWidth={2.5} />
+          </motion.button>
 
           {/* --- FAQ SECTION --- */}
           <motion.div variants={itemVar} className="w-full flex justify-center">
