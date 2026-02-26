@@ -81,7 +81,10 @@ const HomePage = () => {
         <Section6 />
       </main>
       
-      <CookieBanner />
+      {/* Cookie Banner hidden on mobile, visible on medium screens and up */}
+      <div className="hidden md:block">
+        <CookieBanner />
+      </div>
       
       <Footer />
     </div>
