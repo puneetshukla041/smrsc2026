@@ -271,7 +271,7 @@ export default function Header() {
               <Search size={22} strokeWidth={2.5} />
             </motion.button>
             <motion.a
-              href="https://indiattitude.eventsair.com/smrsc-2026/registration-form"
+              href="/register"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
