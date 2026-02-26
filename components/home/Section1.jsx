@@ -126,8 +126,15 @@ const Section1 = () => {
             {desktopImages.map((src, index) => (
               <div key={index} className="relative w-full h-full flex-shrink-0 flex justify-center items-center">
                 
-                {/* Image Wrapper - Apply your border radius here if needed! */}
-                <div className="relative w-full h-full overflow-hidden rounded-[24px]">
+                {/* Image Wrapper - Conditional Border Radius Applied Here */}
+                <div 
+                  className="relative w-full h-full overflow-hidden"
+                  style={{ 
+                    // Index 0 (Image 2) gets a standard 24px border radius.
+                    // Index > 0 (Images 3-6) get Top-Left:200px, Top-Right:8px, Bottom-Right:200px, Bottom-Left:8px
+                    borderRadius: index === 0 ? "24px" : "200px 8px 200px 8px" 
+                  }}
+                >
                   <Image
                     src={src}
                     alt={`SMRSC 2026 Hero ${index + 2}`}
