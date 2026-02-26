@@ -202,6 +202,21 @@ const RegisterPage = () => {
   // State for the selected radio button
   const [nationality, setNationality] = useState('indian');
 
+  // Logic to handle redirection based on selection
+  const handleContinue = () => {
+    const nationalUrl = "https://indiattitude.eventsair.com/smrsc-2026/smrsc-registration-form";
+    const internationalUrl = "https://indiattitude.eventsair.com/registration-for-international-delegates-smrsc-2026/registration-for-international-delegates";
+    
+    const targetUrl = nationality === 'indian' ? nationalUrl : internationalUrl;
+    
+    // Redirects user in the same tab
+    window.location.href = targetUrl;
+    
+    // NOTE: If you prefer to open the registration in a NEW tab, comment out the line above
+    // and uncomment the line below:
+    // window.open(targetUrl, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-[#020617] overflow-x-hidden relative font-sans">
       <Header />
@@ -305,7 +320,7 @@ const RegisterPage = () => {
               <motion.button 
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => console.log(`Proceeding to registration for: ${nationality}`)}
+                onClick={handleContinue} // Called the redirection function here
                 className="group relative inline-flex justify-center items-center py-[12px] pr-[20px] pl-[24px] gap-[8px] rounded-[24px] bg-[#CE921B] hover:bg-[#E5A449] transition-all duration-300 text-white text-sm font-medium overflow-hidden shadow-[0_0_20px_rgba(206,146,27,0.2)] hover:shadow-[0_0_30px_rgba(206,146,27,0.4)] cursor-pointer"
               >
                 <span className="relative z-10 flex items-center gap-[8px]">
