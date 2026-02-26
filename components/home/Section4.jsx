@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link'; 
 import { ArrowRight } from 'lucide-react';
@@ -43,14 +43,71 @@ const Section4 = () => {
   const docNameStyle = { color: '#FFF', fontFamily: '"Blauer Nue", sans-serif', fontSize: '1rem', fontStyle: 'normal', fontWeight: 500, lineHeight: '1.5rem' };
   const docDescStyle = { color: '#FFF', fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', fontStyle: 'normal', fontWeight: 400, lineHeight: '1rem', opacity: 0.8 };
 
+  // --- Exact Leaf/Alphabet Styles ---
+  const alphabetStyle = {
+    color: '#E1C583',
+    fontFamily: 'Roba',
+    fontSize: '500px',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    lineHeight: '56px', /* 11.2% */
+    textTransform: 'uppercase',
+    opacity: 0.8,
+    filter: 'blur(5.449999809265137px)',
+    margin: 0,
+    padding: 0,
+    userSelect: 'none',
+  };
+
+  // The container exact sizing you provided
+  const containerStyle = {
+    display: 'flex',
+    width: '336px',
+    height: '415px',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  };
+
   return (
-    <motion.section id="section4" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={containerVariants} className="min-h-screen h-auto md:h-[130vh] w-full bg-[#020617] flex flex-col items-center justify-start md:justify-between py-16 md:pt-20 md:pb-20 px-6 gap-12 md:gap-0">
-      <motion.div variants={itemVariants} className="max-w-[1380px] w-full flex flex-col gap-4 md:gap-2 text-center md:text-left">
+    <motion.section 
+      id="section4" 
+      initial="hidden" 
+      whileInView="visible" 
+      viewport={{ once: true, amount: 0.15 }} 
+      variants={containerVariants} 
+      className="relative overflow-hidden min-h-screen h-auto md:h-[130vh] w-full bg-[#020617] flex flex-col items-center justify-start md:justify-between py-16 md:pt-20 md:pb-20 px-6 gap-12 md:gap-0"
+    >
+      {/* Ensure the font loads correctly from your public folder */}
+      <style>{`
+        @font-face {
+          font-family: 'Roba';
+          src: url('/fonts/Roba-Regular.ttf') format('truetype');
+          font-weight: normal;
+          font-style: normal;
+        }
+      `}</style>
+
+      {/* --- Golden Leaf 'O' Background --- */}
+      <div className="absolute right-0 top-0 w-full h-full pointer-events-none z-0 overflow-hidden">
+        <motion.div 
+          initial={{ opacity: 0, x: 50 }} 
+          whileInView={{ opacity: 1, x: 0 }} 
+          viewport={{ once: true }} 
+          transition={{ duration: 1.5, ease: "easeOut" }} 
+          style={containerStyle} 
+          // Push it slightly off the right edge to match the design crop
+          className="absolute right-[-40px] md:right-[-60px] top-[10%] md:top-[15%]"
+        >
+          <span style={alphabetStyle}>O</span>
+        </motion.div>
+      </div>
+
+      <motion.div variants={itemVariants} className="relative z-10 max-w-[1380px] w-full flex flex-col gap-4 md:gap-2 text-center md:text-left">
         <h3 style={{ color: '#E6E6E6', fontFamily: 'Manrope, sans-serif', fontStyle: 'normal', fontWeight: 500 }} className="text-[20px] leading-[28px] md:text-[32px] md:leading-[32px] flex flex-col justify-center">A movement that started with a vision is now reshaping</h3>
         <h2 style={{ color: '#E3F5F6', fontFamily: '"Blauer Nue", sans-serif', fontStyle: 'normal', fontWeight: 600 }} className="uppercase tracking-tight text-[32px] leading-[40px] md:text-[64px] md:leading-[86px]">THE FUTURE OF ROBOTIC SURGERY</h2>
       </motion.div>
 
-      <div className="max-w-[1380px] w-full flex flex-col gap-8 md:gap-10 items-center md:items-stretch">
+      <div className="relative z-10 max-w-[1380px] w-full flex flex-col gap-8 md:gap-10 items-center md:items-stretch">
         <motion.h4 variants={itemVariants} style={facultyHeadingStyle} className="text-[2rem] leading-[2.5rem] md:text-[2.25rem] md:leading-[2.5rem] self-start">Our Faculty</motion.h4>
 
         <div ref={scrollRef} onScroll={handleScroll} className="flex md:flex-wrap flex-nowrap overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide justify-start md:justify-between gap-8 w-full pb-4 md:pb-0">
