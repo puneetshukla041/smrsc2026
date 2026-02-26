@@ -100,13 +100,13 @@ const Section1 = () => {
       />
 
       {/* --- DESKTOP VIEW (CAROUSEL) --- */}
-      {/* Added extra horizontal padding (px-16 md:px-20) to make room for the arrows outside */}
-      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-16 md:px-20 hidden md:flex justify-center items-center">
+      {/* Container with horizontal padding to make room for the arrows outside the image track */}
+      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-16 md:px-24 hidden md:flex justify-center items-center">
         
-        {/* Navigation Arrow - Left (Placed relative to the outer container) */}
+        {/* Navigation Arrow - Left */}
         <button 
           onClick={prevSlide} 
-          style={{ ...arrowStyle, left: "10px" }}
+          style={{ ...arrowStyle, left: "20px" }}
           className="hover:bg-black/60"
           aria-label="Previous Slide"
         >
@@ -115,8 +115,8 @@ const Section1 = () => {
           </svg>
         </button>
 
-        {/* Image / Carousel Track Container */}
-        <div className="relative w-full overflow-hidden rounded-2xl shadow-xl" style={{ aspectRatio: "1693 / 861" }}>
+        {/* Image / Carousel Track Container - REMOVED the shadow and background so it's not a distracting rectangle */}
+        <div className="relative w-full overflow-hidden" style={{ aspectRatio: "1693 / 861" }}>
           
           {/* Track */}
           <div 
@@ -125,16 +125,20 @@ const Section1 = () => {
           >
             {desktopImages.map((src, index) => (
               <div key={index} className="relative w-full h-full flex-shrink-0 flex justify-center items-center">
-                <Image
-                  src={src}
-                  alt={`SMRSC 2026 Hero ${index + 2}`}
-                  fill
-                  priority={index === 0} // Only prioritize the first image
-                  fetchPriority={index === 0 ? "high" : "auto"}
-                  loading={index === 0 ? "eager" : "lazy"}
-                  unoptimized={true}
-                  style={{ objectFit: "contain" }}
-                />
+                
+                {/* Image Wrapper - Apply your border radius here if needed! */}
+                <div className="relative w-full h-full overflow-hidden rounded-[24px]">
+                  <Image
+                    src={src}
+                    alt={`SMRSC 2026 Hero ${index + 2}`}
+                    fill
+                    priority={index === 0} // Only prioritize the first image
+                    fetchPriority={index === 0 ? "high" : "auto"}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    unoptimized={true}
+                    style={{ objectFit: "contain" }}
+                  />
+                </div>
 
                 {/* Register Button ONLY on the first slide (image2.webp) */}
                 {index === 0 && (
@@ -172,10 +176,10 @@ const Section1 = () => {
           </div>
         </div>
 
-        {/* Navigation Arrow - Right (Placed relative to the outer container) */}
+        {/* Navigation Arrow - Right */}
         <button 
           onClick={nextSlide} 
-          style={{ ...arrowStyle, right: "10px" }}
+          style={{ ...arrowStyle, right: "20px" }}
           className="hover:bg-black/60"
           aria-label="Next Slide"
         >
