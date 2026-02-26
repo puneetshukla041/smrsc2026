@@ -375,7 +375,7 @@ const RegisterPage = () => {
                           )}
                         </div>
                       </div>
-                      <span className="text-[#1A2E35] font-medium text-[15px]">Register as International Delegates Registration</span>
+                      <span className="text-[#1A2E35] font-medium text-[15px]">Register as international delegates</span>
                     </label>
 
                   </div>
