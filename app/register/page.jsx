@@ -23,10 +23,7 @@ const FAQSection = () => {
       question: "I did not receive a confirmation email. What should I do?",
       answer: "Please check your spam folder. If not received, contact the support team with your transaction details."
     },
-    {
-      question: "Is reimbursement available for international surgeons?",
-      answer: "International surgeons are eligible for reimbursement of up to USD 5,000, covering travel and accommodation expenses. Reimbursements are subject to prior approval by the organizing committee and submission of valid supporting documentation in accordance with event policy guidelines."
-    },
+
     {
       question: "Do you provide visa assistance?",
       answer: "The organizing team can provide general guidance. International attendees are advised to apply under the Tourist Visa category, subject to applicable regulations. Visa applications must be completed through official government channels."
