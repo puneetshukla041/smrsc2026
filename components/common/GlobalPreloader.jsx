@@ -298,19 +298,30 @@ const VIDEOS_TO_PRELOAD = [
 
 export default function GlobalPreloader() {
   useEffect(() => {
-    const preloadAll = async () => {
-      const allMedia = [...ASSETS_TO_PRELOAD, ...VIDEOS_TO_PRELOAD];
-      
-      // Fire everything at once
-      await Promise.all(
-        allMedia.map(src => 
-          fetch(src, { cache: 'force-cache', mode: 'no-cors' })
-            .catch(() => {/* fail silently */})
-        )
-      );
+    // We wrap this in a function to wait for the initial page load to finish
+    // so we don't freeze the user's browser immediately.
+    const forceDownloadAll = () => {
+      // 1. Force Image Downloads via native Image object (Most Aggressive)
+      const imageAssets = ASSETS_TO_PRELOAD.filter(src => src.endsWith('.webp') || src.endsWith('.png'));
+      imageAssets.forEach((src) => {
+        const img = new Image();
+        img.src = src; // This physically forces the browser to fetch and cache the image instantly
+      });
+
+      // 2. Force Fonts & Videos via fetch
+      const otherAssets = [...ASSETS_TO_PRELOAD.filter(src => !src.endsWith('.webp') && !src.endsWith('.png')), ...VIDEOS_TO_PRELOAD];
+      otherAssets.forEach((src) => {
+        fetch(src, { cache: 'force-cache' }).catch(() => {/* fail silently */});
+      });
     };
 
-    preloadAll();
+    // Wait until the document is fully loaded before aggressively fetching 150+ items
+    if (document.readyState === 'complete') {
+      forceDownloadAll();
+    } else {
+      window.addEventListener('load', forceDownloadAll);
+      return () => window.removeEventListener('load', forceDownloadAll);
+    }
   }, []);
 
   return null;
