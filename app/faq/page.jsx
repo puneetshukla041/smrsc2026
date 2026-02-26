@@ -229,32 +229,8 @@ const FAQPage = () => {
             })}
           </motion.div>
 
-          {/* Bottom Button */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.8 }}
-            className="w-full flex justify-center md:justify-end mt-16"
-          >
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group relative flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full overflow-hidden cursor-pointer hover:bg-gray-200 transition-colors"
-            >
-              <span className="relative z-10 font-manrope font-semibold text-sm tracking-wide">View all FAQs</span>
-              <motion.span
-                className="relative z-10"
-                initial={{ x: 0 }}
-                whileHover={{ x: 5 }}
-                transition={{ type: "spring", stiffness: 400, damping: 20 }}
-              >
-                  <ArrowRight size={18} />
-              </motion.span>
-              
-              {/* Button Shine Effect - White/Gray */}
-              <div className="absolute inset-0 -translate-x-full group-hover:animate-[shine_1s_infinite] bg-gradient-to-r from-transparent via-gray-400/20 to-transparent z-0" />
-            </motion.button>
-          </motion.div>
+        
+           
 
         </div>
       </main>
