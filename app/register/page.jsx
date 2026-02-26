@@ -401,7 +401,7 @@ const RegisterPage = () => {
                     className="group relative inline-flex justify-center items-center py-[12px] pr-[20px] pl-[24px] gap-[8px] rounded-[24px] bg-[#CE921B] hover:bg-[#E5A449] transition-all duration-300 text-white text-sm font-medium overflow-hidden shadow-[0_0_20px_rgba(206,146,27,0.2)] hover:shadow-[0_0_30px_rgba(206,146,27,0.4)] cursor-pointer"
                   >
                     <span className="relative z-10 flex items-center gap-[8px]">
-                      Continue to payment <ArrowRight size={16} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-1" />
+                      Continue to Registration <ArrowRight size={16} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-1" />
                     </span>
                   </motion.button>
                 </div>
