@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
           color="#0BD3D3"
           initialPosition={0.08}
           crawlSpeed={500}
-          height={2}
+          height={3}
           crawl={true}
           showSpinner={false}
           easing="ease-in-out" /* <-- Smoothly ramps the animation up and down */
