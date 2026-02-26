@@ -388,7 +388,7 @@ const RegisterPage = () => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => setStep(1)}
-                    className="group relative inline-flex justify-center items-center py-[12px] px-[20px] gap-[8px] rounded-[24px] bg-white/10 hover:bg-white/20 border border-white/20 transition-all duration-300 text-white text-sm font-medium"
+                    className="group relative inline-flex justify-center items-center py-[12px] px-[20px] gap-[8px] rounded-[24px] bg-white/10 hover:bg-white/20 border border-white/20 transition-all duration-300 text-white text-sm font-medium cursor-pointer"
                   >
                     <ArrowLeft size={16} strokeWidth={2.5} className="transition-transform duration-300 group-hover:-translate-x-1" /> Back
                   </motion.button>
