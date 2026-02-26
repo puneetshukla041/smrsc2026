@@ -5,10 +5,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const Section1 = () => {
-  // Carousel State
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Array of desktop images
   const desktopImages = [
     "/images/home/section1/image2.webp",
     "/images/home/section1/image3.webp",
@@ -25,7 +23,6 @@ const Section1 = () => {
     setCurrentSlide((prev) => (prev === 0 ? desktopImages.length - 1 : prev - 1));
   };
 
-  // Auto-play functionality (changes slide every 5 seconds)
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
@@ -33,10 +30,9 @@ const Section1 = () => {
     return () => clearInterval(timer);
   }, [currentSlide]);
 
-  // Premium Button Styling
   const buttonContainerStyle = {
     display: "flex",
-    width: "280px", 
+    width: "280px",
     height: "51px",
     padding: "12px 24px",
     justifyContent: "center",
@@ -46,31 +42,30 @@ const Section1 = () => {
     border: "1px solid rgba(255, 255, 255, 0.8)",
     background: "linear-gradient(180deg, #E5B648 0%, #C8890C 100%), radial-gradient(231% 135.8% at 0.9% 2.98%, rgba(255, 255, 255, 0.80) 0%, rgba(255, 255, 255, 0.20) 100%)",
     backdropFilter: "blur(21px)",
-    cursor: "pointer", 
-    boxShadow: "0px 8px 32px rgba(200, 137, 12, 0.3)", // Enhanced glow
+    cursor: "pointer",
+    boxShadow: "0px 8px 32px rgba(200, 137, 12, 0.3)",
     textDecoration: "none",
   };
 
   const buttonTextStyle = {
     color: "#FFF",
     fontFamily: "Manrope, sans-serif",
-    fontSize: "18px", 
+    fontSize: "18px",
     fontWeight: "600",
     lineHeight: "20px",
     whiteSpace: "nowrap",
   };
 
-  // Glassmorphism Arrow Styling
   const arrowStyle = {
     display: "flex",
-    width: "56px", 
+    width: "56px",
     height: "56px",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: "100px",
-    background: "rgba(255, 255, 255, 0.03)", 
+    background: "rgba(255, 255, 255, 0.03)",
     border: "1px solid rgba(255, 255, 255, 0.15)",
-    backdropFilter: "blur(16px)", 
+    backdropFilter: "blur(16px)",
     color: "#FFF",
     cursor: "pointer",
     position: "absolute",
@@ -82,12 +77,11 @@ const Section1 = () => {
 
   return (
     <section className="relative w-full flex justify-center items-center overflow-x-clip pt-32 pb-8 md:pt-[140px] md:pb-12">
-      {/* INCREASED TOP PADDING IN SECTION CLASSNAME: pt-32 md:pt-[140px] to clear the header safely */}
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap');
       `}</style>
 
-      {/* Enhanced Background Glow */}
+      {/* Background Glow */}
       <div 
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0"
         style={{
@@ -100,19 +94,16 @@ const Section1 = () => {
         }}
       />
 
-      {/* --- DESKTOP VIEW (CAROUSEL) --- */}
+      {/* DESKTOP VIEW */}
       <div className="relative z-10 w-full max-w-[1920px] mx-auto hidden md:flex flex-col items-center gap-4 px-10 xl:px-24">
-        
-        {/* Main Carousel Wrapper - Relative container for placing arrows OUTSIDE the track */}
         <div className="relative w-full flex justify-center items-center">
           
-          {/* Navigation Arrow - Left (Strictly Outside) */}
           <motion.button 
             whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.4)" }}
             whileTap={{ scale: 0.9 }}
             onClick={prevSlide} 
-            style={{ ...arrowStyle, left: "10px", xl: "-80px" }} 
-            className="hidden lg:flex xl:-left-[80px]"
+            style={{ ...arrowStyle, left: "10px" }} 
+            className="hidden lg:flex xl:-left-[80px] xl:absolute"
             aria-label="Previous Slide"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
@@ -120,15 +111,10 @@ const Section1 = () => {
             </svg>
           </motion.button>
 
-          {/* Image / Carousel Track Container */}
           <div 
             className="relative w-full max-w-[1100px] xl:max-w-[1300px] overflow-hidden shadow-2xl" 
-            style={{ 
-              aspectRatio: "175 / 89", 
-              borderRadius: "200px 8px 200px 8px" 
-            }}
+            style={{ aspectRatio: "175 / 89", borderRadius: "200px 8px 200px 8px" }}
           >
-            {/* Track - Buttery smooth cubic-bezier easing */}
             <div 
               className="flex w-full h-full"
               style={{ 
@@ -138,42 +124,33 @@ const Section1 = () => {
             >
               {desktopImages.map((src, index) => (
                 <div key={index} className="relative w-full h-full flex-shrink-0 flex justify-center items-center">
-                  
-                  {/* Image Wrapper */}
-                  <div 
-                    className="relative w-full h-full overflow-hidden"
-                    style={{ 
-                      borderRadius: "200px 8px 200px 8px" 
-                    }}
-                  >
+                  <div className="relative w-full h-full overflow-hidden" style={{ borderRadius: "200px 8px 200px 8px" }}>
                     <Image
                       src={src}
                       alt={`SMRSC 2026 Hero ${index + 2}`}
                       fill
-                      priority={index === 0} 
+                      // IMPORTANT: Set priority for the first few images to load them ASAP
+                      priority={index <= 1} 
                       fetchPriority={index === 0 ? "high" : "auto"}
-                      loading={index === 0 ? "eager" : "lazy"}
+                      loading={index <= 1 ? "eager" : "lazy"}
                       unoptimized={true}
                       style={{ objectFit: "cover" }}
                     />
-                    
-                    {/* Very subtle gradient overlay to make the button pop more */}
                     {index === 0 && (
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                     )}
                   </div>
 
-                  {/* Register Button ONLY on the first slide (image2.webp) */}
                   {index === 0 && (
                     <motion.a 
-                      href="/register" // Changed this to the internal register page
+                      href="/register" 
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.4, type: "spring", stiffness: 100 }}
-                      whileHover={{ scale: 1.05, translateY: "-2px" }} 
+                      transition={{ duration: 0.8, delay: 0.4 }}
+                      whileHover={{ scale: 1.05 }} 
                       whileTap={{ scale: 0.95 }} 
                       style={buttonContainerStyle} 
-                      className="absolute bottom-[10%] left-1/2 -translate-x-1/2 z-20 origin-center"
+                      className="absolute bottom-[10%] left-1/2 -translate-x-1/2 z-20"
                     >
                       <span style={buttonTextStyle}>Register Now</span>
                     </motion.a>
@@ -183,13 +160,12 @@ const Section1 = () => {
             </div>
           </div>
 
-          {/* Navigation Arrow - Right (Strictly Outside) */}
           <motion.button 
             whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.4)" }}
             whileTap={{ scale: 0.9 }}
             onClick={nextSlide} 
-            style={{ ...arrowStyle, right: "10px", xl: "-80px" }} 
-            className="hidden lg:flex xl:-right-[80px]"
+            style={{ ...arrowStyle, right: "10px" }} 
+            className="hidden lg:flex xl:-right-[80px] xl:absolute"
             aria-label="Next Slide"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
@@ -198,25 +174,20 @@ const Section1 = () => {
           </motion.button>
         </div>
 
-        {/* Premium Animated Pill Indicators (OUTSIDE the track) */}
         <div className="flex gap-3 z-20 mt-2">
           {desktopImages.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`h-2.5 rounded-full transition-all duration-500 ease-out ${
-                currentSlide === index 
-                  ? "w-10 bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]" 
-                  : "w-2.5 bg-white/30 hover:bg-white/60"
+              className={`h-2.5 rounded-full transition-all duration-500 ${
+                currentSlide === index ? "w-10 bg-white shadow-[0_0_10px_white]" : "w-2.5 bg-white/30"
               }`}
-              aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>
-
       </div>
 
-      {/* --- MOBILE VIEW (UNCHANGED) --- */}
+      {/* MOBILE VIEW */}
       <div className="relative z-10 w-full flex md:hidden justify-center px-6">
         <div
           style={{ width: "350px", height: "592px", aspectRatio: "81 / 137", borderRadius: "4px 100px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)" }}
@@ -232,14 +203,8 @@ const Section1 = () => {
             unoptimized={true}
             style={{ objectFit: "cover" }}
           />
-
           <motion.a 
-            href="/register" // Changed this to the internal register page
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            whileHover={{ scale: 1.05 }} 
-            whileTap={{ scale: 0.95 }} 
+            href="/register" 
             style={{ ...buttonContainerStyle, width: "240px", height: "45px" }} 
             className="absolute bottom-[8%] z-20"
           >
