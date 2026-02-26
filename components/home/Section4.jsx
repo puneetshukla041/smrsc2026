@@ -132,7 +132,7 @@ const Section4 = () => {
         </div>
 
         <motion.div variants={itemVariants} className="flex justify-center mt-4 md:mt-8">
-          <MotionLink href="/about#faculty" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex items-center gap-2 px-6 py-3 bg-white rounded-full hover:bg-gray-200 transition-colors cursor-pointer active:scale-95 no-underline">
+          <MotionLink href="/about?tab=Faculty" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex items-center gap-2 px-6 py-3 bg-white rounded-full hover:bg-gray-200 transition-colors cursor-pointer active:scale-95 no-underline">
             <span className="text-[#020617] font-medium font-['Manrope'] text-sm">View all Faculty</span>
             <ArrowRight className="text-[#020617] w-4 h-4" />
           </MotionLink>
