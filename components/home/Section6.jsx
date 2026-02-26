@@ -38,7 +38,7 @@ const Section6 = () => {
 
             {/* BUTTON */}
             <motion.a 
-              href="https://indiattitude.eventsair.com/smrsc-2026/registration-form"
+              href="/register"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }} 
