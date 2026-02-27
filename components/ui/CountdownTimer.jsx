@@ -139,7 +139,7 @@ const ExpandedTimerContent = () => {
       </div>
 
       <motion.a
-        href="https://indiattitude.eventsair.com/smrsc-2026/registration-form"
+        href="/register"
         target="_blank"
         rel="noopener noreferrer"
         onClick={(e) => e.stopPropagation()} // Prevents the parent from closing when clicking the button
