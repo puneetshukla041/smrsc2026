@@ -11,8 +11,9 @@ const Section4 = () => {
   const facultyMembers = [
     { id: 1, name: "Dr. Sudhir Srivastava", role: "Founder, Chairman and CEO SS Innovations, INDIA", image: "/images/home/section4/image6.png" },
     { id: 2, name: "Dr. Husam Balkhy", role: "The University of Chicago Medicine and Biological Sciences Chicago, USA", image: "/images/home/section4/image2.webp" },
+        { id: 4, name: "Dr. Ashutosh K. Tewari ", role: "Wake Forest Medical School & Baptist Medical Center, NC, USA", image: "/images/home/section4/image5.png" },
     { id: 3, name: "Dr. Ashok K.Hemal", role: "Wake Forest Medical School & Baptist Medical Center, NC, USA", image: "/images/about/committe/9.webp" },
-    { id: 4, name: "Dr. Ashok K.Hemal", role: "Wake Forest Medical School & Baptist Medical Center, NC, USA", image: "/images/home/section4/image5.png" },
+
   ];
 
   const scrollRef = useRef(null);
