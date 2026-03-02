@@ -61,7 +61,7 @@ const PastEventsContent = () => {
     router.push(`/pastevents?tab=${year}`, { scroll: false });
   };
 
-  const baseButtonStyles = "flex w-[156px] h-[45px] px-6 py-3 justify-center items-center gap-2.5 shrink-0 rounded-[40px] transition-all text-sm md:text-base font-medium cursor-pointer";
+  const baseButtonStyles = "flex w-[140px] md:w-[156px] h-[45px] px-4 md:px-6 py-3 justify-center items-center gap-2.5 shrink-0 rounded-[40px] transition-all text-sm md:text-base font-medium cursor-pointer";
   const activeStyle = "border border-white bg-[linear-gradient(180deg,rgba(51,51,51,0.20)_0%,rgba(0,0,0,0.20)_137.5%)] text-white";
   const inactiveStyle = "bg-black/20 text-gray-400 hover:text-white"; 
 
@@ -71,8 +71,8 @@ const PastEventsContent = () => {
   return (
     <div className="min-h-screen w-full bg-[#020617] flex flex-col items-center justify-start overflow-x-hidden pt-24 md:pt-0">
       
-      {/* --- HERO VIDEO SECTION (Opacity delay removed for instant paint) --- */}
-      <div className="relative z-10 w-full flex justify-center px-4">
+      {/* --- HERO VIDEO SECTION --- */}
+      <div className="relative z-10 w-full flex justify-center px-4 md:px-8">
         <div
           style={{
             marginTop: "98px",
@@ -83,9 +83,8 @@ const PastEventsContent = () => {
             borderRadius: "8px 200px", 
             overflow: "hidden",      
           }}
-          className="relative bg-gray-900 shadow-2xl group"
+          className="relative bg-gray-900 shadow-2xl group rounded-br-[80px] md:rounded-br-[200px]" // Adjusted radius for mobile
         >
-          {/* Added fetchPriority="high" to the video element */}
           <video
             key={activeTab} 
             className="w-full h-full object-cover" 
@@ -98,26 +97,27 @@ const PastEventsContent = () => {
             <source src={videoSource} type="video/webm" />
           </video>
 
+          {/* Fully Responsive Hero Text */}
           <div 
-            className="absolute bottom-12 left-12 md:bottom-[60px] md:left-[60px] z-20 pointer-events-none"
+            className="absolute bottom-6 left-6 md:bottom-12 md:left-12 lg:bottom-[60px] lg:left-[60px] z-20 pointer-events-none w-[90%] max-w-[655px]"
             style={{
-              width: '655px',
               color: '#FFF',
               textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
               fontFamily: "'Poppins', sans-serif",
-              fontSize: '64px',
               fontWeight: 500,
-              lineHeight: '70px',
             }}
           >
-            {heroText}
+            <h1 className="text-3xl md:text-5xl lg:text-[64px] leading-tight lg:leading-[70px]">
+              {heroText}
+            </h1>
           </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent z-10 pointer-events-none" />
         </div>
       </div>
 
       {/* --- NAVIGATION TABS --- */}
-      <div className="w-full mb-10 flex items-center justify-start pl-4 md:pl-[270px] gap-6 overflow-x-auto">
+      {/* Aligned with the 1380px grid used in the child components */}
+      <div className="w-full max-w-[1380px] mx-auto mb-10 flex items-center justify-start px-4 md:px-8 gap-4 md:gap-6 overflow-x-auto hide-scrollbar">
         <button 
           onClick={() => handleTabChange('2025')}
           className={`${baseButtonStyles} ${activeTab === '2025' ? activeStyle : inactiveStyle}`}
@@ -133,7 +133,7 @@ const PastEventsContent = () => {
       </div>
 
       {/* --- CONTENT SECTION --- */}
-      <div className="w-full max-w-[1717.48px] mb-20 px-4 md:px-0 min-h-[50vh]">
+      <div className="w-full mb-20 min-h-[50vh] flex flex-col items-center">
         {activeTab === '2025' && <SMRSC2025 />}
         {activeTab === '2024' && <SMRSC2024 />}
       </div>
@@ -151,6 +151,15 @@ const PastEvents = () => {
       <Footer />
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+        
+        /* Utility to hide scrollbar for tabs on mobile if needed */
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
       `}</style>
     </>
   );
