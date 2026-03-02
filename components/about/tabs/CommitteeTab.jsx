@@ -65,12 +65,12 @@ const CommitteeTab = () => {
         <div className="w-full flex flex-col lg:flex-row items-center lg:items-start justify-center lg:justify-between gap-12 lg:gap-8">
           
           {/* Organizing Chairman */}
-          <div className="flex flex-col items-center lg:items-start w-full max-w-[305px]">
+          <div className="flex flex-col items-center lg:items-start w-full max-w-[300px]">
             <h3 className="text-[#F8FFFF] font-['Blauer_Nue'] text-[24px] md:text-[28px] lg:text-[32px] font-medium leading-tight mb-6 text-center lg:text-left">
               Organizing Chairman
             </h3>
-            <div className="relative w-full aspect-[305/390] rounded-[12px] overflow-hidden bg-white/5">
-              <Image src="/images/about/committe/1.webp" alt="Dr. Sudhir Srivastava" fill className="object-contain" />
+            <div className="relative w-full aspect-square rounded-[12px] overflow-hidden bg-white/5">
+              <Image src="/images/about/committe/1.webp" alt="Dr. Sudhir Srivastava" fill className="object-cover object-top" />
             </div>
             <div className="w-full mt-4 flex flex-col gap-1 text-center lg:text-left">
               <div className="text-white text-[16px] font-semibold leading-[24px]">Dr. Sudhir Srivastava</div>
@@ -85,9 +85,9 @@ const CommitteeTab = () => {
             </h3>
             <div className="flex flex-col sm:flex-row items-center lg:items-start gap-8 sm:gap-6 w-full">
               {/* Co-Chair 1 */}
-              <div className="flex flex-col items-center lg:items-start w-full max-w-[305px]">
-                <div className="relative w-full aspect-[305/390] rounded-[12px] overflow-hidden bg-white/5">
-                  <Image src="/images/about/committe/2.webp" alt="Dr. Sudhir K Rawal" fill className="object-contain" />
+              <div className="flex flex-col items-center lg:items-start w-full max-w-[300px]">
+                <div className="relative w-full aspect-square rounded-[12px] overflow-hidden bg-white/5">
+                  <Image src="/images/about/committe/2.webp" alt="Dr. Sudhir K Rawal" fill className="object-cover object-top" />
                 </div>
                 <div className="w-full mt-4 flex flex-col gap-1 text-center lg:text-left">
                   <div className="text-white text-[16px] font-semibold leading-[24px]">Dr. Sudhir K Rawal</div>
@@ -96,9 +96,9 @@ const CommitteeTab = () => {
               </div>
               
               {/* Co-Chair 2 */}
-              <div className="flex flex-col items-center lg:items-start w-full max-w-[305px]">
-                <div className="relative w-full aspect-[305/390] rounded-[12px] overflow-hidden bg-white/5">
-                  <Image src="/images/about/committe/3.webp" alt="Dr. Somashekhar SP" fill className="object-contain" />
+              <div className="flex flex-col items-center lg:items-start w-full max-w-[300px]">
+                <div className="relative w-full aspect-square rounded-[12px] overflow-hidden bg-white/5">
+                  <Image src="/images/about/committe/3.webp" alt="Dr. Somashekhar SP" fill className="object-cover object-top" />
                 </div>
                 <div className="w-full mt-4 flex flex-col gap-1 text-center lg:text-left">
                   <div className="text-white text-[16px] font-semibold leading-[24px]">Dr. Somashekhar SP</div>
@@ -109,12 +109,12 @@ const CommitteeTab = () => {
           </div>
 
           {/* Organizing Secretary */}
-          <div className="flex flex-col items-center lg:items-start w-full max-w-[305px]">
+          <div className="flex flex-col items-center lg:items-start w-full max-w-[300px]">
             <h3 className="text-[#F8FFFF] font-['Blauer_Nue'] text-[24px] md:text-[28px] lg:text-[32px] font-medium leading-tight mb-6 text-center lg:text-left">
               Organizing Secretary
             </h3>
-            <div className="relative w-full aspect-[305/390] rounded-[12px] overflow-hidden bg-white/5">
-              <Image src="/images/about/committe/4.webp" alt="Dr. Vishwa Srivastava" fill className="object-contain" />
+            <div className="relative w-full aspect-square rounded-[12px] overflow-hidden bg-white/5">
+              <Image src="/images/about/committe/4.webp" alt="Dr. Vishwa Srivastava" fill className="object-cover object-top" />
             </div>
             <div className="w-full mt-4 flex flex-col gap-1 text-center lg:text-left">
               <div className="text-white text-[16px] font-semibold leading-[24px]">Dr. Vishwa Srivastava</div>
