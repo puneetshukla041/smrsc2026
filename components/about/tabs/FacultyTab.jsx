@@ -40,19 +40,22 @@ const FacultyTab = () => {
   const filterOptions = ['All', 'Cardiac', 'Urology', 'General Surgery', 'Colorectal Surgery'];
 
   const internationalFacultyList = [
-    { name: "Dr. Valluvan Jeevanandam", desc: "The University of Chicago Medicine...", image: "image2.webp" },
+    { name: "Dr. Valluvan Jeevanandam", desc: "The University of Chicago Medicine and Biological Sciences Chicago, Chicago, IL, USA", image: "image2.webp" },
     { name: "Dr. T Sloane Guy", desc: "Georgia Heart Institute, Gainesville, GA, USA", image: "image3.webp" },
     { name: "Dr. Gianluca Torregrossa", desc: "Lankenau Heart Institute, Philadelphia, PA, USA", image: "image4.webp" },
     { name: "Dr. Frank Van Praet", desc: "OLV Clinic, Aalst, Belgium", image: "image5.webp" },
-    { name: "Dr. Bob Kiaii", desc: "Foothills Medical Centre, University of Calgary", image: "image6.webp" },
+    { name: "Dr. Bob Kiaii", desc: "Foothills Medical Centre, Libin Cardiovascular Institute, University of Calgary", image: "image6.webp" },
     { name: "Dr. Jae Won Lee", desc: "Buchon Sejong Hospital, Seoul, South Korea", image: "image7.webp" },
     { name: "Dr John D Puskas", desc: "Emory University Hospital Midtown, Atlanta", image: "image8.webp" },
-    { name: "Dr. Johannes Oliver Bonatti", desc: "University of Pittsburgh Medical Center", image: "image9.webp" },
+    { name: "Dr. Johannes Oliver Bonatti", desc: "University of Pittsburgh Medical Center, Pittsburg, PA, USA", image: "image9.webp" },
     { name: "Dr. Dudy Hanafy", desc: "Harapan Kita Hospital, Jakarta, Indonesia", image: "image10.webp" },
-    { name: "Dr. Go Watanabe", desc: "New Heart Watanabe Hospital, Tokyo, Japan", image: "image11.webp" },
+    { name: "Dr. Go Watanabe", desc: "New Heart Watanabe Hospital Tokyo, Japan", image: "image11.webp" },
     { name: "Dr. Nirav Patel", desc: "Lenox Hill Hospital, New York, NY, USA", image: "image12.webp" },
-    { name: "Dr. Victor Castillo", desc: "Fundación Cardiovascular de Colombia", image: "image13.webp" },
-    { name: "Dr. Feras Khaliel", desc: "King Faisal Specialist Hospital, Saudi Arabia", image: "image14.webp" }
+    { name: "Dr. Victor Castillo", desc: "Fundación Cardiovascular de Colombia, Bucaramanga, Colombia", image: "image13.webp" },
+    { name: "Dr. Feras Khaliel", desc: "King Faisal Specialist Hospital and Research Centre, Riyadh, Saudi Arabia", image: "image14.webp" },
+    { name: "Dr. Lorena Montes", desc: "FAV Colombia", image: "image15.webp" },
+    { name: "Dr. Gustavo Andres", desc: "FAV Colombia", image: "image16.webp" },
+    { name: "Dr. Danny Ramzy", desc: "Memorial Hermann Memorial City Medical Center", image: "image17.webp" }
   ];
 
   const nationalFacultyList = [
@@ -153,7 +156,7 @@ const FacultyTab = () => {
                 <FadeInView>
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
                     <div style={cardImageContainer} className="group cursor-pointer">
-                        <Image src="/images/about/faculty/image1.png" alt="Dr. Husam Balkhy" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
+                        <Image src="/images/about/faculty/cardiac/image1.webp" alt="Dr. Husam Balkhy" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
                     </div>
                     <div style={nameStyle}>Dr. Husam Balkhy</div>
                     <div style={descStyle}>The University of Chicago Medicine and Biological Sciences Chicago, Chicago, IL, USA</div>
@@ -168,7 +171,7 @@ const FacultyTab = () => {
                     <FadeInView key={index} delay={index * 30}>
                         <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <div style={cardImageContainer} className="group cursor-pointer">
-                            <Image src={`/images/about/${faculty.image}`} alt={faculty.name} fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
+                            <Image src={`/images/about/faculty/cardiac/${faculty.image}`} alt={faculty.name} fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
                         </div>
                         <div style={nameStyle}>{faculty.name}</div>
                         <div style={descStyle}>{faculty.desc}</div>
