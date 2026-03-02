@@ -5,9 +5,17 @@ import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Section5 = () => {
+  // Fixed the duplicate ID (General is 8, Pediatric is 9)
   const specialties = [
-    { id: 1, title: "Cardiac", count: "400+" }, { id: 2, title: "Urology", count: "2100+" }, { id: 8, title: "General", count: "3500+" }, { id: 3, title: "Thoracic", count: "70+" },
-    { id: 4, title: "Gastroenterology", count: "200+" }, { id: 5, title: "Head & Neck", count: "100+" }, { id: 6, title: "Gynecology", count: "1300+" }, { id: 7, title: "Colorectal", count: "450+" },{ id: 8, title: "Pediatric", },
+    { id: 1, title: "Cardiac", count: "400+" }, 
+    { id: 2, title: "Urology", count: "2100+" }, 
+    { id: 3, title: "Thoracic", count: "70+" },
+    { id: 4, title: "Gastroenterology", count: "200+" }, 
+    { id: 5, title: "Head & Neck", count: "100+" }, 
+    { id: 6, title: "Gynecology", count: "1300+" }, 
+    { id: 7, title: "Colorectal", count: "450+" },
+    { id: 8, title: "General", count: "3500+" }, 
+    { id: 9, title: "Pediatric" },
   ];
 
   const [mobileShowCount, setMobileShowCount] = useState(false);
@@ -71,8 +79,32 @@ const Section5 = () => {
           <div className="flex flex-wrap justify-center xl:justify-start gap-6">
             {specialties.map((item) => (
               <motion.div key={item.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: item.id * 0.1 }} style={gridCardStyle} className="group w-full max-w-[420px]" >
-                <span style={gridCardTextStyle} className={`transition-opacity duration-300 ${mobileShowCount ? 'opacity-0' : 'opacity-100'} lg:opacity-100 lg:group-hover:opacity-0`}>{item.title}</span>
-                <span style={gridCardTextStyle} className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${mobileShowCount ? 'opacity-100' : 'opacity-0'} lg:opacity-0 lg:group-hover:opacity-100`}>{item.count}</span>
+                
+                {/* TITLE LOGIC: only apply hover/mobile hiding if a count exists */}
+                <span 
+                  style={gridCardTextStyle} 
+                  className={`transition-opacity duration-300 ${
+                    item.count 
+                      ? (mobileShowCount ? 'opacity-0' : 'opacity-100') 
+                      : 'opacity-100'
+                  } lg:opacity-100 ${
+                    item.count 
+                      ? 'lg:group-hover:opacity-0' 
+                      : 'lg:group-hover:opacity-100'
+                  }`}
+                >
+                  {item.title}
+                </span>
+
+                {/* COUNT LOGIC: Only render if a count exists */}
+                {item.count && (
+                  <span 
+                    style={gridCardTextStyle} 
+                    className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${mobileShowCount ? 'opacity-100' : 'opacity-0'} lg:opacity-0 lg:group-hover:opacity-100`}
+                  >
+                    {item.count}
+                  </span>
+                )}
               </motion.div>
             ))}
           </div>

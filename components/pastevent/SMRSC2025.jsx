@@ -23,22 +23,15 @@ const events = [
 ];
 
 const EventCard = ({ item }) => (
-  <div className="flex flex-col items-center" style={{ width: '385.521px' }}>
-    {/* Image Container */}
-    <div 
-      className="relative rounded-[16px] overflow-hidden bg-gray-800"
-      style={{
-        width: '385.521px',
-        height: '361.756px',
-        minWidth: '385.521px', 
-      }}
-    >
+  <div className="flex flex-col items-center w-full max-w-[385px] mx-auto">
+    {/* Image Container - Using aspect ratio for responsive scaling */}
+    <div className="relative w-full aspect-[385/361] rounded-[16px] overflow-hidden bg-gray-800">
       <Image
         src={item.src}
         alt={item.title}
         fill
         className="object-cover"
-        sizes="385px"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 385px"
         unoptimized={true}     // ⚡ ZERO BUFFERING
         loading="eager"        // ⚡ FORCES DOWNLOAD
         fetchPriority="low"    // ⚡ BACKGROUND PRIORITY
@@ -47,9 +40,8 @@ const EventCard = ({ item }) => (
 
     {/* Text Container */}
     <div 
-      className="mt-6 text-white"
+      className="mt-4 md:mt-6 text-white w-full px-2"
       style={{
-        width: '356px',
         fontFamily: "'Manrope', sans-serif",
         fontSize: '18px',
         fontStyle: 'normal',
@@ -73,57 +65,91 @@ const SMRSC2025 = () => {
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 
   return (
-    <div className="w-full flex flex-col items-center py-20 overflow-x-hidden">
+    <div className="w-full flex flex-col items-center py-12 md:py-20 overflow-x-hidden px-4 md:px-8">
       
-      {/* --- Image Grid Section --- */}
-      <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start gap-12 lg:gap-[100px] mb-[150px]">
-        <div className="flex flex-col gap-16 lg:gap-[220px]">
-          {col1.map((item) => (
-            <EventCard key={item.id} item={item} />
-          ))}
+      <div className="w-full max-w-[1380px] mx-auto flex flex-col items-center">
+        
+        {/* --- Image Grid Section --- */}
+        <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start w-full gap-12 lg:gap-[50px] xl:gap-[100px] mb-20 lg:mb-[150px]">
+          {/* Column 1 */}
+          <div className="flex flex-col gap-12 md:gap-16 lg:gap-[220px] w-full lg:w-1/3">
+            {col1.map((item) => (
+              <EventCard key={item.id} item={item} />
+            ))}
+          </div>
+          
+          {/* Column 2 (Offset on Desktop) */}
+          <div className="flex flex-col gap-12 md:gap-16 lg:gap-[220px] w-full lg:w-1/3 lg:pt-[220px]">
+            {col2.map((item) => (
+              <EventCard key={item.id} item={item} />
+            ))}
+          </div>
+          
+          {/* Column 3 */}
+          <div className="flex flex-col gap-12 md:gap-16 lg:gap-[220px] w-full lg:w-1/3">
+            {col3.map((item) => (
+              <EventCard key={item.id} item={item} />
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col gap-16 lg:gap-[220px] lg:pt-[220px]">
-          {col2.map((item) => (
-            <EventCard key={item.id} item={item} />
-          ))}
-        </div>
-        <div className="flex flex-col gap-16 lg:gap-[220px]">
-          {col3.map((item) => (
-            <EventCard key={item.id} item={item} />
-          ))}
-        </div>
-      </div>
 
-      {/* --- YouTube Video Section --- */}
-      <div className="w-full max-w-[1380px] flex flex-col gap-8">
-        <h2 style={{ color: '#F8FFFF', fontFamily: '"Blauer Nue", sans-serif', fontSize: '36px', fontStyle: 'normal', fontWeight: 500, lineHeight: '36px' }}>
-          SMRSC 2025 Highlights
-        </h2>
+        {/* --- YouTube Video Section --- */}
+        <div className="w-full flex flex-col gap-6 md:gap-8">
+          <h2 
+            className="text-2xl md:text-3xl lg:text-[36px]"
+            style={{ 
+              color: '#F8FFFF', 
+              fontFamily: '"Blauer Nue", sans-serif', 
+              fontStyle: 'normal', 
+              fontWeight: 500, 
+              lineHeight: '1.2' 
+            }}
+          >
+            SMRSC 2025 Highlights
+          </h2>
 
-        <div 
-          className="relative overflow-hidden shadow-2xl group cursor-pointer"
-          style={{
-            width: '1380px',
-            height: '752px',
-            borderRadius: '20px',
-            background: isPlaying 
-              ? 'black' 
-              : `linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), url(${thumbnailUrl}) lightgray 0px -0.056px / 100% 122.355% no-repeat`
-          }}
-          onClick={() => setIsPlaying(true)}
-        >
-          {!isPlaying ? (
-            <div className="w-full h-full flex items-center justify-center">
-              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" className="ml-1">
-                  <path d="M8 5V19L19 12L8 5Z" />
-                </svg>
+          <div 
+            className="relative w-full aspect-video rounded-[12px] md:rounded-[20px] overflow-hidden shadow-2xl group cursor-pointer"
+            style={{
+              background: isPlaying 
+                ? 'black' 
+                : `linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), url(${thumbnailUrl})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+            onClick={() => setIsPlaying(true)}
+          >
+            {!isPlaying ? (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                  <svg 
+                    width="32" 
+                    height="32" 
+                    viewBox="0 0 24 24" 
+                    fill="white" 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    className="ml-1 w-8 h-8 md:w-10 md:h-10"
+                  >
+                    <path d="M8 5V19L19 12L8 5Z" />
+                  </svg>
+                </div>
               </div>
-            </div>
-          ) : (
-            <iframe width="100%" height="100%" src={`https://www.youtube.com/embed/${videoId}?autoplay=1`} title="SMRSC 2025 Highlights" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="w-full h-full rounded-[20px]"></iframe>
-          )}
+            ) : (
+              <iframe 
+                width="100%" 
+                height="100%" 
+                src={`https://www.youtube.com/embed/${videoId}?autoplay=1`} 
+                title="SMRSC 2025 Highlights" 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen 
+                className="w-full h-full rounded-[12px] md:rounded-[20px]"
+              ></iframe>
+            )}
+          </div>
         </div>
+
       </div>
     </div>
   );
