@@ -74,7 +74,13 @@ const PastEventsContent = () => {
       {/* --- HERO VIDEO SECTION --- */}
       <div className="relative z-10 w-full flex justify-center px-4 md:px-8">
         <div
-          className="relative bg-gray-900 shadow-2xl group overflow-hidden w-full max-w-[1693px] mt-[40px] md:mt-[98px] mb-[40px] md:mb-[65px] aspect-video md:aspect-[1693/833] rounded-[24px] md:rounded-tl-[8px] md:rounded-br-[200px] md:rounded-tr-[8px] md:rounded-bl-[8px]"
+          style={{
+            marginTop: "98px",
+            marginBottom: "65px",
+          }}
+          // Mobile: Rectangle (aspect-video) and standard curves (rounded-[24px])
+          // Desktop (md:): Keeps your exact original 1693/833 aspect ratio and 8px 200px border radius
+          className="relative w-full max-w-[1693px] bg-gray-900 shadow-2xl group overflow-hidden aspect-video rounded-[24px] md:aspect-[1693/833] md:rounded-[8px_200px]"
         >
           <video
             key={activeTab} 
