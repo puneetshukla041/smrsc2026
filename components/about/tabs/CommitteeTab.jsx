@@ -62,45 +62,45 @@ const CommitteeTab = () => {
       <div className="w-full max-w-[1380px] mx-auto px-4 md:px-6 lg:px-8 mt-12 md:mt-16">
         
         {/* ================= SECTION 1: TOP LEADERSHIP ================= */}
-        <div className="w-full flex flex-col lg:flex-row items-center lg:items-start justify-center lg:justify-between gap-12 lg:gap-8">
+        <div className="w-full flex flex-col xl:flex-row items-center xl:items-start justify-center gap-12 xl:gap-8">
           
-          {/* Organizing Chairman */}
-          <div className="flex flex-col items-center lg:items-start w-full max-w-[300px]">
-            <h3 className="text-[#F8FFFF] font-['Blauer_Nue'] text-[24px] md:text-[28px] lg:text-[32px] font-medium leading-tight mb-6 text-center lg:text-left">
+          {/* Organizing Chairman (Left) */}
+          <div className="flex flex-col items-center w-full max-w-[300px]">
+            <h3 className="text-[#F8FFFF] font-['Blauer_Nue'] text-[24px] md:text-[28px] lg:text-[32px] font-medium leading-tight mb-6 text-center w-full xl:min-h-[76px] flex items-end justify-center">
               Organizing Chairman
             </h3>
             <div className="relative w-full aspect-square rounded-[12px] overflow-hidden bg-white/5">
               <Image src="/images/about/committe/1.webp" alt="Dr. Sudhir Srivastava" fill className="object-cover object-top" />
             </div>
-            <div className="w-full mt-4 flex flex-col gap-1 text-center lg:text-left">
+            <div className="w-full mt-4 flex flex-col gap-1 text-center">
               <div className="text-white text-[16px] font-semibold leading-[24px]">Dr. Sudhir Srivastava</div>
               <div className="text-white/80 text-[12px] font-normal leading-[16px]">Founder, Chairman and CEO SS Innovations International, Inc.</div>
             </div>
           </div>
 
-          {/* Organizing Co-Chairpersons */}
-          <div className="flex flex-col items-center lg:items-start w-full max-w-[650px]">
-            <h3 className="text-[#F8FFFF] font-['Blauer_Nue'] text-[24px] md:text-[28px] lg:text-[32px] font-medium leading-tight mb-6 text-center lg:text-left">
+          {/* Organizing Co-Chairpersons (Center) */}
+          <div className="flex flex-col items-center w-full max-w-[632px]">
+            <h3 className="text-[#F8FFFF] font-['Blauer_Nue'] text-[24px] md:text-[28px] lg:text-[32px] font-medium leading-tight mb-6 text-center w-full xl:min-h-[76px] flex items-end justify-center">
               Organizing Co-Chairpersons
             </h3>
-            <div className="flex flex-col sm:flex-row items-center lg:items-start gap-8 sm:gap-6 w-full">
+            <div className="flex flex-col sm:flex-row items-center gap-8 w-full justify-center">
               {/* Co-Chair 1 */}
-              <div className="flex flex-col items-center lg:items-start w-full max-w-[300px]">
+              <div className="flex flex-col items-center w-full max-w-[300px]">
                 <div className="relative w-full aspect-square rounded-[12px] overflow-hidden bg-white/5">
                   <Image src="/images/about/committe/2.webp" alt="Dr. Sudhir K Rawal" fill className="object-cover object-top" />
                 </div>
-                <div className="w-full mt-4 flex flex-col gap-1 text-center lg:text-left">
+                <div className="w-full mt-4 flex flex-col gap-1 text-center">
                   <div className="text-white text-[16px] font-semibold leading-[24px]">Dr. Sudhir K Rawal</div>
                   <div className="text-white/80 text-[12px] font-normal leading-[16px]">Rajiv Gandhi Cancer Institute and Research Center, Delhi</div>
                 </div>
               </div>
               
               {/* Co-Chair 2 */}
-              <div className="flex flex-col items-center lg:items-start w-full max-w-[300px]">
+              <div className="flex flex-col items-center w-full max-w-[300px]">
                 <div className="relative w-full aspect-square rounded-[12px] overflow-hidden bg-white/5">
                   <Image src="/images/about/committe/3.webp" alt="Dr. Somashekhar SP" fill className="object-cover object-top" />
                 </div>
-                <div className="w-full mt-4 flex flex-col gap-1 text-center lg:text-left">
+                <div className="w-full mt-4 flex flex-col gap-1 text-center">
                   <div className="text-white text-[16px] font-semibold leading-[24px]">Dr. Somashekhar SP</div>
                   <div className="text-white/80 text-[12px] font-normal leading-[16px]">Aster DM Healthcare</div>
                 </div>
@@ -108,15 +108,15 @@ const CommitteeTab = () => {
             </div>
           </div>
 
-          {/* Organizing Secretary */}
-          <div className="flex flex-col items-center lg:items-start w-full max-w-[300px]">
-            <h3 className="text-[#F8FFFF] font-['Blauer_Nue'] text-[24px] md:text-[28px] lg:text-[32px] font-medium leading-tight mb-6 text-center lg:text-left">
+          {/* Organizing Secretary (Right) */}
+          <div className="flex flex-col items-center w-full max-w-[300px]">
+            <h3 className="text-[#F8FFFF] font-['Blauer_Nue'] text-[24px] md:text-[28px] lg:text-[32px] font-medium leading-tight mb-6 text-center w-full xl:min-h-[76px] flex items-end justify-center">
               Organizing Secretary
             </h3>
             <div className="relative w-full aspect-square rounded-[12px] overflow-hidden bg-white/5">
               <Image src="/images/about/committe/4.webp" alt="Dr. Vishwa Srivastava" fill className="object-cover object-top" />
             </div>
-            <div className="w-full mt-4 flex flex-col gap-1 text-center lg:text-left">
+            <div className="w-full mt-4 flex flex-col gap-1 text-center">
               <div className="text-white text-[16px] font-semibold leading-[24px]">Dr. Vishwa Srivastava</div>
               <div className="text-white/80 text-[12px] font-normal leading-[16px]">President & COO, SS Innovations</div>
             </div>
