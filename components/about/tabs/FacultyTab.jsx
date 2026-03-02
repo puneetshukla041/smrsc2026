@@ -59,30 +59,30 @@ const FacultyTab = () => {
   ];
 
   const nationalFacultyList = [
-    { name: "Dr. Lalitaditya Malik", desc: "Manipal Hospitals, Jaipur, Rajasthan", image: "per2.webp" },
-    { name: "Dr. Harish Badami", desc: "Malla Reddy Narayana Hospital, Hyderabad", image: "per3.webp" },
-    { name: "Dr. Nitin Rajput", desc: "Medanta - The Medicity, Gurugram, Haryana", image: "per4.webp" },
-    { name: "Dr. Hiremath CS", desc: "Sri Sathya Sai Institute, Bengaluru, KA", image: "per5.webp" },
-    { name: "Dr. Ashok Seth", desc: "Fortis Escorts, Okhla, Delhi", image: "per6.webp" },
-    { name: "Dr. Zile Singh Meherwal", desc: "Fortis Escorts, Okhla, Delhi", image: "per7.webp" },
-    { name: "Dr. Yugal Kishore Mishra", desc: "Manipal Hospitals, Dwarka, Delhi", image: "per8.webp" },
-    { name: "Dr. Praveen Chandra", desc: "Medanta - The Medicity, Gurugram, Haryana", image: "per9.webp" },
-    { name: "Dr. Krishna Subramony Iyer", desc: "Fortis Escorts, Okhla, Delhi", image: "per10.webp" },
-    { name: "Dr. Arul Furtado", desc: "Aster CMI Hospital, Bengaluru, KA", image: "per11.webp" },
-    { name: "Dr. Ritwick Raj Bhuyan", desc: "Fortis Escorts, Okhla, Delhi", image: "per12.webp" },
-    { name: "Dr. T.S. Mahant", desc: "Fortis Hospital, Mohali, PB", image: "per13.webp" },
-    { name: "Dr. Ganeshakrishnan Iyer", desc: "Aster CMI Hospital, Bengaluru, KA", image: "per14.webp" },
-    { name: "Dr. Manoj Durairaj", desc: "Marian Cardiac Centre, Pune, MH", image: "per15.webp" },
-    { name: "Dr. M M Yusuf", desc: "Apollo Hospital, Chennai, TN", image: "per16.webp" },
-    { name: "Dr. Ajay Kaul", desc: "Fortis Hospital, Noida, UP", image: "per17.webp" },
-    { name: "Dr. Kunal Sarkar", desc: "Medica Superspecialty Hospital, Kolkata, WB", image: "per18.webp" },
-    { name: "Dr. S K Agarwal", desc: "SGPGI, Lucknow, UP", image: "per19.webp" },
-    { name: "Dr. Arunkumar Ulaganathan", desc: "KG Hospital, Coimbatore, TN", image: "per20.webp" },
-    { name: "Dr. Devagourou Velayoudam", desc: "Aiims, New Delhi", image: "per21.webp" },
-    { name: "Dr. Anubhav Gupta", desc: "Safdarjung Hospital, Delhi", image: "per22.webp" },
-    { name: "Dr. Amit Chandan", desc: "Marengo CIMS Hospital, Ahmedabad, GJ", image: "per23.webp" },
-    { name: "Dr. Satyajit Bose", desc: "The Mission Hospital, Durgapur, WB", image: "per24.webp" },
-    { name: "Dr. Dhiren Shah", desc: "Marengo CIMS Hospital, Ahmedabad, GJ", image: "per25.webp" }
+    { name: "Dr. Ashok Seth", desc: "Fortis Escorts, Okhla, Delhi", image: "image19.webp" },
+    { name: "Dr. Zile Singh Meherwal", desc: "Fortis Escorts, Okhla, Delhi", image: "image20.webp" },
+    { name: "Dr. Yugal Kishore Mishra", desc: "Manipal Hospitals, Dwarka, Delhi", image: "image21.webp" },
+    { name: "Dr. Ajay Kaul", desc: "Fortis Hospital, Noida, UP", image: "image22.webp" },
+    { name: "Dr. Praveen Chandra", desc: "Medanta - The Medicity, Gurugram, Haryana", image: "image23.webp" },
+    { name: "Dr. Krishna Subramony Iyer", desc: "Fortis Escorts, Okhla, Delhi", image: "image24.webp" },
+    { name: "Dr. Nitin Rajput", desc: "Medanta - The Medicity, Gurugram, Haryana", image: "image25.webp" },
+    { name: "Dr. Arunkumar Ulaganathan", desc: "KG Hospital, Coimbatore, TN", image: "image26.webp" },
+    { name: "Dr. Arul Furtado", desc: "Aster CMI Hospital, Bengaluru, KA", image: "image27.webp" },
+    { name: "Dr. Ritwick Raj Bhuyan", desc: "Fortis Escorts, Okhla, Delhi", image: "image28.webp" },
+    { name: "Dr. T.S. Mahant", desc: "Fortis Hospital, Mohali, PB", image: "image29.webp" },
+    { name: "Dr. Hiremath CS", desc: "Sri Sathya Sai Institute of Higher Medical Sciences, Bengaluru, KA", image: "image30.webp" },
+    { name: "Dr. Harish Badami", desc: "Malla Reddy Narayana Multispeciality Hospital, Hyderabad, TL", image: "image31.webp" },
+    { name: "Dr. Lalitaditya Malik", desc: "Manipal Hospitals, Jaipur, Rajasthan", image: "image32.webp" },
+    { name: "Dr. Devagourou Velayoudam", desc: "Aiims, New Delhi", image: "image33.webp" },
+    { name: "Dr. M M Yusuf", desc: "Apollo Hospital, Chennai, TN", image: "image34.webp" },
+    { name: "Dr. Milind Padmakar Hote", desc: "Fortis Escorts Heart Institute in Okhla, New Delhi", image: "image35.webp" },
+    { name: "Dr. Satyajit Bose", desc: "The Mission Hospital, Durgapur, WB", image: "image36.webp" },
+    { name: "Dr. Manoj Durairaj", desc: "Marian Cardiac Centre and Research Foundation, Pune, MH", image: "image37.webp" },
+    { name: "Dr. Kunal Sarkar", desc: "Medica Superspecialty Hospital, Kolkata, WB", image: "image38.webp" },
+    { name: "Dr. Ganeshakrishnan Iyer", desc: "Aster CMI Hospital, Bengaluru, KA", image: "image39.webp" },
+    { name: "Dr. Amit Chandan", desc: "Marengo CIMS Hospital, Ahmedabad, GJ", image: "image40.webp" },
+    { name: "Dr. S K Agarwal", desc: "Sanjay Gandhi Postgraduate Institute of Medical Sciences, Lucknow, UP", image: "image41.webp" },
+    { name: "Dr. Dhiren Shah", desc: "Marengo CIMS Hospital, Ahmedabad, GJ", image: "image42.webp" }
   ];
 
   const urologyFacultyList = [
@@ -190,7 +190,7 @@ const FacultyTab = () => {
                 <FadeInView>
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
                     <div style={cardImageContainer} className="group cursor-pointer">
-                        <Image src="/images/about/cardiac/per1.webp" alt="Dr. Sudhir Srivastava" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
+                        <Image src="/images/about/faculty/cardiac/image18.webp" alt="Dr. Sudhir Srivastava" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
                     </div>
                     <div style={nameStyle}>Dr. Sudhir Srivastava</div>
                     <div style={descStyle}>Founder, Chairman and CEO SS Innovations, INDIA</div>
@@ -205,7 +205,7 @@ const FacultyTab = () => {
                     <FadeInView key={index} delay={index * 30}>
                         <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <div style={cardImageContainer} className="group cursor-pointer">
-                            <Image src={`/images/about/cardiac/${faculty.image}`} alt={faculty.name} fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
+                            <Image src={`/images/about/faculty/cardiac/${faculty.image}`} alt={faculty.name} fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
                         </div>
                         <div style={nameStyle}>{faculty.name}</div>
                         <div style={descStyle}>{faculty.desc}</div>
