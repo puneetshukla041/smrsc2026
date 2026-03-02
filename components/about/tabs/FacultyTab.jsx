@@ -85,17 +85,40 @@ const FacultyTab = () => {
     { name: "Dr. Dhiren Shah", desc: "Marengo CIMS Hospital, Ahmedabad, GJ", image: "image42.webp" }
   ];
 
-  const urologyFacultyList = [
-    { name: "Dr. Amitabh Singh", desc: "RGCI, Delhi", image: "per4.webp" },
-    { name: "Dr. Sarbartha Kumar Pratihar", desc: "RGCI, Delhi", image: "per5.webp" },
-    { name: "Dr. Nikhil Saurabh", desc: "RGCI, Delhi", image: "per6.webp" },
-    { name: "Dr. M Ramalingam", desc: "Hindustan Hospital, Coimbatore, TN", image: "per7.webp" },
-    { name: "Dr. R.S. Sinha", desc: "VMMC & Safdarjung Hospital, New Delhi", image: "per8.webp" }
+  const urologyCoChairpersons = [
+    { name: "Dr. Chandra Mohan vaddi", desc: "Preeti Urology & Kidney Hospital, Hyderabad, TL", image: "image2.webp" },
+    { name: "Dr. Ritesh Mongha", desc: "Marengo Asia Hospitals, Faridabad, Haryana", image: "image10.webp" }
   ];
 
-  const urologyCoChairpersons = [
-    { name: "Dr. Chandra Mohan vaddi", desc: "Preeti Urology & Kidney Hospital", image: "per2.webp" },
-    { name: "Dr. Ritesh Mongha", desc: "Metro Hospital, Faridabad, HR", image: "per3.webp" }
+  const urologyFacultyList = [
+    { name: "Dr. Constantino Castillo", desc: "St. Luke's Medical Center, Philippines", image: "image3.webp" },
+    { name: "Dr. N P Gupta", desc: "Medanta-The Medicity, Gurugram, HR", image: "image4.webp" },
+    { name: "Dr. Sanjay Gogoi", desc: "Medanta - The Medicity, Gurugram, HR", image: "image5.webp" },
+    { name: "Dr. Amlesh Seth", desc: "AIIMS Delhi, Delhi", image: "image6.webp" },
+    { name: "Dr. Rishi Nayyar", desc: "AIIMS Delhi, Delhi", image: "image7.webp" },
+    { name: "Dr Mujeebu Rahiman M", desc: "Yenepoya Medical College Hospital, Mangalore, KA", image: "image8.webp" },
+    { name: "Dr. Anant Kumar", desc: "Max Super Specialty Hospital, Delhi", image: "image9.webp" },
+    { name: "Dr. Amitabh Singh", desc: "Rajiv Gandhi Cancer Institute and Research Center, Delhi", image: "image11.webp" },
+    { name: "Dr. M Ramalingam", desc: "Hindustan Hospital, Coimbatore, TN", image: "image12.webp" },
+    { name: "Dr. Nikhil Saurabh", desc: "Rajiv Gandhi Cancer Institute and Research Center, Delhi", image: "image13.webp" },
+    { name: "Dr. Ashish Khanna", desc: "Rajiv Gandhi Cancer Institute and Research Center, Delhi", image: "image14.webp" },
+    { name: "Dr. Sarbartha Kumar Pratihar", desc: "Rajiv Gandhi Cancer Institute and Research Center, Delhi", image: "image15.webp" },
+    { name: "Dr. Rajeev Sood", desc: "Baba Farid University of Health Sciences, Faridkot, PB", image: "image16.webp" },
+    { name: "Dr. Paresh Jain", desc: "Fortis Escorts, Okhla, Delhi", image: "image17.webp" },
+    { name: "Dr. Saroj Baidya", desc: "B&B Hospital, Gwarko, Nepal", image: "image18.webp" },
+    { name: "Dr. Deepak Dubey", desc: "Manipal Hospital, Bengaluru, KA", image: "image19.webp" },
+    { name: "Dr. Arvind B Dhameliya", desc: "Dhameliya Kidney Hospital, Surat, GJ", image: "image20.webp" },
+    { name: "Dr. Sachin Arakere Nataraj", desc: "Medanta - The Medicity, Gurugram, HR", image: "image21.webp" },
+    { name: "Dr Anil Jain", desc: "Nobel Hospital, Kanpur, UP", image: "image22.webp" },
+    { name: "Dr Shrinivas Narayan", desc: "Fortis Hospital & Kidney Institute, EM Bypass, Kolkata", image: "image23.webp" },
+    { name: "Dr. Pankaj Panwar", desc: "Fortis Escorts, Okhla, NewDelhi", image: "image24.webp" },
+    { name: "Dr. Satyajit Kumar Singh", desc: "Ruban Memorial Hospital, Patna, Bihar", image: "image25.webp" },
+    { name: "Dr. Shrikanth Atluri", desc: "Apollo Hospitals, CBD Belapur, Navi Mumbai, MH", image: "image26.webp" },
+    { name: "Dr. Raj Kalyan Gopala Krishna", desc: "Fortis Hospital & Kidney Institute, Gariahat, Kolkata", image: "image27.webp" },
+    { name: "Dr. Anurag Nema", desc: "ICON Hospitals", image: "image28.webp" },
+    { name: "Dr. Rishi Grover", desc: "ICON Hospitals Surat, GJ", image: "image29.webp" },
+    { name: "Dr. Jitendra Amlani", desc: "Urocare Kidney Super Specialty Hospital, Rajkot, GJ", image: "image30.webp" },
+    { name: "Dr. Shashanka Dhanuka", desc: "Fortis Hospital and Kidney Institute", image: "image31.webp" }
   ];
 
   const generalFacultyList = [
@@ -226,7 +249,7 @@ const FacultyTab = () => {
                 <FadeInView>
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <div style={cardImageContainer} className="group cursor-pointer">
-                        <Image src="/images/about/urology/per1.webp" alt="Dr. Sudhir K Rawal" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
+                        <Image src="/images/about/faculty/urology/image1.webp" alt="Dr. Sudhir K Rawal" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
                         </div>
                         <div style={nameStyle}>Dr. Sudhir K Rawal</div>
                         <div style={descStyle}>Rajiv Gandhi Cancer Institute and Research Center</div>
@@ -241,7 +264,7 @@ const FacultyTab = () => {
                     <FadeInView key={index} delay={100}>
                         <div className="flex flex-col items-center md:items-start text-center md:text-left">
                             <div style={cardImageContainer} className="group cursor-pointer">
-                            <Image src={`/images/about/urology/${co.image}`} alt={co.name} fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
+                            <Image src={`/images/about/faculty/urology/${co.image}`} alt={co.name} fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
                             </div>
                             <div style={nameStyle}>{co.name}</div>
                             <div style={descStyle}>{co.desc}</div>
@@ -259,7 +282,7 @@ const FacultyTab = () => {
                     <FadeInView key={index} delay={index * 30}>
                         <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <div style={cardImageContainer} className="group cursor-pointer">
-                            <Image src={`/images/about/urology/${faculty.image}`} alt={faculty.name} fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
+                            <Image src={`/images/about/faculty/urology/${faculty.image}`} alt={faculty.name} fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
                         </div>
                         <div style={nameStyle}>{faculty.name}</div>
                         <div style={descStyle}>{faculty.desc}</div>
