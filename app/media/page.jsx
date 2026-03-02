@@ -61,7 +61,8 @@ const MediaContent = () => {
       </section>
 
       {/* --- Navigation Tabs --- */}
-      <section className="w-full mt-[100px] md:mt-[200px] mb-16 flex justify-center md:justify-start md:pl-[273px] px-4">
+      {/* Removed md:pl-[273px] and added max-w-[1400px] mx-auto md:px-10 for consistent alignment */}
+      <section className="w-full max-w-[1400px] mx-auto mt-[100px] md:mt-[200px] mb-16 px-4 md:px-10 flex justify-center md:justify-start">
          <div className="flex items-center gap-[20px] flex-wrap justify-center md:justify-start">
             <button onClick={() => handleTabChange('blogs')} className={getTabClass('blogs')}>
               Blogs
@@ -74,7 +75,8 @@ const MediaContent = () => {
       </section>
 
       {/* --- Dynamic Content Area --- */}
-      <section className="w-full px-4 md:px-0 flex justify-center min-h-[400px]">
+      {/* Added max-w-[1400px] mx-auto md:px-10 to match the tabs section above */}
+      <section className="w-full max-w-[1400px] mx-auto px-4 md:px-10 flex justify-center min-h-[400px]">
          <AnimatePresence mode="wait">
            <motion.div
              key={activeTab}
@@ -82,7 +84,7 @@ const MediaContent = () => {
              animate={{ opacity: 1, y: 0 }}
              exit={{ opacity: 0, y: -20 }}
              transition={{ duration: 0.4 }}
-             className="w-full max-w-[1400px]"
+             className="w-full"
            >
               {activeTab === 'blogs' && <Overview />}
               {activeTab === 'release' && <ScheduleDay2 />}
