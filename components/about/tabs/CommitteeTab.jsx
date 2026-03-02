@@ -33,7 +33,7 @@ const CommitteeTab = () => {
     { name: "Dr. Niraj Baidya", role: "B&B Hospital, Gwarko, Nepal", src: "/images/about/committe/39.webp" },
   ];
 
-  // --- DATA: National Committee (UPDATED: 24 - 39) ---
+  // --- DATA: National Committee ---
   const nationalCommittee = [
     { name: "Dr. Sudhir K Rawal", role: "Rajiv Gandhi Cancer Institute and Research Center, Delhi", src: "/images/about/committe/24.webp" },
     { name: "Dr. Somashekhar SP", role: "Aster DM Healthcare", src: "/images/about/committe/25.webp" },
@@ -44,7 +44,7 @@ const CommitteeTab = () => {
     { name: "Dr. Chandra Mohan Vaddi", role: "Preeti Urology & Kidney Hospital, Telangana, Hyderabad", src: "/images/about/committe/30.webp" },
     { name: "Dr. Venkatesh Munikrishnan", role: "Apollo Hospitals, Chennai", src: "/images/about/committe/31.webp" },
     
-    // === NEWLY ADDED: 8 More Members (Rows 3 & 4) ===
+    // NEWLY ADDED: 8 More Members (Rows 3 & 4)
     { name: "Dr. Lalitaditya Malik", role: "Manipal Hospitals, Jaipur, RJ", src: "/images/about/committe/32.webp" },
     { name: "Dr. Harish Badami", role: "Malla Reddy Narayana Multispeciality Hospital, Hyderabad", src: "/images/about/committe/33.webp" },
     { name: "Dr. Nitin Rajput", role: "Medanta - The Medicity, Gurugram, Haryana", src: "/images/about/committe/34.webp" },
@@ -55,212 +55,131 @@ const CommitteeTab = () => {
     { name: "Dr. Sanjiv Haribhakti", role: "Kaizen Hospital, Ahmedabad, GJ", src: "/images/about/committe/40.webp" },
   ];
 
-  // --- STYLES ---
-
-  // 1. Headings
-  const baseHeadingStyle = {
-    color: '#F8FFFF',
-    fontFamily: '"Blauer Nue", sans-serif',
-    fontSize: '32px',
-    fontStyle: 'normal',
-    fontWeight: 500,
-    lineHeight: '40px',
-    marginBottom: '24px', 
-    textAlign: 'left',
-  };
-
-  const chairmanHeadingStyle = { ...baseHeadingStyle, width: '330px' };
-  const coChairHeadingStyle = { ...baseHeadingStyle, width: '435px', whiteSpace: 'nowrap' };
-  const secretaryHeadingStyle = { ...baseHeadingStyle, width: '330px' };
-  
-  const sectionHeadingStyle = {
-    ...baseHeadingStyle,
-    width: '100%', 
-    marginTop: '100px', 
-    marginBottom: '60px'
-  };
-
-  // 2. Image Containers
-  // Top Section
-  const topImageStyle = {
-    position: 'relative',
-    borderRadius: '12px', 
-    overflow: 'hidden',
-    width: '305px', 
-    height: '390px',
-  };
-
-  // Grid Section 
-  const gridImageStyle = {
-    position: 'relative',
-    borderRadius: '12px',
-    overflow: 'hidden',
-    width: '305px',   
-    height: '390px',  
-    filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))', 
-  };
-
-  // 3. Text Styles
-  const textWrapperStyle = {
-    width: '305px', 
-    marginTop: '16px', 
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '4px'
-  };
-
-  const nameStyle = {
-    color: '#FFF',
-    fontFamily: 'Manrope, sans-serif',
-    fontSize: '16px',
-    fontWeight: 600,
-    lineHeight: '24px', 
-  };
-
-  const descStyle = {
-    color: '#FFF',
-    fontFamily: 'Manrope, sans-serif',
-    fontSize: '12px',
-    fontWeight: 400,
-    lineHeight: '16px', 
-    opacity: 0.8
-  };
-
   return (
-    <div className="w-full animate-in fade-in slide-in-from-bottom-4 duration-700 pb-20">
+    <div className="w-full animate-in fade-in slide-in-from-bottom-4 duration-700 pb-20 font-manrope">
       
-      {/* ================= SECTION 1: TOP LEADERSHIP ================= */}
-      <div className="w-full px-6 xl:pl-0 xl:pr-[270px] flex flex-col xl:flex-row items-start justify-between gap-12 xl:gap-8">
+      {/* Container wrapper for centering and safe padding */}
+      <div className="w-full max-w-[1380px] mx-auto px-4 md:px-6 lg:px-8 mt-12 md:mt-16">
         
-        {/* Organizing Chairman */}
-        <div className="flex flex-col items-center flex-1">
-          <h3 style={chairmanHeadingStyle} className="mobile-fix-width">Organizing Chairman</h3>
-          <div style={topImageStyle} className="mobile-fix-img">
-            <Image src="/images/about/committe/1.webp" alt="Dr. Sudhir Srivastava" fill className="object-contain" />
-          </div>
-          <div style={textWrapperStyle} className="mobile-fix-width">
-            <div style={nameStyle}>Dr. Sudhir Srivastava</div>
-            <div style={descStyle}>Founder, Chairman and CEO SS Innovations International, Inc.</div>
-          </div>
-        </div>
-
-        {/* Organizing Co-Chairpersons */}
-        <div className="flex flex-col items-center flex-[1.5]">
-          <h3 style={coChairHeadingStyle} className="mobile-fix-width mobile-fix-wrap">Organizing Co-Chairpersons</h3>
-          <div className="flex flex-col md:flex-row gap-6">
-            <div className="flex flex-col">
-              <div style={topImageStyle} className="mobile-fix-img">
-                <Image src="/images/about/committe/2.webp" alt="Dr. Sudhir K Rawal" fill className="object-contain" />
-              </div>
-              <div style={textWrapperStyle} className="mobile-fix-width">
-                <div style={nameStyle}>Dr. Sudhir K Rawal</div>
-                <div style={descStyle}>Rajiv Gandhi Cancer Institute and Research Center, Delhi</div>
-              </div>
+        {/* ================= SECTION 1: TOP LEADERSHIP ================= */}
+        <div className="w-full flex flex-col lg:flex-row items-center lg:items-start justify-center lg:justify-between gap-12 lg:gap-8">
+          
+          {/* Organizing Chairman */}
+          <div className="flex flex-col items-center lg:items-start w-full max-w-[305px]">
+            <h3 className="text-[#F8FFFF] font-['Blauer_Nue'] text-[24px] md:text-[28px] lg:text-[32px] font-medium leading-tight mb-6 text-center lg:text-left">
+              Organizing Chairman
+            </h3>
+            <div className="relative w-full aspect-[305/390] rounded-[12px] overflow-hidden bg-white/5">
+              <Image src="/images/about/committe/1.webp" alt="Dr. Sudhir Srivastava" fill className="object-contain" />
             </div>
-            <div className="flex flex-col">
-              <div style={topImageStyle} className="mobile-fix-img">
-                <Image src="/images/about/committe/3.webp" alt="Dr. Somashekhar SP" fill className="object-contain" />
-              </div>
-              <div style={textWrapperStyle} className="mobile-fix-width">
-                <div style={nameStyle}>Dr. Somashekhar SP</div>
-                <div style={descStyle}>Aster DM Healthcare</div>
-              </div>
+            <div className="w-full mt-4 flex flex-col gap-1 text-center lg:text-left">
+              <div className="text-white text-[16px] font-semibold leading-[24px]">Dr. Sudhir Srivastava</div>
+              <div className="text-white/80 text-[12px] font-normal leading-[16px]">Founder, Chairman and CEO SS Innovations International, Inc.</div>
             </div>
           </div>
-        </div>
 
-        {/* Organizing Secretary */}
-        <div className="flex flex-col items-center flex-1">
-          <h3 style={secretaryHeadingStyle} className="mobile-fix-width">Organizing Secretary</h3>
-          <div style={topImageStyle} className="mobile-fix-img">
-            <Image src="/images/about/committe/4.webp" alt="Dr. Vishwa Srivastava" fill className="object-contain" />
-          </div>
-          <div style={textWrapperStyle} className="mobile-fix-width">
-            <div style={nameStyle}>Dr. Vishwa Srivastava</div>
-            <div style={descStyle}>President & COO, SS Innovations</div>
-          </div>
-        </div>
-
-      </div>
-
-      {/* ================= SECTION 2: INTERNATIONAL COMMITTEE GRID ================= */}
-      <div className="w-full px-6 xl:pl-0 xl:pr-[270px]">
-        <h3 style={sectionHeadingStyle} className="mobile-fix-width">Scientific Organizing Committee International</h3>
-        
-        <div className="flex flex-wrap justify-center sm:justify-between gap-y-12 gap-x-6 xl:gap-x-0">
-          {internationalCommittee.map((member, idx) => (
-            <div key={idx} className="flex flex-col items-start w-full sm:w-auto mobile-fix-items-center">
+          {/* Organizing Co-Chairpersons */}
+          <div className="flex flex-col items-center lg:items-start w-full max-w-[650px]">
+            <h3 className="text-[#F8FFFF] font-['Blauer_Nue'] text-[24px] md:text-[28px] lg:text-[32px] font-medium leading-tight mb-6 text-center lg:text-left">
+              Organizing Co-Chairpersons
+            </h3>
+            <div className="flex flex-col sm:flex-row items-center lg:items-start gap-8 sm:gap-6 w-full">
+              {/* Co-Chair 1 */}
+              <div className="flex flex-col items-center lg:items-start w-full max-w-[305px]">
+                <div className="relative w-full aspect-[305/390] rounded-[12px] overflow-hidden bg-white/5">
+                  <Image src="/images/about/committe/2.webp" alt="Dr. Sudhir K Rawal" fill className="object-contain" />
+                </div>
+                <div className="w-full mt-4 flex flex-col gap-1 text-center lg:text-left">
+                  <div className="text-white text-[16px] font-semibold leading-[24px]">Dr. Sudhir K Rawal</div>
+                  <div className="text-white/80 text-[12px] font-normal leading-[16px]">Rajiv Gandhi Cancer Institute and Research Center, Delhi</div>
+                </div>
+              </div>
               
-              <div style={gridImageStyle} className="mobile-fix-img">
-                <Image 
-                  src={member.src} 
-                  alt={member.name} 
-                  fill 
-                  className="object-cover object-top"
-                />
+              {/* Co-Chair 2 */}
+              <div className="flex flex-col items-center lg:items-start w-full max-w-[305px]">
+                <div className="relative w-full aspect-[305/390] rounded-[12px] overflow-hidden bg-white/5">
+                  <Image src="/images/about/committe/3.webp" alt="Dr. Somashekhar SP" fill className="object-contain" />
+                </div>
+                <div className="w-full mt-4 flex flex-col gap-1 text-center lg:text-left">
+                  <div className="text-white text-[16px] font-semibold leading-[24px]">Dr. Somashekhar SP</div>
+                  <div className="text-white/80 text-[12px] font-normal leading-[16px]">Aster DM Healthcare</div>
+                </div>
               </div>
-
-              <div style={textWrapperStyle} className="mobile-fix-width">
-                <div style={nameStyle}>{member.name}</div>
-                <div style={descStyle}>{member.role}</div>
-              </div>
-
             </div>
-          ))}
+          </div>
+
+          {/* Organizing Secretary */}
+          <div className="flex flex-col items-center lg:items-start w-full max-w-[305px]">
+            <h3 className="text-[#F8FFFF] font-['Blauer_Nue'] text-[24px] md:text-[28px] lg:text-[32px] font-medium leading-tight mb-6 text-center lg:text-left">
+              Organizing Secretary
+            </h3>
+            <div className="relative w-full aspect-[305/390] rounded-[12px] overflow-hidden bg-white/5">
+              <Image src="/images/about/committe/4.webp" alt="Dr. Vishwa Srivastava" fill className="object-contain" />
+            </div>
+            <div className="w-full mt-4 flex flex-col gap-1 text-center lg:text-left">
+              <div className="text-white text-[16px] font-semibold leading-[24px]">Dr. Vishwa Srivastava</div>
+              <div className="text-white/80 text-[12px] font-normal leading-[16px]">President & COO, SS Innovations</div>
+            </div>
+          </div>
+
         </div>
+
+        {/* ================= SECTION 2: INTERNATIONAL COMMITTEE GRID ================= */}
+        <div className="w-full mt-20 md:mt-24">
+          <h3 className="text-[#F8FFFF] font-['Blauer_Nue'] text-[28px] md:text-[32px] font-medium leading-tight mb-10 text-center md:text-left">
+            Scientific Organizing Committee International
+          </h3>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-12 gap-x-6 justify-items-center md:justify-items-start">
+            {internationalCommittee.map((member, idx) => (
+              <div key={idx} className="flex flex-col items-center md:items-start w-full max-w-[305px] group">
+                <div className="relative w-full aspect-[305/390] rounded-[12px] overflow-hidden drop-shadow-lg bg-white/5">
+                  <Image 
+                    src={member.src} 
+                    alt={member.name} 
+                    fill 
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="w-full mt-4 flex flex-col gap-1 text-center md:text-left">
+                  <div className="text-white text-[16px] font-semibold leading-[24px]">{member.name}</div>
+                  <div className="text-white/80 text-[12px] font-normal leading-[16px]">{member.role}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ================= SECTION 3: NATIONAL COMMITTEE GRID ================= */}
+        <div className="w-full mt-20 md:mt-24">
+          <h3 className="text-[#F8FFFF] font-['Blauer_Nue'] text-[28px] md:text-[32px] font-medium leading-tight mb-10 text-center md:text-left">
+            Scientific Committee National
+          </h3>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-12 gap-x-6 justify-items-center md:justify-items-start">
+            {nationalCommittee.map((member, idx) => (
+              <div key={idx} className="flex flex-col items-center md:items-start w-full max-w-[305px] group">
+                <div className="relative w-full aspect-[305/390] rounded-[12px] overflow-hidden drop-shadow-lg bg-white/5">
+                  <Image 
+                    src={member.src} 
+                    alt={member.name} 
+                    fill 
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="w-full mt-4 flex flex-col gap-1 text-center md:text-left">
+                  <div className="text-white text-[16px] font-semibold leading-[24px]">{member.name}</div>
+                  <div className="text-white/80 text-[12px] font-normal leading-[16px]">{member.role}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
 
-      {/* ================= SECTION 3: NATIONAL COMMITTEE GRID ================= */}
-      <div className="w-full px-6 xl:pl-0 xl:pr-[270px]">
-        <h3 style={sectionHeadingStyle} className="mobile-fix-width">Scientific Committee National</h3>
-        
-        <div className="flex flex-wrap justify-center sm:justify-between gap-y-12 gap-x-6 xl:gap-x-0">
-          {nationalCommittee.map((member, idx) => (
-            <div key={idx} className="flex flex-col items-start w-full sm:w-auto mobile-fix-items-center">
-              
-              <div style={gridImageStyle} className="mobile-fix-img">
-                <Image 
-                  src={member.src} 
-                  alt={member.name} 
-                  fill 
-                  className="object-cover object-top"
-                />
-              </div>
-
-              <div style={textWrapperStyle} className="mobile-fix-width">
-                <div style={nameStyle}>{member.name}</div>
-                <div style={descStyle}>{member.role}</div>
-              </div>
-
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Font Import & Mobile Fixes */}
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap');
-
-        /* MOBILE RESPONSIVE FIXES ONLY (Desktop remains exactly as requested) */
-        @media (max-width: 767px) {
-          .mobile-fix-width {
-            width: 100% !important;
-            max-width: 100% !important;
-          }
-          .mobile-fix-wrap {
-            white-space: normal !important;
-          }
-          .mobile-fix-img {
-            width: 100% !important;
-            max-width: 305px !important;
-            height: auto !important;
-            aspect-ratio: 305 / 390 !important;
-          }
-          .mobile-fix-items-center {
-            align-items: center !important;
-            text-align: center !important;
-          }
-        }
       `}</style>
     </div>
   );
