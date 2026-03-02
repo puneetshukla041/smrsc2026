@@ -87,17 +87,17 @@ const FacultyTab = () => {
 
   const urologyCoChairpersons = [
     { name: "Dr. Chandra Mohan vaddi", desc: "Preeti Urology & Kidney Hospital, Hyderabad, TL", image: "image2.webp" },
-    { name: "Dr. Ritesh Mongha", desc: "Marengo Asia Hospitals, Faridabad, Haryana", image: "image10.webp" }
+    { name: "Dr. Constantino Castillo", desc: "St. Luke's Medical Center, Philippines", image: "image3.webp" }
   ];
 
   const urologyFacultyList = [
-    { name: "Dr. Constantino Castillo", desc: "St. Luke's Medical Center, Philippines", image: "image3.webp" },
     { name: "Dr. N P Gupta", desc: "Medanta-The Medicity, Gurugram, HR", image: "image4.webp" },
     { name: "Dr. Sanjay Gogoi", desc: "Medanta - The Medicity, Gurugram, HR", image: "image5.webp" },
     { name: "Dr. Amlesh Seth", desc: "AIIMS Delhi, Delhi", image: "image6.webp" },
     { name: "Dr. Rishi Nayyar", desc: "AIIMS Delhi, Delhi", image: "image7.webp" },
     { name: "Dr Mujeebu Rahiman M", desc: "Yenepoya Medical College Hospital, Mangalore, KA", image: "image8.webp" },
     { name: "Dr. Anant Kumar", desc: "Max Super Specialty Hospital, Delhi", image: "image9.webp" },
+    { name: "Dr. Ritesh Mongha", desc: "Marengo Asia Hospitals, Faridabad, Haryana", image: "image10.webp" },
     { name: "Dr. Amitabh Singh", desc: "Rajiv Gandhi Cancer Institute and Research Center, Delhi", image: "image11.webp" },
     { name: "Dr. M Ramalingam", desc: "Hindustan Hospital, Coimbatore, TN", image: "image12.webp" },
     { name: "Dr. Nikhil Saurabh", desc: "Rajiv Gandhi Cancer Institute and Research Center, Delhi", image: "image13.webp" },
