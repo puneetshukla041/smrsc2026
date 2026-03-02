@@ -82,7 +82,16 @@ const FacultyTab = () => {
     { name: "Dr. Ganeshakrishnan Iyer", desc: "Aster CMI Hospital, Bengaluru, KA", image: "image39.webp" },
     { name: "Dr. Amit Chandan", desc: "Marengo CIMS Hospital, Ahmedabad, GJ", image: "image40.webp" },
     { name: "Dr. S K Agarwal", desc: "Sanjay Gandhi Postgraduate Institute of Medical Sciences, Lucknow, UP", image: "image41.webp" },
-    { name: "Dr. Dhiren Shah", desc: "Marengo CIMS Hospital, Ahmedabad, GJ", image: "image42.webp" }
+    { name: "Dr. Dhiren Shah", desc: "Marengo CIMS Hospital, Ahmedabad, GJ", image: "image42.webp" },
+    { name: "Dr. Vikram Goyal", desc: "Fortis Escort, Jaipur, RJ", image: "image43.webp" },
+    { name: "Dr. Divakar Bhatt", desc: "Aster RV, Bengaluru, KA", image: "image44.webp" },
+    { name: "Dr. Anuj Kumar", desc: "Jay Prabha Medanta Super Specialty Hospital, Patna, Bihar", image: "image45.webp" },
+    { name: "Dr. Arvind Kumar Goyal", desc: "Jay Prabha Medanta Super Specialty Hospital, Patna, Bihar", image: "image46.webp" },
+    { name: "Dr. Amit Chandra", desc: "Medanta - The Medicity, Gurugram, HR", image: "image47.webp" },
+    { name: "Dr. Vinod K. Manikala", desc: "MGM Chennai, TN", image: "image48.webp" },
+    { name: "Dr. Anil Mulpur", desc: "Sri Sathya Sai Institute of Higher Medical Sciences (SSSIHMS), Puttaparthi, AP", image: "image49.webp" },
+    { name: "Dr. Nilesh Agrawal", desc: "Max Super Speciality Hospital, Nagpur, MH", image: "image50.webp" },
+    { name: "Dr. Anubhav Gupta", desc: "Vardhman Mahavir Medical College and Safdarjung Hospital, Delhi", image: "image51.webp" },
   ];
 
   const urologyCoChairpersons = [
