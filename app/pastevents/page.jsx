@@ -74,16 +74,7 @@ const PastEventsContent = () => {
       {/* --- HERO VIDEO SECTION --- */}
       <div className="relative z-10 w-full flex justify-center px-4 md:px-8">
         <div
-          style={{
-            marginTop: "98px",
-            marginBottom: "65px",
-            width: "100%",
-            maxWidth: "1693px",      
-            aspectRatio: "1693/833", 
-            borderRadius: "8px 200px", 
-            overflow: "hidden",      
-          }}
-          className="relative bg-gray-900 shadow-2xl group rounded-br-[80px] md:rounded-br-[200px]" // Adjusted radius for mobile
+          className="relative bg-gray-900 shadow-2xl group overflow-hidden w-full max-w-[1693px] mt-[40px] md:mt-[98px] mb-[40px] md:mb-[65px] aspect-video md:aspect-[1693/833] rounded-[24px] md:rounded-tl-[8px] md:rounded-br-[200px] md:rounded-tr-[8px] md:rounded-bl-[8px]"
         >
           <video
             key={activeTab} 
@@ -116,7 +107,6 @@ const PastEventsContent = () => {
       </div>
 
       {/* --- NAVIGATION TABS --- */}
-      {/* Aligned with the 1380px grid used in the child components */}
       <div className="w-full max-w-[1380px] mx-auto mb-10 flex items-center justify-start px-4 md:px-8 gap-4 md:gap-6 overflow-x-auto hide-scrollbar">
         <button 
           onClick={() => handleTabChange('2025')}
