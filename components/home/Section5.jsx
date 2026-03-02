@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 const Section5 = () => {
   const specialties = [
     { id: 1, title: "Cardiac", count: "400+" }, { id: 2, title: "Urology", count: "2100+" }, { id: 8, title: "General", count: "3500+" }, { id: 3, title: "Thoracic", count: "70+" },
-    { id: 4, title: "Gastroenterology", count: "200+" }, { id: 5, title: "Head & Neck", count: "100+" }, { id: 6, title: "Gynecology", count: "1300+" }, { id: 7, title: "Colorectal", count: "450+" },
+    { id: 4, title: "Gastroenterology", count: "200+" }, { id: 5, title: "Head & Neck", count: "100+" }, { id: 6, title: "Gynecology", count: "1300+" }, { id: 7, title: "Colorectal", count: "450+" },{ id: 8, title: "Pediatric", count: "400+" },
   ];
 
   const [mobileShowCount, setMobileShowCount] = useState(false);
