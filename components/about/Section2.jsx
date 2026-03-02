@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, Suspense, useMemo } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 
 // Import your separate content files
@@ -13,16 +13,16 @@ const Section2Content = () => {
   const router = useRouter(); 
   const tabParam = searchParams.get('tab');
   
-  // Set the default tab, or use the URL parameter if it exists
-  const [activeTab, setActiveTab] = useState(tabParam || "About SMRSC");
-
-  const navItems = [
+  // Memoize navItems so it can be safely used in useEffect dependencies
+  const navItems = useMemo(() => [
     "About SMRSC",
     "Organizing Committee",
     "Chief Guests",
     "Faculty"
-  ];
+  ], []);
   
+  // Set the default tab, or use the URL parameter if it exists
+  const [activeTab, setActiveTab] = useState(tabParam || "About SMRSC");
 
   // Function to handle tab changes and update URL
   const handleTabChange = (item) => {
@@ -36,19 +36,26 @@ const Section2Content = () => {
     if (tabParam && navItems.includes(tabParam)) {
       setActiveTab(tabParam);
       
-      const section = document.getElementById('about-tabs-nav');
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      // Added a tiny timeout to ensure the DOM is ready before scrolling
+      setTimeout(() => {
+        const section = document.getElementById('about-tabs-nav');
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
     }
-  }, [tabParam]);
+  }, [tabParam, navItems]);
 
   return (
-    <div className="w-full max-w-[1920px] mx-auto md:px-0">
-      <div className="flex flex-col gap-10 md:gap-[130px] md:ml-[100px] xl:ml-[270px]">
+    <div className="w-full max-w-[1920px] mx-auto">
+      {/* REMOVED: md:ml-[100px] xl:ml-[270px]
+        ADDED: max-w-[1380px] mx-auto px-4 md:px-6 lg:px-8
+        This perfectly aligns the tabs with your AboutTab content below it, ensuring equal left/right spacing!
+      */}
+      <div className="flex flex-col gap-10 md:gap-[80px] xl:gap-[130px] w-full max-w-[1380px] mx-auto px-4 md:px-6 lg:px-8">
         
         {/* Navigation Buttons */}
-        <div id="about-tabs-nav" className="flex flex-wrap items-center gap-4 px-6 md:px-0 pt-4">
+        <div id="about-tabs-nav" className="flex flex-wrap items-center justify-center md:justify-start gap-3 md:gap-4 pt-4 w-full">
           {navItems.map((item) => {
             const isActive = activeTab === item;
             
@@ -68,9 +75,7 @@ const Section2Content = () => {
                   fontSize: '14px',
                   fontWeight: 600,
                   lineHeight: '20px',
-                  // 👇 FIX: Active gets solid white border, Inactive gets faint white border
                   border: isActive ? '1px solid #FFF' : '1px solid rgba(255, 255, 255, 0.2)',
-                  // Background stays the same
                   background: isActive 
                     ? 'linear-gradient(180deg, rgba(51, 51, 51, 0.20) 0%, rgba(0, 0, 0, 0.20) 137.5%)'
                     : 'rgba(0, 0, 0, 0.20)',
@@ -85,7 +90,8 @@ const Section2Content = () => {
                   }}
                 />
                 
-                <span className="relative z-10">{item}</span>
+                {/* whitespace-nowrap prevents words from stacking awkwardly on tiny mobile screens */}
+                <span className="relative z-10 text-center whitespace-nowrap">{item}</span>
               </button>
             );
           })}
@@ -108,7 +114,7 @@ const Section2 = () => {
   return (
     <section className="w-full min-h-screen relative flex flex-col py-10 bg-transparent">
       {/* Suspense boundary is required when using useSearchParams in Next.js */}
-      <Suspense fallback={<div className="text-white p-10">Loading...</div>}>
+      <Suspense fallback={<div className="text-white p-10 text-center w-full">Loading Navigation...</div>}>
         <Section2Content />
       </Suspense>
 
