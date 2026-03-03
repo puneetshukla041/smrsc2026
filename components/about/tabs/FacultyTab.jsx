@@ -93,7 +93,7 @@ const FacultyTab = () => {
     { name: "Dr. Nilesh Agrawal", desc: "Max Super Speciality Hospital, Nagpur, MH", image: "image50.webp" },
     { name: "Dr. Anubhav Gupta", desc: "Vardhman Mahavir Medical College and Safdarjung Hospital, Delhi", image: "image51.webp" },
     { name: "Dr. Zainulabedin Hamdulay", desc: "Masina Heart Institute, Mumbai, MH", image: "image52.png" },
-    { name: "Dr. Anubhav Gupta", desc: "Vardhman Mahavir Medical College and Safdarjung Hospital, Delhi", image: "image53.png" },
+    { name: "Dr. Bijoy Kutti", desc: "Vardhman Mahavir Medical College and Safdarjung Hospital, Delhi", image: "image53.png" },
   ];
 
   const urologyCoChairpersons = [
