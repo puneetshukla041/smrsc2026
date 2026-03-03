@@ -23,5 +23,5 @@ const globalStatSchema = new mongoose.Schema({
 
 const Visit = mongoose.models.Visit || mongoose.model('Visit', visitSchema);
 const GlobalStat = mongoose.models.GlobalStat || mongoose.model('GlobalStat', globalStatSchema);
-
+'id;name;duration;selfTime;urlIndex;childRange;[S]'
 export { Visit, GlobalStat };
