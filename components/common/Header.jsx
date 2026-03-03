@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { Search, Menu, X, ChevronDown } from "lucide-react";
-
 import { motion, AnimatePresence } from "framer-motion";
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
