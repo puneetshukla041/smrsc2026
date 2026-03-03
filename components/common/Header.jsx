@@ -20,6 +20,7 @@ const NAV_LINKS = [
       { name: "Organizing Committee", href: "/about?tab=Organizing Committee" },
       { name: "Chief Guests", href: "/about?tab=Chief Guests" },
       { name: "Faculty", href: "/about?tab=Faculty" },
+      
     ]
   },
   {
