@@ -147,9 +147,32 @@ const FacultyTab = () => {
     { name: "Dr. Dilip P Patil", desc: "Sri Sathya Sai Institute of Higher Medical Sciences, Puttaparthi, AP", image: "image46.png" }
   ];
 
+  // Updated General Surgery Faculty List (Mapping image3.webp to image26.webp)
   const generalFacultyList = [
-    { name: "Dr. Deepak Mittal", desc: "Aadhar Hospital, Hisar, HR", image: "per3.webp" },
-    { name: "Dr. Harish Sharma", desc: "Aadhar Hospital, Hisar, HR", image: "per4.webp" }
+    { name: "Dr. Sreenjoy Patnaik", desc: "Shanti Memorial Hospital, Cuttack, Odisha", image: "image3.webp" },
+    { name: "Dr. Sanjay Verma", desc: "Fortis Escorts, Okhla, Delhi", image: "image4.webp" },
+    { name: "Dr. Vikrant Sharma", desc: "Meenakshi Hospital, Ghaziabad, UP", image: "image5.webp" },
+    { name: "Dr. Sanjiv Haribhakti", desc: "Kaizen Hospital, Ahmedabad, GJ", image: "image6.webp" },
+    { name: "Dr. Pedro Luis Maldonado Munoz", desc: "Interhospital, Guayaquil, Ecuador", image: "image7.webp" },
+    { name: "Dr. Marcos Lenin Zambrano Avellan", desc: "Interhospital, Guayaquil, Ecuador", image: "image8.webp" },
+    { name: "Dr. Prashanth Krishna Gopalaswamy", desc: "Prashant Group of Hospitals, Chennai, TN", image: "image9.webp" },
+    { name: "Dr. Neeraj Chaudhary", desc: "Fortis, Vasant Kunj, New Delhi", image: "image10.webp" },
+    { name: "Dr. Niraj Baidya", desc: "B&B Hospital, Gwarko, Nepal", image: "image11.webp" },
+    { name: "Dr. Deepak Mittal", desc: "Aadhar Hospital, Hisar, HR", image: "image12.webp" },
+    { name: "Dr. Harish Sharma", desc: "Aadhar Hospital, Hisar, HR", image: "image13.webp" },
+    { name: "Dr. Deepak Subramanian", desc: "MGM Healthcare, Chennai, TN", image: "image14.webp" },
+    { name: "Dr. Atul Kumar Soni", desc: "Park Hospital, Gurugram, HR", image: "image15.webp" },
+    { name: "Dr. Kumar Sonal", desc: "Ruban Memorial Hospital, Patna, BR", image: "image16.webp" },
+    { name: "Dr. Praveen Bhingare", desc: "Government Medical College, Nagpur, MH", image: "image17.webp" },
+    { name: "Dr. Mohit Rawat", desc: "Rawat Hospital Aligarh, RJ", image: "image18.webp" },
+    { name: "Dr. Hemant Bhanarkar", desc: "Government Medical College, Nagpur, MH", image: "image19.webp" },
+    { name: "Dr. Hemant kumar", desc: "Fortis Flt Lt Rajan Dhall Hospital, Vasant Kunj, Delhi", image: "image20.webp" },
+    { name: "Dr. Charisse Izobelle Q. Santos", desc: "GreenCity Medical Center, San Fernando, Pampanga, Philippines", image: "image21.webp" },
+    { name: "Dr. Ryan D. Quiambao", desc: "Jose B. Lingad Memorial General Hospital, Philippines", image: "image22.webp" },
+    { name: "Dr. Arturo Mendoza III", desc: "Ulticare Medical Center, Philippines", image: "image23.webp" },
+    { name: "Dr. Noel Evangelista", desc: "Mother Teresa of Calcutta Medical Center, San Fernando, Pampanga, Philippines", image: "image24.webp" },
+    { name: "Dr. Nazer M. Salonga", desc: "Mother Teresa of Calcutta Medical Center, San Fernando, Pampanga, Philippines", image: "image25.webp" },
+    { name: "Dr. Pankaj Mutneja", desc: "Prem Institute of Medical Sciences, Panipat, HR", image: "image26.webp" }
   ];
 
   const colorectalFacultyList = [
@@ -331,7 +354,8 @@ const FacultyTab = () => {
                     <FadeInView>
                         <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
                             <div style={cardImageContainer} className="group cursor-pointer">
-                            <Image src="/images/about/general/per1.webp" alt="Dr. Raj Gajbhiye" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
+                            {/* Corrected path to general faculty image1.webp */}
+                            <Image src="/images/about/faculty/general/image1.webp" alt="Dr. Raj Gajbhiye" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
                             </div>
                             <div style={nameStyle}>Dr. Raj Gajbhiye</div>
                             <div style={descStyle}>Government Medical College, Nagpur, MH</div>
@@ -345,7 +369,8 @@ const FacultyTab = () => {
                         <FadeInView>
                             <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
                                 <div style={cardImageContainer} className="group cursor-pointer">
-                                <Image src="/images/about/general/per2.webp" alt="Dr. Magan Mehrotra" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
+                                {/* Corrected path to general faculty image2.webp */}
+                                <Image src="/images/about/faculty/general/image2.webp" alt="Dr. Magan Mehrotra" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
                                 </div>
                                 <div style={nameStyle}>Dr. Magan Mehrotra</div>
                                 <div style={descStyle}>Apex Hospital, Moradabad, UP</div>
@@ -362,7 +387,8 @@ const FacultyTab = () => {
                     <FadeInView key={index} delay={index * 30}>
                         <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <div style={cardImageContainer} className="group cursor-pointer">
-                            <Image src={`/images/about/general/${faculty.image}`} alt={faculty.name} fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
+                            {/* Corrected mapped path to point to /faculty/general/ */}
+                            <Image src={`/images/about/faculty/general/${faculty.image}`} alt={faculty.name} fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
                         </div>
                         <div style={nameStyle}>{faculty.name}</div>
                         <div style={descStyle}>{faculty.desc}</div>
