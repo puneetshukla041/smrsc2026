@@ -9,7 +9,7 @@ import Header from '../../components/common/Header';
 import Footer from '../../components/common/footer';
 import Section1 from '../../components/about/Section1';
 
-// 👇 FIX: Dynamically import Section2 so clicking the header link is INSTANT
+//  FIX: Dynamically import Section2 so clicking the header link is INSTANT
 const Section2 = dynamic(() => import('../../components/about/Section2'));
 
 // --- FAQ Component Matching RegisterPage Design (Glass + Icons + Animations) ---
