@@ -129,7 +129,22 @@ const FacultyTab = () => {
     { name: "Dr. Anurag Nema", desc: "ICON Hospitals", image: "image28.webp" },
     { name: "Dr. Rishi Grover", desc: "ICON Hospitals Surat, GJ", image: "image29.webp" },
     { name: "Dr. Jitendra Amlani", desc: "Urocare Kidney Super Specialty Hospital, Rajkot, GJ", image: "image30.webp" },
-    { name: "Dr. Shashanka Dhanuka", desc: "Fortis Hospital and Kidney Institute", image: "image31.webp" }
+    { name: "Dr. Shashanka Dhanuka", desc: "Fortis Hospital and Kidney Institute", image: "image31.webp" },
+    { name: "Dr. Soumyan Dey", desc: "Fortis Hiranandani, Vashi, MH", image: "image32.png" },
+    { name: "Dr. Reaud Iqbaul Gafoor", desc: "Urologist, Kingston Public Hospital, Jamaica", image: "image33.png" },
+    { name: "Dr. Vivek Sharma", desc: "GBH American Hospital Udaipur, RJ", image: "image34.png" },
+    { name: "Dr. Anand Sehgal", desc: "Deep Hospital, Ludhiana, PB", image: "image35.png" },
+    { name: "Dr. Yajvender Pratap Singh Rana", desc: "BLK Max, New Delhi", image: "image36.png" },
+    { name: "Dr. Ayush Chaudhary", desc: "Fortis Hospital & Kidney Institute, Kolkata, WB", image: "image37.png" },
+    { name: "Dr. Pushkar Shyam Chowdhary", desc: "Fortis Hospital & Kidney Institute, Kolkata, WB", image: "image38.png" },
+    { name: "Dr. Altaf Khan", desc: "Yenepoya Hospital, Mangalore, KA", image: "image39.png" },
+    { name: "Dr. Nischith D'Souza", desc: "Yenepoya Hospital, Mangalore, KA", image: "image40.png" },
+    { name: "Dr. Avinash T S", desc: "Aster-CMI hospital, Bangalore, KA", image: "image41.png" },
+    { name: "Dr. Max Gubitz Scheibe", desc: "Interhospital, Guayaquil, Ecuador", image: "image42.png" },
+    { name: "Dr. Anil Shrestha", desc: "B&B Hospital, Nepal", image: "image43.png" },
+    { name: "Dr. Senthil Nathan", desc: "Cleveland Clinic London, UK", image: "image44.png" },
+    { name: "Dr. Hemant Hardikar", desc: "Aster Royal Hospital, Muscat", image: "image45.png" },
+    { name: "Dr. Dilip P Patil", desc: "Sri Sathya Sai Institute of Higher Medical Sciences, Puttaparthi, AP", image: "image46.png" }
   ];
 
   const generalFacultyList = [
@@ -255,7 +270,6 @@ const FacultyTab = () => {
         <FadeInView>
             <div style={bannerContainerStyle('rgba(46, 88, 121, 0.85)')} className="justify-center md:justify-start"><h3 style={bannerTextStyle}>Urology Faculty</h3></div>
             
-            {/* UPDATED: Flex-col to lg:flex-row handles alignment onto a single line for Chairman/Co-Chairs */}
             <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-16 mb-16 w-full max-w-[1390px]">
                 <div className="flex flex-col items-center lg:items-start w-full lg:w-auto">
                     <div style={sectionLabelBoxStyle}><span style={sectionLabelTextStyle}>Chairman</span></div>
@@ -311,7 +325,6 @@ const FacultyTab = () => {
         <FadeInView>
             <div style={bannerContainerStyle('rgba(64, 25, 107, 0.85)')} className="justify-center md:justify-start"><h3 style={bannerTextStyle}>General Surgery Faculty</h3></div>
             
-            {/* UPDATED: Applied the exact same alignment styling here */}
             <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-16 mb-16 w-full max-w-[1390px]">
                 <div className="flex flex-col items-center lg:items-start w-full lg:w-auto">
                     <div style={sectionLabelBoxStyle}><span style={sectionLabelTextStyle}>Chairman</span></div>
@@ -365,7 +378,6 @@ const FacultyTab = () => {
         <FadeInView>
             <div style={bannerContainerStyle('rgba(42, 85, 156, 0.85)')} className="justify-center md:justify-start"><h3 style={bannerTextStyle}>Colorectal Surgery Faculty</h3></div>
             
-            {/* UPDATED: Applied the exact same alignment styling here */}
             <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-16 mb-16 w-full max-w-[1390px]">
                 <div className="flex flex-col items-center lg:items-start w-full lg:w-auto">
                     <div style={sectionLabelBoxStyle}><span style={sectionLabelTextStyle}>Chairman</span></div>
