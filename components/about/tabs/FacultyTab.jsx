@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { SlidersHorizontal, Check } from 'lucide-react';
@@ -254,35 +254,37 @@ const FacultyTab = () => {
       {(activeFilter === 'All' || activeFilter === 'Urology') && (
         <FadeInView>
             <div style={bannerContainerStyle('rgba(46, 88, 121, 0.85)')} className="justify-center md:justify-start"><h3 style={bannerTextStyle}>Urology Faculty</h3></div>
-            <div className="flex flex-wrap gap-16 mb-16 justify-center md:justify-start w-full max-w-[1390px]">
-                <div className="flex flex-col items-center md:items-start">
-                <div style={sectionLabelBoxStyle}><span style={sectionLabelTextStyle}>Chairman</span></div>
-                <FadeInView>
-                    <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                        <div style={cardImageContainer} className="group cursor-pointer">
-                        <Image src="/images/about/faculty/urology/image1.webp" alt="Dr. Sudhir K Rawal" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
-                        </div>
-                        <div style={nameStyle}>Dr. Sudhir K Rawal</div>
-                        <div style={descStyle}>Rajiv Gandhi Cancer Institute and Research Center</div>
-                    </div>
-                </FadeInView>
-                </div>
-
-                <div className="flex flex-col items-center md:items-start">
-                <div style={sectionLabelBoxStyle}><span style={sectionLabelTextStyle}>Co - Chairperson</span></div>
-                <div className="flex gap-8 flex-wrap justify-center md:justify-start">
-                    {urologyCoChairpersons.map((co, index) => (
-                    <FadeInView key={index} delay={100}>
-                        <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            
+            {/* UPDATED: Flex-col to lg:flex-row handles alignment onto a single line for Chairman/Co-Chairs */}
+            <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-16 mb-16 w-full max-w-[1390px]">
+                <div className="flex flex-col items-center lg:items-start w-full lg:w-auto">
+                    <div style={sectionLabelBoxStyle}><span style={sectionLabelTextStyle}>Chairman</span></div>
+                    <FadeInView>
+                        <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
                             <div style={cardImageContainer} className="group cursor-pointer">
-                            <Image src={`/images/about/faculty/urology/${co.image}`} alt={co.name} fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
+                            <Image src="/images/about/faculty/urology/image1.webp" alt="Dr. Sudhir K Rawal" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
                             </div>
-                            <div style={nameStyle}>{co.name}</div>
-                            <div style={descStyle}>{co.desc}</div>
+                            <div style={nameStyle}>Dr. Sudhir K Rawal</div>
+                            <div style={descStyle}>Rajiv Gandhi Cancer Institute and Research Center</div>
                         </div>
                     </FadeInView>
-                    ))}
                 </div>
+
+                <div className="flex flex-col items-center lg:items-start w-full lg:w-auto">
+                    <div style={sectionLabelBoxStyle}><span style={sectionLabelTextStyle}>Co - Chairperson</span></div>
+                    <div className="flex flex-col sm:flex-row gap-8 w-full justify-center lg:justify-start">
+                        {urologyCoChairpersons.map((co, index) => (
+                        <FadeInView key={index} delay={100}>
+                            <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+                                <div style={cardImageContainer} className="group cursor-pointer">
+                                <Image src={`/images/about/faculty/urology/${co.image}`} alt={co.name} fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
+                                </div>
+                                <div style={nameStyle}>{co.name}</div>
+                                <div style={descStyle}>{co.desc}</div>
+                            </div>
+                        </FadeInView>
+                        ))}
+                    </div>
                 </div>
             </div>
 
@@ -308,31 +310,35 @@ const FacultyTab = () => {
       {(activeFilter === 'All' || activeFilter === 'General Surgery') && (
         <FadeInView>
             <div style={bannerContainerStyle('rgba(64, 25, 107, 0.85)')} className="justify-center md:justify-start"><h3 style={bannerTextStyle}>General Surgery Faculty</h3></div>
-            <div className="flex flex-wrap gap-16 mb-16 justify-center md:justify-start w-full max-w-[1390px]">
-                <div className="flex flex-col items-center md:items-start">
-                <div style={sectionLabelBoxStyle}><span style={sectionLabelTextStyle}>Chairman</span></div>
-                <FadeInView>
-                    <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                        <div style={cardImageContainer} className="group cursor-pointer">
-                        <Image src="/images/about/general/per1.webp" alt="Dr. Raj Gajbhiye" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
+            
+            {/* UPDATED: Applied the exact same alignment styling here */}
+            <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-16 mb-16 w-full max-w-[1390px]">
+                <div className="flex flex-col items-center lg:items-start w-full lg:w-auto">
+                    <div style={sectionLabelBoxStyle}><span style={sectionLabelTextStyle}>Chairman</span></div>
+                    <FadeInView>
+                        <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+                            <div style={cardImageContainer} className="group cursor-pointer">
+                            <Image src="/images/about/general/per1.webp" alt="Dr. Raj Gajbhiye" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
+                            </div>
+                            <div style={nameStyle}>Dr. Raj Gajbhiye</div>
+                            <div style={descStyle}>Government Medical College, Nagpur, MH</div>
                         </div>
-                        <div style={nameStyle}>Dr. Raj Gajbhiye</div>
-                        <div style={descStyle}>Government Medical College, Nagpur, MH</div>
-                    </div>
-                </FadeInView>
+                    </FadeInView>
                 </div>
 
-                <div className="flex flex-col items-center md:items-start">
-                <div style={sectionLabelBoxStyle}><span style={sectionLabelTextStyle}>Co - Chairperson</span></div>
-                <FadeInView>
-                    <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                        <div style={cardImageContainer} className="group cursor-pointer">
-                        <Image src="/images/about/general/per2.webp" alt="Dr. Magan Mehrotra" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
-                        </div>
-                        <div style={nameStyle}>Dr. Magan Mehrotra</div>
-                        <div style={descStyle}>Apex Hospital, Moradabad, UP</div>
+                <div className="flex flex-col items-center lg:items-start w-full lg:w-auto">
+                    <div style={sectionLabelBoxStyle}><span style={sectionLabelTextStyle}>Co - Chairperson</span></div>
+                    <div className="flex flex-col sm:flex-row gap-8 w-full justify-center lg:justify-start">
+                        <FadeInView>
+                            <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+                                <div style={cardImageContainer} className="group cursor-pointer">
+                                <Image src="/images/about/general/per2.webp" alt="Dr. Magan Mehrotra" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
+                                </div>
+                                <div style={nameStyle}>Dr. Magan Mehrotra</div>
+                                <div style={descStyle}>Apex Hospital, Moradabad, UP</div>
+                            </div>
+                        </FadeInView>
                     </div>
-                </FadeInView>
                 </div>
             </div>
 
@@ -358,31 +364,35 @@ const FacultyTab = () => {
       {(activeFilter === 'All' || activeFilter === 'Colorectal Surgery') && (
         <FadeInView>
             <div style={bannerContainerStyle('rgba(42, 85, 156, 0.85)')} className="justify-center md:justify-start"><h3 style={bannerTextStyle}>Colorectal Surgery Faculty</h3></div>
-            <div className="flex flex-wrap gap-16 mb-16 justify-center md:justify-start w-full max-w-[1390px]">
-                <div className="flex flex-col items-center md:items-start">
-                <div style={sectionLabelBoxStyle}><span style={sectionLabelTextStyle}>Chairman</span></div>
-                <FadeInView>
-                    <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                        <div style={cardImageContainer} className="group cursor-pointer">
-                        <Image src="/images/about/general/per1.webp" alt="Dr. Raj Gajbhiye" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
+            
+            {/* UPDATED: Applied the exact same alignment styling here */}
+            <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-16 mb-16 w-full max-w-[1390px]">
+                <div className="flex flex-col items-center lg:items-start w-full lg:w-auto">
+                    <div style={sectionLabelBoxStyle}><span style={sectionLabelTextStyle}>Chairman</span></div>
+                    <FadeInView>
+                        <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+                            <div style={cardImageContainer} className="group cursor-pointer">
+                            <Image src="/images/about/general/per1.webp" alt="Dr. Raj Gajbhiye" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
+                            </div>
+                            <div style={nameStyle}>Dr. Raj Gajbhiye</div>
+                            <div style={descStyle}>Government Medical College, Nagpur, MH</div>
                         </div>
-                        <div style={nameStyle}>Dr. Raj Gajbhiye</div>
-                        <div style={descStyle}>Government Medical College, Nagpur, MH</div>
-                    </div>
-                </FadeInView>
+                    </FadeInView>
                 </div>
 
-                <div className="flex flex-col items-center md:items-start">
-                <div style={sectionLabelBoxStyle}><span style={sectionLabelTextStyle}>Co - Chairperson</span></div>
-                <FadeInView>
-                    <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                        <div style={cardImageContainer} className="group cursor-pointer">
-                        <Image src="/images/about/general/per2.webp" alt="Dr. Magan Mehrotra" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
-                        </div>
-                        <div style={nameStyle}>Dr. Magan Mehrotra</div>
-                        <div style={descStyle}>Apex Hospital, Moradabad, UP</div>
+                <div className="flex flex-col items-center lg:items-start w-full lg:w-auto">
+                    <div style={sectionLabelBoxStyle}><span style={sectionLabelTextStyle}>Co - Chairperson</span></div>
+                    <div className="flex flex-col sm:flex-row gap-8 w-full justify-center lg:justify-start">
+                        <FadeInView>
+                            <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+                                <div style={cardImageContainer} className="group cursor-pointer">
+                                <Image src="/images/about/general/per2.webp" alt="Dr. Magan Mehrotra" fill className="object-cover transition-transform duration-500 ease-out group-hover:scale-110" unoptimized={true} loading="eager" fetchPriority="low" />
+                                </div>
+                                <div style={nameStyle}>Dr. Magan Mehrotra</div>
+                                <div style={descStyle}>Apex Hospital, Moradabad, UP</div>
+                            </div>
+                        </FadeInView>
                     </div>
-                </FadeInView>
                 </div>
             </div>
 
