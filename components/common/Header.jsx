@@ -13,6 +13,7 @@ import SearchModal from './SearchModal';
 
 const NAV_LINKS = [
   {
+    
     name: "About",
     href: "/about",
     subLinks: [
