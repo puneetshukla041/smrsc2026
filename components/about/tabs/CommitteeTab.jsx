@@ -55,6 +55,7 @@ const CommitteeTab = () => {
     { name: "Dr. Sanjiv Haribhakti", role: "Kaizen Hospital, Ahmedabad, GJ", src: "/images/about/committe/40.webp" },
   ];
 
+  
   return (
     <div className="w-full animate-in fade-in slide-in-from-bottom-4 duration-700 pb-20 font-manrope">
       
