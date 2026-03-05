@@ -62,7 +62,7 @@ const CommitteeTab = () => {
       <div className="w-full max-w-[1380px] mx-auto px-4 md:px-6 lg:px-8 mt-12 md:mt-16">
         
         {/* ================= SECTION 1: TOP LEADERSHIP ================= */}
-        <div className="w-full flex flex-col xl:flex-row items-center xl:items-start justify-center gap-12 xl:gap-8">
+        <div className="w-full grid grid-cols-1 xl:grid-cols-4 gap-12 xl:gap-8 justify-items-center">
           
           {/* Organizing Chairman (Left) */}
           <div className="flex flex-col items-center w-full max-w-[300px]">
@@ -78,12 +78,12 @@ const CommitteeTab = () => {
             </div>
           </div>
 
-          {/* Organizing Co-Chairpersons (Center) */}
-          <div className="flex flex-col items-center w-full max-w-[632px]">
+          {/* Organizing Co-Chairpersons (Center) - Spans 2 Columns */}
+          <div className="flex flex-col items-center w-full xl:col-span-2">
             <h3 className="text-[#F8FFFF] font-['Blauer_Nue'] text-[24px] md:text-[28px] lg:text-[32px] font-medium leading-tight mb-6 text-center w-full xl:min-h-[76px] flex items-end justify-center">
               Organizing Co-Chairpersons
             </h3>
-            <div className="flex flex-col sm:flex-row items-center gap-8 w-full justify-center">
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-12 xl:gap-8 justify-items-center">
               {/* Co-Chair 1 */}
               <div className="flex flex-col items-center w-full max-w-[300px]">
                 <div className="relative w-full aspect-square rounded-[12px] overflow-hidden bg-white/5">
@@ -177,10 +177,6 @@ const CommitteeTab = () => {
         </div>
 
       </div>
-
-      <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap');
-      `}</style>
     </div>
   );
 };
