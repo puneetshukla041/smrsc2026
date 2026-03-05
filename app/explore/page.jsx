@@ -223,6 +223,7 @@ const ExploreContent = () => {
         </section>
 
         {/* === 2. BACKGROUND LOADED CONTENT === */}
+        {/* Wait until the hero has painted before rendering the rest */}
         {loadHeavyContent && (
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -251,9 +252,14 @@ const ExploreContent = () => {
               </div>
 
               {/* Download Button takes full width on tiny mobile screens */}
-              <button className="w-full md:w-auto inline-flex justify-center items-center gap-[10px] px-[24px] py-[12px] rounded-[40px] border border-[#2A3A3B] bg-[#E3F5F6] backdrop-blur-[21px] text-[#020617] font-manrope text-sm font-semibold hover:bg-white transition-all cursor-pointer">
+              <a 
+                href="/pdf/smrscpdf.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-full md:w-auto inline-flex justify-center items-center gap-[10px] px-[24px] py-[12px] rounded-[40px] border border-[#2A3A3B] bg-[#E3F5F6] backdrop-blur-[21px] text-[#020617] font-manrope text-sm font-semibold hover:bg-white transition-all cursor-pointer text-center"
+              >
                 Download Brochure
-              </button>
+              </a>
             </div>
 
             <div className="w-full pb-10 min-h-[50vh]">
