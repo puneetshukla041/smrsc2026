@@ -123,7 +123,6 @@ const CommitteeTab = () => {
           </div>
         </div>
 
-
         {/* ================= SECTION 2: INTERNATIONAL COMMITTEE GRID ================= */}
         <div className="w-full mt-20 md:mt-24">
           <h3 className="text-[#F8FFFF] font-['Blauer_Nue'] text-[28px] md:text-[32px] font-medium leading-tight mb-10 text-center md:text-left">
