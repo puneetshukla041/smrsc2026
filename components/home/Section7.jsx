@@ -2,14 +2,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
-interface FadeInViewProps {
-  children: React.ReactNode;
-  delay?: number;
-}
-
-const FadeInView = ({ children, delay = 0 }: FadeInViewProps) => {
+const FadeInView = ({ children, delay = 0 }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const domRef = useRef<HTMLDivElement>(null);
+  const domRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
@@ -47,7 +42,7 @@ const FadeInView = ({ children, delay = 0 }: FadeInViewProps) => {
 //   INFINITE LOGO SCROLLER COMPONENT
 // ==========================================
 const LogoScroller = () => {
-  // Generate array of 12 logo paths
+  // Generate array of 23 logo paths
   const logos = Array.from({ length: 23 }, (_, i) => `/logos/animation/${i + 1}.png`);
   
   // Duplicate the array so the loop is perfectly seamless
