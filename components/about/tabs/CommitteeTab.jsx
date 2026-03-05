@@ -108,6 +108,7 @@ const CommitteeTab = () => {
             </div>
           </div>
 
+
           {/* Organizing Secretary (Right) */}
           <div className="flex flex-col items-center w-full max-w-[300px]">
             <h3 className="text-[#F8FFFF] font-['Blauer_Nue'] text-[24px] md:text-[28px] lg:text-[32px] font-medium leading-tight mb-6 text-center w-full xl:min-h-[76px] flex items-end justify-center">
