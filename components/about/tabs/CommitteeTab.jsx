@@ -61,7 +61,6 @@ const CommitteeTab = () => {
       {/* Container wrapper for centering and safe padding */}
       <div className="w-full max-w-[1380px] mx-auto px-4 md:px-6 lg:px-8 mt-12 md:mt-16">
         
-        
         {/* ================= SECTION 1: TOP LEADERSHIP ================= */}
         <div className="w-full grid grid-cols-1 xl:grid-cols-4 gap-12 xl:gap-8 justify-items-center">
           
