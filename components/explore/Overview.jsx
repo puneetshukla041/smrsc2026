@@ -217,6 +217,27 @@ const Overview = () => {
     cursor: 'pointer',
   };
 
+  // Dedicated style for the new Download Brochure button
+  const downloadBtnStyle = {
+    display: 'inline-flex',
+    width: 'fit-content',
+    padding: '12px 24px',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '10px',
+    borderRadius: '40px',
+    border: '1px solid #2A3A3B',
+    background: '#E3F5F6',
+    backdropFilter: 'blur(21px)',
+    color: '#020617', 
+    fontWeight: 600,
+    fontSize: '14px',
+    fontFamily: 'Manrope, sans-serif',
+    cursor: 'pointer',
+    textDecoration: 'none',
+    marginTop: '24px'
+  };
+
   return (
     <div className="w-full max-w-[100vw] flex flex-col items-center animate-fadeIn overflow-x-hidden">
       
@@ -225,6 +246,22 @@ const Overview = () => {
          <p className="text-[#E3F5F6] font-manrope text-[24px] md:text-[32px] font-medium leading-[32px] md:leading-[40px]">
            SMRSC 2026 brings together live surgery, innovation, and global expertise across three focused days. Explore the experiences, sessions, and programs that define the conference.
          </p>
+
+         {/* ========================================================
+             NEW DOWNLOAD BROCHURE BUTTON
+             Replace the href with your actual PDF location later!
+         ======================================================== */}
+         <div>
+           <a 
+             href="/path-to-your-brochure.pdf" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             style={downloadBtnStyle}
+             className="hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg"
+           >
+             Download Brochure
+           </a>
+         </div>
 
          <h2 
            className="mt-20 md:mt-[265px] mb-8"
@@ -405,8 +442,6 @@ const Overview = () => {
            </div>
         </div>
 
-           
-      
       </div>
     </div>
   );
