@@ -121,7 +121,6 @@ const CommitteeTab = () => {
               <div className="text-white/80 text-[12px] font-normal leading-[16px]">President & COO, SS Innovations</div>
             </div>
           </div>
-
         </div>
 
         {/* ================= SECTION 2: INTERNATIONAL COMMITTEE GRID ================= */}
