@@ -12,6 +12,7 @@ const Section3 = dynamic(() => import('../../components/home/Section3'));
 const Section4 = dynamic(() => import('../../components/home/Section4'));
 const Section5 = dynamic(() => import('../../components/home/Section5'));
 const Section6 = dynamic(() => import('../../components/home/Section6'));
+const Section7 = dynamic(() => import('../../components/home/Section7'));
 
 const HomePage = () => {
   const visitStartTime = useRef(null);
@@ -78,7 +79,9 @@ const HomePage = () => {
         <Section3 />
         <Section4 />
         <Section5 />
+         <Section7 />
         <Section6 />
+       
       </main>
       
       {/* Cookie Banner hidden on mobile, visible on medium screens and up */}

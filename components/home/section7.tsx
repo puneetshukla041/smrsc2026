@@ -48,7 +48,7 @@ const FadeInView = ({ children, delay = 0 }: FadeInViewProps) => {
 // ==========================================
 const LogoScroller = () => {
   // Generate array of 12 logo paths
-  const logos = Array.from({ length: 12 }, (_, i) => `/logos/animation/${i + 1}.png`);
+  const logos = Array.from({ length: 23 }, (_, i) => `/logos/animation/${i + 1}.png`);
   
   // Duplicate the array so the loop is perfectly seamless
   const duplicatedLogos = [...logos, ...logos];
