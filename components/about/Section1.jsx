@@ -7,9 +7,9 @@ const Section1 = () => {
     <section className="w-full bg-transparent flex flex-col items-center">
       
       {/* --- DESKTOP VIEW --- */}
-      {/* Added horizontal padding (px-6 lg:px-8) so the image doesn't touch the screen edges on medium displays */}
-      <div className="relative z-10 w-full hidden md:flex justify-center mt-20 lg:mt-[98px] mb-12 lg:mb-[65px] px-6 lg:px-8">
-        <div className="relative w-full max-w-[1693px] aspect-[1693/833]">
+      {/* ALIGNMENT FIX: Applied max-w-[1380px] and the matching px-4/10/16/0 scale */}
+      <div className="relative z-10 w-full hidden md:flex justify-center mt-20 lg:mt-[98px] mb-12 lg:mb-[65px] px-4 md:px-10 lg:px-16 xl:px-0 mx-auto max-w-[1380px]">
+        <div className="relative w-full aspect-[1693/833]">
           <Image
             src="/images/about/section1/img1.webp"
             alt="SMRSC About Banner"
@@ -17,17 +17,14 @@ const Section1 = () => {
             priority={true}
             fetchPriority="high"
             loading="eager"
-            unoptimized={true} // ⚡ ZERO BUFFERING
+            unoptimized={true} 
             className="object-contain"
           />
         </div>
       </div>
 
       {/* --- MOBILE VIEW --- */}
-      {/* REFACTORED: Replaced hardcoded 350x476px with a fluid aspect ratio layout.
-          Now it scales perfectly on both small (320px) and large (430px) mobile screens.
-      */}
-      <div className="md:hidden w-full flex justify-center mt-20 mb-10 px-4 sm:px-8">
+      <div className="md:hidden w-full flex justify-center mt-20 mb-10 px-4">
         <div className="relative w-full max-w-[400px] aspect-[350/476]">
           <Image
             src="/images/about/section1/mobile.webp"
@@ -37,7 +34,7 @@ const Section1 = () => {
             priority={true}
             fetchPriority="high"
             loading="eager"
-            unoptimized={true} // ⚡ ZERO BUFFERING
+            unoptimized={true} 
           />
         </div>
       </div>
