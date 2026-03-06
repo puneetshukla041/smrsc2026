@@ -60,38 +60,40 @@ const HotelsPage = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       
-      <main className="flex-grow pt-24 bg-[#020617] text-white">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col items-center">
+      <main className="flex-grow pt-24 bg-[#020617] text-white w-full">
+        {/* REFACTORED: Replaced lg:px-8 with lg:px-16 xl:px-24 2xl:px-8 for proper laptop margins */}
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 xl:px-24 2xl:px-8 py-10 flex flex-col items-center">
           
           {/* --- Section Title --- */}
-          <div className="w-full max-w-[1344px] mb-12">
+          <div className="w-full max-w-[1344px] mb-8 md:mb-12">
              <h2 className="text-3xl md:text-4xl font-semibold font-manrope">
                Stay nearby
             </h2>
           </div>
 
           {/* --- Hotels Grid --- */}
-          <div className="flex flex-wrap justify-center gap-6 w-full max-w-[1344px] mb-20">
+          <div className="flex flex-wrap justify-center lg:justify-between gap-6 w-full max-w-[1344px] mb-20">
             {hotels.map((hotel) => (
               <div
                 key={hotel.id}
-                className="flex flex-col sm:flex-row items-center w-full max-w-[660px] p-6 gap-6 rounded-[20px] border border-white/10 bg-transparent"
+                // Changed from fixed max-w-[660px] to a flexible lg:w-[calc(50%-12px)] to ensure 2 perfect columns on laptops
+                className="flex flex-col sm:flex-row items-center w-full lg:w-[calc(50%-12px)] xl:max-w-[660px] p-6 gap-6 rounded-[20px] border border-white/10 bg-transparent transition-all hover:bg-white/5"
               >
                 {/* Image */}
-                <div className="relative shrink-0">
+                <div className="relative shrink-0 w-full sm:w-auto flex justify-center">
                   <Image
                     src={hotel.image}
                     alt={hotel.name}
                     width={187}
                     height={175}
-                    className="w-[187px] h-[175px] rounded-[20px] object-cover"
+                    className="w-full sm:w-[187px] h-[200px] sm:h-[175px] rounded-[20px] object-cover"
                   />
                 </div>
 
                 {/* Content */}
                 <div className="flex flex-col w-full h-full justify-center">
                   <div>
-                    <h3 className="font-manrope text-[28px] font-semibold leading-[24px] text-white mb-2">
+                    <h3 className="font-manrope text-[24px] md:text-[28px] font-semibold leading-tight text-white mb-2">
                       {hotel.name}
                     </h3>
                     <div className="flex items-center gap-4 text-sm text-gray-300 mb-4 font-manrope">
@@ -108,11 +110,10 @@ const HotelsPage = () => {
                         <span>{hotel.rating}</span>
                       </div>
                     </div>
-                    <p className="font-manrope text-[18px] font-normal leading-[16px] text-white">
+                    <p className="font-manrope text-[18px] font-normal leading-tight text-white">
                       {hotel.price}
                     </p>
                   </div>
-                  {/* BUTTON REMOVED HERE */}
                 </div>
               </div>
             ))}
@@ -122,13 +123,13 @@ const HotelsPage = () => {
           <div className="w-full max-w-[1344px] flex flex-col gap-6 mb-20">
             
             {/* Title */}
-            <h2 className="text-[#F8FFFF] text-[36px] font-semibold leading-normal font-['Blauer_Nue'] w-full max-w-[472px]">
+            <h2 className="text-[#F8FFFF] text-[28px] md:text-[36px] font-semibold leading-normal font-['Blauer_Nue'] w-full max-w-[472px]">
               Need help? We’re here.
             </h2>
 
             {/* Content Box */}
-            <div className="w-full p-8 rounded-[20px] border border-white/10 bg-transparent">
-              <div className="flex flex-col gap-6 text-[#F8FFFF] font-manrope text-[18px] font-normal leading-[20px]">
+            <div className="w-full p-6 md:p-8 rounded-[20px] border border-white/10 bg-transparent">
+              <div className="flex flex-col gap-6 text-[#F8FFFF] font-manrope text-[16px] md:text-[18px] font-normal leading-[24px]">
                 
                 <p>
                   Our team can assist with hotel bookings and accommodation-related queries for SMRSC 2026 attendees.
