@@ -59,14 +59,17 @@ const CommitteeTab = () => {
     <div className="w-full animate-in fade-in slide-in-from-bottom-4 duration-700 pb-20 font-manrope">
       
       {/* Container wrapper for centering and safe padding */}
-      <div className="w-full max-w-[1380px] mx-auto px-4 md:px-6 lg:px-8 mt-12 md:mt-16">
+      {/* REFACTORED: Removed px-4 md:px-6 lg:px-8 to prevent "double padding" against the parent component */}
+      <div className="w-full max-w-[1380px] mx-auto mt-12 md:mt-16">
         
         {/* ================= SECTION 1: TOP LEADERSHIP ================= */}
-        <div className="w-full grid grid-cols-1 xl:grid-cols-4 gap-12 xl:gap-8 justify-items-center">
+        {/* REFACTORED: Changed xl:grid-cols-4 to lg:grid-cols-4 to lock the 4-column layout in for laptops */}
+        <div className="w-full grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-6 xl:gap-8 justify-items-center">
           
           {/* Organizing Chairman (Left) */}
           <div className="flex flex-col items-center w-full max-w-[300px]">
-            <h3 className="text-[#F8FFFF] font-['Blauer_Nue'] text-[24px] md:text-[28px] lg:text-[32px] font-medium leading-tight mb-6 text-center w-full xl:min-h-[76px] flex items-end justify-center">
+            {/* REFACTORED: Adjusted text size slightly for lg to prevent awkward wrapping */}
+            <h3 className="text-[#F8FFFF] font-['Blauer_Nue'] text-[24px] lg:text-[22px] xl:text-[32px] font-medium leading-tight mb-6 text-center w-full lg:min-h-[76px] flex items-end justify-center">
               Organizing Chairman
             </h3>
             <div className="relative w-full aspect-square rounded-[12px] overflow-hidden bg-white/5">
@@ -79,11 +82,12 @@ const CommitteeTab = () => {
           </div>
 
           {/* Organizing Co-Chairpersons (Center) - Spans 2 Columns */}
-          <div className="flex flex-col items-center w-full xl:col-span-2">
-            <h3 className="text-[#F8FFFF] font-['Blauer_Nue'] text-[24px] md:text-[28px] lg:text-[32px] font-medium leading-tight mb-6 text-center w-full xl:min-h-[76px] flex items-end justify-center">
+          {/* REFACTORED: Changed xl:col-span-2 to lg:col-span-2 */}
+          <div className="flex flex-col items-center w-full lg:col-span-2">
+            <h3 className="text-[#F8FFFF] font-['Blauer_Nue'] text-[24px] lg:text-[22px] xl:text-[32px] font-medium leading-tight mb-6 text-center w-full lg:min-h-[76px] flex items-end justify-center">
               Organizing Co-Chairpersons
             </h3>
-            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-12 xl:gap-8 justify-items-center">
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-12 lg:gap-6 xl:gap-8 justify-items-center">
               {/* Co-Chair 1 */}
               <div className="flex flex-col items-center w-full max-w-[300px]">
                 <div className="relative w-full aspect-square rounded-[12px] overflow-hidden bg-white/5">
@@ -110,7 +114,7 @@ const CommitteeTab = () => {
 
           {/* Organizing Secretary (Right) */}
           <div className="flex flex-col items-center w-full max-w-[300px]">
-            <h3 className="text-[#F8FFFF] font-['Blauer_Nue'] text-[24px] md:text-[28px] lg:text-[32px] font-medium leading-tight mb-6 text-center w-full xl:min-h-[76px] flex items-end justify-center">
+            <h3 className="text-[#F8FFFF] font-['Blauer_Nue'] text-[24px] lg:text-[22px] xl:text-[32px] font-medium leading-tight mb-6 text-center w-full lg:min-h-[76px] flex items-end justify-center">
               Organizing Secretary
             </h3>
             <div className="relative w-full aspect-square rounded-[12px] overflow-hidden bg-white/5">
@@ -129,7 +133,8 @@ const CommitteeTab = () => {
             Scientific Organizing Committee International
           </h3>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-12 gap-x-6 justify-items-center md:justify-items-start">
+          {/* REFACTORED: Set lg:grid-cols-4 so laptops also see 4 items per row, avoiding orphan items */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-6 justify-items-center md:justify-items-start">
             {internationalCommittee.map((member, idx) => (
               <div key={idx} className="flex flex-col items-center md:items-start w-full max-w-[305px] group">
                 <div className="relative w-full aspect-[305/390] rounded-[12px] overflow-hidden drop-shadow-lg bg-white/5">
@@ -155,7 +160,8 @@ const CommitteeTab = () => {
             Scientific Committee National
           </h3>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-12 gap-x-6 justify-items-center md:justify-items-start">
+          {/* REFACTORED: Set lg:grid-cols-4 here as well */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-6 justify-items-center md:justify-items-start">
             {nationalCommittee.map((member, idx) => (
               <div key={idx} className="flex flex-col items-center md:items-start w-full max-w-[305px] group">
                 <div className="relative w-full aspect-[305/390] rounded-[12px] overflow-hidden drop-shadow-lg bg-white/5">
