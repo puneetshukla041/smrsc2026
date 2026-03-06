@@ -49,21 +49,21 @@ const LogoScroller = () => {
   const duplicatedLogos = [...logos, ...logos];
 
   return (
-    <div className="relative w-full max-w-[1380px] mt-12 md:mt-16 overflow-hidden flex items-center mx-auto">
+    <div className="relative w-full max-w-[1380px] mt-8 md:mt-12 overflow-hidden flex items-center mx-auto">
       
       {/* Premium gradient fade edges */}
-      <div className="absolute left-0 top-0 w-16 md:w-32 h-full bg-gradient-to-r from-[#020617] to-transparent z-10 pointer-events-none"></div>
-      <div className="absolute right-0 top-0 w-16 md:w-32 h-full bg-gradient-to-l from-[#020617] to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute left-0 top-0 w-16 md:w-24 lg:w-32 h-full bg-gradient-to-r from-[#020617] to-transparent z-10 pointer-events-none"></div>
+      <div className="absolute right-0 top-0 w-16 md:w-24 lg:w-32 h-full bg-gradient-to-l from-[#020617] to-transparent z-10 pointer-events-none"></div>
 
       {/* Scrolling Container */}
       <div className="flex w-max animate-scroll-lr hover:pause-scroll">
         {duplicatedLogos.map((src, index) => (
           <div 
             key={index} 
-            className="flex justify-center items-center w-[140px] md:w-[200px] px-6 transition-transform duration-300 hover:scale-110 cursor-pointer"
+            // Fluid scaling for logos so they don't look giant on small laptops
+            className="flex justify-center items-center w-[120px] md:w-[160px] lg:w-[200px] px-4 md:px-6 transition-transform duration-300 hover:scale-110 cursor-pointer"
           >
-            <div className="relative w-full h-[50px] md:h-[70px]">
-              {/* Removed opacity classes so they are always in full color */}
+            <div className="relative w-full h-[40px] md:h-[50px] lg:h-[70px]">
               <Image 
                 src={src} 
                 alt={`Logo ${index}`} 
@@ -83,9 +83,10 @@ const LogoScroller = () => {
 
 const Section7 = () => {
   return (
-    <div className="w-full max-w-[1380px] mt-24 md:mt-[200px] px-4 md:px-0 mx-auto">
+    // Fixed the huge 200px margin leap and reinstated padding for medium screens
+    <section className="w-full max-w-[1380px] mt-24 md:mt-[120px] lg:mt-[160px] xl:mt-[200px] px-6 lg:px-12 xl:px-0 mx-auto overflow-hidden">
       <FadeInView delay={200}>
-        <h3 className="text-[#F8FFFF] text-[28px] md:text-[36px] font-medium leading-tight md:leading-[40px]" style={{ fontFamily: "'Blauer Nue', sans-serif" }}>
+        <h3 className="text-[#F8FFFF] text-[24px] md:text-[28px] lg:text-[36px] font-medium leading-tight md:leading-[40px]" style={{ fontFamily: "'Blauer Nue', sans-serif" }}>
           In association with
         </h3>
         <LogoScroller />
@@ -113,7 +114,7 @@ const Section7 = () => {
           animation-play-state: paused;
         }
       `}</style>
-    </div>
+    </section>
   );
 };
 
