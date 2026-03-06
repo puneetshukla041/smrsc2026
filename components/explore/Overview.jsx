@@ -278,7 +278,6 @@ const Overview = () => {
             {images.map((img, index) => {
               const position = getPosition(index);
               
-              
               return (
                 <motion.div
                   key={index}
