@@ -17,8 +17,12 @@ const FadeInView = ({ children, delay = 0 }) => {
     }, { threshold: 0.1 });
 
     const currentElement = domRef.current;
-    if (currentElement) observer.observe(currentElement);
-    return () => { if (currentElement) observer.unobserve(currentElement); };
+    if (currentElement) {
+      observer.observe(currentElement);
+    }
+    return () => {
+      if (currentElement) observer.unobserve(currentElement);
+    };
   }, []);
 
   return (
@@ -50,106 +54,90 @@ const AboutTab = () => {
   ];
 
   const youtubeVideoId = "48CTgZ8oB_w";
-  const benefitTextStyle = { color: '#E3F5F6', fontFamily: "'Manrope', sans-serif", fontWeight: 500 };
+  const benefitTextStyle = { color: '#E3F5F6', fontFamily: "'Manrope', sans-serif", fontStyle: 'normal', fontWeight: 500 };
 
   return (
+    // THE LAPTOP FIX: Added md:px-10 lg:px-16 to give laptops breathing room, xl:px-0 leaves desktop exactly as it was!
     <div className="flex flex-col w-full pb-20 px-4 md:px-10 lg:px-16 xl:px-0 mx-auto max-w-[1380px]">
       
-      {/* Hero Text */}
       <FadeInView>
-        <p className="w-full text-[#E3F5F6] text-xl md:text-[28px] xl:text-[32px] font-medium leading-relaxed md:leading-[40px] mb-12 md:mb-[80px] lg:mb-[100px] xl:mb-[180px]">
-          SMRSC is a global multi-specialty robotic surgery conference bringing together surgeons, innovators, educators, and healthcare leaders.
+        <p className="w-full text-[#E3F5F6] text-xl md:text-[28px] xl:text-[32px] font-medium leading-relaxed md:leading-[40px] mb-12 md:mb-[120px] lg:mb-[160px] xl:mb-[215px]" style={{ fontFamily: "'Manrope', sans-serif" }}>
+          SMRSC is a global multi-specialty robotic surgery conference bringing together surgeons, innovators, educators, and healthcare leaders. Showcasing live procedures, innovation, and collaboration shaping the future of robotic surgery.
         </p>
       </FadeInView>
 
-      {/* Video Container */}
       <FadeInView delay={100}>
-        <div className="relative w-full bg-black overflow-hidden shadow-2xl rounded-[20px] md:rounded-[40px] aspect-video">
-          <iframe 
-            className="absolute top-0 left-0 w-full h-full"
-            src={`https://www.youtube.com/embed/${youtubeVideoId}`} 
-            title="SMRSC Conference Video" 
-            frameBorder="0" 
-            allowFullScreen
-          ></iframe>
+        <div className="relative w-full bg-black overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.25)] rounded-[20px] md:rounded-[40px]" style={{ aspectRatio: '1380/737' }}>
+          <iframe width="100%" height="100%" src={`https://www.youtube.com/embed/${youtubeVideoId}`} title="SMRSC Conference Video" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
         </div>
       </FadeInView>
 
-      {/* Heading Section */}
       <FadeInView>
-        <div className="w-full mt-16 md:mt-32 lg:mt-40">
-          <div className="text-[#E6E6E6] text-lg md:text-2xl font-medium mb-2">A global stage for</div>
-          <h2 className="text-[#E3F5F6] text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-tight uppercase font-blauer">
-            SURGICAL BREAKTHROUGHS
-          </h2>
+        <div className="w-full mt-20 md:mt-[140px] lg:mt-[200px] xl:mt-[300px]">
+          <div className="flex flex-col justify-center h-auto md:h-[47px] text-[#E6E6E6] text-xl md:text-[28px] lg:text-[32px] font-medium leading-tight md:leading-[32px]" style={{ fontFamily: "'Manrope', sans-serif" }}>A global stage for</div>
+          <h2 className="text-[#E3F5F6] text-[36px] md:text-[48px] lg:text-[56px] xl:text-[64px] font-semibold leading-tight md:leading-[1.1] xl:leading-[86px] uppercase mt-2 md:mt-0" style={{ fontFamily: "'Blauer Nue', sans-serif" }}>SURGICAL BREAKTHROUGHS</h2>
         </div>
       </FadeInView>
 
-      {/* Conference Cards */}
-      <div className="w-full mt-16 md:mt-32">
+      {/* Conference Cards Section */}
+      <div className="w-full mt-20 md:mt-[120px] lg:mt-[160px] xl:mt-[200px]">
         <FadeInView>
-          <h3 className="text-[#F8FFFF] text-2xl md:text-4xl font-medium mb-8 font-blauer">Conference at glance</h3>
+            <h3 className="text-[#F8FFFF] text-[28px] md:text-[36px] font-medium leading-tight md:leading-[40px] mb-8 md:mb-[50px]" style={{ fontFamily: "'Blauer Nue', sans-serif" }}>Conference at glance</h3>
         </FadeInView>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 lg:gap-x-8 gap-y-12">
           {conferenceCards.map((card, index) => (
             <FadeInView key={index} delay={index * 100}>
-              <div className="flex flex-col gap-4 group">
-                <div className="relative overflow-hidden rounded-[20px] aspect-[4/3] md:aspect-[645/459] bg-white/5">
-                  <Image src={card.src} alt={card.text} fill className="object-cover transition-transform duration-700 group-hover:scale-105" unoptimized />
+                <div className="flex flex-col gap-4 w-full">
+                  <div className="relative overflow-hidden group w-full h-[300px] md:h-auto md:aspect-[645/459] rounded-[20px] bg-gray-300">
+                    <Image 
+                      src={card.src}
+                      alt={card.text}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      unoptimized={true}
+                      loading="eager"        
+                      fetchPriority="low"    
+                    />
+                  </div>
+                  
+                  <div className="flex flex-col justify-center items-start gap-1 p-4 md:py-[10px] md:px-[24px] w-full h-auto min-h-[80px] md:h-[92px] rounded-[16px] bg-black/40 border border-white/10">
+                    <span className="text-[#E3F5F6] text-[18px] md:text-[20px] font-semibold leading-[24px]" style={{ fontFamily: "'Blauer Nue', sans-serif" }}>{card.text}</span>
+                  </div>
                 </div>
-                <div className="flex items-center p-5 md:p-6 min-h-[80px] rounded-[16px] bg-white/5 border border-white/10 backdrop-blur-md">
-                  <span className="text-[#E3F5F6] text-lg md:text-xl font-semibold leading-tight font-blauer">{card.text}</span>
-                </div>
-              </div>
             </FadeInView>
           ))}
         </div>
       </div>
 
-      {/* Benefit Cards - Refined for Laptop screens */}
-      <div className="w-full mt-24 md:mt-40">
+      {/* Benefit Cards Section */}
+      <div className="w-full mt-24 md:mt-[120px] lg:mt-[160px] xl:mt-[200px]">
         <FadeInView>
-          <h3 className="text-[#F8FFFF] text-2xl md:text-4xl font-medium mb-12 font-blauer">Who will benefit</h3>
+            <h3 className="text-[#F8FFFF] text-[28px] md:text-[36px] font-medium leading-tight md:leading-[40px] mb-10 md:mb-[80px]" style={{ fontFamily: "'Blauer Nue', sans-serif" }}>Who will benefit</h3>
         </FadeInView>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-x-12 lg:gap-y-16 xl:gap-y-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-16 md:gap-y-24 gap-x-8 xl:gap-x-12 w-full">
           {benefitCards.map((card, index) => {
-            const isEven = index % 2 !== 0; 
+            const isImageRight = index >= 2;
             return (
               <FadeInView key={index} delay={index * 100}>
-                <div className={`relative flex flex-col md:flex-row items-center w-full group`}>
-                  
-                  {/* Image Part - More flexible sizing for Laptops */}
-                  <div className={`
-                    relative w-full h-[240px] 
-                    md:w-[180px] md:h-[220px] 
-                    lg:w-[200px] lg:h-[240px] 
-                    xl:w-[228px] xl:h-[260px] 
-                    rounded-[16px] overflow-hidden z-10 flex-shrink-0
-                    md:absolute ${isEven ? 'md:right-0' : 'md:left-0'}
-                  `}>
-                    <Image src={card.src} alt={card.text} fill className="object-cover" unoptimized />
-                  </div>
-                  
-                  {/* Text Part - Adjusted padding/margins for Laptops */}
-                  <div className={`
-                    w-full 
-                    md:w-[90%] 
-                    bg-white/5 border border-white/5 backdrop-blur-lg rounded-[16px]
-                    p-6 pt-10 
-                    md:p-8 
-                    mt-[-30px] md:mt-0 
-                    min-h-[140px] md:min-h-[180px]
-                    flex items-center
-                    ${isEven 
-                      ? 'md:pr-[160px] lg:pr-[180px] xl:pr-[220px] md:text-left md:ml-0' 
-                      : 'md:pl-[160px] lg:pl-[180px] xl:pl-[220px] md:justify-end md:text-right md:mr-0'
-                    }
-                  `}>
-                    <p style={benefitTextStyle} className="text-xl md:text-2xl leading-snug lg:max-w-[300px]">
-                      {card.text}
-                    </p>
-                  </div>
+                <div className="flex flex-col md:flex-row items-center relative h-auto md:h-[260px] w-full">
+                    
+                    <div className={`relative w-full h-[250px] md:h-[260px] md:w-[200px] xl:w-[228px] rounded-[16px] overflow-hidden z-10 md:absolute ${isImageRight ? 'md:right-0' : 'md:left-0'}`}>
+                      <Image 
+                        src={card.src} 
+                        alt={card.text} 
+                        fill 
+                        className="object-cover"
+                        unoptimized={true}
+                        loading="eager"        
+                        fetchPriority="low"    
+                      />
+                    </div>
+                    
+                    <div className={`flex flex-col justify-center gap-1 w-full md:w-[calc(100%-40px)] xl:w-[580px] h-auto min-h-[140px] md:h-[195px] p-6 md:py-[10px] md:px-[24px] rounded-[16px] bg-black/40 relative mt-[-20px] md:mt-0 md:bg-opacity-40 z-0 md:z-auto ${isImageRight ? 'items-start md:mr-[40px]' : 'items-start md:items-end md:ml-[40px]'}`} style={{ alignItems: isImageRight ? 'flex-start' : undefined }}>
+                      <p style={{ ...benefitTextStyle, width: '100%', maxWidth: '270px' }} className="text-[20px] md:text-[24px] leading-[28px] md:leading-[32px]">{card.text}</p>
+                    </div>
 
                 </div>
               </FadeInView>
@@ -160,7 +148,6 @@ const AboutTab = () => {
 
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500&display=swap');
-        .font-blauer { font-family: 'Blauer Nue', sans-serif; }
       `}</style>
     </div>
   );
