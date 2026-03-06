@@ -221,8 +221,9 @@ const Overview = () => {
     <div className="w-full max-w-[100vw] flex flex-col items-center animate-fadeIn overflow-x-hidden">
       
       {/* 1. Top Text Section */}
-      <div className="w-full max-w-[1380px] px-4 md:px-0 flex flex-col">
-         <p className="text-[#E3F5F6] font-manrope text-[24px] md:text-[32px] font-medium leading-[32px] md:leading-[40px]">
+      {/* Added responsive laptop margins (lg:px-16 xl:px-24) to prevent text hitting the screen edge */}
+      <div className="w-full max-w-[1380px] px-4 md:px-8 lg:px-16 xl:px-24 2xl:px-8 flex flex-col">
+         <p className="text-[#E3F5F6] font-manrope text-[20px] md:text-[24px] lg:text-[28px] xl:text-[32px] font-medium leading-[32px] md:leading-[40px]">
            SMRSC 2026 brings together live surgery, innovation, and global expertise across three focused days. Explore the experiences, sessions, and programs that define the conference.
          </p>
 
@@ -251,17 +252,17 @@ const Overview = () => {
         viewport={{ once: true }}
         className="relative w-full min-h-[500px] md:h-screen flex flex-col items-center justify-start pb-20 overflow-visible"
       >
-        <div className="relative flex items-center justify-center w-full overflow-visible px-4 md:px-10">
+        <div className="relative flex items-center justify-center w-full overflow-visible px-4 md:px-10 lg:px-16 xl:px-24">
           
           {/* LEFT ARROW - Positioned per Section3 */}
-          <div className="absolute left-8 md:left-0 z-[60]">
+          <div className="absolute left-8 md:left-4 lg:left-12 xl:left-16 z-[60]">
             <button onClick={() => paginate(-1)} className={arrowBtnClass}>
               <ChevronLeft className="text-black w-full h-full" />
             </button>
           </div>
 
           {/* RIGHT ARROW - Positioned per Section3 */}
-          <div className="absolute right-8 md:right-0 z-[60]">
+          <div className="absolute right-8 md:right-4 lg:right-12 xl:right-16 z-[60]">
              <button onClick={() => paginate(1)} className={arrowBtnClass}>
                <ChevronRight className="text-black w-full h-full" />
              </button>
@@ -319,11 +320,12 @@ const Overview = () => {
       </motion.div>
 
       {/* 3. Bottom Section */}
+      {/* Added responsive laptop margins (lg:px-16 xl:px-24) to the wrapper */}
       <div 
-        className="w-full flex flex-col items-center justify-center max-w-[1380px] px-4 md:px-0 mt-20 md:mt-[230px]"
+        className="w-full flex flex-col items-center justify-center max-w-[1380px] px-4 md:px-8 lg:px-16 xl:px-24 2xl:px-8 mt-20 md:mt-[230px]"
       >
         <div 
-          className="w-full flex flex-col items-start mb-20 md:mb-[350px]" 
+          className="w-full flex flex-col items-start mb-20 md:mb-[250px] xl:mb-[350px]" 
         >
           <div 
             style={{
@@ -344,7 +346,7 @@ const Overview = () => {
             Three days....
           </div>
           <div 
-            className="text-[32px] leading-[40px] md:text-[64px] md:leading-[86px]"
+            className="text-[32px] leading-[40px] md:text-[54px] xl:text-[64px] md:leading-[70px] xl:leading-[86px]"
             style={{
               color: '#E3F5F6',
               fontFamily: '"Blauer Nue", sans-serif',
@@ -358,8 +360,9 @@ const Overview = () => {
         </div>
 
         {/* DAY 1 CARD */}
-        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-10 md:gap-[80px] mb-20 md:mb-[200px]">
-           <div className="shrink-0 w-full md:w-[810px] h-[300px] md:h-[489px] relative rounded-[24px] overflow-hidden">
+        {/* Switched fixed widths to flexible percentages (lg:w-[55%]) so cards fit cleanly on 13" and 15" laptops */}
+        <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12 xl:gap-[80px] mb-20 lg:mb-[150px] xl:mb-[200px]">
+           <div className="shrink-0 w-full lg:w-[55%] xl:w-[810px] h-[300px] lg:h-[400px] xl:h-[489px] relative rounded-[24px] overflow-hidden">
              <img 
                src="/images/explore/image7.webp" 
                alt="Day 1 Science" 
@@ -367,8 +370,9 @@ const Overview = () => {
              />
            </div>
            
-           <div className="flex flex-col items-start justify-center w-full max-w-[445px]">
-             <h3 className="text-[28px] leading-[32px] md:text-[36px] md:leading-[40px]" style={dayHeadingStyle}>
+           <div className="flex flex-col items-start justify-center w-full lg:w-[45%] xl:max-w-[445px]">
+             {/* Scaled the text size logically: md text is a bit smaller, xl jumps to full size */}
+             <h3 className="text-[28px] leading-[32px] lg:text-[32px] xl:text-[36px] lg:leading-[36px] xl:leading-[40px]" style={dayHeadingStyle}>
                Day 1 - Science, Insight & Discussion
              </h3>
              <p style={dayParaStyle}>
@@ -382,8 +386,8 @@ const Overview = () => {
         </div>
 
         {/* DAY 2 CARD */}
-        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-10 md:gap-[80px] mb-20 md:mb-[200px]">
-           <div className="shrink-0 w-full md:w-[810px] h-[300px] md:h-[489px] relative rounded-[24px] overflow-hidden">
+        <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12 xl:gap-[80px] mb-20 lg:mb-[150px] xl:mb-[200px]">
+           <div className="shrink-0 w-full lg:w-[55%] xl:w-[810px] h-[300px] lg:h-[400px] xl:h-[489px] relative rounded-[24px] overflow-hidden">
              <img 
                src="/images/explore/image8.webp" 
                alt="Day 2 Live Surgery" 
@@ -391,8 +395,8 @@ const Overview = () => {
              />
            </div>
            
-           <div className="flex flex-col items-start justify-center w-full max-w-[445px]">
-             <h3 className="text-[28px] leading-[32px] md:text-[36px] md:leading-[40px]" style={dayHeadingStyle}>
+           <div className="flex flex-col items-start justify-center w-full lg:w-[45%] xl:max-w-[445px]">
+             <h3 className="text-[28px] leading-[32px] lg:text-[32px] xl:text-[36px] lg:leading-[36px] xl:leading-[40px]" style={dayHeadingStyle}>
                Day 2 - Live Surgery & Hands-On Experience
              </h3>
              <p style={dayParaStyle}>
@@ -404,9 +408,6 @@ const Overview = () => {
              </div>
            </div>
         </div>
-
-           
-      
       </div>
     </div>
   );
