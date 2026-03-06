@@ -69,7 +69,7 @@ const Section3 = () => {
   const alphabetStyle = { color: '#E1C583', fontFamily: 'Roba, sans-serif', fontStyle: 'normal', fontWeight: '400', lineHeight: '56px', textTransform: 'uppercase', filter: 'blur(5.45px)', userSelect: 'none' };
   const leftGlowStyle = { width: '312px', height: '388px', borderRadius: '388px', background: '#2233F0', filter: 'blur(200px)', position: 'absolute', left: '-150px', top: '50%', transform: 'translate(-20%, -50%)', zIndex: -1 };
   const indicatorContainerStyle = { display: 'inline-flex', padding: '0.75rem 1.125rem', alignItems: 'center', gap: '0.5rem', borderRadius: '1.25rem', background: 'rgba(227, 245, 246, 0.70)', boxShadow: '0 1px 2px 0 rgba(255, 255, 255, 0.25) inset', backdropFilter: 'blur(4px)' };
-  const arrowBtnClass = "flex w-[40px] md:w-[48px] h-[40px] md:h-[48px] p-[8px] md:p-[10px] justify-center items-center gap-[10px] rounded-full bg-white hover:bg-white/90 transition-all shrink-0 z-50 active:scale-95 cursor-pointer";
+  const arrowBtnClass = "flex w-[40px] md:w-[48px] h-[40px] md:h-[48px] p-[8px] md:p-[10px] justify-center items-center gap-[10px] rounded-full bg-white hover:bg-white/90 transition-all shrink-0 z-50 active:scale-95 cursor-pointer shadow-lg";
 
   return (
     <motion.section className="relative w-full overflow-hidden bg-black" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10%" }} variants={containerVariants}>
@@ -85,16 +85,17 @@ const Section3 = () => {
       <div className="relative w-full min-h-screen flex flex-col items-center justify-center px-6 pt-10 md:pt-20 pb-10">
         <div className="absolute left-0 top-0 w-full h-full pointer-events-none">
           <div style={leftGlowStyle} aria-hidden="true" />
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 0.8 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} style={alphabetStyle} className="absolute left-[-100px] md:left-[-150px] top-1/2 -translate-y-1/2 z-0 text-[250px] md:text-[500px]">
+          {/* Scaled the "O" down on md and lg screens so it isn't overpowering on laptops */}
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 0.8 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} style={alphabetStyle} className="absolute left-[-100px] md:left-[-150px] top-1/2 -translate-y-1/2 z-0 text-[250px] md:text-[350px] lg:text-[500px]">
             O
           </motion.div>
         </div>
 
         <div className="relative z-10 flex flex-col items-center space-y-8 md:space-y-12 w-full">
-          <motion.h2 variants={itemVariants} style={textStyle} className="text-3xl md:text-6xl px-4">From landmark moments in 2024 and 2025</motion.h2>
+          <motion.h2 variants={itemVariants} style={textStyle} className="text-3xl md:text-5xl lg:text-6xl px-4">From landmark moments in 2024 and 2025</motion.h2>
           
           <motion.div variants={itemVariants} className="flex justify-center items-center py-2 md:py-4">
-            <svg width="2" viewBox="0 0 1 219" fill="none" className="overflow-visible h-[120px] md:h-[219px]">
+            <svg width="2" viewBox="0 0 1 219" fill="none" className="overflow-visible h-[120px] md:h-[180px] lg:h-[219px]">
               <defs>
                 <linearGradient id="lineGradient" x1="0.5" y1="0" x2="0.5" y2="219" gradientUnits="userSpaceOnUse">
                   <stop stopColor="#634B19" />
@@ -106,23 +107,27 @@ const Section3 = () => {
             </svg>
           </motion.div>
 
-          <motion.h2 variants={itemVariants} style={textStyle} className="text-3xl md:text-6xl px-4">Now, see what unfolds in 2026</motion.h2>
+          <motion.h2 variants={itemVariants} style={textStyle} className="text-3xl md:text-5xl lg:text-6xl px-4">Now, see what unfolds in 2026</motion.h2>
 
           <motion.div variants={itemVariants} className="flex justify-center items-center py-2 md:py-4">
-            <svg width="2" viewBox="0 0 1 219" fill="none" className="overflow-visible h-[120px] md:h-[219px]">
+            <svg width="2" viewBox="0 0 1 219" fill="none" className="overflow-visible h-[120px] md:h-[180px] lg:h-[219px]">
               <motion.line x1="0.5" x2="0.5" y1="0" y2="219" stroke="url(#lineGradient)" strokeWidth="2" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeInOut" }} />
             </svg>
           </motion.div>
         </div>
       </div>
 
-      <motion.div variants={itemVariants} className="relative w-full min-h-[500px] md:h-screen flex flex-col items-center justify-start pb-20 overflow-visible">
+      {/* Changed md:h-screen to py-12 so it doesn't arbitrarily cut off content on shorter laptop heights */}
+      <motion.div variants={itemVariants} className="relative w-full flex flex-col items-center justify-start pb-20 py-12 overflow-visible">
         <div className="relative flex items-center justify-center w-full overflow-visible px-4 md:px-10">
-          <div className="absolute left-8 md:left-24 z-[60]">
+          
+          {/* Arrow positions made responsive so they don't clip into the image on laptops */}
+          <div className="absolute left-2 md:left-8 lg:left-16 xl:left-24 z-[60]">
             <button onClick={() => paginate(-1)} className={arrowBtnClass}><ChevronLeft className="text-black w-full h-full" /></button>
           </div>
 
-          <div className={`relative overflow-visible shrink-0 transition-all duration-300 ${isMobile ? "w-[340px] h-[470px]" : "w-full max-w-[340px] md:max-w-[1380px] h-[450px] md:h-[720px]"}`}>
+          {/* This is the magic fix! Gradually increasing max-width and height breakpoints */}
+          <div className={`relative overflow-visible shrink-0 transition-all duration-300 ${isMobile ? "w-[340px] h-[470px]" : "w-full max-w-[700px] lg:max-w-[1000px] xl:max-w-[1380px] h-[400px] lg:h-[550px] xl:h-[720px]"}`}>
             {images.map((img, index) => {
               const position = getPosition(index);
               return (
@@ -136,7 +141,8 @@ const Section3 = () => {
             })}
           </div>
 
-          <div className="absolute right-8 md:right-24 z-[60]">
+          {/* Arrow positions made responsive */}
+          <div className="absolute right-2 md:right-8 lg:right-16 xl:right-24 z-[60]">
             <button onClick={() => paginate(1)} className={arrowBtnClass}><ChevronRight className="text-black w-full h-full" /></button>
           </div>
         </div>
