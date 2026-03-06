@@ -72,14 +72,13 @@ const PastEventsContent = () => {
     <div className="min-h-screen w-full bg-[#020617] flex flex-col items-center justify-start overflow-x-hidden pt-24 md:pt-0">
       
       {/* --- HERO VIDEO SECTION --- */}
-      <div className="relative z-10 w-full flex justify-center px-4 md:px-8">
+      {/* REFACTORED: Added lg:px-16 xl:px-24 2xl:px-8 to pinch the video in on laptops */}
+      <div className="relative z-10 w-full flex justify-center px-4 md:px-8 lg:px-16 xl:px-24 2xl:px-8">
         <div
           style={{
             marginTop: "98px",
             marginBottom: "65px",
           }}
-          // Mobile: Rectangle (aspect-video) and standard curves (rounded-[24px])
-          // Desktop (md:): Keeps your exact original 1693/833 aspect ratio and 8px 200px border radius
           className="relative w-full max-w-[1693px] bg-gray-900 shadow-2xl group overflow-hidden aspect-video rounded-[24px] md:aspect-[1693/833] md:rounded-[8px_200px]"
         >
           <video
@@ -104,7 +103,8 @@ const PastEventsContent = () => {
               fontWeight: 500,
             }}
           >
-            <h1 className="text-3xl md:text-5xl lg:text-[64px] leading-tight lg:leading-[70px]">
+            {/* REFACTORED: Scaled lg:text down slightly to 54px so it fits nicely on laptops, returning to 64px on xl desktop */}
+            <h1 className="text-3xl md:text-5xl lg:text-[54px] xl:text-[64px] leading-tight lg:leading-[60px] xl:leading-[70px]">
               {heroText}
             </h1>
           </div>
@@ -113,7 +113,8 @@ const PastEventsContent = () => {
       </div>
 
       {/* --- NAVIGATION TABS --- */}
-      <div className="w-full max-w-[1380px] mx-auto mb-10 flex items-center justify-start px-4 md:px-8 gap-4 md:gap-6 overflow-x-auto hide-scrollbar">
+      {/* REFACTORED: Added lg:px-16 xl:px-24 2xl:px-8 to align the tabs perfectly with the laptop layout */}
+      <div className="w-full max-w-[1440px] mx-auto mb-10 flex items-center justify-start px-4 md:px-8 lg:px-16 xl:px-24 2xl:px-8 gap-4 md:gap-6 overflow-x-auto hide-scrollbar">
         <button 
           onClick={() => handleTabChange('2025')}
           className={`${baseButtonStyles} ${activeTab === '2025' ? activeStyle : inactiveStyle}`}
@@ -129,7 +130,8 @@ const PastEventsContent = () => {
       </div>
 
       {/* --- CONTENT SECTION --- */}
-      <div className="w-full mb-20 min-h-[50vh] flex flex-col items-center">
+      {/* REFACTORED: Added laptop margins here just in case the inner components bleed full-width */}
+      <div className="w-full mb-20 min-h-[50vh] flex flex-col items-center px-4 md:px-8 lg:px-16 xl:px-24 2xl:px-8 max-w-[1440px] mx-auto">
         {activeTab === '2025' && <SMRSC2025 />}
         {activeTab === '2024' && <SMRSC2024 />}
       </div>
