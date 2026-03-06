@@ -28,7 +28,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen bg-[#020617]`}>
         
       {/* Top Progress Bar - YouTube Style (Ultra Smooth Fade-Out) */}
         <NextTopLoader
@@ -50,8 +50,13 @@ export default function RootLayout({ children }) {
         {/* 2. Initialize Smooth Scroll */}
         <SmoothScroll />
         
-        {/* 3. Main Content */}
-        {children}
+        {/* 3. Main Content - Wrapped with responsive laptop margins */}
+        <main className="flex-grow w-full flex flex-col items-center overflow-x-hidden">
+          {/* This inner div ensures max-width and laptop padding globally */}
+          <div className="w-full max-w-[1440px] px-4 md:px-8 lg:px-16 xl:px-24 2xl:px-8">
+            {children}
+          </div>
+        </main>
         
         {/* 4. Mobile Components */}
         <div className="md:hidden">
