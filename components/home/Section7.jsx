@@ -86,7 +86,8 @@ const Section7 = () => {
     // Fixed the huge 200px margin leap and reinstated padding for medium screens
     <section className="w-full max-w-[1380px] mt-24 md:mt-[120px] lg:mt-[160px] xl:mt-[200px] px-6 lg:px-12 xl:px-0 mx-auto overflow-hidden">
       <FadeInView delay={200}>
-        <h3 className="text-[#F8FFFF] text-[24px] md:text-[28px] lg:text-[36px] font-medium leading-tight md:leading-[40px]" style={{ fontFamily: "'Blauer Nue', sans-serif" }}>
+        {/* Added text-center here to center the text */}
+        <h3 className="text-center text-[#F8FFFF] text-[24px] md:text-[28px] lg:text-[36px] font-medium leading-tight md:leading-[40px]" style={{ fontFamily: "'Blauer Nue', sans-serif" }}>
           In association with
         </h3>
         <LogoScroller />
