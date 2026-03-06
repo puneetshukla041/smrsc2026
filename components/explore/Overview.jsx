@@ -254,14 +254,14 @@ const Overview = () => {
         <div className="relative flex items-center justify-center w-full overflow-visible px-4 md:px-10">
           
           {/* LEFT ARROW - Positioned per Section3 */}
-          <div className="absolute left-8 md:left-24 z-[60]">
+          <div className="absolute left-8 md:left-0 z-[60]">
             <button onClick={() => paginate(-1)} className={arrowBtnClass}>
               <ChevronLeft className="text-black w-full h-full" />
             </button>
           </div>
 
           {/* RIGHT ARROW - Positioned per Section3 */}
-          <div className="absolute right-8 md:right-24 z-[60]">
+          <div className="absolute right-8 md:right-0 z-[60]">
              <button onClick={() => paginate(1)} className={arrowBtnClass}>
                <ChevronRight className="text-black w-full h-full" />
              </button>
@@ -272,9 +272,9 @@ const Overview = () => {
             className={`relative overflow-visible shrink-0 transition-all duration-300 ${
               isMobile 
                 ? "w-[340px] h-[470px]" 
-                : "w-full max-w-[340px] md:max-w-[1380px] h-[450px] md:h-[720px]"
+                : "w-full max-w-[340px] md:max-w-[1250px] h-[450px] md:h-[720px]"
             }`}
-          >
+          > 
             {images.map((img, index) => {
               const position = getPosition(index);
               
