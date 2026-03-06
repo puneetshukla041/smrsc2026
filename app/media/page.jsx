@@ -45,8 +45,10 @@ const MediaContent = () => {
     <main className="min-h-screen w-full bg-[#020617] pt-[100px] pb-20 overflow-x-hidden">
       
       {/* --- Hero Image Section --- */}
-      <section className="w-full px-4 md:px-10 flex justify-center">
-        <div className="relative w-full max-w-[1693px] h-[500px] md:h-[833px] rounded-[40px] overflow-hidden">
+      <section className="w-full px-4 md:px-8 lg:px-16 xl:px-24 2xl:px-8 flex justify-center">
+        {/* REFACTORED: Replaced fixed heights (h-[500px] md:h-[833px]) with proportional aspect ratios.
+            This prevents the browser from cropping the sides and "zooming in" on laptops! */}
+        <div className="relative w-full max-w-[1693px] aspect-[350/476] md:aspect-[1693/833] rounded-[24px] md:rounded-[40px] overflow-hidden">
           <img 
             src="/images/media/image1.webp" 
             alt="Media Hero" 
@@ -61,8 +63,7 @@ const MediaContent = () => {
       </section>
 
       {/* --- Navigation Tabs --- */}
-      {/* Removed md:pl-[273px] and added max-w-[1400px] mx-auto md:px-10 for consistent alignment */}
-      <section className="w-full max-w-[1400px] mx-auto mt-[100px] md:mt-[200px] mb-16 px-4 md:px-10 flex justify-center md:justify-start">
+      <section className="w-full max-w-[1440px] mx-auto mt-[100px] md:mt-[200px] mb-16 px-4 md:px-8 lg:px-16 xl:px-24 2xl:px-8 flex justify-center md:justify-start">
          <div className="flex items-center gap-[20px] flex-wrap justify-center md:justify-start">
             <button onClick={() => handleTabChange('blogs')} className={getTabClass('blogs')}>
               Blogs
@@ -75,8 +76,7 @@ const MediaContent = () => {
       </section>
 
       {/* --- Dynamic Content Area --- */}
-      {/* Added max-w-[1400px] mx-auto md:px-10 to match the tabs section above */}
-      <section className="w-full max-w-[1400px] mx-auto px-4 md:px-10 flex justify-center min-h-[400px]">
+      <section className="w-full max-w-[1440px] mx-auto px-4 md:px-8 lg:px-16 xl:px-24 2xl:px-8 flex justify-center min-h-[400px]">
          <AnimatePresence mode="wait">
            <motion.div
              key={activeTab}
