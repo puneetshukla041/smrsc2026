@@ -459,5 +459,4 @@ const FacultyTab = () => {
     </div>
   );
 };
-
 export default FacultyTab;

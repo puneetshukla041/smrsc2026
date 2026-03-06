@@ -30,7 +30,7 @@
     "**/*.mts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "components/home/Section7.jsx"  ],
   "exclude": [
     "node_modules"
   ]
