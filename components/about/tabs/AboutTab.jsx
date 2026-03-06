@@ -57,17 +57,18 @@ const AboutTab = () => {
   const benefitTextStyle = { color: '#E3F5F6', fontFamily: "'Manrope', sans-serif", fontStyle: 'normal', fontWeight: 500 };
 
   return (
-    // THE LAPTOP FIX: Added md:px-10 lg:px-16 to give laptops breathing room, xl:px-0 leaves desktop exactly as it was!
-    <div className="flex flex-col w-full pb-20 px-4 md:px-10 lg:px-16 xl:px-0 mx-auto max-w-[1380px]">
+    // REMOVED HORIZONTAL PADDING: The parent container (Section2Content) already handles the responsive padding. 
+    // Adding px-16 here was causing "double padding" on laptops!
+    <div className="flex flex-col w-full pb-20 mx-auto max-w-[1380px]">
       
       <FadeInView>
-        <p className="w-full text-[#E3F5F6] text-xl md:text-[28px] xl:text-[32px] font-medium leading-relaxed md:leading-[40px] mb-12 md:mb-[120px] lg:mb-[160px] xl:mb-[215px]" style={{ fontFamily: "'Manrope', sans-serif" }}>
+        <p className="w-full text-[#E3F5F6] text-xl md:text-[24px] lg:text-[28px] xl:text-[32px] font-medium leading-relaxed md:leading-[40px] mb-12 md:mb-[120px] lg:mb-[160px] xl:mb-[215px]" style={{ fontFamily: "'Manrope', sans-serif" }}>
           SMRSC is a global multi-specialty robotic surgery conference bringing together surgeons, innovators, educators, and healthcare leaders. Showcasing live procedures, innovation, and collaboration shaping the future of robotic surgery.
         </p>
       </FadeInView>
 
       <FadeInView delay={100}>
-        <div className="relative w-full bg-black overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.25)] rounded-[20px] md:rounded-[40px]" style={{ aspectRatio: '1380/737' }}>
+        <div className="relative w-full bg-black overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.25)] rounded-[20px] md:rounded-[40px] aspect-video md:aspect-[1380/737]">
           <iframe width="100%" height="100%" src={`https://www.youtube.com/embed/${youtubeVideoId}`} title="SMRSC Conference Video" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
         </div>
       </FadeInView>
@@ -82,14 +83,14 @@ const AboutTab = () => {
       {/* Conference Cards Section */}
       <div className="w-full mt-20 md:mt-[120px] lg:mt-[160px] xl:mt-[200px]">
         <FadeInView>
-            <h3 className="text-[#F8FFFF] text-[28px] md:text-[36px] font-medium leading-tight md:leading-[40px] mb-8 md:mb-[50px]" style={{ fontFamily: "'Blauer Nue', sans-serif" }}>Conference at glance</h3>
+            <h3 className="text-[#F8FFFF] text-[28px] md:text-[36px] font-medium leading-tight md:leading-[40px] mb-8 md:mb-[50px]" style={{ fontFamily: "'Blauer Nue', sans-serif" }}>Conference at a glance</h3>
         </FadeInView>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 lg:gap-x-8 gap-y-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {conferenceCards.map((card, index) => (
             <FadeInView key={index} delay={index * 100}>
-                <div className="flex flex-col gap-4 w-full">
-                  <div className="relative overflow-hidden group w-full h-[300px] md:h-auto md:aspect-[645/459] rounded-[20px] bg-gray-300">
+                <div className="flex flex-col gap-4 w-full h-full">
+                  <div className="relative overflow-hidden group w-full h-[250px] md:h-auto md:aspect-[645/459] rounded-[20px] bg-gray-300">
                     <Image 
                       src={card.src}
                       alt={card.text}
@@ -101,7 +102,7 @@ const AboutTab = () => {
                     />
                   </div>
                   
-                  <div className="flex flex-col justify-center items-start gap-1 p-4 md:py-[10px] md:px-[24px] w-full h-auto min-h-[80px] md:h-[92px] rounded-[16px] bg-black/40 border border-white/10">
+                  <div className="flex flex-col justify-center items-start gap-1 p-4 md:py-[16px] md:px-[24px] w-full h-auto min-h-[80px] md:min-h-[92px] rounded-[16px] bg-black/40 border border-white/10 flex-grow">
                     <span className="text-[#E3F5F6] text-[18px] md:text-[20px] font-semibold leading-[24px]" style={{ fontFamily: "'Blauer Nue', sans-serif" }}>{card.text}</span>
                   </div>
                 </div>
@@ -116,27 +117,39 @@ const AboutTab = () => {
             <h3 className="text-[#F8FFFF] text-[28px] md:text-[36px] font-medium leading-tight md:leading-[40px] mb-10 md:mb-[80px]" style={{ fontFamily: "'Blauer Nue', sans-serif" }}>Who will benefit</h3>
         </FadeInView>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-16 md:gap-y-24 gap-x-8 xl:gap-x-12 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-12 md:gap-y-16 gap-x-8 xl:gap-x-12 w-full">
           {benefitCards.map((card, index) => {
             const isImageRight = index >= 2;
+            
             return (
               <FadeInView key={index} delay={index * 100}>
-                <div className="flex flex-col md:flex-row items-center relative h-auto md:h-[260px] w-full">
+                {/* REFACTORED: Replaced brittle absolute positioning with a robust Flexbox layout */}
+                <div className={`flex flex-col md:flex-row items-center w-full ${isImageRight ? 'md:flex-row-reverse' : ''}`}>
                     
-                    <div className={`relative w-full h-[250px] md:h-[260px] md:w-[200px] xl:w-[228px] rounded-[16px] overflow-hidden z-10 md:absolute ${isImageRight ? 'md:right-0' : 'md:left-0'}`}>
+                    {/* Image Box */}
+                    <div className="relative w-full md:w-[220px] xl:w-[228px] h-[250px] md:h-[260px] rounded-[16px] overflow-hidden shrink-0 z-10 shadow-xl">
                       <Image 
                         src={card.src} 
                         alt={card.text} 
                         fill 
-                        className="object-cover"
+                        className="object-cover transition-transform duration-700 hover:scale-105"
                         unoptimized={true}
                         loading="eager"        
                         fetchPriority="low"    
                       />
                     </div>
                     
-                    <div className={`flex flex-col justify-center gap-1 w-full md:w-[calc(100%-40px)] xl:w-[580px] h-auto min-h-[140px] md:h-[195px] p-6 md:py-[10px] md:px-[24px] rounded-[16px] bg-black/40 relative mt-[-20px] md:mt-0 md:bg-opacity-40 z-0 md:z-auto ${isImageRight ? 'items-start md:mr-[40px]' : 'items-start md:items-end md:ml-[40px]'}`} style={{ alignItems: isImageRight ? 'flex-start' : undefined }}>
-                      <p style={{ ...benefitTextStyle, width: '100%', maxWidth: '270px' }} className="text-[20px] md:text-[24px] leading-[28px] md:leading-[32px]">{card.text}</p>
+                    {/* Text Box */}
+                    <div 
+                      className={`flex flex-col justify-center w-full md:flex-grow h-auto min-h-[140px] md:h-[195px] p-6 rounded-[16px] bg-black/40 border border-white/10 relative z-0 mt-[-20px] md:mt-0 backdrop-blur-sm
+                      ${isImageRight 
+                        ? 'md:mr-[-40px] md:pr-[60px] items-start text-left' 
+                        : 'md:ml-[-40px] md:pl-[60px] items-start md:items-end text-left md:text-right'
+                      }`}
+                    >
+                      <p style={benefitTextStyle} className="text-[20px] md:text-[22px] xl:text-[24px] leading-[28px] md:leading-[32px] max-w-[270px]">
+                        {card.text}
+                      </p>
                     </div>
 
                 </div>
