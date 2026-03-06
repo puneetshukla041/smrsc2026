@@ -50,51 +50,81 @@ const Section5 = () => {
   };
   const textVariants = { center: { y: 0, opacity: 1, transition: { delay: 0.2, duration: 0.6, ease: "easeOut" } }, left: { y: 30, opacity: 0 }, right: { y: 30, opacity: 0 }, "far-left": { y: 30, opacity: 0 }, "far-right": { y: 30, opacity: 0 } };
 
-  const gridCardStyle = { height: '140px', borderRadius: '20px', border: '1px solid #5B6D6E', background: 'rgba(9, 9, 9, 0.40)', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', overflow: 'hidden', transition: 'all 0.3s ease' };
-  const gridCardTextStyle = { color: '#E3F5F6', textAlign: 'center', fontFamily: '"Blauer Nue", sans-serif', fontSize: '32px', fontStyle: 'normal', fontWeight: 600, lineHeight: '24px' };
+  // Responsive grid card height so it doesn't look overly blocky on laptops
+  const gridCardStyle = { borderRadius: '20px', border: '1px solid #5B6D6E', background: 'rgba(9, 9, 9, 0.40)', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', overflow: 'hidden', transition: 'all 0.3s ease' };
+  
+  // Responsive text size so long specialty names don't break on narrow laptop screens
+  const gridCardTextStyle = { color: '#E3F5F6', textAlign: 'center', fontFamily: '"Blauer Nue", sans-serif', fontStyle: 'normal', fontWeight: 600, lineHeight: '24px' };
+  
   const carouselFixedHeadingStyle = { color: '#F8FFFF', fontFamily: '"Blauer Nue", sans-serif', fontStyle: 'normal', fontWeight: '500', position: 'absolute', left: '0px', zIndex: 40, whiteSpace: 'nowrap' };
   const indicatorContainerStyle = { display: 'inline-flex', padding: '0.75rem 1.125rem', alignItems: 'center', gap: '0.5rem', borderRadius: '1.25rem', background: 'rgba(227, 245, 246, 0.70)', boxShadow: '0 1px 2px 0 rgba(255, 255, 255, 0.25) inset', backdropFilter: 'blur(4px)' };
-  const arrowBtnStyle = { display: 'flex', width: '48px', height: '48px', padding: '10px', justifyContent: 'center', alignItems: 'center', gap: '10px', borderRadius: '100px', background: '#FFF', border: 'none', cursor: 'pointer', zIndex: 60, transition: 'transform 0.2s ease' };
+  
+  // Adjusted z-index from 60 to 50 so it doesn't sit over dropdown menus or overlays
+  const arrowBtnStyle = { display: 'flex', width: '48px', height: '48px', padding: '10px', justifyContent: 'center', alignItems: 'center', gap: '10px', borderRadius: '100px', background: '#FFF', border: 'none', cursor: 'pointer', zIndex: 50, transition: 'transform 0.2s ease' };
 
   return (
-    <section id="section5" className="w-full bg-[#020617]">
+    <section id="section5" className="w-full bg-[#020617] overflow-x-hidden">
       <style jsx global>{`
         @font-face { font-family: 'Blauer Nue'; src: url('/fonts/BlauerNue.otf') format('opentype'); font-weight: normal; font-style: normal; }
       `}</style>
 
-      <div className="min-h-screen w-full flex flex-col items-center justify-center py-20 px-6">
-        <div className="max-w-[1380px] w-full flex flex-col gap-12">
-          <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-[28px] leading-tight lg:text-[36px] lg:leading-[40px]" style={{ color: '#F8FFFF', fontFamily: '"Blauer Nue", sans-serif', fontStyle: 'normal', fontWeight: 500 }}>
+      {/* Specialty Grid Section - Adjusted min-h-screen to natural padding to avoid weird vertical gaps on laptops */}
+      <div className="w-full flex flex-col items-center justify-center py-20 lg:py-24 px-6 md:px-12">
+        <div className="max-w-[1380px] w-full flex flex-col gap-10 md:gap-12">
+          <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-[28px] leading-tight md:text-[36px] lg:text-[48px] lg:leading-[1.1]" style={{ color: '#F8FFFF', fontFamily: '"Blauer Nue", sans-serif', fontStyle: 'normal', fontWeight: 500 }}>
             Robotic surgery Across Specialties
           </motion.h2>
 
-          <div className="flex flex-wrap justify-center xl:justify-start gap-6">
+          {/* Used CSS Grid here instead of Flex Wrap so the boxes stretch elegantly across the screen width */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 w-full">
             {specialties.map((item) => (
-              <motion.div key={item.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: item.id * 0.1 }} style={gridCardStyle} className="group w-full max-w-[420px]" >
-                <span style={gridCardTextStyle} className={`transition-opacity duration-300 ${mobileShowCount ? 'opacity-0' : 'opacity-100'} lg:opacity-100 lg:group-hover:opacity-0`}>{item.title}</span>
-                <span style={gridCardTextStyle} className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${mobileShowCount ? 'opacity-100' : 'opacity-0'} lg:opacity-0 lg:group-hover:opacity-100`}>{item.count}</span>
+              <motion.div 
+                key={item.id} 
+                initial={{ opacity: 0, y: 20 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true }} 
+                transition={{ duration: 0.5, delay: item.id * 0.1 }} 
+                style={gridCardStyle} 
+                // Removed max-w, let the grid dictate the width. Height responds to screen size.
+                className="group w-full h-[120px] lg:h-[140px]" 
+              >
+                {/* Text scales down on md/lg so long words like Gastroenterology fit */}
+                <span style={gridCardTextStyle} className={`text-[24px] lg:text-[32px] transition-opacity duration-300 ${mobileShowCount ? 'opacity-0' : 'opacity-100'} lg:opacity-100 lg:group-hover:opacity-0`}>{item.title}</span>
+                <span style={gridCardTextStyle} className={`text-[24px] lg:text-[32px] absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${mobileShowCount ? 'opacity-100' : 'opacity-0'} lg:opacity-0 lg:group-hover:opacity-100`}>{item.count}</span>
               </motion.div>
             ))}
           </div>
         </div>
       </div>
 
-      <div className="min-h-screen w-full flex flex-col items-center justify-center py-20 px-6 overflow-hidden">
-        <div className="relative w-full flex flex-col items-center justify-center">
-          <div className="relative flex flex-col lg:flex-row items-center justify-center w-full gap-8">
-            <div className="z-[60] absolute left-0 lg:static top-1/2 -translate-y-1/2 lg:translate-y-0"> 
+      {/* Highlights Carousel Section */}
+      <div className="w-full flex flex-col items-center justify-center pb-24 pt-12 md:pt-20 px-4 md:px-12 overflow-hidden">
+        <div className="relative w-full max-w-[1500px] flex flex-col items-center justify-center">
+          <div className="relative flex flex-col lg:flex-row items-center justify-center w-full lg:gap-8">
+            
+            {/* Arrows pulled inside on mobile, but placed on sides with spacing on desktop */}
+            <div className="z-[60] absolute left-2 md:left-4 lg:static top-1/2 -translate-y-1/2 lg:translate-y-0 hidden sm:block"> 
               <button onClick={() => paginate(-1)} style={arrowBtnStyle} className="hover:scale-110 active:scale-95 shadow-lg"><ChevronLeft className="text-black w-6 h-6" /></button>
             </div>
 
-            <div className="relative overflow-visible shrink-0 w-[339px] h-[470px] lg:w-[1380px] lg:h-[720px]">
+            {/* CRITICAL FIX: The slider dimensions step up logically. 
+                Mobile: 339x470
+                Tablet/Small Laptop: max-w-[800px] h-[500px]
+                Laptop: max-w-[1000px] h-[600px]
+                Desktop: max-w-[1380px] h-[720px] 
+            */}
+            <div className={`relative overflow-visible shrink-0 transition-all duration-300 w-[339px] h-[470px] md:w-full md:max-w-[800px] md:h-[500px] lg:max-w-[1000px] lg:h-[600px] xl:max-w-[1380px] xl:h-[720px]`}>
               {images.map((img, index) => {
                 const position = getPosition(index);
                 return (
                   <motion.div key={index} initial={false} animate={position} variants={cardVariants} style={{ willChange: "transform, opacity, filter" }} className="absolute top-0 left-0 w-full h-full bg-transparent">
-                    <motion.div variants={textVariants} style={carouselFixedHeadingStyle} className="text-[24px] leading-none lg:text-[36px] lg:leading-[40px] -top-[40px] lg:-top-[60px]">Highlights from 2025</motion.div>
-                    <div className="w-full h-full rounded-[20px] lg:rounded-[40px] overflow-hidden bg-[#0a0a0a] border border-white/10 shadow-[0_0_60px_rgba(0,0,0,0.6)] relative">
-                      <Image src={img.src} alt={img.title} fill sizes="1380px" className="object-cover hidden lg:block" unoptimized={true} loading="eager" />
-                      <Image src={img.mobileSrc} alt={img.title} fill sizes="339px" className="object-cover block lg:hidden" unoptimized={true} loading="eager" />
+                    {/* Positioned the heading so it isn't cut off on md screens */}
+                    <motion.div variants={textVariants} style={carouselFixedHeadingStyle} className="text-[24px] leading-none md:text-[32px] lg:text-[36px] lg:leading-[40px] -top-[40px] md:-top-[50px] lg:-top-[60px]">Highlights from 2025</motion.div>
+                    
+                    <div className="w-full h-full rounded-[20px] md:rounded-[32px] lg:rounded-[40px] overflow-hidden bg-[#0a0a0a] border border-white/10 shadow-[0_0_60px_rgba(0,0,0,0.6)] relative">
+                      {/* Using the mobile crop on small screens, and the full image on md and up */}
+                      <Image src={img.src} alt={img.title} fill sizes="(max-width: 768px) 100vw, 1380px" className="object-cover hidden md:block" unoptimized={true} loading="eager" />
+                      <Image src={img.mobileSrc} alt={img.title} fill sizes="339px" className="object-cover block md:hidden" unoptimized={true} loading="eager" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                     </div>
                   </motion.div>
@@ -102,12 +132,20 @@ const Section5 = () => {
               })}
             </div>
 
-            <div className="z-[60] absolute right-0 lg:static top-1/2 -translate-y-1/2 lg:translate-y-0">
+            {/* Arrows */}
+            <div className="z-[60] absolute right-2 md:right-4 lg:static top-1/2 -translate-y-1/2 lg:translate-y-0 hidden sm:block">
               <button onClick={() => paginate(1)} style={arrowBtnStyle} className="hover:scale-110 active:scale-95 shadow-lg"><ChevronRight className="text-black w-6 h-6" /></button>
             </div>
+
+            {/* Mobile Only overlay arrows for touch screens */}
+            <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between sm:hidden pointer-events-none z-[60]">
+               <button onClick={() => paginate(-1)} style={arrowBtnStyle} className="pointer-events-auto shadow-lg opacity-80"><ChevronLeft className="text-black w-5 h-5" /></button>
+               <button onClick={() => paginate(1)} style={arrowBtnStyle} className="pointer-events-auto shadow-lg opacity-80"><ChevronRight className="text-black w-5 h-5" /></button>
+            </div>
+
           </div>
 
-          <div className="flex mt-8 lg:mt-12 z-50" style={indicatorContainerStyle}>
+          <div className="flex mt-8 md:mt-10 lg:mt-12 z-50" style={indicatorContainerStyle}>
             {images.map((_, idx) => (
               <button key={idx} onClick={() => setPage(idx)} className={`h-2 transition-all duration-300 rounded-full cursor-pointer bg-white ${imageIndex === idx ? "w-8" : "w-2 opacity-100"}`} />
             ))}
