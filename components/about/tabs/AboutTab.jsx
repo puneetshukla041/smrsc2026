@@ -57,10 +57,10 @@ const AboutTab = () => {
   const benefitTextStyle = { color: '#E3F5F6', fontFamily: "'Manrope', sans-serif", fontStyle: 'normal', fontWeight: 500 };
 
   return (
-    <div className="flex flex-col w-full pb-20 px-4 md:px-0 mx-auto max-w-[1380px]">
+    // THE LAPTOP FIX: Added md:px-10 lg:px-16 to give laptops breathing room, xl:px-0 leaves desktop exactly as it was!
+    <div className="flex flex-col w-full pb-20 px-4 md:px-10 lg:px-16 xl:px-0 mx-auto max-w-[1380px]">
       
       <FadeInView>
-        {/* Scaled bottom margin for laptops */}
         <p className="w-full text-[#E3F5F6] text-xl md:text-[28px] xl:text-[32px] font-medium leading-relaxed md:leading-[40px] mb-12 md:mb-[120px] lg:mb-[160px] xl:mb-[215px]" style={{ fontFamily: "'Manrope', sans-serif" }}>
           SMRSC is a global multi-specialty robotic surgery conference bringing together surgeons, innovators, educators, and healthcare leaders. Showcasing live procedures, innovation, and collaboration shaping the future of robotic surgery.
         </p>
@@ -73,7 +73,6 @@ const AboutTab = () => {
       </FadeInView>
 
       <FadeInView>
-        {/* Scaled top margin and text sizes so it fits gracefully on medium screens */}
         <div className="w-full mt-20 md:mt-[140px] lg:mt-[200px] xl:mt-[300px]">
           <div className="flex flex-col justify-center h-auto md:h-[47px] text-[#E6E6E6] text-xl md:text-[28px] lg:text-[32px] font-medium leading-tight md:leading-[32px]" style={{ fontFamily: "'Manrope', sans-serif" }}>A global stage for</div>
           <h2 className="text-[#E3F5F6] text-[36px] md:text-[48px] lg:text-[56px] xl:text-[64px] font-semibold leading-tight md:leading-[1.1] xl:leading-[86px] uppercase mt-2 md:mt-0" style={{ fontFamily: "'Blauer Nue', sans-serif" }}>SURGICAL BREAKTHROUGHS</h2>
@@ -90,9 +89,6 @@ const AboutTab = () => {
           {conferenceCards.map((card, index) => (
             <FadeInView key={index} delay={index * 100}>
                 <div className="flex flex-col gap-4 w-full">
-                  
-                  {/* CRITICAL FIX: Replaced fixed height (md:h-[459px]) with md:aspect-[645/459]. 
-                      This prevents the image from looking violently zoomed in on laptops! */}
                   <div className="relative overflow-hidden group w-full h-[300px] md:h-auto md:aspect-[645/459] rounded-[20px] bg-gray-300">
                     <Image 
                       src={card.src}
@@ -120,7 +116,6 @@ const AboutTab = () => {
             <h3 className="text-[#F8FFFF] text-[28px] md:text-[36px] font-medium leading-tight md:leading-[40px] mb-10 md:mb-[80px]" style={{ fontFamily: "'Blauer Nue', sans-serif" }}>Who will benefit</h3>
         </FadeInView>
 
-        {/* Scaled gap down slightly for lg screens to prevent grid blowout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-16 md:gap-y-24 gap-x-8 xl:gap-x-12 w-full">
           {benefitCards.map((card, index) => {
             const isImageRight = index >= 2;
@@ -128,7 +123,6 @@ const AboutTab = () => {
               <FadeInView key={index} delay={index * 100}>
                 <div className="flex flex-col md:flex-row items-center relative h-auto md:h-[260px] w-full">
                     
-                    {/* Fluid width for the image container */}
                     <div className={`relative w-full h-[250px] md:h-[260px] md:w-[200px] xl:w-[228px] rounded-[16px] overflow-hidden z-10 md:absolute ${isImageRight ? 'md:right-0' : 'md:left-0'}`}>
                       <Image 
                         src={card.src} 
@@ -141,8 +135,6 @@ const AboutTab = () => {
                       />
                     </div>
                     
-                    {/* CRITICAL FIX: Removed md:w-[580px] to prevent horizontal overflow on laptops. 
-                        It now takes up a safe percentage of the column on medium screens, stretching fully on desktop. */}
                     <div className={`flex flex-col justify-center gap-1 w-full md:w-[calc(100%-40px)] xl:w-[580px] h-auto min-h-[140px] md:h-[195px] p-6 md:py-[10px] md:px-[24px] rounded-[16px] bg-black/40 relative mt-[-20px] md:mt-0 md:bg-opacity-40 z-0 md:z-auto ${isImageRight ? 'items-start md:mr-[40px]' : 'items-start md:items-end md:ml-[40px]'}`} style={{ alignItems: isImageRight ? 'flex-start' : undefined }}>
                       <p style={{ ...benefitTextStyle, width: '100%', maxWidth: '270px' }} className="text-[20px] md:text-[24px] leading-[28px] md:leading-[32px]">{card.text}</p>
                     </div>
