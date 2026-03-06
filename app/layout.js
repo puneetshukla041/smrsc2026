@@ -51,7 +51,13 @@ export default function RootLayout({ children }) {
         <SmoothScroll />
         
         {/* 3. Main Content */}
-        {children}
+        {/* px-0: Zero padding for mobile (default)
+          lg:px-16 & xl:px-24: Padding applied ONLY to laptops
+          2xl:px-0: Resets padding to zero for large desktops
+        */}
+        <div className="w-full px-0 lg:px-16 xl:px-24 2xl:px-0">
+          {children}
+        </div>
         
         {/* 4. Mobile Components */}
         <div className="md:hidden">
