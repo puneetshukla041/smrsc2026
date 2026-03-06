@@ -56,6 +56,7 @@ const Section1 = () => {
     whiteSpace: "nowrap",
   };
 
+  // Removed fixed position from inline styles to handle responsiveness via Tailwind
   const arrowStyle = {
     display: "flex",
     width: "56px",
@@ -68,12 +69,11 @@ const Section1 = () => {
     backdropFilter: "blur(16px)",
     color: "#FFF",
     cursor: "pointer",
-    position: "absolute",
-    top: "50%",
-    transform: "translateY(-50%)",
-    zIndex: 30,
     boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
   };
+
+  // Dynamically scale the border-radius so it doesn't look cut-off on laptops
+  const responsiveBorderRadius = "clamp(80px, 12vw, 200px) 8px clamp(80px, 12vw, 200px) 8px";
 
   return (
     <section className="relative w-full flex justify-center items-center overflow-x-clip pt-32 pb-8 md:pt-[140px] md:pb-12">
@@ -94,16 +94,19 @@ const Section1 = () => {
         }}
       />
 
-      {/* DESKTOP VIEW */}
+      {/* DESKTOP & LAPTOP VIEW */}
       <div className="relative z-10 w-full max-w-[1920px] mx-auto hidden md:flex flex-col items-center gap-4 px-10 xl:px-24">
-        <div className="relative w-full flex justify-center items-center">
+        
+        {/* Adjusted Max-Width to scale gracefully from laptop to desktop */}
+        <div className="relative w-full max-w-[850px] lg:max-w-[950px] xl:max-w-[1100px] 2xl:max-w-[1300px] flex justify-center items-center transition-all duration-300">
           
           <motion.button 
             whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.4)" }}
             whileTap={{ scale: 0.9 }}
             onClick={prevSlide} 
-            style={{ ...arrowStyle, left: "10px" }} 
-            className="hidden lg:flex xl:-left-[80px] xl:absolute"
+            style={arrowStyle} 
+            // Arrows now adapt their position based on screen width
+            className="hidden md:flex absolute top-1/2 -translate-y-1/2 z-30 left-2 lg:-left-12 xl:-left-20"
             aria-label="Previous Slide"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
@@ -112,8 +115,8 @@ const Section1 = () => {
           </motion.button>
 
           <div 
-            className="relative w-full max-w-[1100px] xl:max-w-[1300px] overflow-hidden shadow-2xl" 
-            style={{ aspectRatio: "175 / 89", borderRadius: "200px 8px 200px 8px" }}
+            className="relative w-full overflow-hidden shadow-2xl transition-all duration-300" 
+            style={{ aspectRatio: "175 / 89", borderRadius: responsiveBorderRadius }}
           >
             <div 
               className="flex w-full h-full"
@@ -124,12 +127,11 @@ const Section1 = () => {
             >
               {desktopImages.map((src, index) => (
                 <div key={index} className="relative w-full h-full flex-shrink-0 flex justify-center items-center">
-                  <div className="relative w-full h-full overflow-hidden" style={{ borderRadius: "200px 8px 200px 8px" }}>
+                  <div className="relative w-full h-full overflow-hidden" style={{ borderRadius: responsiveBorderRadius }}>
                     <Image
                       src={src}
                       alt={`SMRSC 2026 Hero ${index + 2}`}
                       fill
-                      // IMPORTANT: Set priority for the first few images to load them ASAP
                       priority={index <= 1} 
                       fetchPriority={index === 0 ? "high" : "auto"}
                       loading={index <= 1 ? "eager" : "lazy"}
@@ -164,8 +166,9 @@ const Section1 = () => {
             whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.4)" }}
             whileTap={{ scale: 0.9 }}
             onClick={nextSlide} 
-            style={{ ...arrowStyle, right: "10px" }} 
-            className="hidden lg:flex xl:-right-[80px] xl:absolute"
+            style={arrowStyle} 
+            // Arrows now adapt their position based on screen width
+            className="hidden md:flex absolute top-1/2 -translate-y-1/2 z-30 right-2 lg:-right-12 xl:-right-20"
             aria-label="Next Slide"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
