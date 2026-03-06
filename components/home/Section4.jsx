@@ -11,9 +11,8 @@ const Section4 = () => {
   const facultyMembers = [
     { id: 1, name: "Dr. Sudhir Srivastava", role: "Founder, Chairman and CEO SS Innovations, INDIA", image: "/images/home/section4/image6.png" },
     { id: 2, name: "Dr. Husam Balkhy", role: "The University of Chicago Medicine and Biological Sciences Chicago, USA", image: "/images/home/section4/image2.png" },
-        { id: 4, name: "Dr. Ashutosh K. Tewari ", role: "Icahn School of Medicine at Mount Sinai, NY, USA", image: "/images/home/section4/image5.png" },
+    { id: 4, name: "Dr. Ashutosh K. Tewari ", role: "Icahn School of Medicine at Mount Sinai, NY, USA", image: "/images/home/section4/image5.png" },
     { id: 3, name: "Dr. Ashok K.Hemal", role: "Wake Forest Medical School & Baptist Medical Center, NC, USA", image: "/images/about/committe/9.webp" },
-
   ];
 
   const scrollRef = useRef(null);
@@ -40,18 +39,16 @@ const Section4 = () => {
   const itemVariants = { hidden: { opacity: 0, y: 30, scale: 0.95 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } };
 
   const facultyHeadingStyle = { color: '#F8FFFF', fontFamily: '"Blauer Nue", sans-serif', fontStyle: 'normal', fontWeight: 500 };
-  const cardImageStyle = { aspectRatio: '20/23' };
   const docNameStyle = { color: '#FFF', fontFamily: '"Blauer Nue", sans-serif', fontSize: '1rem', fontStyle: 'normal', fontWeight: 500, lineHeight: '1.5rem' };
   const docDescStyle = { color: '#FFF', fontFamily: 'Manrope, sans-serif', fontSize: '0.75rem', fontStyle: 'normal', fontWeight: 400, lineHeight: '1rem', opacity: 0.8 };
 
-  // --- Exact Leaf/Alphabet Styles ---
+  // Removed hardcoded font-size to handle it responsively via Tailwind
   const alphabetStyle = {
     color: '#E1C583',
     fontFamily: 'Roba',
-    fontSize: '500px',
     fontStyle: 'normal',
     fontWeight: 400,
-    lineHeight: '56px', /* 11.2% */
+    lineHeight: '1',
     textTransform: 'uppercase',
     opacity: 0.8,
     filter: 'blur(5.449999809265137px)',
@@ -60,11 +57,8 @@ const Section4 = () => {
     userSelect: 'none',
   };
 
-  // The container exact sizing you provided
   const containerStyle = {
     display: 'flex',
-    width: '336px',
-    height: '415px',
     flexDirection: 'column',
     justifyContent: 'center',
   };
@@ -76,9 +70,9 @@ const Section4 = () => {
       whileInView="visible" 
       viewport={{ once: true, amount: 0.15 }} 
       variants={containerVariants} 
-      className="relative overflow-hidden min-h-screen h-auto md:h-[130vh] w-full bg-[#020617] flex flex-col items-center justify-start md:justify-between py-16 md:pt-20 md:pb-20 px-6 gap-12 md:gap-0"
+      // Removed md:h-[130vh] so it formats natively based on screen size, preventing laptop overlaps
+      className="relative overflow-hidden min-h-screen w-full bg-[#020617] flex flex-col items-center justify-center py-20 md:py-24 px-6 md:px-12 gap-12 lg:gap-16"
     >
-      {/* Ensure the font loads correctly from your public folder */}
       <style>{`
         @font-face {
           font-family: 'Roba';
@@ -96,29 +90,37 @@ const Section4 = () => {
           viewport={{ once: true }} 
           transition={{ duration: 1.5, ease: "easeOut" }} 
           style={containerStyle} 
-          // Push it slightly off the right edge to match the design crop
           className="absolute right-[-40px] md:right-[-60px] top-[10%] md:top-[15%]"
         >
-          <span style={alphabetStyle}>O</span>
+          {/* Made the 'O' scale down for laptops (lg) so it doesn't swallow the content */}
+          <span style={alphabetStyle} className="text-[300px] md:text-[400px] lg:text-[500px]">O</span>
         </motion.div>
       </div>
 
+      {/* Added responsive scaling to text sizes for lg (laptops) vs xl (desktops) */}
       <motion.div variants={itemVariants} className="relative z-10 max-w-[1380px] w-full flex flex-col gap-4 md:gap-2 text-center md:text-left">
-        <h3 style={{ color: '#E6E6E6', fontFamily: 'Manrope, sans-serif', fontStyle: 'normal', fontWeight: 500 }} className="text-[20px] leading-[28px] md:text-[32px] md:leading-[32px] flex flex-col justify-center">A movement that started with a vision is now reshaping</h3>
-        <h2 style={{ color: '#E3F5F6', fontFamily: '"Blauer Nue", sans-serif', fontStyle: 'normal', fontWeight: 600 }} className="uppercase tracking-tight text-[32px] leading-[40px] md:text-[64px] md:leading-[86px]">THE FUTURE OF ROBOTIC SURGERY</h2>
+        <h3 style={{ color: '#E6E6E6', fontFamily: 'Manrope, sans-serif', fontStyle: 'normal', fontWeight: 500 }} className="text-[20px] leading-[28px] md:text-[28px] lg:text-[32px] md:leading-[32px] flex flex-col justify-center">A movement that started with a vision is now reshaping</h3>
+        <h2 style={{ color: '#E3F5F6', fontFamily: '"Blauer Nue", sans-serif', fontStyle: 'normal', fontWeight: 600 }} className="uppercase tracking-tight text-[32px] leading-[40px] md:text-[50px] lg:text-[64px] md:leading-[60px] lg:leading-[86px]">THE FUTURE OF ROBOTIC SURGERY</h2>
       </motion.div>
 
       <div className="relative z-10 max-w-[1380px] w-full flex flex-col gap-8 md:gap-10 items-center md:items-stretch">
         <motion.h4 variants={itemVariants} style={facultyHeadingStyle} className="text-[2rem] leading-[2.5rem] md:text-[2.25rem] md:leading-[2.5rem] self-start">Our Faculty</motion.h4>
 
-        <div ref={scrollRef} onScroll={handleScroll} className="flex md:flex-wrap flex-nowrap overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide justify-start md:justify-between gap-8 w-full pb-4 md:pb-0">
+        {/* CRITICAL FIX: Changed from flex-wrap to CSS Grid for md and lg breakpoints. 
+          This ensures cards shrink perfectly to fit 2-across on small laptops and 4-across on big screens.
+          Mobile keeps the horizontal snap slider.
+        */}
+        <div ref={scrollRef} onScroll={handleScroll} className="flex md:grid md:grid-cols-2 lg:grid-cols-4 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide gap-6 lg:gap-8 w-full pb-4 md:pb-0">
           {facultyMembers.map((member) => (
-            <motion.div key={member.id} variants={itemVariants} className="flex flex-col gap-4 group cursor-pointer items-center md:items-start shrink-0 snap-center">
-              <div style={cardImageStyle} className="relative rounded-[32px] overflow-hidden bg-gray-800 w-[280px] md:w-[20rem] h-[322px] md:h-[23rem]">
+            // Changed card width from fixed w-[280px] to full width of grid cell on desktop
+            <motion.div key={member.id} variants={itemVariants} className="flex flex-col gap-4 group cursor-pointer items-center md:items-start shrink-0 snap-center w-[280px] md:w-full">
+              
+              {/* Used aspect-[20/23] purely so height computes automatically based on scaled width */}
+              <div className="relative rounded-[24px] md:rounded-[32px] overflow-hidden bg-gray-800 w-full aspect-[20/23]">
                 <Image src={member.image} alt={member.name} fill sizes="(max-width: 768px) 100vw, 320px" className={`object-cover object-top transition-transform duration-500 group-hover:scale-105 ${(member.id === 1 || member.id === 2) ? 'scale-110' : ''}`} unoptimized={true} loading="eager" />
               </div>
 
-              <div className="flex flex-col gap-1 w-full max-w-[280px] md:max-w-[20rem] text-center md:text-left">
+              <div className="flex flex-col gap-1 w-full text-center md:text-left px-2 md:px-0">
                 <h5 style={docNameStyle}>{member.name}</h5>
                 <p style={docDescStyle}>{member.role}</p>
               </div>
@@ -126,6 +128,7 @@ const Section4 = () => {
           ))}
         </div>
 
+        {/* Mobile Pagination Dots */}
         <div className="flex md:hidden justify-center gap-2 mt-2">
             {facultyMembers.map((_, index) => (
                 <button key={index} onClick={() => scrollTo(index)} className={`h-2 rounded-full transition-all duration-300 ${activeIndex === index ? 'w-8 bg-white' : 'w-2 bg-white/40'}`} aria-label={`Go to faculty member ${index + 1}`} />
