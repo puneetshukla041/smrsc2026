@@ -70,7 +70,8 @@ const FAQSection = () => {
         whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         viewport={{ once: true }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-        className="mb-10 md:mb-16 text-[28px] md:text-3xl lg:text-4xl font-manrope text-white font-semibold text-center md:text-left bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60"
+        // Adjusted text size for laptops (lg:text-3xl) to prevent it from feeling too huge
+        className="mb-10 md:mb-16 text-[28px] md:text-3xl lg:text-3xl xl:text-4xl font-manrope text-white font-semibold text-center md:text-left bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60"
       >
         Frequently Asked Questions
       </motion.h2>
@@ -188,9 +189,9 @@ const ExploreContent = () => {
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
-            className="relative z-10 w-full hidden md:flex justify-center mt-20 lg:mt-[98px] mb-12 lg:mb-[65px] px-6 lg:px-8"
+            // Added lg:px-16 and xl:px-24 for laptop padding, returning to 2xl:px-8 for ultra-wide screens
+            className="relative z-10 w-full hidden md:flex justify-center mt-20 lg:mt-[98px] mb-12 lg:mb-[65px] px-6 lg:px-16 xl:px-24 2xl:px-8"
           >
-            {/* Removed inline margins, added px-6/px-8 to parent, fluid aspect ratio */}
             <div className="relative w-full max-w-[1723px] aspect-[1723/876]">
               <Image
                 src="/images/explore/hero.webp" 
@@ -206,7 +207,6 @@ const ExploreContent = () => {
           </motion.div>
 
           {/* --- MOBILE VIEW --- */}
-          {/* Replaced fixed 350x476 with aspect ratio and max-width for fluidity */}
           <div className="md:hidden w-full flex justify-center mt-24 mb-10 px-4 sm:px-8">
               <div className="relative w-full max-w-[400px] aspect-[350/476]">
                 <Image
@@ -223,17 +223,16 @@ const ExploreContent = () => {
         </section>
 
         {/* === 2. BACKGROUND LOADED CONTENT === */}
-        {/* Wait until the hero has painted before rendering the rest */}
         {loadHeavyContent && (
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col items-center w-full max-w-[1440px] px-4 md:px-6 lg:px-8"
+            // Added matching lg:px-16 and xl:px-24 padding here to align the content body with the laptop margins
+            className="flex flex-col items-center w-full max-w-[1440px] px-4 md:px-6 lg:px-16 xl:px-24 2xl:px-8"
           >
             
             {/* Tabs & Buttons Area */}
-            {/* Flex-col on mobile so the button falls neatly under the tabs */}
             <div className="w-full flex flex-col md:flex-row items-center justify-between mb-10 md:mb-16 gap-6 md:gap-4">
               
               <div className="flex gap-3 md:gap-4 flex-wrap justify-center md:justify-start w-full md:w-auto">
@@ -251,7 +250,6 @@ const ExploreContent = () => {
                 ))}
               </div>
 
-              {/* Download Button takes full width on tiny mobile screens */}
               <a 
                 href="/pdf/smrscpdf.pdf" 
                 target="_blank" 

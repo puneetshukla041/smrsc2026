@@ -283,7 +283,7 @@ const RegisterPage = () => {
                       )}
                     </div>
                   </div>
-                  <span className="text-[#1A2E35] font-medium text-[15px]">Register as National delegate</span>
+                  <span className="text-[#1A2E35] font-medium text-[15px]">Register as National delegates</span>
                 </label>
 
                 {/* Option 2: International */}
@@ -306,7 +306,7 @@ const RegisterPage = () => {
                       )}
                     </div>
                   </div>
-                  <span className="text-[#1A2E35] font-medium text-[15px]">Register as International delegate</span>
+                  <span className="text-[#1A2E35] font-medium text-[15px]">Register as International delegates</span>
                 </label>
 
               </div>
