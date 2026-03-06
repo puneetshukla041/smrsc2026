@@ -48,11 +48,11 @@ const Section2Content = () => {
 
   return (
     <div className="w-full max-w-[1920px] mx-auto">
-      {/* REMOVED: md:ml-[100px] xl:ml-[270px]
-        ADDED: max-w-[1380px] mx-auto px-4 md:px-6 lg:px-8
-        This perfectly aligns the tabs with your AboutTab content below it, ensuring equal left/right spacing!
+      {/* UPDATED PADDING: Added lg:px-16 xl:px-24 2xl:px-8 
+        This is what gives laptops proper breathing room on the left and right, 
+        while preserving the perfect layout for mobile and huge desktops!
       */}
-      <div className="flex flex-col gap-10 md:gap-[80px] xl:gap-[130px] w-full max-w-[1380px] mx-auto px-4 md:px-6 lg:px-8">
+      <div className="flex flex-col gap-10 md:gap-[80px] xl:gap-[130px] w-full max-w-[1380px] mx-auto px-4 md:px-8 lg:px-16 xl:px-24 2xl:px-8">
         
         {/* Navigation Buttons */}
         <div id="about-tabs-nav" className="flex flex-wrap items-center justify-center md:justify-start gap-3 md:gap-4 pt-4 w-full">
