@@ -36,7 +36,6 @@ const Section2 = () => {
     { id: 4, img: "/images/home/section2/image4.webp", x: 500, y: 100 },
   ];
 
-  // Fixed, elegant positions for the micro water drops
   const sparklePositions = [
     { top: '-2%', left: '-2%' },
     { top: '15%', right: '-4%' },
@@ -50,7 +49,13 @@ const Section2 = () => {
     hidden: { x: 0, y: 0, scale: 0.4, opacity: 0 },
     visible: (i) => {
       let targetX = cards[i].x; let targetY = cards[i].y;
-      if (isMobile) { targetX = 0; targetY = 0; } else if (isLaptop) { targetX = targetX * 0.7; targetY = targetY * 0.7; }
+      if (isMobile) { 
+        targetX = 0; targetY = 0; 
+      } else if (isLaptop) { 
+        // Brought the multiplier down slightly to 0.65 to fit 13" laptops perfectly
+        targetX = targetX * 0.65; 
+        targetY = targetY * 0.65; 
+      }
       return { x: targetX, y: targetY, scale: 1, opacity: 1, transition: { type: "spring", stiffness: 45, damping: 14, mass: 1.2, delay: i * 0.1 } };
     }
   };
@@ -73,7 +78,8 @@ const Section2 = () => {
     <section className="relative w-full min-h-screen flex flex-col md:justify-center items-center overflow-hidden bg-transparent py-20 md:py-0">
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
         
-        <motion.div style={titleStyle} variants={titleVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10%" }} className="relative order-1 md:absolute md:order-none z-30 select-none text-4xl sm:text-5xl lg:text-[64px] mb-12 md:mb-0 md:mt-[350px]">
+        {/* Adjusted mt-[350px] to be responsive: smaller on md (laptops), original on lg (desktops) */}
+        <motion.div style={titleStyle} variants={titleVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10%" }} className="relative order-1 md:absolute md:order-none z-30 select-none text-4xl sm:text-5xl lg:text-[64px] mb-12 md:mb-0 md:mt-[280px] lg:mt-[350px]">
           Clinical Outcomes
         </motion.div>
 
@@ -86,7 +92,11 @@ const Section2 = () => {
             whileInView="visible"
             viewport={{ once: true, margin: "-10%" }}
             className={`pointer-events-auto z-30 flex items-center justify-center 
-              ${isMobile ? 'relative mb-10 w-[150px] h-[150px]' : 'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px]'}`}
+              ${isMobile 
+                ? 'relative mb-10 w-[150px] h-[150px]' 
+                : isLaptop 
+                  ? 'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[160px] h-[160px]' 
+                  : 'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px]'}`}
           >
             <img 
               src="/logos/Isolation_Mode (1).png" 
@@ -98,46 +108,59 @@ const Section2 = () => {
 
           {/* ================= CARDS & MICRO WATER DROPS ================= */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:block w-full max-w-4xl px-6 md:px-0">
-            {cards.map((card, i) => (
-              <motion.div
-                key={card.id} custom={i} variants={entranceVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10%" }}
-                style={{
-                  width: isMobile ? '100%' : '272px', height: isMobile ? 'auto' : '224px', aspectRatio: isMobile ? '272/224' : 'auto', position: isMobile ? 'relative' : 'absolute',
-                  left: isMobile ? 'auto' : 'calc(50% - 136px)', top: isMobile ? 'auto' : 'calc(50% - 112px)', zIndex: 20,
-                }}
-                className="flex items-center justify-center pointer-events-auto mx-auto"
-              >
-                
-                {/* 💧 Subdued Micro Water Drops */}
-                {!isMobile && sparklePositions.map((pos, idx) => (
-                  <motion.div
-                    key={`sparkle-${card.id}-${idx}`}
-                    className="absolute pointer-events-none z-0"
-                    style={pos}
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileInView={{
-                      opacity: [0, 0.3, 0.1, 0.3], // Faint, subtle opacity shift
-                      scale: [0, 0.6, 0.6, 0.6],   // Micro scale (60% of original size), no pulsing
-                    }}
-                    viewport={{ once: true, margin: "-10%" }}
-                    transition={{
-                      duration: 6 + (idx % 2), // 6-7 seconds long (very slow)
-                      delay: 0.8 + (i * 0.1) + (idx * 0.1), // Wait for card to settle
-                      repeat: Infinity,
-                      repeatType: "reverse",
-                      ease: "easeInOut"
-                    }}
-                  >
-                    <SparkleBubble />
+            {cards.map((card, i) => {
+              // Dynamically adjust card dimensions based on screen size
+              const cardWidth = isMobile ? '100%' : (isLaptop ? '190px' : '272px');
+              const cardHeight = isMobile ? 'auto' : (isLaptop ? '156px' : '224px');
+              const leftOffset = isMobile ? 'auto' : (isLaptop ? '95px' : '136px'); // Half of width
+              const topOffset = isMobile ? 'auto' : (isLaptop ? '78px' : '112px');  // Half of height
+
+              return (
+                <motion.div
+                  key={card.id} custom={i} variants={entranceVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10%" }}
+                  style={{
+                    width: cardWidth, 
+                    height: cardHeight, 
+                    aspectRatio: isMobile ? '272/224' : 'auto', 
+                    position: isMobile ? 'relative' : 'absolute',
+                    left: isMobile ? 'auto' : `calc(50% - ${leftOffset})`, 
+                    top: isMobile ? 'auto' : `calc(50% - ${topOffset})`, 
+                    zIndex: 20,
+                  }}
+                  className="flex items-center justify-center pointer-events-auto mx-auto"
+                >
+                  
+                  {/* 💧 Subdued Micro Water Drops */}
+                  {!isMobile && sparklePositions.map((pos, idx) => (
+                    <motion.div
+                      key={`sparkle-${card.id}-${idx}`}
+                      className="absolute pointer-events-none z-0"
+                      style={pos}
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{
+                        opacity: [0, 0.3, 0.1, 0.3],
+                        scale: [0, 0.6, 0.6, 0.6], 
+                      }}
+                      viewport={{ once: true, margin: "-10%" }}
+                      transition={{
+                        duration: 6 + (idx % 2), 
+                        delay: 0.8 + (i * 0.1) + (idx * 0.1),
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut"
+                      }}
+                    >
+                      <SparkleBubble />
+                    </motion.div>
+                  ))}
+
+                  <motion.div custom={i} animate="float" variants={floatVariants} className="relative w-full h-full flex items-center justify-center z-10">
+                    <img src={card.img} alt={`Clinical Outcome ${i + 1}`} style={{ width: '100%', height: '100%', objectFit: 'contain' }} className="select-none pointer-events-none" draggable={false} />
                   </motion.div>
-                ))}
 
-                <motion.div custom={i} animate="float" variants={floatVariants} className="relative w-full h-full flex items-center justify-center z-10">
-                  <img src={card.img} alt={`Clinical Outcome ${i + 1}`} style={{ width: '100%', height: '100%', objectFit: 'contain' }} className="select-none pointer-events-none" draggable={false} />
                 </motion.div>
-
-              </motion.div>
-            ))}
+              );
+            })}
           </div>
           
         </div>
