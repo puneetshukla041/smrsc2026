@@ -15,34 +15,32 @@ const Section6 = () => {
   const mainHeadingBaseStyle = { color: '#E3F5F6', fontFamily: '"Blauer Nue", sans-serif', fontWeight: 600, textTransform: 'uppercase' };
 
   return (
-    // Removed md:min-h-[150vh] which causes massive empty space on widescreen laptops
-    <section id="section6" className="w-full bg-[#020617] flex flex-col items-center py-20 lg:py-32 px-6 relative overflow-hidden">
+    // Reduced padding slightly for laptops (lg) but restored it for desktops (xl)
+    <section id="section6" className="w-full bg-[#020617] flex flex-col items-center py-20 lg:py-24 xl:py-32 px-6 relative overflow-hidden">
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600&display=swap');
         @font-face { font-family: 'Blauer Nue'; src: url('/fonts/BlauerNue.otf') format('opentype'); font-weight: normal; font-style: normal; }
       `}</style>
 
-      <motion.div className="w-full max-w-[1380px] flex flex-col items-center h-full" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10%" }}>
+      {/* THE LAPTOP FIX: Constrained max-width on md and lg breakpoints so it doesn't span the entire screen, then restored 1380px for xl */}
+      <motion.div className="w-full md:max-w-[900px] lg:max-w-[1024px] xl:max-w-[1380px] flex flex-col items-center h-full" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-10%" }}>
         
         {/* HEADING SECTION */}
         <div className="w-full flex flex-col items-start gap-1">
-          {/* Scaled down typography for md breakpoints so it fits comfortably on laptops */}
-          <motion.div variants={textVariants} style={subHeadingBaseStyle} className="w-full text-xl md:text-[28px] lg:text-[32px] leading-tight">Last year we inspired</motion.div>
-          <motion.h1 variants={textVariants} style={mainHeadingBaseStyle} className="text-4xl leading-tight md:text-[48px] lg:text-[64px] md:leading-[1.1]">THIS YEAR, WE TRANSFORM</motion.h1>
+          {/* Typography scaled down for laptops, full size restored on xl */}
+          <motion.div variants={textVariants} style={subHeadingBaseStyle} className="w-full text-xl md:text-[24px] lg:text-[28px] xl:text-[32px] leading-tight">Last year we inspired</motion.div>
+          <motion.h1 variants={textVariants} style={mainHeadingBaseStyle} className="text-4xl leading-tight md:text-[40px] lg:text-[48px] xl:text-[64px] md:leading-[1.1]">THIS YEAR, WE TRANSFORM</motion.h1>
         </div>
 
         {/* IMAGE SECTION */}
-        <motion.div variants={imageVariants} className="mt-12 md:mt-16 lg:mt-24 w-full flex justify-center">
+        {/* Margin top reduced for laptops, restored for desktops */}
+        <motion.div variants={imageVariants} className="mt-12 md:mt-12 lg:mt-16 xl:mt-24 w-full flex justify-center">
           
-          {/* CRITICAL FIX: Replaced hardcoded width/height with w-full and aspect ratios! 
-              This ensures the container scales fluidly down to fit smaller laptops. */}
-          <div className="relative w-full aspect-[350/173] md:aspect-[1380/693] rounded-[20px] md:rounded-[40px] overflow-hidden flex justify-center items-center shadow-2xl">
+          <div className="relative w-full aspect-[350/173] md:aspect-[1380/693] rounded-[20px] md:rounded-[32px] xl:rounded-[40px] overflow-hidden flex justify-center items-center shadow-2xl">
             
             <Image src="/images/home/section6/image1.webp" alt="SMRSC 2026 Transformation Desktop" fill sizes="(max-width: 1380px) 100vw, 1380px" className="object-cover hidden md:block" unoptimized={true} loading="eager" />
             <Image src="/images/home/section6/mobile.webp" alt="SMRSC 2026 Transformation Mobile" fill sizes="(max-width: 768px) 100vw, 350px" className="object-cover block md:hidden" unoptimized={true} loading="eager" />
 
-            {/* BUTTON FIX: Switched hardcoded md:top-[450px] to top-[65%]. 
-                When the image shrinks on a laptop, a fixed 450px would push the button right out of the container! */}
             <motion.a 
               href="/register"
               target="_blank"
@@ -50,7 +48,8 @@ const Section6 = () => {
               whileHover={{ scale: 1.05 }} 
               whileTap={{ scale: 0.95 }} 
               style={registerBtnStyle} 
-              className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 md:top-[65%] md:translate-y-0 max-w-[90%] md:max-w-[301px]"
+              // Button positioning remains percentage-based so it works flawlessly across all these width changes
+              className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 md:top-[65%] md:translate-y-0 max-w-[90%] md:max-w-[260px] xl:max-w-[301px]"
             >
               <span style={registerBtnTextStyle}>Register Now</span>
             </motion.a>
