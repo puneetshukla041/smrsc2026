@@ -304,6 +304,7 @@ const Overview = () => {
             })}
           </div>
         </div>
+        
 
         <div className="mt-8 md:mt-12 z-50" style={indicatorContainerStyle}>
           {images.map((_, idx) => (
