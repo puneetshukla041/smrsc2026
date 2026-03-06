@@ -29,7 +29,8 @@ const ContactUs = () => {
     <>
       <Header />
 
-      <div className="min-h-screen w-full bg-[#020617] pt-[120px] pb-20 px-4 md:px-8 flex flex-col items-center">
+      {/* REFACTORED: Added lg:px-16 xl:px-24 2xl:px-8 to give standard laptop margins */}
+      <div className="min-h-screen w-full bg-[#020617] pt-[120px] pb-20 px-4 md:px-8 lg:px-16 xl:px-24 2xl:px-8 flex flex-col items-center">
         
         <motion.div 
           initial="hidden"
@@ -41,7 +42,8 @@ const ContactUs = () => {
           {/* Main Title */}
           <motion.h1 
             variants={fadeInUp}
-            className="text-white text-4xl md:text-[48px] lg:text-[64px] font-semibold font-['Blauer_Nue'] text-center"
+            // REFACTORED: Scaled lg font size slightly down so it fits perfectly on 13" laptops
+            className="text-white text-4xl md:text-[48px] lg:text-[54px] xl:text-[64px] font-semibold font-['Blauer_Nue'] text-center"
           >
             Contact Us
           </motion.h1>
@@ -49,7 +51,7 @@ const ContactUs = () => {
           {/* Form Container */}
           <motion.div 
             variants={fadeInUp}
-            className="w-full flex flex-col items-center gap-8 md:gap-10 p-6 md:p-12 rounded-[24px] md:rounded-[40px] border border-white/20 bg-transparent"
+            className="w-full flex flex-col items-center gap-8 md:gap-10 p-6 md:p-10 lg:p-12 rounded-[24px] md:rounded-[40px] border border-white/20 bg-transparent"
           >
             {/* Instruction Text */}
             <p className="text-[#E5E5E5] text-center font-manrope text-sm md:text-base leading-relaxed max-w-[800px]">
