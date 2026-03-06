@@ -1,36 +1,233 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SMRSC 2026 – Conference Platform
 
-## Getting Started
+SMRSC (SSI Multi-Specialty Robotic Surgery Conference) is a global conference focused on robotic and technology-driven surgery. The platform brings together surgeons, healthcare professionals, innovators, and medical leaders to exchange knowledge, demonstrate robotic procedures, and explore advancements shaping the future of connected surgical care.
 
-First, run the development server:
+This repository contains the **official web platform for SMRSC 2026**, built with **Next.js** using the App Router architecture. The platform provides information about the conference including schedules, faculty, media, venues, registration, and past events.
+
+---
+
+# Tech Stack
+
+### Framework
+
+* Next.js 16 (App Router)
+* React 19
+
+### Styling
+
+* TailwindCSS 4
+* Custom fonts and assets
+
+### Animations & UI
+
+* Framer Motion
+* Lenis (smooth scrolling)
+* tsParticles
+
+### Icons
+
+* Lucide React
+
+### Backend / Data
+
+* MongoDB
+* Mongoose
+* Next.js API Routes
+
+### Tooling
+
+* ESLint
+* PostCSS
+* TypeScript configuration support
+
+---
+
+# Installation
+
+Clone the repository and install dependencies.
+
+```bash
+git clone <repository-url>
+cd smrsc2026
+npm install
+```
+
+---
+
+# Development
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Application runs at:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Next.js hot reloading is enabled for development.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+# Available Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run dev     # start development server
+npm run build   # build production bundle
+npm run start   # start production server
+npm run lint    # run ESLint
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+# Project Architecture
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The project uses **Next.js App Router** with modular route separation and reusable components.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+app/
+ ├── about/
+ ├── contactus/
+ ├── cookies/
+ ├── explore/
+ ├── faq/
+ ├── home/
+ ├── map/
+ ├── media/
+ │    ├── blog1/
+ │    ├── blog2/
+ │    └── blog3/
+ ├── pastevents/
+ ├── privacy-policy/
+ ├── register/
+ ├── terms-of-use/
+ ├── visit/
+ │    ├── hotels/
+ │    ├── places/
+ │    └── venue/
+ ├── api/
+ │    └── track-visit/
+ ├── layout.js
+ ├── globals.css
+ └── page.js
+```
+
+---
+
+# Components
+
+Reusable UI components are organized by feature domain.
+
+```
+components/
+ ├── about/
+ ├── explore/
+ ├── home/
+ ├── media/
+ ├── pastevent/
+ ├── common/
+ │    ├── Header.jsx
+ │    ├── footer.jsx
+ │    ├── CookieBanner.tsx
+ │    ├── GlobalPreloader.jsx
+ │    └── SearchModal.js
+ └── ui/
+      ├── CountdownTimer.jsx
+      └── SpeedLogger.jsx
+```
+
+---
+
+# Data Models
+
+MongoDB models are defined using Mongoose.
+
+```
+models/
+ └── Visit.js
+```
+
+Used for tracking website visits through the `track-visit` API route.
+
+---
+
+# Public Assets
+
+Static assets are stored in the `public` directory.
+
+```
+public/
+ ├── fonts/
+ ├── images/
+ │    ├── about/
+ │    ├── faculty/
+ │    ├── explore/
+ │    ├── home/
+ │    └── pastevent/
+ ├── logos/
+ ├── pdf/
+ └── videos/
+```
+
+---
+
+# Environment Variables
+
+Create a `.env.local` file in the project root.
+
+Example:
+
+```
+MONGODB_URI=your_mongodb_connection_string
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
+
+---
+
+# Production Build
+
+Create an optimized production build:
+
+```bash
+npm run build
+```
+
+Start the production server:
+
+```bash
+npm start
+```
+
+---
+
+# Deployment
+
+The application can be deployed on any Node.js compatible hosting platform.
+
+Recommended platforms:
+
+* Vercel
+* AWS
+* Docker-based infrastructure
+* VPS with Node.js runtime
+
+---
+
+# Code Quality
+
+Run lint checks:
+
+```bash
+npm run lint
+```
+
+ESLint is configured using `eslint-config-next`.
+
+---
+
+# License
+
+This repository is a private internal project for the **SSI Multi-Specialty Robotic Surgery Conference (SMRSC)**.
