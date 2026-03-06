@@ -107,13 +107,8 @@ const Section5 = () => {
               <button onClick={() => paginate(-1)} style={arrowBtnStyle} className="hover:scale-110 active:scale-95 shadow-lg"><ChevronLeft className="text-black w-6 h-6" /></button>
             </div>
 
-            {/* CRITICAL FIX: The slider dimensions step up logically. 
-                Mobile: 339x470
-                Tablet/Small Laptop: max-w-[800px] h-[500px]
-                Laptop: max-w-[1000px] h-[600px]
-                Desktop: max-w-[1380px] h-[720px] 
-            */}
-            <div className={`relative overflow-visible shrink-0 transition-all duration-300 w-[339px] h-[470px] md:w-full md:max-w-[800px] md:h-[500px] lg:max-w-[1000px] lg:h-[600px] xl:max-w-[1380px] xl:h-[720px]`}>
+            {/* CRITICAL FIX: Changed lg:h-[600px] to lg:h-[520px] to match the exact uncropped aspect ratio of the desktop image */}
+            <div className={`relative overflow-visible shrink-0 transition-all duration-300 w-[339px] h-[470px] md:w-full md:max-w-[800px] md:h-[500px] lg:max-w-[1000px] lg:h-[520px] xl:max-w-[1380px] xl:h-[720px]`}>
               {images.map((img, index) => {
                 const position = getPosition(index);
                 return (
