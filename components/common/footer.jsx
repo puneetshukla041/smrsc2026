@@ -5,7 +5,6 @@ import Link from 'next/link';
 
 const Footer = () => {
   // --- Styles ---
-
   const addressStyle = {
     color: '#FFF',
     fontFamily: "'Sora', sans-serif",
@@ -47,20 +46,23 @@ const Footer = () => {
   };
 
   return (
-    <footer className="w-full pt-12 lg:pt-[100px] pb-[32px] px-6 lg:px-[270px] border-t border-white/10">
+    // Replaced the massive lg:px-[270px] with standard responsive padding. 
+    // Added bg-[#020617] just in case it sits outside the main layout background.
+    <footer className="w-full bg-[#020617] pt-12 lg:pt-[100px] pb-[32px] border-t border-white/10 flex justify-center">
       
       {/* Font Imports */}
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500&family=Sora:wght@300&display=swap');
       `}</style>
 
-      <div className="w-full mx-auto flex flex-col">
+      {/* Inner wrapper constrains the max width and handles side margins */}
+      <div className="w-full max-w-[1440px] px-6 md:px-8 lg:px-16 xl:px-24 2xl:px-8 mx-auto flex flex-col">
         
         {/* === TOP SECTION === */}
-        <div className="flex flex-col lg:flex-row justify-between items-start gap-10 lg:gap-0 mb-16">
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-8 xl:gap-12 mb-16">
           
           {/* 1. Logo Column */}
-          <div className="flex-shrink-0 lg:mr-12">
+          <div className="flex-shrink-0 w-full lg:w-auto">
             <img 
               src="/logos/header.png" 
               alt="SMRSC Logo" 
@@ -69,19 +71,19 @@ const Footer = () => {
           </div>
 
           {/* 2. Address Column */}
-          <div style={addressStyle} className="lg:mr-auto w-full lg:w-[394px]">
+          <div style={addressStyle} className="w-full lg:max-w-[360px] xl:max-w-[394px]">
             <p>Sudhir Srivastava Innovations Pvt. Ltd. (R&D HQ – India)</p>
-            <p>404-405, 3rd Floor, iLabs Center, Udyog Vihar, Phase III, Gurugram, Haryana, India – 122016</p>
-            <p>Phone: +91 8130027337 | +91 8130027785 | +91 8492010373</p>
-            <p>Email: smrsc@ssinnovations.org</p>
-            <p>Web: www.ssinnovations.com</p>
+            <p className="mt-2">404-405, 3rd Floor, iLabs Center, Udyog Vihar, Phase III, Gurugram, Haryana, India – 122016</p>
+            <p className="mt-2 break-words">Phone: +91 8130027337 | +91 8130027785 | +91 8492010373</p>
+            <p className="break-words">Email: smrsc@ssinnovations.org</p>
+            <p className="break-words">Web: www.ssinnovations.com</p>
           </div>
 
-          {/* Links Container */}
-          <div className="flex flex-row w-full lg:w-auto justify-start gap-20 lg:gap-0 lg:contents">
+          {/* Links Container - Swapped to a standard flex row instead of lg:contents */}
+          <div className="flex flex-row flex-wrap sm:flex-nowrap justify-start lg:justify-end gap-16 sm:gap-24 lg:gap-12 xl:gap-20 w-full lg:w-auto">
             
             {/* 3. Links Column 1 */}
-            <div className="flex flex-col gap-1 lg:mr-20">
+            <div className="flex flex-col gap-1 min-w-[120px]">
               <Link href="/about" style={linkStyle} className="hover:text-[#E3F5F6] transition-colors">
                 About SMRSC
               </Link>
@@ -105,7 +107,7 @@ const Footer = () => {
             </div>
 
             {/* 4. Links Column 2 */}
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1 min-w-[120px]">
               <Link href="/media" style={linkStyle} className="hover:text-[#E3F5F6] transition-colors">
                 Media
               </Link>
@@ -125,7 +127,6 @@ const Footer = () => {
             </div>
 
           </div>
-
         </div>
 
         {/* Divider Line */}
@@ -153,7 +154,7 @@ const Footer = () => {
           </div>
 
           {/* Legal Links */}
-          <div className="flex flex-wrap justify-center gap-2 md:gap-6 text-center">
+          <div className="flex flex-wrap justify-center items-center gap-2 md:gap-4 text-center">
               <Link href="/cookies" style={bottomLinkStyle} className="hover:text-white">Cookies</Link>
               <span style={bottomLinkStyle}>|</span>
               <Link href="/privacy-policy" style={bottomLinkStyle} className="hover:text-white">Privacy Policy</Link>
@@ -161,19 +162,17 @@ const Footer = () => {
               <Link href="/contactus" style={bottomLinkStyle} className="hover:text-white">Contact us</Link>
               <span style={bottomLinkStyle}>|</span>
               <Link href="/terms-of-use" style={bottomLinkStyle} className="hover:text-white">Terms of use</Link>
-             
           </div>
         </div>
 
         {/* Copyright */}
-        <div className="flex justify-center w-full">
-          <p style={copyrightStyle}>
+        <div className="flex justify-center w-full mt-4 md:mt-0">
+          <p style={copyrightStyle} className="text-center">
             © Copyright SMRSC 2026 | All Rights Reserved.
           </p>
         </div>
 
       </div>
-      
     </footer>
   );
 };
