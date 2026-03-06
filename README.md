@@ -9,36 +9,65 @@ This repository contains the **official web platform for SMRSC 2026**, built wit
 # Tech Stack
 
 ### Framework
-
-* Next.js 16 (App Router)
-* React 19
+- Next.js 16 (App Router)
+- React 19
 
 ### Styling
-
-* TailwindCSS 4
-* Custom fonts and assets
+- TailwindCSS 4
+- Custom fonts and assets
 
 ### Animations & UI
-
-* Framer Motion
-* Lenis (smooth scrolling)
-* tsParticles
+- Framer Motion
+- Lenis (smooth scrolling)
+- tsParticles
 
 ### Icons
-
-* Lucide React
+- Lucide React
 
 ### Backend / Data
-
-* MongoDB
-* Mongoose
-* Next.js API Routes
+- MongoDB
+- Mongoose
+- Next.js API Routes
 
 ### Tooling
+- ESLint
+- PostCSS
+- TypeScript configuration support
 
-* ESLint
-* PostCSS
-* TypeScript configuration support
+---
+
+# System Architecture Diagram
+
+The platform follows a **Next.js full-stack architecture** where the frontend UI and backend APIs are handled within the same application using the App Router. Data persistence is handled through MongoDB, while analytics for visit tracking is managed through dedicated API routes.
+
+```mermaid
+flowchart LR
+
+User[User Browser]
+
+User --> NextApp[Next.js Application]
+
+NextApp --> UI[React Components]
+NextApp --> Pages[App Router Pages]
+
+Pages --> About[About Page]
+Pages --> Explore[Explore Page]
+Pages --> Media[Media & Blogs]
+Pages --> Register[Registration Page]
+Pages --> Visit[Travel & Venue Info]
+
+NextApp --> APIRoutes[Next.js API Routes]
+
+APIRoutes --> VisitTracking[Track Visit API]
+VisitTracking --> MongoDB[(MongoDB Database)]
+
+NextApp --> Assets[Static Assets]
+Assets --> Images[Images]
+Assets --> Fonts[Fonts]
+Assets --> Videos[Videos]
+
+MongoDB --> VisitModel[Visit Model]
+```
 
 ---
 
@@ -68,7 +97,7 @@ Application runs at:
 http://localhost:3000
 ```
 
-Next.js hot reloading is enabled for development.
+Next.js hot reloading is enabled during development.
 
 ---
 
@@ -209,10 +238,10 @@ The application can be deployed on any Node.js compatible hosting platform.
 
 Recommended platforms:
 
-* Vercel
-* AWS
-* Docker-based infrastructure
-* VPS with Node.js runtime
+- Vercel
+- AWS
+- Docker-based infrastructure
+- VPS with Node.js runtime
 
 ---
 
