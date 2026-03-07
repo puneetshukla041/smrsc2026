@@ -6,6 +6,7 @@ import { useEffect, useRef } from 'react';
 
 export default function SpeedLogger() {
   const pathname = usePathname();
+  
   const isFirstLoad = useRef(true);
 
   // 1. Log destination path
