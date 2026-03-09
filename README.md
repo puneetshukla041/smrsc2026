@@ -6,7 +6,7 @@ This repository contains the **official web platform for SMRSC 2026**, built wit
 
 ---
 
-# Tech Stack
+## Tech Stack
 
 ### Framework
 - Next.js 16 (App Router)
@@ -36,9 +36,9 @@ This repository contains the **official web platform for SMRSC 2026**, built wit
 
 ---
 
-# System Architecture Diagram
+## System Architecture Diagram
 
-The platform follows a **Next.js full-stack architecture** where the frontend UI and backend APIs are handled within the same application using the App Router. Data persistence is handled through MongoDB, while contact submissions and inquiries are managed through dedicated API routes.
+The platform follows a **Next.js full-stack architecture** where the frontend UI and backend APIs are handled within the same application using the App Router. Data persistence is handled through MongoDB, prioritizing contact inquiries over the legacy visit-tracking system. Route groups are used to logically separate legal pages from core application routes.
 
 ```mermaid
 flowchart LR
@@ -50,21 +50,23 @@ User --> NextApp[Next.js Application]
 NextApp --> UI[React Components]
 NextApp --> Pages[App Router Pages]
 
-Pages --> About[About & FAQ]
-Pages --> Agenda[Agenda Page]
-Pages --> Media[Media & Blogs]
-Pages --> Register[Registration & Contact]
-Pages --> Visit[Travel & Venue Info]
-Pages --> Legal[Legal Pages]
+Pages --> Legal["(legal) Route Group"]
+Pages --> Src["(src) Route Group"]
+
+Legal --> Cookies[Cookies / Privacy / Terms]
+Src --> Core[Home / About / Agenda / Map]
+Src --> Engagement[Register / Contact Us]
+Src --> Media[Media / Blogs]
+Src --> Visit[Visit / Hotels / Venue]
 
 NextApp --> APIRoutes[Next.js API Routes]
 
-APIRoutes --> ContactAPI[Contact API]
-ContactAPI --> MongoDB[(MongoDB Database)]
+APIRoutes --> ContactRoute[Contact API]
+ContactRoute --> MongoDB[(MongoDB Database)]
 
 NextApp --> Assets[Static Assets]
-Assets --> Images[Images & Logos]
+Assets --> Images[Images / Logos]
 Assets --> Fonts[Fonts]
-Assets --> MediaAssets[Videos & PDFs]
+Assets --> Videos[Videos]
 
 MongoDB --> ContactModel[Contact Model]
