@@ -23,14 +23,14 @@ const NAV_LINKS = [
       
     ]
   },
-  {
+{
     name: "Agenda",
     href: "/agenda",
     subLinks: [
-      { name: "Overview", href: "/explore?tab=overview" },
-      { name: "Schedule Day 1", href: "/explore?tab=day1" },
-      { name: "Schedule Day 2", href: "/explore?tab=day2" },
-      { name: "Schedule Day 3", href: "/explore?tab=day3" },
+      { name: "Overview", href: "/agenda?tab=overview" },     // Changed from /explore to /agenda
+      { name: "Schedule Day 1", href: "/agenda?tab=day1" }, // Changed from /explore to /agenda
+      { name: "Schedule Day 2", href: "/agenda?tab=day2" }, // Changed from /explore to /agenda
+      { name: "Schedule Day 3", href: "/agenda?tab=day3" }, // Changed from /explore to /agenda
     ]
   },
   { 
