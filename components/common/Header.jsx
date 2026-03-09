@@ -25,7 +25,7 @@ const NAV_LINKS = [
   },
   {
     name: "Agenda",
-    href: "/explore",
+    href: "/agenda",
     subLinks: [
       { name: "Overview", href: "/explore?tab=overview" },
       { name: "Schedule Day 1", href: "/explore?tab=day1" },
