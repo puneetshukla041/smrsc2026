@@ -3,12 +3,12 @@ import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 
-import Header from '../../components/common/Header'; 
-import Footer from '../../components/common/footer'; 
+import Header from '../../../components/common/Header';
+import Footer from '../../../components/common/footer';
 
 // Dynamic Imports
-const SMRSC2024 = dynamic(() => import('../../components/pastevent/SMRSC2024'));
-const SMRSC2025 = dynamic(() => import('../../components/pastevent/SMRSC2025'));
+const SMRSC2024 = dynamic(() => import('../../../components/pastevent/SMRSC2024'));
+const SMRSC2025 = dynamic(() => import('../../../components/pastevent/SMRSC2025'));
 
 const PastEventsContent = () => {
   const router = useRouter();
@@ -28,8 +28,8 @@ const PastEventsContent = () => {
     const preloadBackgroundAssets = async () => {
       // Pre-fetch the heavy component code in the background
       await Promise.all([
-        import('../../components/pastevent/SMRSC2024'),
-        import('../../components/pastevent/SMRSC2025')
+        import('../../../components/pastevent/SMRSC2024'),
+        import('../../../components/pastevent/SMRSC2025')
       ]);
 
       // Automatically generate paths for all 24 images
