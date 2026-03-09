@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // --- Imports ---
-import Header from '../../components/common/Header'; 
-import Footer from '../../components/common/footer'; 
+import Header from '../../../components/common/Header';
+import Footer from '../../../components/common/footer';
 
 const ContactUs = () => {
   // --- Form State ---
