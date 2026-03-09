@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Timer from "../components/ui/CountdownTimer"; 
+import Timer from "../components/features/CountdownTimer"; 
 import SmoothScroll from "../components/common/SmoothScroll"; 
 import GlobalPreloader from "../components/common/GlobalPreloader";
 import NextTopLoader from 'nextjs-toploader'; // <-- Import the loader
