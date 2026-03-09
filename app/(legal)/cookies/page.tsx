@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from '../../components/common/Header'; 
-import Footer from '../../components/common/footer'; 
+import Header from '../../../components/common/Header'; 
+import Footer from '../../../components/common/footer'; 
 
 export const metadata = {
   title: 'Cookies | SSICRS',
