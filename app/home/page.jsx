@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import Header from '../../components/common/Header';
 import Footer from '../../components/common/footer';
 import Section1 from '../../components/home/Section1';
-import CookieBanner from '../../components/common/CookieBanner';
+import CookieBanner from '../../components/features/CookieBanner';
 
 const Section2 = dynamic(() => import('../../components/home/Section2'));
 const Section3 = dynamic(() => import('../../components/home/Section3'));

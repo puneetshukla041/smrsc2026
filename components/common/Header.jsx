@@ -5,7 +5,7 @@ import { Search, Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import SearchModal from './SearchModal'; 
+import SearchModal from '../../lib/SearchModal'; 
 
 /* -------------------------------------------------------------------------- */
 /* CONSTANTS                                                                  */
