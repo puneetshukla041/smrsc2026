@@ -92,6 +92,7 @@ export default function NextLevelSpeedLogger() {
   });
 
   // 4. Render the Booster Line!
+// 4. Render the Booster Line!
   return (
     <div 
       style={{
@@ -99,13 +100,12 @@ export default function NextLevelSpeedLogger() {
         top: 0,
         left: 0,
         height: '3px',
-        // A sleek cyberpunk gradient: Cyan to Purple
-        background: 'linear-gradient(90deg, transparent, #00ffff, #b084f6)',
-        // Glowing effect
-        boxShadow: '0 0 10px #00ffff, 0 0 5px #b084f6',
+        // Trustworthy SaaS Blue
+        background: 'linear-gradient(90deg, transparent, #2563eb, #60a5fa)',
+        // Soft, professional glow
+        boxShadow: '0 0 8px rgba(59, 130, 246, 0.5)',
         zIndex: 9999,
         pointerEvents: 'none',
-        // The magic: if navigating, slowly creep to 90%. If done, snap to 100% and fade out.
         transition: isNavigating 
           ? 'width 8s cubic-bezier(0.1, 0.05, 0, 1)' 
           : 'width 0.4s ease-out, opacity 0.4s ease-out',
