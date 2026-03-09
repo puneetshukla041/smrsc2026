@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus, ArrowRight } from 'lucide-react';
-import Header from '../../components/common/Header'; 
-import Footer from '../../components/common/footer'; 
+import Header from '../../../components/common/Header';
+import Footer from '../../../components/common/footer';
 
 const FAQPage = () => {
   const [openIndex, setOpenIndex] = useState(null);
