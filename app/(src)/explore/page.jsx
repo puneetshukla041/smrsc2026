@@ -7,23 +7,23 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { Plus, Minus, ArrowRight } from 'lucide-react';
 
-import Header from '../../components/common/Header'; 
-import Footer from '../../components/common/footer'; 
+import Header from '../../../components/common/Header';
+import Footer from '../../../components/common/footer';
 
 // 🚀 1. MAKE ALL HEAVY COMPONENTS DYNAMIC
-const Overview = dynamic(() => import('../../components/explore/Overview'), {
+const Overview = dynamic(() => import('../../../components/explore/Overview'), {
   ssr: false, 
   loading: () => <div className="min-h-[50vh] flex items-center justify-center text-white/50">Loading Overview...</div>
 });
-const ScheduleDay1 = dynamic(() => import('../../components/explore/ScheduleDay1'), {
+const ScheduleDay1 = dynamic(() => import('../../../components/explore/ScheduleDay1'), {
   ssr: false,
   loading: () => <p className="text-white text-center py-10">Loading Day 1...</p>
 });
-const ScheduleDay2 = dynamic(() => import('../../components/explore/ScheduleDay2'), {
+const ScheduleDay2 = dynamic(() => import('../../../components/explore/ScheduleDay2'), {
   ssr: false,
   loading: () => <p className="text-white text-center py-10">Loading Day 2...</p>
 });
-const ScheduleDay3 = dynamic(() => import('../../components/explore/ScheduleDay3'), {
+const ScheduleDay3 = dynamic(() => import('../../../components/explore/ScheduleDay3'), {
   ssr: false,
   loading: () => <p className="text-white text-center py-10">Loading Day 3...</p>
 });
