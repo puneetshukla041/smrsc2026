@@ -17,11 +17,7 @@ const METRIC_THRESHOLDS = {
 
 export default function NextLevelSpeedLogger() {
   const pathname = usePathname();
-<<<<<<< HEAD
   const searchParams = useSearchParams();
-=======
-  
->>>>>>> 86ed460090f4f4c1aab453e2cede1e7cf96f534d
   const isFirstLoad = useRef(true);
   
   // State to control our booster line animation
