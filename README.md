@@ -1,108 +1,263 @@
-# SMRSC 2026 - Official Conference Platform
+# SMRSC 2026 – Conference Platform
 
-SMRSC (SSI Multi-Specialty Robotic Surgery Conference) is a premier global conference focused on robotic and technology-driven surgery. This platform facilitates the gathering of surgeons, healthcare professionals, innovators, and medical leaders to exchange knowledge, demonstrate robotic procedures, and explore advancements shaping the future of connected surgical care.
+SMRSC (SSI Multi-Specialty Robotic Surgery Conference) is a global conference focused on robotic and technology-driven surgery. The platform brings together surgeons, healthcare professionals, innovators, and medical leaders to exchange knowledge, demonstrate robotic procedures, and explore advancements shaping the future of connected surgical care.
 
-This repository contains the official web platform for SMRSC 2026. It is engineered using Next.js with the App Router architecture, ensuring a highly performant, SEO-optimized, and scalable application. The platform serves as the central hub for conference schedules, faculty profiles, media distribution, venue logistics, registration, and historical event data.
-
----
-
-## Technology Stack
-
-### Core Framework
-* **Next.js 16** (App Router Architecture)
-* **React 19**
-
-### Styling & User Interface
-* **TailwindCSS 4** (Utility-first styling)
-* **Framer Motion** (Advanced UI animations)
-* **Lenis** (Optimized smooth scrolling)
-* **tsParticles** (Background particle effects)
-* **Lucide React** (Consistent iconography system)
-
-### Backend & Data Management
-* **MongoDB** (NoSQL Database)
-* **Mongoose** (Object Data Modeling)
-* **Next.js API Routes** (Serverless backend functions)
-
-### Tooling & Configuration
-* **ESLint** (Code linting and formatting)
-* **PostCSS** (CSS transformation)
-* **TypeScript** (Configuration support)
+This repository contains the **official web platform for SMRSC 2026**, built with **Next.js** using the App Router architecture. The platform provides information about the conference including schedules, faculty, media, venues, registration, and past events.
 
 ---
 
-## System Architecture Diagram
+# Tech Stack
 
-The platform utilizes a full-stack Next.js architecture. The frontend UI, client-side routing, and backend API endpoints are unified within the Next.js environment. Data persistence is managed via MongoDB, specifically handling contact inquiries and event registrations through secure serverless routes.
+### Framework
+- Next.js 16 (App Router)
+- React 19
+
+### Styling
+- TailwindCSS 4
+- Custom fonts and assets
+
+### Animations & UI
+- Framer Motion
+- Lenis (smooth scrolling)
+- tsParticles
+
+### Icons
+- Lucide React
+
+### Backend / Data
+- MongoDB
+- Mongoose
+- Next.js API Routes
+
+### Tooling
+- ESLint
+- PostCSS
+- TypeScript configuration support
+
+---
+
+# System Architecture Diagram
+
+The platform follows a **Next.js full-stack architecture** where the frontend UI and backend APIs are handled within the same application using the App Router. Data persistence is handled through MongoDB, while analytics for visit tracking is managed through dedicated API routes.
 
 ```mermaid
-flowchart TD
-    %% Define Client Layer
-    Client[Client / Web Browser]
+flowchart LR
 
-    %% Define Application Layer (Next.js)
-    subgraph NextJS [Next.js Application Server]
-        direction TB
-        
-        %% Static Assets
-        Static[Static Assets Handler]
-        
-        %% App Router Layer
-        subgraph AppRouter [App Router Layer]
-            direction LR
-            Layout[Root Layout & Providers]
-            
-            subgraph LegalRoutes [(legal) Route Group]
-                CookiesPage[Cookies]
-                PrivacyPage[Privacy Policy]
-                TermsPage[Terms of Use]
-            end
-            
-            subgraph SrcRoutes [(src) Route Group]
-                HomePage[Home]
-                AboutPage[About & FAQ]
-                AgendaPage[Agenda]
-                MediaPage[Media & Blogs]
-                VisitPage[Visit, Hotels & Places]
-                RegisterPage[Register & Contact]
-            end
-        end
+User[User Browser]
 
-        %% Components Layer
-        subgraph UIComponents [UI Components Library]
-            CommonUI[Common: Headers, Footers]
-            FeatureUI[Features: Preloader, CookieBanner, Timers]
-            PageUI[Page Specific: Agenda Tabs, Home Sections]
-        end
+User --> NextApp[Next.js Application]
 
-        %% Backend API Layer
-        subgraph APILayer [API Routes]
-            ContactAPI[/api/contact]
-        end
-        
-        %% Utilities & Data Models
-        subgraph LibAndModels [Libraries & Models]
-            DBConnector[lib/mongodb.js]
-            ContactModel[models/Contact.js]
-            Utilities[lib/SmoothScroll.js, SearchModal.js]
-        end
-    end
+NextApp --> UI[React Components]
+NextApp --> Pages[App Router Pages]
 
-    %% Define Database Layer
-    Database[(MongoDB Cluster)]
+Pages --> About[About Page]
+Pages --> Explore[Explore Page]
+Pages --> Media[Media & Blogs]
+Pages --> Register[Registration Page]
+Pages --> Visit[Travel & Venue Info]
 
-    %% Map Relationships
-    Client <-->|HTTP/HTTPS Requests| NextJS
-    Client -->|Serves fonts, images, videos| Static
-    
-    Layout --> LegalRoutes
-    Layout --> SrcRoutes
-    SrcRoutes --> UIComponents
-    LegalRoutes --> UIComponents
-    
-    RegisterPage -->|POST Request| ContactAPI
-    ContactAPI --> DBConnector
-    ContactAPI --> ContactModel
-    
-    DBConnector -->|Mongoose Connection| Database
-    ContactModel -->|Schema Validation| Database
+NextApp --> APIRoutes[Next.js API Routes]
+
+APIRoutes --> VisitTracking[Track Visit API]
+VisitTracking --> MongoDB[(MongoDB Database)]
+
+NextApp --> Assets[Static Assets]
+Assets --> Images[Images]
+Assets --> Fonts[Fonts]
+Assets --> Videos[Videos]
+
+MongoDB --> VisitModel[Visit Model]
+```
+
+---
+
+# Installation
+
+Clone the repository and install dependencies.
+
+```bash
+git clone <repository-url>
+cd smrsc2026
+npm install
+```
+
+---
+
+# Development
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Application runs at:
+
+```
+http://localhost:3000
+```
+
+Next.js hot reloading is enabled during development.
+
+---
+
+# Available Scripts
+
+```bash
+npm run dev     # start development server
+npm run build   # build production bundle
+npm run start   # start production server
+npm run lint    # run ESLint
+```
+
+---
+
+# Project Architecture
+
+The project uses **Next.js App Router** with modular route separation and reusable components.
+
+```
+app/
+ ├── about/
+ ├── contactus/
+ ├── cookies/
+ ├── explore/
+ ├── faq/
+ ├── home/
+ ├── map/
+ ├── media/
+ │    ├── blog1/
+ │    ├── blog2/
+ │    └── blog3/
+ ├── pastevents/
+ ├── privacy-policy/
+ ├── register/
+ ├── terms-of-use/
+ ├── visit/
+ │    ├── hotels/
+ │    ├── places/
+ │    └── venue/
+ ├── api/
+ │    └── track-visit/
+ ├── layout.js
+ ├── globals.css
+ └── page.js
+```
+
+---
+
+# Components
+
+Reusable UI components are organized by feature domain.
+
+```
+components/
+ ├── about/
+ ├── explore/
+ ├── home/
+ ├── media/
+ ├── pastevent/
+ ├── common/
+ │    ├── Header.jsx
+ │    ├── footer.jsx
+ │    ├── CookieBanner.tsx
+ │    ├── GlobalPreloader.jsx
+ │    └── SearchModal.js
+ └── ui/
+      ├── CountdownTimer.jsx
+      └── SpeedLogger.jsx
+```
+
+---
+
+# Data Models
+
+MongoDB models are defined using Mongoose.
+
+```
+models/
+ └── Visit.js
+```
+
+Used for tracking website visits through the `track-visit` API route.
+
+---
+
+# Public Assets
+
+Static assets are stored in the `public` directory.
+
+```
+public/
+ ├── fonts/
+ ├── images/
+ │    ├── about/
+ │    ├── faculty/
+ │    ├── explore/
+ │    ├── home/
+ │    └── pastevent/
+ ├── logos/
+ ├── pdf/
+ └── videos/
+```
+
+---
+
+# Environment Variables
+
+Create a `.env.local` file in the project root.
+
+Example:
+
+```
+MONGODB_URI=your_mongodb_connection_string
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
+
+---
+
+# Production Build
+
+Create an optimized production build:
+
+```bash
+npm run build
+```
+
+Start the production server:
+
+```bash
+npm start
+```
+
+---
+
+# Deployment
+
+The application can be deployed on any Node.js compatible hosting platform.
+
+Recommended platforms:
+
+- Vercel
+- AWS
+- Docker-based infrastructure
+- VPS with Node.js runtime
+
+---
+
+# Code Quality
+
+Run lint checks:
+
+```bash
+npm run lint
+```
+
+ESLint is configured using `eslint-config-next`.
+
+---
+
+# License
+
+This repository is a private internal project for the **SSI Multi-Specialty Robotic Surgery Conference (SMRSC)**.
+
