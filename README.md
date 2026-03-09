@@ -9,7 +9,7 @@ This repository contains the official web platform for SMRSC 2026. It is enginee
 ## Technology Stack
 
 ### Core Framework
-* **Next.js 15/16** (App Router Architecture)
+* **Next.js 16** (App Router Architecture)
 * **React 19**
 
 ### Styling & User Interface
@@ -33,7 +33,7 @@ This repository contains the official web platform for SMRSC 2026. It is enginee
 
 ## System Architecture Diagram
 
-The platform utilizes a full-stack Next.js architecture. The frontend UI, client-side routing, and backend API endpoints are unified within the Next.js environment. Data persistence is managed via MongoDB, specifically handling contact inquiries and registrations through secure serverless routes.
+The platform utilizes a full-stack Next.js architecture. The frontend UI, client-side routing, and backend API endpoints are unified within the Next.js environment. Data persistence is managed via MongoDB, specifically handling contact inquiries and event registrations through secure serverless routes.
 
 ```mermaid
 flowchart TD
@@ -63,7 +63,7 @@ flowchart TD
                 AboutPage[About & FAQ]
                 AgendaPage[Agenda]
                 MediaPage[Media & Blogs]
-                VisitPage[Visit & Venue]
+                VisitPage[Visit, Hotels & Places]
                 RegisterPage[Register & Contact]
             end
         end
