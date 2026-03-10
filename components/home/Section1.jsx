@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
 const Section1 = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const currentSlideRef = useRef(0);
 
   const desktopImages = [
     "/images/home/section1/image2.webp",
@@ -24,11 +25,15 @@ const Section1 = () => {
   };
 
   useEffect(() => {
+    currentSlideRef.current = currentSlide;
+  }, [currentSlide]);
+
+  useEffect(() => {
     const timer = setInterval(() => {
-      nextSlide();
+      setCurrentSlide((prev) => (prev === desktopImages.length - 1 ? 0 : prev + 1));
     }, 5000);
     return () => clearInterval(timer);
-  }, [currentSlide]);
+  }, []); // Empty dependency array - interval runs continuously
 
   const buttonContainerStyle = {
     display: "flex",

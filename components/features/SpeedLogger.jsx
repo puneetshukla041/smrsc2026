@@ -4,6 +4,11 @@ import { useReportWebVitals } from 'next/web-vitals';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
+// Only enable in development - production gets tree-shaken
+if (process.env.NODE_ENV === 'production') {
+  module.exports = () => null;
+}
+
 // Google's Official Core Web Vitals Thresholds
 const METRIC_THRESHOLDS = {
   'Next.js-route-change-to-render': { good: 200, poor: 500 },

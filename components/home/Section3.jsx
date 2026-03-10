@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -7,6 +7,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 const Section3 = () => {
   const [page, setPage] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const pageRef = useRef(0);
 
   const desktopImages = [
     { id: 1, src: "/images/home/section3/image1.webp", title: "SSI Mantra 3" },
@@ -33,13 +34,17 @@ const Section3 = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    pageRef.current = page;
+  }, [page]);
+
   const imageIndex = ((page % images.length) + images.length) % images.length;
-  const paginate = (newDirection) => setPage(page + newDirection);
+  const paginate = (newDirection) => setPage(p => p + newDirection);
 
   useEffect(() => {
-    const timer = setInterval(() => { paginate(1); }, 3000);
+    const timer = setInterval(() => { setPage(p => p + 1); }, 3000);
     return () => clearInterval(timer);
-  }, [page]); 
+  }, []); // Empty dependency array - interval runs continuously 
 
   const getPosition = (index) => {
     const total = images.length;

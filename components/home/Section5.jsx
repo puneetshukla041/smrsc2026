@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -18,6 +18,7 @@ const Section5 = () => {
   }, []);
 
   const [page, setPage] = useState(0);
+  const pageRef = useRef(0);
 
   const images = [
     { id: 1, src: "/images/home/section5/image1.webp", mobileSrc: "/images/home/section5/mob1.webp", title: "SSI Mantra 3" },
@@ -26,13 +27,17 @@ const Section5 = () => {
     { id: 4, src: "/images/home/section5/image4.webp", mobileSrc: "/images/home/section5/mob4.webp", title: "Future of Surgery" },
   ];
 
+  useEffect(() => {
+    pageRef.current = page;
+  }, [page]);
+
   const imageIndex = ((page % images.length) + images.length) % images.length;
-  const paginate = (newDirection) => setPage(page + newDirection);
+  const paginate = (newDirection) => setPage(p => p + newDirection);
 
   useEffect(() => {
-    const timer = setInterval(() => { paginate(1); }, 3000); 
+    const timer = setInterval(() => { setPage(p => p + 1); }, 3000); 
     return () => clearInterval(timer);
-  }, [page]); 
+  }, []); // Empty dependency array - interval runs continuously 
 
   const getPosition = (index) => {
     const total = images.length; let diff = (index - imageIndex + total) % total;

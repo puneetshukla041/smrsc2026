@@ -1,49 +1,24 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // --- Imports ---
 import Header from '../../../components/common/Header';
 import Footer from '../../../components/common/footer';
+import { useContactForm } from '../../../hooks/useContactForm';
 
 const ContactUs = () => {
-  // --- Form State ---
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState({ loading: false, success: false, error: '' });
-
-  // --- Handlers ---
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent page reload
-    setStatus({ loading: true, success: false, error: '' });
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setStatus({ loading: false, success: true, error: '' });
-        setFormData({ name: '', email: '', message: '' }); // Clear form
-        
-        // Hide success message after 4 seconds
-        setTimeout(() => {
-          setStatus((prev) => ({ ...prev, success: false }));
-        }, 4000);
-      } else {
-        setStatus({ loading: false, success: false, error: data.error || 'Something went wrong' });
-      }
-    } catch (error) {
-      setStatus({ loading: false, success: false, error: 'Failed to connect to the server.' });
-    }
-  };
+  // Use custom hook for form management with session storage & CSRF
+  const {
+    formData,
+    status,
+    handleChange,
+    handleSubmit,
+    handleRetry,
+    showRetryButton,
+    hasError,
+    hasSuccess
+  } = useContactForm();
 
   // --- Animation Variants ---
   const fadeInUp = {
@@ -72,7 +47,7 @@ const ContactUs = () => {
         
         {/* --- SUCCESS MODAL / TOAST --- */}
         <AnimatePresence>
-          {status.success && (
+          {hasSuccess && (
             <motion.div
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
@@ -124,6 +99,8 @@ const ContactUs = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  minLength={2}
+                  maxLength={255}
                   placeholder="Enter your name"
                   className="w-full bg-white/20 rounded-[5px] px-5 py-3.5 text-white font-manrope border border-transparent focus:border-white/50 focus:outline-none focus:ring-1 focus:ring-white/50 transition-all placeholder:text-white/50"
                 />
@@ -140,6 +117,8 @@ const ContactUs = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  maxLength={255}
+                  pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
                   placeholder="name@email.com"
                   className="w-full bg-white/20 rounded-[5px] px-5 py-3.5 text-white font-manrope border border-transparent focus:border-white/50 focus:outline-none focus:ring-1 focus:ring-white/50 transition-all placeholder:text-white/50"
                 />
@@ -155,6 +134,8 @@ const ContactUs = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
+                  minLength={10}
+                  maxLength={5000}
                   rows={6}
                   placeholder="Enter your message"
                   className="w-full min-h-[150px] md:min-h-[207px] bg-white/20 rounded-[5px] px-5 py-3.5 text-white font-manrope border border-transparent focus:border-white/50 focus:outline-none focus:ring-1 focus:ring-white/50 transition-all placeholder:text-white/50 resize-y"
@@ -162,8 +143,20 @@ const ContactUs = () => {
               </div>
 
               {/* Error Message Display */}
-              {status.error && (
-                <p className="text-red-400 font-manrope text-sm text-center">{status.error}</p>
+              {hasError && (
+                <div className="flex flex-col gap-3 w-full">
+                  <p className="text-red-400 font-manrope text-sm text-center">{status.error}</p>
+                  {showRetryButton && (
+                    <button 
+                      type="button"
+                      onClick={handleRetry}
+                      disabled={status.loading}
+                      className="px-6 py-2 bg-red-500/20 text-red-300 border border-red-500/50 rounded-full text-sm font-medium font-manrope hover:bg-red-500/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {status.loading ? 'Retrying...' : 'Retry'}
+                    </button>
+                  )}
+                </div>
               )}
 
               {/* Send Button */}
