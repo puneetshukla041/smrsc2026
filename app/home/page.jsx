@@ -1,29 +1,55 @@
 'use client'
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState, lazy, Suspense } from 'react';
 import dynamic from 'next/dynamic';
 
+// Import critical components immediately
 import Header from '../../components/common/Header';
 import Footer from '../../components/common/footer';
 import Section1 from '../../components/home/Section1';
-import CookieBanner from '../../components/features/CookieBanner';
-import { fetchWithRetry } from '../../lib/fetchWithRetry';
+import OptimizedPreloader from '../../components/features/OptimizedPreloader';
 
-const Section2 = dynamic(() => import('../../components/home/Section2'));
-const Section3 = dynamic(() => import('../../components/home/Section3'));
-const Section4 = dynamic(() => import('../../components/home/Section4'));
-const Section5 = dynamic(() => import('../../components/home/Section5'));
-const Section6 = dynamic(() => import('../../components/home/Section6'));
-const Section7 = dynamic(() => import('../../components/home/Section7'));
+const CookieBanner = dynamic(() => import('../../components/features/CookieBanner'), {
+  loading: () => null, // No loading state needed, renders after page interactive
+});
+
+const Section2 = dynamic(() => import('../../components/home/Section2'), {
+  loading: () => <div className="h-96 bg-[#020617]" />,
+});
+
+const Section3 = dynamic(() => import('../../components/home/Section3'), {
+  loading: () => <div className="h-96 bg-[#020617]" />,
+});
+
+const Section4 = dynamic(() => import('../../components/home/Section4'), {
+  loading: () => <div className="h-96 bg-[#020617]" />,
+});
+
+const Section5 = dynamic(() => import('../../components/home/Section5'), {
+  loading: () => <div className="h-96 bg-[#020617]" />,
+});
+
+const Section6 = dynamic(() => import('../../components/home/Section6'), {
+  loading: () => <div className="h-96 bg-[#020617]" />,
+});
+
+const Section7 = dynamic(() => import('../../components/home/Section7'), {
+  loading: () => <div className="h-96 bg-[#020617]" />,
+});
 
 const HomePage = () => {
-  // Use a ref to persist the start time across re-renders
   const visitStartTime = useRef(Date.now());
+  const [analyticsReady, setAnalyticsReady] = useState(false);
 
+  // Defer analytics tracking to after page is interactive
   useEffect(() => {
     let hasAnalyticsConsent = false;
+    let mounted = true;
 
-    // Check for existing consent
-    const checkConsent = () => {
+    // Delay analytics setup to not block render
+    const analyticsTimer = setTimeout(() => {
+      if (!mounted) return;
+
+      // Check for existing consent
       try {
         const consent = localStorage.getItem('gdpr-cookie-consent');
         if (consent) {
@@ -31,100 +57,60 @@ const HomePage = () => {
           hasAnalyticsConsent = parsed.analytics === true;
         }
       } catch (e) {
-        console.error('Failed to parse consent:', e);
+        console.warn('Analytics setup skipped:', e);
       }
-    };
 
-    const startTracking = () => {
-      // Update the ref value
-      visitStartTime.current = Date.now();
-      const screenRes = typeof window !== 'undefined' ? `${window.screen.width}x${window.screen.height}` : "Unknown";
-
-      // Send initial visit ping with retry logic (non-critical call)
-      fetchWithRetry('/api/track-visit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'enter', screenResolution: screenRes })
-      }, 1, 500).catch(err => console.warn("Visit tracking unavailable", err));
-    };
-
-    const clearTrackingData = () => {
-      // Delete any stored tracking data
-      try {
-        localStorage.removeItem('visit-tracking-data');
-      } catch (e) {
-        console.error('Failed to clear tracking data:', e);
-      }
-    };
-
-    // Listen for consent changes
-    // Removed the ': CustomEvent' TypeScript syntax here
-    const handleConsentChange = (event) => {
-      hasAnalyticsConsent = event.detail.analytics === true;
       if (hasAnalyticsConsent) {
-        // Analytics just became enabled, start tracking
-        startTracking();
-      } else {
-        // Analytics was disabled, clear tracking data
-        clearTrackingData();
+        const screenRes = typeof window !== 'undefined' ? `${window.screen.width}x${window.screen.height}` : "Unknown";
+        // Fire and forget - non-blocking
+        fetch('/api/track-visit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'enter', screenResolution: screenRes })
+        }).catch(() => {}); // Silently fail, don't block
       }
+
+      setAnalyticsReady(true);
+    }, 3000); // Wait 3s after page interactive
+
+    const handleConsentChange = (event) => {
+      hasAnalyticsConsent = event.detail?.analytics === true;
     };
 
-    checkConsent();
-
-    // Listen to the custom event
-    window.addEventListener('gdpr-consent-changed', handleConsentChange);
-
-    // Only start tracking if consent already exists
-    if (hasAnalyticsConsent) {
-      startTracking();
-    }
-
-    // Helper to calculate and send time
-    const sendWatchTime = () => {
-      // Only send if consent was given
+    const handleVisibilityChange = () => {
       if (!hasAnalyticsConsent) return;
 
-      // Access the value stored in the ref using .current
       const timeSpentInSeconds = Math.floor((Date.now() - visitStartTime.current) / 1000);
-      
-      if (timeSpentInSeconds > 0) {
-        fetchWithRetry('/api/track-visit', {
+      if (timeSpentInSeconds > 0 && document.visibilityState === 'hidden') {
+        fetch('/api/track-visit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ action: 'leave', watchTime: timeSpentInSeconds }),
           keepalive: true 
-        }, 1, 500).catch(err => console.warn("Time tracking unavailable", err));
+        }).catch(() => {});
       }
     };
 
-    // 2. Watch Time Ping
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === 'hidden') {
-        sendWatchTime();
-        visitStartTime.current = Date.now(); // Reset using .current
-      } else if (document.visibilityState === 'visible') {
-        visitStartTime.current = Date.now(); // Reset using .current
-      }
-    };
-
+    window.addEventListener('gdpr-consent-changed', handleConsentChange);
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    window.addEventListener('beforeunload', sendWatchTime);
-    
+    window.addEventListener('beforeunload', handleVisibilityChange);
+
     return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-      window.removeEventListener('beforeunload', sendWatchTime);
+      mounted = false;
+      clearTimeout(analyticsTimer);
       window.removeEventListener('gdpr-consent-changed', handleConsentChange);
-      
-      if (document.visibilityState === 'visible') {
-        sendWatchTime();
-      }
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('beforeunload', handleVisibilityChange);
     };
   }, []);
 
   return (
     <div className="flex flex-col min-h-screen bg-[#020617]">
+      {/* Optimized preloader - loads only critical images */}
+      <OptimizedPreloader />
+
       <Header />
+      
       <main className="flex-grow">
         <Section1 />
         <div className="hidden md:block">
@@ -137,7 +123,7 @@ const HomePage = () => {
         <Section6 />
       </main>
       
-      {/* Cookie Banner hidden on mobile, visible on medium screens and up */}
+      {/* Cookie Banner - deferred load */}
       <div className="hidden md:block">
         <CookieBanner />
       </div>
