@@ -202,4 +202,5 @@ const HotelsPage = () => {
   );
 };
 
+
 export default HotelsPage;
