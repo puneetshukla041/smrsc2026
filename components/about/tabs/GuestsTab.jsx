@@ -28,18 +28,6 @@ const guestData = [
 const GuestsTab = () => {
   return (
     <div className="w-full py-20 flex flex-col items-center justify-center text-white animate-in fade-in slide-in-from-bottom-4 duration-700">
-      {/* Top Navigation Links (maintained from original design) */}
-      <div className="w-full flex justify-start items-center gap-2 mb-20 px-10">
-        {["About SMRSC", "Organizing Committee", "Chief Guests", "Faculty"].map((tab, index) => (
-          <button 
-            key={tab} 
-            className={`px-4 py-1.5 rounded-full text-sm border ${index === 2 ? 'bg-white text-dark-blue border-white' : 'border-neutral-700 text-neutral-400'}`}
-          >
-            {tab}
-          </button>
-        ))}
-      </div>
-
       <div className="max-w-[1440px] w-full flex flex-col gap-24 md:gap-32 px-10 md:px-24">
         {guestData.map((guest) => (
           <div 
@@ -48,7 +36,7 @@ const GuestsTab = () => {
               !guest.alignLeft ? 'md:flex-row-reverse' : ''
             }`}
           >
-            {/* Image Container with precise fixed dimensions (width: 561px, height: 682px) */}
+            {/* Image Container */}
             <div className="w-[561px] h-[682px] aspect-[51/62] relative flex-shrink-0">
               <img 
                 src={guest.image} 
