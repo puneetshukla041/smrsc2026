@@ -243,7 +243,7 @@ const RegisterPage = () => {
           {/* Registration Title */}
           <motion.h1 
             variants={itemVar}
-            className="text-[#F8FFFF] text-center font-['Blauer_Nue'] text-[48px] sm:text-[60px] md:text-[72px] not-italic font-semibold leading-tight md:leading-[52px] mb-12"
+            className="text-[#F8FFFF] text-center font-['Blauer_Nue'] text-[48px] sm:text-[60px] md:text-[72px] not-italic font-semibold leading-tight md:leading-[52px] mb-16"
           >
             Register Now
           </motion.h1>
@@ -283,7 +283,7 @@ const RegisterPage = () => {
                       )}
                     </div>
                   </div>
-                  <span className="text-[#1A2E35] font-medium text-[15px]">Register as National delegates</span>
+                  <span className="text-[#1A2E35] font-medium text-[15px]">Register as National Delegate</span>
                 </label>
 
                 {/* Option 2: International */}
@@ -306,7 +306,7 @@ const RegisterPage = () => {
                       )}
                     </div>
                   </div>
-                  <span className="text-[#1A2E35] font-medium text-[15px]">Register as International delegates</span>
+                  <span className="text-[#1A2E35] font-medium text-[15px]">Register as International Delegate</span>
                 </label>
 
               </div>
