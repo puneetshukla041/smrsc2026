@@ -17,7 +17,7 @@ const Section2Content = () => {
   const navItems = useMemo(() => [
     "About SMRSC",
     "Organizing Committee",
-    "Chief Guests",
+    "Guest of Honour",
     "Faculty"
   ], []);
   
@@ -101,7 +101,7 @@ const Section2Content = () => {
         <div className="w-full min-h-[400px]">
           {activeTab === "About SMRSC" && <AboutTab />}
           {activeTab === "Organizing Committee" && <CommitteeTab />}
-          {activeTab === "Chief Guests" && <GuestsTab />}
+          {activeTab === "Guest of Honour" && <GuestsTab />}
           {activeTab === "Faculty" && <FacultyTab />}
         </div>
       </div>
