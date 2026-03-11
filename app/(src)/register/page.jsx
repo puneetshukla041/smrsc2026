@@ -241,9 +241,11 @@ const RegisterPage = () => {
           className="flex flex-col items-center text-center w-full max-w-5xl"
         >
           {/* Registration Title */}
+{/* Registration Title */}
+          {/* Added mt-12 (margin-top) to push the heading down */}
           <motion.h1 
             variants={itemVar}
-            className="text-[#F8FFFF] text-center font-['Blauer_Nue'] text-[48px] sm:text-[60px] md:text-[72px] not-italic font-semibold leading-tight md:leading-[52px] mb-16"
+            className="mt-12 text-[#F8FFFF] text-center font-['Blauer_Nue'] text-[48px] sm:text-[60px] md:text-[72px] not-italic font-semibold leading-tight md:leading-[52px] mb-12"
           >
             Register Now
           </motion.h1>
