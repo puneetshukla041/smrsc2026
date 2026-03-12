@@ -15,6 +15,9 @@ const Section3 = () => {
     { id: 3, src: "/images/home/section3/image3.webp", title: "Precision Control" },
     { id: 5, src: "/images/home/section3/image5.webp", title: "Global Innovation" },
     { id: 6, src: "/images/home/section3/image6.webp", title: "Smart Integration" },
+    { id: 7, src: "/images/home/section3/image7.webp", title: "Smart Integration" },
+    { id: 8, src: "/images/home/section3/image8.png", title: "Smart Integration" },
+    { id: 9, src: "/images/home/section3/image9.png", title: "Smart Integration" },
   ];
 
   const mobileImages = [
@@ -23,6 +26,8 @@ const Section3 = () => {
     { id: 3, src: "/images/home/section3/mob3.webp", title: "Mobile Mantra 3" },
     { id: 4, src: "/images/home/section3/mob4.webp", title: "Mobile Mantra 4" },
     { id: 5, src: "/images/home/section3/mob5.webp", title: "Mobile Mantra 5" },
+    { id: 6, src: "/images/home/section3/mob6.png", title: "Mobile Mantra 6" },
+    { id: 7, src: "/images/home/section3/mob7.png", title: "Mobile Mantra 7" },
   ];
 
   const images = isMobile ? mobileImages : desktopImages;
