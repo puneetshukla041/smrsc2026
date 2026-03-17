@@ -63,7 +63,7 @@ const GuestsTab = () => {
                 <h3 className="text-3xl sm:text-4xl lg:text-5xl font-semibold mb-4 tracking-wide leading-tight">
                   {guest.name}
                 </h3>
-                <p className="text-[#A1A1AA] text-lg sm:text-xl lg:text-2xl font-light leading-relaxed">
+                <p className="text-[#F8FFFF] text-lg sm:text-xl lg:text-2xl font-light leading-relaxed">
                   {guest.title}
                 </p>
               </div>
