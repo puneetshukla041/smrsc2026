@@ -36,7 +36,7 @@ const guestData = [
 
 const GuestsTab = () => {
   return (
-    <div className="w-full py-20 flex flex-col items-center justify-center text-white bg-[#060B19] animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className="w-full py-20 flex flex-col items-center justify-center text-white bg-transparent animate-in fade-in slide-in-from-bottom-4 duration-700">
       <div className="max-w-[1440px] w-full flex flex-col gap-24 md:gap-32 px-6 md:px-16 lg:px-24">
         {guestData.map((guest, index) => {
           // Alternates layout: Evens (0, 2, 4) have Image on Right, Odds (1, 3) have Image on Left
