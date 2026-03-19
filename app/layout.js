@@ -1,9 +1,10 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script"; // <-- Imported Next.js Script component
 import "./globals.css";
 import Timer from "../components/features/CountdownTimer"; 
 import SmoothScroll from "../lib/SmoothScroll"; 
 import GlobalPreloader from "../components/features/GlobalPreloader";
-import NextTopLoader from 'nextjs-toploader'; // <-- Import the loader
+import NextTopLoader from 'nextjs-toploader'; 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,9 +29,54 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        {/* --- GOOGLE ANALYTICS --- */}
+        <Script 
+          strategy="afterInteractive" 
+          src="https://www.googletagmanager.com/gtag/js?id=G-D4VXJRKYFX" 
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-D4VXJRKYFX');
+            `,
+          }}
+        />
+
+        {/* --- GOOGLE TAG MANAGER --- */}
+        <Script
+          id="gtm-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-WT5TFN4T');
+            `,
+          }}
+        />
+      </head>
+
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         
-      {/* Top Progress Bar - YouTube Style (Ultra Smooth Fade-Out) */}
+        {/* --- GOOGLE TAG MANAGER (NOSCRIPT) --- */}
+        <noscript>
+          <iframe 
+            src="https://www.googletagmanager.com/ns.html?id=GTM-WT5TFN4T"
+            height="0" 
+            width="0" 
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+
+        {/* Top Progress Bar - YouTube Style */}
         <NextTopLoader
           color="#0BD3D3"
           initialPosition={0.08}
@@ -38,8 +84,8 @@ export default function RootLayout({ children }) {
           height={3}
           crawl={true}
           showSpinner={false}
-          easing="ease-in-out" /* <-- Smoothly ramps the animation up and down */
-          speed={1000}         /* <-- 1000ms (1 full second). This forces the fade-out to be slow and graceful! */
+          easing="ease-in-out" 
+          speed={1000}        
           shadow="0 0 5px #004398"
           zIndex={1600}
         />
