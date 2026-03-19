@@ -1,5 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script"; // <-- Imported Next.js Script component
+import Script from "next/script"; 
 import "./globals.css";
 import Timer from "../components/features/CountdownTimer"; 
 import SmoothScroll from "../lib/SmoothScroll"; 
@@ -30,10 +30,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* --- GOOGLE ANALYTICS --- */}
+        {/* --- GOOGLE ANALYTICS (UPDATED WITH ID FROM IMAGE) --- */}
         <Script 
           strategy="afterInteractive" 
-          src="https://www.googletagmanager.com/gtag/js?id=G-D4VXJRKYFX" 
+          src="https://www.googletagmanager.com/gtag/js?id=G-E4SWQKYNZ6" 
         />
         <Script
           id="google-analytics"
@@ -43,12 +43,12 @@ export default function RootLayout({ children }) {
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-D4VXJRKYFX');
+              gtag('config', 'G-E4SWQKYNZ6');
             `,
           }}
         />
 
-        {/* --- GOOGLE TAG MANAGER --- */}
+        {/* --- GOOGLE TAG MANAGER (Kept from your earlier message) --- */}
         <Script
           id="gtm-script"
           strategy="afterInteractive"
