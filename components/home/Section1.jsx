@@ -5,9 +5,9 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const CleanSection = () => {
-  // Use index 1 as the starting point because index 0 is now the clone of the last image
   const [currentIndex, setCurrentIndex] = useState(1);
   const [isAnimating, setIsAnimating] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
 
   const desktopImages = [
     "/images/home/section1/image2.webp",
@@ -22,7 +22,6 @@ const CleanSection = () => {
   ];
 
   const realCount = desktopImages.length;
-  // Create an array that has a clone of the last image at the beginning, and a clone of the first at the end
   const trackIndices = [realCount - 1, ...Array.from({ length: realCount }, (_, i) => i), 0];
 
   const nextSlide = () => {
@@ -40,7 +39,6 @@ const CleanSection = () => {
     setCurrentIndex(idx + 1);
   };
 
-  // This function resets the slider position without animation to create the "infinite loop" illusion
   const handleTransitionEnd = () => {
     if (currentIndex === realCount + 1) {
       setIsAnimating(false);
@@ -52,12 +50,14 @@ const CleanSection = () => {
   };
 
   useEffect(() => {
+    if (isPaused) return;
+
     const timer = setInterval(() => {
       setIsAnimating(true);
       setCurrentIndex((prev) => prev + 1);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [isPaused]); 
 
   const arrowStyle = {
     display: "flex",
@@ -114,6 +114,8 @@ const CleanSection = () => {
           <div 
             className="relative w-full overflow-hidden shadow-2xl transition-all duration-300" 
             style={{ aspectRatio: "175 / 89", borderRadius: responsiveBorderRadius }}
+            onMouseEnter={() => setIsPaused(true)}   /* NEW: Pause on hover */
+            onMouseLeave={() => setIsPaused(false)}  /* NEW: Resume on leave */
           >
             <div 
               className="flex w-full h-full"
@@ -140,7 +142,6 @@ const CleanSection = () => {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                       )}
                       
-                      {/* Play Button Specific to 5.webp */}
                       {src.includes("/images/5.webp") && (
                         <a 
                           href="https://youtu.be/48CTgZ8oB_w" 
@@ -184,7 +185,6 @@ const CleanSection = () => {
 
         <div className="flex gap-3 z-20 mt-2">
           {desktopImages.map((_, index) => {
-            // Determine which dot is active considering the clones
             let activeIndex = currentIndex - 1;
             if (currentIndex === realCount + 1) activeIndex = 0;
             if (currentIndex === 0) activeIndex = realCount - 1;
@@ -241,6 +241,7 @@ const HeavySection = () => {
 
   const [s, _s] = useState(1);
   const [isAnimating, setIsAnimating] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
   const r = useRef(0);
   const [d, _d] = useState([]);
   const [m, _m] = useState("");
@@ -266,12 +267,14 @@ const HeavySection = () => {
   });
 
   useEffect(() => {
+    if (isPaused) return;
+
     const timer = setInterval(() => {
       setIsAnimating(true);
       _s((pr) => pr + 1);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [isPaused]); 
 
   useEffect(() => {
     const f = async () => {
@@ -329,7 +332,12 @@ const HeavySection = () => {
               </svg>
             </motion.button>
 
-            <div className="relative w-full overflow-hidden shadow-2xl transition-all duration-300 bg-white/5" style={{ aspectRatio: "175 / 89", borderRadius: rB }}>
+            <div 
+              className="relative w-full overflow-hidden shadow-2xl transition-all duration-300 bg-white/5" 
+              style={{ aspectRatio: "175 / 89", borderRadius: rB }}
+              onMouseEnter={() => setIsPaused(true)}  /* NEW: Pause on hover */
+              onMouseLeave={() => setIsPaused(false)} /* NEW: Resume on leave */
+            >
               <div 
                 className="flex w-full h-full" 
                 style={{ 
@@ -348,7 +356,6 @@ const HeavySection = () => {
                           <>
                             <Image src={loadedSrc} alt={`Hero ${realIdx}`} fill loading="lazy" style={{ objectFit: "cover" }} unoptimized={true}/>
                             
-                            {/* Play Button Specific to 5.webp in HeavySection too */}
                             {loadedSrc.includes("/images/5.webp") && (
                               <a 
                                 href="https://youtu.be/48CTgZ8oB_w" 
@@ -424,7 +431,7 @@ export default function Section1() {
 
   useEffect(() => {
     setMounted(true);
-    const switchDate = new Date("2026-04-04T00:00:00").getTime();
+    const switchDate = new Date("2026-04-02T00:00:00").getTime();
     
     if (Date.now() >= switchDate) {
       setUseHeavySection(true);
