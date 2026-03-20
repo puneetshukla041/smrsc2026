@@ -314,7 +314,7 @@ export default function SMRSC2024() {
 
   useEffect(() => {
     setMounted(true);
-    const switchDate = new Date("2026-03-20T11:34:00").getTime();
+    const switchDate = new Date("2026-04-05T00:00:00").getTime();
     
     if (Date.now() >= switchDate) {
       setUseHeavyRendering(true);
