@@ -35,32 +35,6 @@ const CleanSection = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const buttonContainerStyle = {
-    display: "flex",
-    width: "280px",
-    height: "51px",
-    padding: "12px 24px",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: "10px",
-    borderRadius: "40px",
-    border: "1px solid rgba(255, 255, 255, 0.8)",
-    background: "linear-gradient(180deg, #E5B648 0%, #C8890C 100%), radial-gradient(231% 135.8% at 0.9% 2.98%, rgba(255, 255, 255, 0.80) 0%, rgba(255, 255, 255, 0.20) 100%)",
-    backdropFilter: "blur(21px)",
-    cursor: "pointer",
-    boxShadow: "0px 8px 32px rgba(200, 137, 12, 0.3)",
-    textDecoration: "none",
-  };
-
-  const buttonTextStyle = {
-    color: "#FFF",
-    fontFamily: "Manrope, sans-serif",
-    fontSize: "18px",
-    fontWeight: "600",
-    lineHeight: "20px",
-    whiteSpace: "nowrap",
-  };
-
   const arrowStyle = {
     display: "flex",
     width: "56px",
@@ -141,21 +115,6 @@ const CleanSection = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                     )}
                   </div>
-
-                  {index === 0 && (
-                    <motion.a 
-                      href="/register" 
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.4 }}
-                      whileHover={{ scale: 1.05 }} 
-                      whileTap={{ scale: 0.95 }} 
-                      style={buttonContainerStyle} 
-                      className="absolute bottom-[10%] left-1/2 -translate-x-1/2 z-20"
-                    >
-                      <span style={buttonTextStyle}>Register Now</span>
-                    </motion.a>
-                  )}
                 </div>
               ))}
             </div>
@@ -203,13 +162,6 @@ const CleanSection = () => {
             unoptimized={true}
             style={{ objectFit: "cover" }}
           />
-          <motion.a 
-            href="/register" 
-            style={{ ...buttonContainerStyle, width: "240px", height: "45px" }} 
-            className="absolute bottom-[8%] z-20"
-          >
-            <span style={{ ...buttonTextStyle, fontSize: "16px" }}>Register Now</span>
-          </motion.a>
         </div>
       </div>
     </section>
@@ -264,20 +216,6 @@ const HeavySection = () => {
     f();
   }, []);
 
-  const bC = {
-    display: "flex", width: "280px", height: "51px", padding: "12px 24px",
-    justifyContent: "center", alignItems: "center", gap: "10px",
-    borderRadius: "40px", border: "1px solid rgba(255, 255, 255, 0.8)",
-    background: "linear-gradient(180deg, #E5B648 0%, #C8890C 100%), radial-gradient(231% 135.8% at 0.9% 2.98%, rgba(255, 255, 255, 0.80) 0%, rgba(255, 255, 255, 0.20) 100%)",
-    backdropFilter: "blur(21px)", cursor: "pointer",
-    boxShadow: "0px 8px 32px rgba(200, 137, 12, 0.3)", textDecoration: "none",
-  };
-
-  const bT = {
-    color: "#FFF", fontFamily: "Manrope, sans-serif", fontSize: "18px",
-    fontWeight: "600", lineHeight: "20px", whiteSpace: "nowrap",
-  };
-
   const aS = {
     display: "flex", width: "56px", height: "56px", justifyContent: "center",
     alignItems: "center", borderRadius: "100px", background: "rgba(255, 255, 255, 0.03)",
@@ -328,11 +266,6 @@ const HeavySection = () => {
                       )}
                       {i === 0 && <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />}
                     </div>
-                    {i === 0 && (
-                      <motion.a href="/register" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} style={bC} className="absolute bottom-[10%] left-1/2 -translate-x-1/2 z-20">
-                        <span style={bT}>Register Now</span>
-                      </motion.a>
-                    )}
                   </div>
                 ))}
               </div>
@@ -359,9 +292,6 @@ const HeavySection = () => {
             ) : (
                <span className="text-white/30 animate-pulse text-sm"></span>
             )}
-            <motion.a href="/register" style={{ ...bC, width: "240px", height: "45px" }} className="absolute bottom-[8%] z-20">
-              <span style={{ ...bT, fontSize: "16px" }}>Register Now</span>
-            </motion.a>
           </div>
         </div>
       )}
