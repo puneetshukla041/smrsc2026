@@ -5,15 +5,13 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const CleanSection = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const currentSlideRef = useRef(0);
+  // Use index 1 as the starting point because index 0 is now the clone of the last image
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const [isAnimating, setIsAnimating] = useState(true);
 
-  // ADDED YOUR NEW IMAGES HERE
   const desktopImages = [
-
     "/images/home/section1/image2.webp",
     "/images/home/section1/image3.webp",
-   
     "/images/home/section1/image5.png",
     "/images/home/section1/image6.webp",
     "/images/1.webp",
@@ -23,24 +21,43 @@ const CleanSection = () => {
     "/images/5.webp",
   ];
 
+  const realCount = desktopImages.length;
+  // Create an array that has a clone of the last image at the beginning, and a clone of the first at the end
+  const trackIndices = [realCount - 1, ...Array.from({ length: realCount }, (_, i) => i), 0];
+
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === desktopImages.length - 1 ? 0 : prev + 1));
+    setIsAnimating(true);
+    setCurrentIndex((prev) => prev + 1);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? desktopImages.length - 1 : prev - 1));
+    setIsAnimating(true);
+    setCurrentIndex((prev) => prev - 1);
+  };
+
+  const goToSlide = (idx) => {
+    setIsAnimating(true);
+    setCurrentIndex(idx + 1);
+  };
+
+  // This function resets the slider position without animation to create the "infinite loop" illusion
+  const handleTransitionEnd = () => {
+    if (currentIndex === realCount + 1) {
+      setIsAnimating(false);
+      setCurrentIndex(1);
+    } else if (currentIndex === 0) {
+      setIsAnimating(false);
+      setCurrentIndex(realCount);
+    }
   };
 
   useEffect(() => {
-    currentSlideRef.current = currentSlide;
-  }, [currentSlide]);
-
-  useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev === desktopImages.length - 1 ? 0 : prev + 1));
+      setIsAnimating(true);
+      setCurrentIndex((prev) => prev + 1);
     }, 5000);
     return () => clearInterval(timer);
-  }, [desktopImages.length]);
+  }, []);
 
   const arrowStyle = {
     display: "flex",
@@ -101,29 +118,53 @@ const CleanSection = () => {
             <div 
               className="flex w-full h-full"
               style={{ 
-                transform: `translateX(-${currentSlide * 100}%)`,
-                transition: "transform 1.2s cubic-bezier(0.25, 1, 0.5, 1)" 
+                transform: `translateX(-${currentIndex * 100}%)`,
+                transition: isAnimating ? "transform 1.2s cubic-bezier(0.25, 1, 0.5, 1)" : "none" 
               }}
+              onTransitionEnd={handleTransitionEnd}
             >
-              {desktopImages.map((src, index) => (
-                <div key={index} className="relative w-full h-full flex-shrink-0 flex justify-center items-center">
-                  <div className="relative w-full h-full overflow-hidden" style={{ borderRadius: responsiveBorderRadius }}>
-                    <Image
-                      src={src}
-                      alt={`SMRSC 2026 Hero ${index}`}
-                      fill
-                      priority={index <= 1} 
-                      fetchPriority={index === 0 ? "high" : "auto"}
-                      loading={index <= 1 ? "eager" : "lazy"}
-                      unoptimized={true}
-                      style={{ objectFit: "cover" }}
-                    />
-                    {index === 0 && (
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-                    )}
+              {trackIndices.map((realIdx, index) => {
+                const src = desktopImages[realIdx];
+                return (
+                  <div key={index} className="relative w-full h-full flex-shrink-0 flex justify-center items-center group">
+                    <div className="relative w-full h-full overflow-hidden" style={{ borderRadius: responsiveBorderRadius }}>
+                      <Image
+                        src={src}
+                        alt={`SMRSC 2026 Hero ${realIdx}`}
+                        fill
+                        priority={index <= 2} 
+                        unoptimized={true}
+                        style={{ objectFit: "cover" }}
+                      />
+                      {realIdx === 0 && (
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                      )}
+                      
+                      {/* Play Button Specific to 5.webp */}
+                      {src.includes("/images/5.webp") && (
+                        <a 
+                          href="https://youtu.be/48CTgZ8oB_w" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="absolute inset-0 flex items-center justify-center bg-black/10 hover:bg-black/30 transition-all z-20 cursor-pointer"
+                          aria-label="Play Video"
+                        >
+                          <motion.div 
+                            whileHover={{ scale: 1.1 }} 
+                            whileTap={{ scale: 0.9 }}
+                            className="w-[72px] h-[72px] md:w-24 md:h-24 bg-white/20 backdrop-blur-md border border-white/40 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-transform duration-300"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-10 h-10 md:w-12 md:h-12 ml-1">
+                              <path fillRule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clipRule="evenodd" />
+                            </svg>
+                          </motion.div>
+                        </a>
+                      )}
+
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
@@ -142,15 +183,22 @@ const CleanSection = () => {
         </div>
 
         <div className="flex gap-3 z-20 mt-2">
-          {desktopImages.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`h-2.5 rounded-full transition-all duration-500 ${
-                currentSlide === index ? "w-10 bg-white shadow-[0_0_10px_white]" : "w-2.5 bg-white/30"
-              }`}
-            />
-          ))}
+          {desktopImages.map((_, index) => {
+            // Determine which dot is active considering the clones
+            let activeIndex = currentIndex - 1;
+            if (currentIndex === realCount + 1) activeIndex = 0;
+            if (currentIndex === 0) activeIndex = realCount - 1;
+
+            return (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`h-2.5 rounded-full transition-all duration-500 ${
+                  activeIndex === index ? "w-10 bg-white shadow-[0_0_10px_white]" : "w-2.5 bg-white/30"
+                }`}
+              />
+            )
+          })}
         </div>
       </div>
 
@@ -176,7 +224,23 @@ const CleanSection = () => {
 };
 
 const HeavySection = () => {
-  const [s, _s] = useState(0);
+  const arr = [
+    "/images/home/section1/image2.webp",
+    "/images/home/section1/image3.webp",
+    "/images/home/section1/image5.png",
+    "/images/home/section1/image6.webp",
+    "/images/1.webp",
+    "/images/2.webp",
+    "/images/3.webp",
+    "/images/4.webp",
+    "/images/5.webp",
+  ];
+
+  const realCount = arr.length;
+  const trackIndices = [realCount - 1, ...Array.from({ length: realCount }, (_, i) => i), 0];
+
+  const [s, _s] = useState(1);
+  const [isAnimating, setIsAnimating] = useState(true);
   const r = useRef(0);
   const [d, _d] = useState([]);
   const [m, _m] = useState("");
@@ -184,31 +248,30 @@ const HeavySection = () => {
   const w = typeof window !== 'undefined' ? window.innerWidth : 1920;
   const isM = w < 768;
 
-  // ADDED YOUR NEW IMAGES HERE AS WELL
-  const arr = [
-    "/images/1.webp",
-    "/images/2.webp",
-    "/images/3.webp",
-    "/images/4.webp",
-    "/images/home/section1/image2.webp",
-    "/images/home/section1/image3.webp",
-    "/images/home/section1/image4.webp",
-    "/images/home/section1/image5.png",
-    "/images/home/section1/image6.webp",
-  ];
+  const n = () => { setIsAnimating(true); _s((p) => p + 1); };
+  const p = () => { setIsAnimating(true); _s((prev) => prev - 1); };
 
-  const n = () => _s((p) => (p === arr.length - 1 ? 0 : p + 1));
-  const p = () => _s((prev) => (prev === 0 ? arr.length - 1 : prev - 1));
+  const handleTransitionEnd = () => {
+    if (s === realCount + 1) {
+      setIsAnimating(false);
+      _s(1);
+    } else if (s === 0) {
+      setIsAnimating(false);
+      _s(realCount);
+    }
+  };
 
   useEffect(() => {
     r.current = s;
   });
 
   useEffect(() => {
-    setInterval(() => {
-      _s((pr) => (pr === arr.length - 1 ? 0 : pr + 1));
+    const timer = setInterval(() => {
+      setIsAnimating(true);
+      _s((pr) => pr + 1);
     }, 5000);
-  }, [arr.length]);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     const f = async () => {
@@ -222,7 +285,7 @@ const HeavySection = () => {
       for (let i = 0; i < arr.length; i++) {
         await new Promise((res) => setTimeout(res, 2000));
         t[i] = arr[i];
-        _d(t);
+        _d([...t]);
       }
     };
     f();
@@ -267,19 +330,53 @@ const HeavySection = () => {
             </motion.button>
 
             <div className="relative w-full overflow-hidden shadow-2xl transition-all duration-300 bg-white/5" style={{ aspectRatio: "175 / 89", borderRadius: rB }}>
-              <div className="flex w-full h-full" style={{ transform: `translateX(-${s * 100}%)`, transition: "transform 1.2s cubic-bezier(0.25, 1, 0.5, 1)" }}>
-                {arr.map((_, i) => (
-                  <div key={Math.random()} className="relative w-full h-full flex-shrink-0 flex justify-center items-center">
-                    <div className="relative w-full h-full overflow-hidden flex items-center justify-center bg-black/20" style={{ borderRadius: rB }}>
-                      {d[i] ? (
-                        <Image src={d[i]} alt={`Hero ${i}`} fill loading="lazy" style={{ objectFit: "cover" }} />
-                      ) : (
-                        <span className="text-white/30 animate-pulse text-xl"></span>
-                      )}
-                      {i === 0 && <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />}
+              <div 
+                className="flex w-full h-full" 
+                style={{ 
+                  transform: `translateX(-${s * 100}%)`, 
+                  transition: isAnimating ? "transform 1.2s cubic-bezier(0.25, 1, 0.5, 1)" : "none" 
+                }}
+                onTransitionEnd={handleTransitionEnd}
+              >
+                {trackIndices.map((realIdx, i) => {
+                  const loadedSrc = d[realIdx];
+                  
+                  return (
+                    <div key={i} className="relative w-full h-full flex-shrink-0 flex justify-center items-center group">
+                      <div className="relative w-full h-full overflow-hidden flex items-center justify-center bg-black/20" style={{ borderRadius: rB }}>
+                        {loadedSrc ? (
+                          <>
+                            <Image src={loadedSrc} alt={`Hero ${realIdx}`} fill loading="lazy" style={{ objectFit: "cover" }} unoptimized={true}/>
+                            
+                            {/* Play Button Specific to 5.webp in HeavySection too */}
+                            {loadedSrc.includes("/images/5.webp") && (
+                              <a 
+                                href="https://youtu.be/48CTgZ8oB_w" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="absolute inset-0 flex items-center justify-center bg-black/10 hover:bg-black/30 transition-all z-20 cursor-pointer"
+                                aria-label="Play Video"
+                              >
+                                <motion.div 
+                                  whileHover={{ scale: 1.1 }} 
+                                  whileTap={{ scale: 0.9 }}
+                                  className="w-[72px] h-[72px] md:w-24 md:h-24 bg-white/20 backdrop-blur-md border border-white/40 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-transform duration-300"
+                                >
+                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-10 h-10 md:w-12 md:h-12 ml-1">
+                                    <path fillRule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clipRule="evenodd" />
+                                  </svg>
+                                </motion.div>
+                              </a>
+                            )}
+                          </>
+                        ) : (
+                          <span className="text-white/30 animate-pulse text-xl"></span>
+                        )}
+                        {realIdx === 0 && <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
 
@@ -291,9 +388,19 @@ const HeavySection = () => {
           </div>
 
           <div className="flex gap-3 z-20 mt-2">
-            {arr.map((_, i) => (
-              <button key={i} onClick={() => _s(i)} className={`h-2.5 rounded-full transition-all duration-500 ${s === i ? "w-10 bg-white shadow-[0_0_10px_white]" : "w-2.5 bg-white/30"}`} />
-            ))}
+            {arr.map((_, idx) => {
+              let activeIndex = s - 1;
+              if (s === realCount + 1) activeIndex = 0;
+              if (s === 0) activeIndex = realCount - 1;
+
+              return (
+                <button 
+                  key={idx} 
+                  onClick={() => { setIsAnimating(true); _s(idx + 1); }} 
+                  className={`h-2.5 rounded-full transition-all duration-500 ${activeIndex === idx ? "w-10 bg-white shadow-[0_0_10px_white]" : "w-2.5 bg-white/30"}`} 
+                />
+              )
+            })}
           </div>
         </div>
       ) : (

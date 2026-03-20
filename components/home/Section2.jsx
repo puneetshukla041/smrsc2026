@@ -30,10 +30,10 @@ const Section2 = () => {
   const isLaptop = windowWidth >= 768 && windowWidth < 1440; 
 
   const cards = [
-    { id: 1, img: "/images/home/section2/image1.webp", x: -500, y: 100 },
-    { id: 2, img: "/images/home/section2/image2.webp", x: -180, y: -180 },
-    { id: 3, img: "/images/home/section2/image3.webp", x: 180, y: -180 },
-    { id: 4, img: "/images/home/section2/image4.webp", x: 500, y: 100 },
+    { id: 1, img: "/images/home/section2/image1.png", x: -500, y: 100 },
+    { id: 2, img: "/images/home/section2/image2.png", x: -180, y: -180 },
+    { id: 3, img: "/images/home/section2/image3.png", x: 180, y: -180 },
+    { id: 4, img: "/images/home/section2/image4.png", x: 500, y: 100 },
   ];
 
   const sparklePositions = [
