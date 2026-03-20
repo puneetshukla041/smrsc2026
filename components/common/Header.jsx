@@ -79,19 +79,20 @@ const MOBILE_VARIANTS = {
   }
 };
 
+// --- UPDATED: Using 'text-current' so text inherits the animated parent color ---
 const TimerBlockClean = ({ value, label }) => (
   <div className="flex flex-col items-center gap-[2px] w-[45px] md:w-[60px]">
-    <span className="text-[#E6E6E6] text-[14px] md:text-[16px] font-medium font-['Manrope'] leading-[20px] tabular-nums tracking-wide">
+    <span className="text-current text-[14px] md:text-[16px] font-medium font-['Manrope'] leading-[20px] tabular-nums tracking-wide transition-colors duration-300">
       {value}
     </span>
-    <span className="text-[#E6E6E6] text-[10px] md:text-[12px] font-medium font-['Manrope'] leading-[12px] opacity-80">
+    <span className="text-current text-[10px] md:text-[12px] font-medium font-['Manrope'] leading-[12px] opacity-80 transition-colors duration-300">
       {label}
     </span>
   </div>
 );
 
 const SeparatorClean = () => (
-  <span className="text-[#E6E6E6] text-[14px] md:text-[16px] font-medium -mt-4 opacity-50">
+  <span className="text-current text-[14px] md:text-[16px] font-medium -mt-4 opacity-50 transition-colors duration-300">
     :
   </span>
 );
@@ -251,7 +252,19 @@ const CleanHeader = () => {
           </div>
         </div>
 
-        <div className="hidden md:flex w-full justify-center items-center py-2.5 md:py-2 border-t border-white/5">
+        {/* --- UPDATED TIMER BAR ANIMATION --- */}
+        <motion.div 
+          animate={{
+            backgroundColor: ["#991b1b", "#A7781B", "#991b1b"], // Fades from Red to Gold and back
+            color: ["#ffffff", "#f7f6f6", "#ffffff"] // Text transitions perfectly with background
+          }}
+          transition={{
+            duration: 4, // 4 seconds total for a full loop = 2 seconds per color transition
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="hidden md:flex w-full justify-center items-center py-2.5 md:py-2 border-t border-white/5"
+        >
           <div className="flex items-center gap-3 md:gap-6">
             <TimerBlockClean value={timeLeft.days} label="Days" />
             <SeparatorClean />
@@ -261,7 +274,7 @@ const CleanHeader = () => {
             <SeparatorClean />
             <TimerBlockClean value={formatTime(timeLeft.seconds)} label="Seconds" />
           </div>
-        </div>
+        </motion.div>
       </motion.header>
 
       <AnimatePresence>
@@ -393,19 +406,20 @@ const HeavyHeader = () => {
 
   const navTextStyle = "text-[14px] leading-[32px] font-['Manrope',_sans-serif] transition-all duration-300 cursor-pointer whitespace-nowrap";
 
+  // --- UPDATED to text-current for seamless inheritance ---
   const TimerBlock = ({ value, label }) => (
     <div key={generateSecureKeys()} className="flex flex-col items-center gap-[2px] w-[45px] md:w-[60px]">
-      <span className="text-[#E6E6E6] text-[14px] md:text-[16px] font-medium font-['Manrope'] leading-[20px] tabular-nums tracking-wide">
+      <span className="text-current text-[14px] md:text-[16px] font-medium font-['Manrope'] leading-[20px] tabular-nums tracking-wide transition-colors duration-300">
         {value}
       </span>
-      <span className="text-[#E6E6E6] text-[10px] md:text-[12px] font-medium font-['Manrope'] leading-[12px] opacity-80">
+      <span className="text-current text-[10px] md:text-[12px] font-medium font-['Manrope'] leading-[12px] opacity-80 transition-colors duration-300">
         {label}
       </span>
     </div>
   );
 
   const Separator = () => (
-    <span key={generateSecureKeys()} className="text-[#E6E6E6] text-[14px] md:text-[16px] font-medium -mt-4 opacity-50">
+    <span key={generateSecureKeys()} className="text-current text-[14px] md:text-[16px] font-medium -mt-4 opacity-50 transition-colors duration-300">
       :
     </span>
   );
@@ -492,7 +506,19 @@ const HeavyHeader = () => {
           </div>
         </div>
 
-        <div className="hidden md:flex w-full justify-center items-center py-2.5 md:py-2 border-t border-white/5">
+        {/* --- UPDATED TIMER BAR ANIMATION FOR HEAVY HEADER --- */}
+        <motion.div 
+          animate={{
+            backgroundColor: ["#991b1b", "#A7781B", "#991b1b"], 
+            color: ["#ffffff", "#000000", "#ffffff"] 
+          }}
+          transition={{
+            duration: 4, 
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="hidden md:flex w-full justify-center items-center py-2.5 md:py-2 border-t border-white/5"
+        >
           <div className="flex items-center gap-3 md:gap-6">
             <TimerBlock value={timeLeft.days} label="Days" />
             <Separator />
@@ -502,7 +528,7 @@ const HeavyHeader = () => {
             <Separator />
             <TimerBlock value={formatTime(timeLeft.seconds)} label="Seconds" />
           </div>
-        </div>
+        </motion.div>
       </motion.header>
 
       <AnimatePresence>
