@@ -410,6 +410,31 @@ const Overview = () => {
            </div>
         </div>
       
+        {/* DAY 3 CARD */}
+        {/* NEWLY ADDED: Day 3 Complex Surgery & Global Expansion */}
+        <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12 xl:gap-[80px] mb-20 lg:mb-[150px] xl:mb-[200px]">
+           <div className="shrink-0 w-full lg:w-[55%] xl:w-[810px] h-[300px] lg:h-[400px] xl:h-[489px] relative rounded-[24px] overflow-hidden">
+             <img 
+               src="/images/explore/image10.png" 
+               alt="Day 3 Complex Surgery & Global Expansion" 
+               className="absolute inset-0 w-full h-full object-cover"
+             />
+           </div>
+           
+           <div className="flex flex-col items-start justify-center w-full lg:w-[45%] xl:max-w-[445px]">
+             <h3 className="text-[28px] leading-[32px] lg:text-[32px] xl:text-[36px] lg:leading-[36px] xl:leading-[40px]" style={dayHeadingStyle}>
+               Day 3 - Complex Surgery & Global Expansion
+             </h3>
+             <p style={dayParaStyle}>
+               Unusual cases, pediatric applications, cardiac milestones, and program-building strategies highlight how robotic surgery is scaling across geographies and institutions.
+             </p>
+             <div className="flex flex-wrap items-center gap-4">
+                 <button style={viewBtnStyle} onClick={() => handleNavigation('day3')}>View Day 3</button>
+                 <button style={calendarBtnStyle}>Add to Calendar</button>
+             </div>
+           </div>
+        </div>
+
       </div>
     </div>
   );

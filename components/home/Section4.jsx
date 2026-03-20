@@ -13,6 +13,10 @@ const Section4 = () => {
     { id: 2, name: "Dr. Husam Balkhy", role: "The University of Chicago Medicine and Biological Sciences Chicago, USA", image: "/images/home/section4/image2.png" },
     { id: 4, name: "Dr. Ashutosh K. Tewari ", role: "Icahn School of Medicine at Mount Sinai, NY, USA", image: "/images/home/section4/image5.png" },
     { id: 3, name: "Dr. Ashok K.Hemal", role: "Wake Forest Medical School & Baptist Medical Center, NC, USA", image: "/images/about/committe/9.webp" },
+    { id: 5, name: "Dr. Sudhir K Rawal", role: "Rajiv Gandhi Cancer Institute and Research Center, Delhi", image: "/images/home/section4/per1.png" },
+    { id: 6, name: "Dr. Somashekhar SP", role: "Aster DM Healthcare", image: "/images/home/section4/per2.png" },
+    { id: 7, name: "Dr. Magan Mehrotra", role: "Apex Hospital, Moradabad, UP", image: "/images/home/section4/per3.png" },
+    { id: 8, name: "Dr. Lalitaditya Malik", role: "Manipal Hospitals, Jaipur, RJ", image: "/images/home/section4/per4.png" },
   ];
 
   const scrollRef = useRef(null);
@@ -110,7 +114,7 @@ const Section4 = () => {
           This ensures cards shrink perfectly to fit 2-across on small laptops and 4-across on big screens.
           Mobile keeps the horizontal snap slider.
         */}
-        <div ref={scrollRef} onScroll={handleScroll} className="flex md:grid md:grid-cols-2 lg:grid-cols-4 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide gap-6 lg:gap-8 w-full pb-4 md:pb-0">
+        <div ref={scrollRef} onScroll={handleScroll} className="flex md:grid md:grid-cols-2 lg:grid-cols-4 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide gap-6 lg:gap-x-8 lg:gap-y-12 w-full pb-4 md:pb-0">
           {facultyMembers.map((member) => (
             // Changed card width from fixed w-[280px] to full width of grid cell on desktop
             <motion.div key={member.id} variants={itemVariants} className="flex flex-col gap-4 group cursor-pointer items-center md:items-start shrink-0 snap-center w-[280px] md:w-full">
