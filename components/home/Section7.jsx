@@ -45,29 +45,29 @@ const FadeInView = ({ children, delay = 0 }) => {
 // Structured data for all 24 logos found in your images
 const logosData = [
   { id: 1, name: "IRCAD India" },
-  { id: 3, name: "IASO" },
-  { id: 4, name: "IACTS" },
-  { id: 5, name: "SMICTSI" },
-  { id: 6, name: "Hernia Society of India" },
-  { id: 7, name: "Vascular Society of India" },
-  { id: 8, name: "Assoc. of Breast Surgeons of India" },
-  { id: 9, name: "AIIMS Kalyani" },
-  { id: 10, name: "Indian Assoc. of Paediatric Surgeons" },
-  { id: 11, name: "Indian Assoc. of Endocrine Surgeons" },
-  { id: 12, name: "Govt. Medical College Nagpur" },
-  { id: 13, name: "ARIS" },
-  { id: 14, name: "AHPI" },
-  { id: 15, name: "Assoc. of Urological Surgeons Sri Lanka" },
-  { id: 16, name: "Sri Lanka College of Obstetricians & Gynaecologists" },
-  { id: 17, name: "ACTSSL" },
-  { id: 18, name: "The College of Surgeons of Sri Lanka" },
-  { id: 19, name: "Philippine Urological Association" },
+  { id: 2, name: "IASO" },
+  { id: 3, name: "IACTS" },
+  { id: 4, name: "SMICTSI" },
+  { id: 5, name: "Hernia Society of India" },
+  { id: 6, name: "Vascular Society of India" },
+  { id: 7, name: "Assoc. of Breast Surgeons of India" },
+  { id: 8, name: "AIIMS Kalyani" },
+  { id: 9, name: "Indian Assoc. of Paediatric Surgeons" },
+  { id: 10, name: "Indian Assoc. of Endocrine Surgeons" },
+  { id: 11, name: "Govt. Medical College Nagpur" },
+  { id: 12, name: "ARIS" },
+  { id: 13, name: "AHPI" },
+  { id: 14, name: "Assoc. of Urological Surgeons Sri Lanka" },
+  { id: 15, name: "Sri Lanka College of Obstetricians & Gynaecologists" },
+  { id: 16, name: "ACTSSL" },
+  { id: 17, name: "The College of Surgeons of Sri Lanka" },
+  { id: 18, name: "Philippine Urological Association" },
   { id: 19, name: "Philippine College of Surgeons" },
   { id: 20, name: "Society of Robotic Surgery" },
   { id: 21, name: "Nepalese Assoc. of Surgical Gastroenterology" },
   { id: 22, name: "Persatuan Robotika Seluruh Indonesia" },
   { id: 23, name: "CAHO" },
-
+  { id: 24, name: "Haryana Urological Association" }
 ];
 
 const LogoScroller = () => {
@@ -140,6 +140,7 @@ const Section7 = () => {
             transform: translateX(0%);
           }
         }
+
         .animate-scroll-lr {
           animation: scrollLr 45s linear infinite; /* Slightly slowed down to account for text readability */
         }
