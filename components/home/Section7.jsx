@@ -45,12 +45,12 @@ const FadeInView = ({ children, delay = 0 }) => {
 // Structured data for all 24 logos found in your images
 const logosData = [
   { id: 2, name: "IRCAD India" },
-  { id: 2, name: "IASO" },
-  { id: 3, name: "IACTS" },
-  { id: 4, name: "SMICTSI" },
-  { id: 5, name: "Hernia Society of India" },
-  { id: 6, name: "Vascular Society of India" },
-  { id: 7, name: "Assoc. of Breast Surgeons of India" },
+  { id: 3, name: "IASO" },
+  { id: 4, name: "IACTS" },
+  { id: 5, name: "SMICTSI" },
+  { id: 6, name: "Hernia Society of India" },
+  { id: 7, name: "Vascular Society of India" },
+  { id: 8, name: "Assoc. of Breast Surgeons of India" },
   { id: 8, name: "AIIMS Kalyani" },
   { id: 9, name: "Indian Assoc. of Paediatric Surgeons" },
   { id: 10, name: "Indian Assoc. of Endocrine Surgeons" },
