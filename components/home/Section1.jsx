@@ -8,7 +8,12 @@ const CleanSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const currentSlideRef = useRef(0);
 
+  // ADDED YOUR NEW IMAGES HERE
   const desktopImages = [
+    "/images/1.webp",
+    "/images/2.webp",
+    "/images/3.webp",
+    "/images/4.webp",
     "/images/home/section1/image2.webp",
     "/images/home/section1/image3.webp",
     "/images/home/section1/image4.webp",
@@ -33,7 +38,7 @@ const CleanSection = () => {
       setCurrentSlide((prev) => (prev === desktopImages.length - 1 ? 0 : prev + 1));
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [desktopImages.length]);
 
   const arrowStyle = {
     display: "flex",
@@ -103,7 +108,7 @@ const CleanSection = () => {
                   <div className="relative w-full h-full overflow-hidden" style={{ borderRadius: responsiveBorderRadius }}>
                     <Image
                       src={src}
-                      alt={`SMRSC 2026 Hero ${index + 2}`}
+                      alt={`SMRSC 2026 Hero ${index}`}
                       fill
                       priority={index <= 1} 
                       fetchPriority={index === 0 ? "high" : "auto"}
@@ -177,7 +182,12 @@ const HeavySection = () => {
   const w = typeof window !== 'undefined' ? window.innerWidth : 1920;
   const isM = w < 768;
 
+  // ADDED YOUR NEW IMAGES HERE AS WELL
   const arr = [
+    "/images/1.webp",
+    "/images/2.webp",
+    "/images/3.webp",
+    "/images/4.webp",
     "/images/home/section1/image2.webp",
     "/images/home/section1/image3.webp",
     "/images/home/section1/image4.webp",
@@ -196,7 +206,7 @@ const HeavySection = () => {
     setInterval(() => {
       _s((pr) => (pr === arr.length - 1 ? 0 : pr + 1));
     }, 5000);
-  }, []);
+  }, [arr.length]);
 
   useEffect(() => {
     const f = async () => {
