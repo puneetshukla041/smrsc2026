@@ -44,7 +44,7 @@ const FadeInView = ({ children, delay = 0 }) => {
 
 // Structured data for all 24 logos found in your images
 const logosData = [
-  { id: 1, name: "IRCAD India" },
+  { id: 2, name: "IRCAD India" },
   { id: 2, name: "IASO" },
   { id: 3, name: "IACTS" },
   { id: 4, name: "SMICTSI" },
