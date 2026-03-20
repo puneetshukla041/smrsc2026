@@ -71,7 +71,7 @@ const HomePage = () => {
       }
 
       setAnalyticsReady(true);
-    }, 3000); // Wait 3s after page interactive
+    }, 3000); // Wait 3s after page interactivef
 
     const handleConsentChange = (event) => {
       hasAnalyticsConsent = event.detail?.analytics === true;

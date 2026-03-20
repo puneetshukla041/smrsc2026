@@ -67,7 +67,7 @@ const logosData = [
   { id: 21, name: "Nepalese Assoc. of Surgical Gastroenterology" },
   { id: 22, name: "Persatuan Robotika Seluruh Indonesia" },
   { id: 23, name: "CAHO" },
-  { id: 24, name: "Haryana Urological Association" }
+
 ];
 
 const LogoScroller = () => {
@@ -140,11 +140,9 @@ const Section7 = () => {
             transform: translateX(0%);
           }
         }
-        
         .animate-scroll-lr {
           animation: scrollLr 45s linear infinite; /* Slightly slowed down to account for text readability */
         }
-
         /* Pauses the animation when the user hovers over the logos */
         .pause-scroll:hover {
           animation-play-state: paused;
@@ -153,5 +151,4 @@ const Section7 = () => {
     </section>
   );
 };
-
 export default Section7;

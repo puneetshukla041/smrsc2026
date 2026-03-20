@@ -2,7 +2,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script"; 
 import "./globals.css";
 import Timer from "../components/features/CountdownTimer"; 
-
 import NextTopLoader from 'nextjs-toploader'; 
 
 const geistSans = Geist({
@@ -127,7 +126,6 @@ export default function RootLayout({ children }) {
             src="https://px.ads.linkedin.com/collect/?pisd=894988196&fmst=gif" 
           />
         </noscript>
-        
       </body>
     </html>
   );
