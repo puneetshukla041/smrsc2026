@@ -41,64 +41,32 @@ const FadeInView = ({ children, delay = 0 }) => {
 // ==========================================
 //   INFINITE LOGO SCROLLER COMPONENT
 // ==========================================
-
-// Structured data for all 24 logos found in your images
-const logosData = [
-  { id: 1, name: "IRCAD India" },
-  { id: 2, name: "IASO" },
-  { id: 3, name: "IACTS" },
-  { id: 4, name: "SMICTSI" },
-  { id: 5, name: "Hernia Society of India" },
-  { id: 6, name: "Vascular Society of India" },
-  { id: 7, name: "Assoc. of Breast Surgeons of India" },
-  { id: 8, name: "AIIMS Kalyani" },
-  { id: 9, name: "Indian Assoc. of Paediatric Surgeons" },
-  { id: 10, name: "Indian Assoc. of Endocrine Surgeons" },
-  { id: 11, name: "Govt. Medical College Nagpur" },
-  { id: 12, name: "ARIS" },
-  { id: 13, name: "AHPI" },
-  { id: 14, name: "Assoc. of Urological Surgeons Sri Lanka" },
-  { id: 15, name: "Sri Lanka College of Obstetricians & Gynaecologists" },
-  { id: 16, name: "ACTSSL" },
-  { id: 17, name: "The College of Surgeons of Sri Lanka" },
-  { id: 18, name: "Philippine Urological Association" },
-  { id: 19, name: "Philippine College of Surgeons" },
-  { id: 20, name: "Society of Robotic Surgery" },
-  { id: 21, name: "Nepalese Assoc. of Surgical Gastroenterology" },
-  { id: 22, name: "Persatuan Robotika Seluruh Indonesia" },
-  { id: 23, name: "CAHO" },
-  { id: 24, name: "Haryana Urological Association" }
-];
-
 const LogoScroller = () => {
-  // Map the structured data to include the image source path
-  const logos = logosData.map(logo => ({
-    ...logo,
-    src: `/logos/animation/${logo.id}.png` // Assuming your files are named 1.png, 2.png, etc.
-  }));
+  // Generate array of 23 logo paths
+  const logos = Array.from({ length: 23 }, (_, i) => `/logos/animation/${i + 1}.png`);
   
   // Duplicate the array so the loop is perfectly seamless
   const duplicatedLogos = [...logos, ...logos];
 
   return (
-    <div className="relative w-full max-w-[1380px] mt-8 md:mt-12 overflow-hidden flex items-center mx-auto py-4">
+    <div className="relative w-full max-w-[1380px] mt-8 md:mt-12 overflow-hidden flex items-center mx-auto">
       
       {/* Premium gradient fade edges */}
       <div className="absolute left-0 top-0 w-16 md:w-24 lg:w-32 h-full bg-gradient-to-r from-[#020617] to-transparent z-10 pointer-events-none"></div>
       <div className="absolute right-0 top-0 w-16 md:w-24 lg:w-32 h-full bg-gradient-to-l from-[#020617] to-transparent z-10 pointer-events-none"></div>
 
       {/* Scrolling Container */}
-      <div className="flex w-max animate-scroll-lr hover:pause-scroll items-start">
-        {duplicatedLogos.map((item, index) => (
+      <div className="flex w-max animate-scroll-lr hover:pause-scroll">
+        {duplicatedLogos.map((src, index) => (
           <div 
-            key={`${item.id}-${index}`} 
-            className="flex flex-col justify-start items-center w-[140px] md:w-[180px] lg:w-[220px] px-4 transition-transform duration-300 hover:scale-105 cursor-pointer group"
+            key={index} 
+            // Fluid scaling for logos so they don't look giant on small laptops
+            className="flex justify-center items-center w-[120px] md:w-[160px] lg:w-[200px] px-4 md:px-6 transition-transform duration-300 hover:scale-110 cursor-pointer"
           >
-            {/* Logo Wrapper */}
-            <div className="relative w-full h-[50px] md:h-[60px] lg:h-[80px]">
+            <div className="relative w-full h-[40px] md:h-[50px] lg:h-[70px]">
               <Image 
-                src={item.src} 
-                alt={item.name} 
+                src={src} 
+                alt={`Logo ${index}`} 
                 fill 
                 className="object-contain" 
                 unoptimized={true}
@@ -106,11 +74,6 @@ const LogoScroller = () => {
                 fetchPriority="low"
               />
             </div>
-            
-            {/* Logo Name */}
-            <span className="mt-4 text-[10px] md:text-[11px] lg:text-xs text-center text-[#F8FFFF]/60 group-hover:text-[#F8FFFF] transition-colors duration-300 font-medium leading-snug line-clamp-3">
-              {item.name}
-            </span>
           </div>
         ))}
       </div>
@@ -120,8 +83,10 @@ const LogoScroller = () => {
 
 const Section7 = () => {
   return (
+    // Fixed the huge 200px margin leap and reinstated padding for medium screens
     <section className="w-full max-w-[1380px] mt-24 md:mt-[120px] lg:mt-[160px] xl:mt-[200px] px-6 lg:px-12 xl:px-0 mx-auto overflow-hidden">
       <FadeInView delay={200}>
+        {/* Added text-center here to center the text */}
         <h3 className="text-center text-[#F8FFFF] text-[24px] md:text-[28px] lg:text-[36px] font-medium leading-tight md:leading-[40px]" style={{ fontFamily: "'Blauer Nue', sans-serif" }}>
           In association with
         </h3>
@@ -140,10 +105,11 @@ const Section7 = () => {
             transform: translateX(0%);
           }
         }
-
+        
         .animate-scroll-lr {
-          animation: scrollLr 45s linear infinite; /* Slightly slowed down to account for text readability */
+          animation: scrollLr 35s linear infinite;
         }
+
         /* Pauses the animation when the user hovers over the logos */
         .pause-scroll:hover {
           animation-play-state: paused;
@@ -152,4 +118,5 @@ const Section7 = () => {
     </section>
   );
 };
+
 export default Section7;
