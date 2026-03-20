@@ -21,6 +21,7 @@ const CleanSection = () => {
     "/images/5.webp",
     "/images/6.webp",
     "/images/7.webp",
+    "/images/8.webp",
   ];
 
   const realCount = desktopImages.length;
