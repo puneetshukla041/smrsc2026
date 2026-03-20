@@ -49,82 +49,65 @@ const ScheduleDay1 = () => {
     { time: "14:20:00 PM", title: "My Evolution with Robotic Mitral Valve Surgery", speaker: "- Dr. T. Sloane Guy", extra: "" },
   ];
 
-  // Helper Components matching your requested CSS
+  // Helper Components
   const BeigeEventBar = ({ time, title, extraRight }) => (
-    <div style={{
-      display: 'flex',
-      width: '100%',
-      padding: '4px 0',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      borderRadius: '4px',
-      background: '#E1C583',
-      color: '#000',
-      marginBottom: '16px'
-    }}>
-      <div className="flex w-full px-6 font-medium text-[13px] md:text-sm">
-        <div className="w-[120px] md:w-[150px]">{time}</div>
-        <div className="flex-1">{title}</div>
-        {extraRight && <div className="text-right">{extraRight}</div>}
+    <div className="flex flex-col md:flex-row w-full py-3 px-4 md:px-6 justify-between items-start md:items-center rounded bg-[#E1C583] text-[#000] mb-4 gap-2 md:gap-0">
+      <div className="flex flex-col md:flex-row w-full font-medium text-[14px] md:text-sm gap-1 md:gap-0">
+        <div className="w-full md:w-[150px] flex-shrink-0 font-bold md:font-medium">{time}</div>
+        <div className="flex-1 font-bold md:font-medium leading-tight">{title}</div>
+        {extraRight && (
+          <div className="text-left md:text-right mt-1 md:mt-0 text-xs md:text-sm opacity-90 font-semibold md:font-normal">
+            {extraRight}
+          </div>
+        )}
       </div>
     </div>
   );
 
   const GoldSessionHeader = ({ title }) => (
-    <div style={{
-      display: 'flex',
-      height: '36px',
-      padding: '8px 10px',
-      justifyContent: 'center',
-      alignItems: 'center',
-      gap: '10px',
-      alignSelf: 'stretch',
-      borderRadius: '10px',
-      background: '#A7781B',
-      backdropFilter: 'blur(2px)',
-      color: '#fff',
-      marginBottom: '16px',
-      fontSize: '14px',
-      fontWeight: '500'
-    }}>
+    <div className="flex min-h-[36px] px-4 py-2 justify-center items-center gap-[10px] w-full rounded-[10px] bg-[#A7781B] backdrop-blur-[2px] text-white mb-4 text-[14px] font-medium text-center">
       {title}
     </div>
   );
 
   const ScheduleRow = ({ time, title, speaker, extra }) => (
-    <div className="flex w-full px-4 md:px-6 py-2.5 text-[12px] md:text-[13px] text-gray-200 items-start hover:bg-white/5 transition-colors rounded-lg">
-      <div className="w-[100px] md:w-[150px] flex-shrink-0">{time}</div>
-      <div className="flex-1 pr-4 font-light">{title}</div>
-      <div className="w-[180px] md:w-[350px] text-right whitespace-pre-line flex-shrink-0 text-gray-300">{speaker}</div>
-      {extra !== undefined && (
-        <div className="hidden md:block w-[200px] text-right flex-shrink-0 text-gray-400 text-xs">{extra}</div>
-      )}
+    <div className="flex flex-col md:flex-row w-full px-4 md:px-6 py-4 md:py-2.5 text-[13px] text-gray-200 items-start hover:bg-white/5 transition-colors rounded-lg border-b border-white/5 md:border-none gap-1 md:gap-0">
+      {/* Time */}
+      <div className="w-full md:w-[150px] flex-shrink-0 font-semibold text-[#CE921B] md:text-gray-200 md:font-normal">
+        {time}
+      </div>
+      
+      {/* Title */}
+      <div className="flex-1 pr-0 md:pr-4 font-medium md:font-light text-[14px] md:text-[13px] text-white leading-snug">
+        {title}
+      </div>
+      
+      {/* Speaker and Extra details */}
+      <div className="flex flex-col md:flex-row w-full md:w-auto mt-2 md:mt-0 items-start md:items-center">
+        <div className="w-full md:w-[250px] lg:w-[350px] text-left md:text-right whitespace-pre-line flex-shrink-0 text-gray-300">
+          {speaker}
+        </div>
+        {extra && (
+          <div className="w-full md:w-[150px] lg:w-[200px] text-left md:text-right flex-shrink-0 text-gray-400 text-xs mt-1 md:mt-0 italic md:not-italic">
+            {extra}
+          </div>
+        )}
+      </div>
     </div>
   );
 
   return (
     <div className="w-full flex flex-col items-center animate-fadeIn pb-20 pt-10 px-4 md:px-6 bg-[#020617] min-h-screen font-sans">
       
-      <div className="w-full max-w-[1340px] flex flex-col overflow-x-auto">
+      {/* Removed overflow-x-auto to prevent layout breaking on mobile */}
+      <div className="w-full max-w-[1340px] flex flex-col">
         
         {/* Top Header Match */}
         <div className="flex flex-col mb-8 gap-[2px]">
-          <div style={{
-            borderRadius: '20px 20px 0 0',
-            background: '#E1C583',
-            display: 'flex',
-            padding: '10px 20px',
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-            gap: '10px',
-            alignSelf: 'stretch',
-            color: '#000',
-            fontWeight: '600',
-            fontSize: '18px'
-          }}>
-            April 9'th, 2026
+          <div className="flex justify-start items-center gap-2.5 w-full bg-[#E1C583] text-[#000] font-semibold text-[16px] md:text-[18px] px-4 md:px-5 py-3 md:py-[10px] rounded-t-[20px]">
+            April 9th, 2026
           </div>
-          <div className="bg-[#1f3f77] text-white font-medium text-lg flex justify-start items-center px-[20px] py-[10px] w-full rounded-b-md">
+          <div className="bg-[#1f3f77] text-white font-medium text-base md:text-lg flex justify-start items-center px-4 md:px-[20px] py-3 md:py-[10px] w-full rounded-b-md">
             DAY 1: AUDI 2
           </div>
         </div>
@@ -133,7 +116,7 @@ const ScheduleDay1 = () => {
         <BeigeEventBar time="7:30:00 AM" title="Registration and Continental Breakfast" />
         <GoldSessionHeader title="Plenary Session" />
         
-        <div className="flex flex-col mb-6">
+        <div className="flex flex-col mb-8 md:mb-6">
           {plenaryData.map((item, index) => (
             <ScheduleRow key={index} {...item} />
           ))}
@@ -142,7 +125,7 @@ const ScheduleDay1 = () => {
         <BeigeEventBar time="12:30:00 PM" title="Lunch" />
         <GoldSessionHeader title="Live Tele Surgery-Multi-Speciality" />
 
-        <div className="flex flex-col mb-6">
+        <div className="flex flex-col mb-8 md:mb-6">
           {teleSurgeryData.map((item, index) => (
             <ScheduleRow key={index} {...item} />
           ))}
@@ -151,12 +134,12 @@ const ScheduleDay1 = () => {
         <BeigeEventBar time="4:30:00 PM" title="Faculty Dinner at SPS House" extraRight="SSI User Group" />
 
         {/* Afternoon / Cardiac Schedule */}
-        <div className="bg-[#1f3f77] text-white font-medium text-lg flex justify-start items-center px-[20px] py-[10px] w-full rounded-md mt-6 mb-8">
+        <div className="bg-[#1f3f77] text-white font-medium text-base md:text-lg flex justify-start items-center px-4 md:px-[20px] py-3 md:py-[10px] w-full rounded-md mt-6 mb-8">
           DAY 1: SUMMIT LOUNGE - CARDIAC
         </div>
 
-        <div className="flex flex-col md:flex-row items-start md:items-center w-full mb-4 gap-4">
-          <div className="w-full md:w-[150px] text-[13px] text-gray-200 px-4">
+        <div className="flex flex-col md:flex-row items-start md:items-center w-full mb-4 gap-3 md:gap-4">
+          <div className="w-full md:w-[150px] text-[13px] text-gray-300 md:text-gray-200 px-4 font-semibold md:font-normal">
             13:30:00 - 15:30:00 PM
           </div>
           <div className="flex-1 w-full">
@@ -164,13 +147,13 @@ const ScheduleDay1 = () => {
           </div>
         </div>
 
-        <div className="flex flex-col mb-6">
+        <div className="flex flex-col mb-8 md:mb-6">
           {cardiacSurgeryData.map((item, index) => (
             <ScheduleRow key={index} {...item} />
           ))}
         </div>
 
-        <div className="flex flex-col md:flex-row items-start md:items-center w-full mb-4 gap-4">
+        <div className="flex flex-col md:flex-row items-start md:items-center w-full mb-4 gap-3 md:gap-4">
           <div className="hidden md:block w-[150px]"></div>
           <div className="flex-1 w-full">
              <GoldSessionHeader title="Presentations" />
