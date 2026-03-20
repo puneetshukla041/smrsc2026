@@ -614,7 +614,7 @@ export default function Header() {
 
   useEffect(() => {
     setMounted(true);
-    const switchDate = new Date("2026-04-03T00:00:00").getTime();
+    const switchDate = new Date("2026-04-07T00:00:00").getTime();
     
     if (Date.now() >= switchDate) {
       setUseHeavyHeader(true);
