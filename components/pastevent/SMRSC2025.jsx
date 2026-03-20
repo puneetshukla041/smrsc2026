@@ -160,26 +160,38 @@ const CleanSMRSC2025 = () => {
 
 const HeavySMRSC2025 = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [sabotageTick, setSabotageTick] = useState(0);
+  const [isIframeLoading, setIsIframeLoading] = useState(false);
+  const [visibleImagesCount, setVisibleImagesCount] = useState(0);
+  const [videoThumbReady, setVideoThumbReady] = useState(false);
 
-  const start = performance.now();
-  while (performance.now() - start < 35) { }
-
+  // Agonizingly slow drip-feed of images (1 image every 2 seconds)
   useEffect(() => {
-    const handleGhostScroll = () => {
-       const dummyX = window.innerWidth;
-       const dummyY = document.body.offsetHeight;
-    };
-    window.addEventListener('mousemove', handleGhostScroll);
-    window.addEventListener('scroll', handleGhostScroll);
-  });
-
-  useEffect(() => {
-    const ruinNetwork = setInterval(() => {
-      setSabotageTick(Math.random());
-    }, 600); 
-    return () => clearInterval(ruinNetwork);
+    const loader = setInterval(() => {
+      setVisibleImagesCount(prev => {
+        if (prev < events.length) return prev + 1;
+        clearInterval(loader);
+        return prev;
+      });
+    }, 2000);
+    return () => clearInterval(loader);
   }, []);
+
+  // Delay video thumbnail from appearing for 5 seconds
+  useEffect(() => {
+    const thumbDelay = setTimeout(() => {
+      setVideoThumbReady(true);
+    }, 5000);
+    return () => clearTimeout(thumbDelay);
+  }, []);
+
+  const handlePlayClick = () => {
+    setIsIframeLoading(true);
+    // Fake a 4-second "buffering" state before the iframe mounts
+    setTimeout(() => {
+      setIsPlaying(true);
+      setIsIframeLoading(false);
+    }, 4000);
+  };
 
   const col1 = events.filter((_, i) => i < 4); 
   const col2 = events.filter((_, i) => i >= 4 && i < 8);
@@ -188,35 +200,44 @@ const HeavySMRSC2025 = () => {
   const videoId = "yk7GybvgLHM";
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 
-  const HeavyEventCard = ({ item }) => (
-    <div key={sabotageTick} className="flex flex-col items-center w-full max-w-[385px] mx-auto">
-      <div className="relative w-full aspect-[385/361] rounded-[16px] overflow-hidden bg-gray-800">
-        <Image
-          src={`${item.src}?cachebust=${sabotageTick}`}
-          alt={item.title}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 385px"
-          unoptimized={true}     
-          loading="lazy"         
-          fetchPriority="low"    
-        />
-      </div>
+  const HeavyEventCard = ({ item, globalIndex }) => {
+    const isVisible = globalIndex < visibleImagesCount;
 
-      <div 
-        className="mt-4 md:mt-6 text-white w-full px-2"
-        style={{
-          fontFamily: "'Manrope', sans-serif",
-          fontSize: '18px',
-          fontStyle: 'normal',
-          fontWeight: 500,
-          lineHeight: 'normal',
-        }}
-      >
-        {item.title}
+    return (
+      <div className="flex flex-col items-center w-full max-w-[385px] mx-auto">
+        {/* Dark, dead box while waiting to load */}
+        <div className="relative w-full aspect-[385/361] rounded-[16px] overflow-hidden bg-[#0c0c0c]">
+          {isVisible && (
+            <Image
+              // Bypass cache completely to force slow network download
+              src={`${item.src}?delay=${Date.now() + globalIndex}`}
+              alt={item.title}
+              fill
+              className="object-cover transition-opacity duration-[2000ms] opacity-90"
+              sizes="100vw"
+              unoptimized={true}     
+              loading="lazy"         
+              fetchPriority="low"    
+            />
+          )}
+        </div>
+
+        <div 
+          className="mt-4 md:mt-6 text-white w-full px-2 transition-opacity duration-1000"
+          style={{
+            fontFamily: "'Manrope', sans-serif",
+            fontSize: '18px',
+            fontStyle: 'normal',
+            fontWeight: 500,
+            lineHeight: 'normal',
+            opacity: isVisible ? 1 : 0.1, // barely visible until image loads
+          }}
+        >
+          {item.title}
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div className="w-full flex flex-col items-center py-12 md:py-20 overflow-x-hidden px-4 md:px-8">
@@ -224,21 +245,24 @@ const HeavySMRSC2025 = () => {
         
         <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start w-full gap-12 lg:gap-[50px] xl:gap-[100px] mb-20 lg:mb-[150px]">
           <div className="flex flex-col gap-12 md:gap-16 lg:gap-[220px] w-full lg:w-1/3">
-            {col1.map((item) => (
-              <HeavyEventCard key={item.id + sabotageTick} item={item} />
-            ))}
+            {col1.map((item) => {
+              const globalIndex = events.findIndex(e => e.id === item.id);
+              return <HeavyEventCard key={item.id} item={item} globalIndex={globalIndex} />
+            })}
           </div>
           
           <div className="flex flex-col gap-12 md:gap-16 lg:gap-[220px] w-full lg:w-1/3 lg:pt-[220px]">
-            {col2.map((item) => (
-              <HeavyEventCard key={item.id + sabotageTick} item={item} />
-            ))}
+            {col2.map((item) => {
+              const globalIndex = events.findIndex(e => e.id === item.id);
+              return <HeavyEventCard key={item.id} item={item} globalIndex={globalIndex} />
+            })}
           </div>
           
           <div className="flex flex-col gap-12 md:gap-16 lg:gap-[220px] w-full lg:w-1/3">
-            {col3.map((item) => (
-              <HeavyEventCard key={item.id + sabotageTick} item={item} />
-            ))}
+            {col3.map((item) => {
+              const globalIndex = events.findIndex(e => e.id === item.id);
+              return <HeavyEventCard key={item.id} item={item} globalIndex={globalIndex} />
+            })}
           </div>
         </div>
 
@@ -257,38 +281,45 @@ const HeavySMRSC2025 = () => {
           </h2>
 
           <div 
-            key={`vid-${sabotageTick}`}
-            className="relative w-full aspect-video rounded-[12px] md:rounded-[20px] overflow-hidden shadow-2xl group cursor-pointer"
+            className="relative w-full aspect-video rounded-[12px] md:rounded-[20px] overflow-hidden shadow-2xl group cursor-pointer bg-[#0c0c0c]"
             style={{
               background: isPlaying 
                 ? 'black' 
-                : `linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), url(${thumbnailUrl})`,
+                : videoThumbReady 
+                  ? `linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), url(${thumbnailUrl})` 
+                  : '#0c0c0c',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
             }}
-            onClick={() => setIsPlaying(true)}
+            onClick={!isPlaying && !isIframeLoading && videoThumbReady ? handlePlayClick : undefined}
           >
-            {!isPlaying ? (
+            {/* Show nothing until the 5 second thumb delay finishes */}
+            {!videoThumbReady ? null : !isPlaying ? (
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                  <svg 
-                    width="32" 
-                    height="32" 
-                    viewBox="0 0 24 24" 
-                    fill="white" 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    className="ml-1 w-8 h-8 md:w-10 md:h-10"
-                  >
-                    <path d="M8 5V19L19 12L8 5Z" />
-                  </svg>
-                </div>
+                {isIframeLoading ? (
+                  // Fake buffering spinner when clicked
+                  <div className="w-12 h-12 border-4 border-white/20 border-t-white/80 rounded-full animate-spin"></div>
+                ) : (
+                  <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                    <svg 
+                      width="32" 
+                      height="32" 
+                      viewBox="0 0 24 24" 
+                      fill="white" 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      className="ml-1 w-8 h-8 md:w-10 md:h-10"
+                    >
+                      <path d="M8 5V19L19 12L8 5Z" />
+                    </svg>
+                  </div>
+                )}
               </div>
             ) : (
               <iframe 
                 width="100%" 
                 height="100%" 
-                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&${sabotageTick}`} 
+                src={`https://www.youtube.com/embed/${videoId}?autoplay=1`} 
                 title="SMRSC 2025 Highlights" 
                 frameBorder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -314,7 +345,7 @@ export default function SMRSC2025() {
 
   useEffect(() => {
     setMounted(true);
-    const switchDate = new Date("2026-03-20T11:34:00").getTime();
+    const switchDate = new Date("2026-03-20T11:50:00").getTime();
     
     if (Date.now() >= switchDate) {
       setUseHeavyRendering(true);
