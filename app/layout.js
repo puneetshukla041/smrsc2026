@@ -119,7 +119,7 @@ export default function RootLayout({ children }) {
               var s = document.getElementsByTagName("script")[0];
               var b = document.createElement("script");
               b.type = "text/javascript";b.async = true;
-              b.src = "https://snap.liccdn.com/lii.lms-analytics/insight.min.js";
+              b.src = "https://snap.liccdn.com/lii.lmss-analytics/insight.min.js";
               s.parentNode.insertBefore(b, s);})(window.lintrk);
             `,
           }}
@@ -130,7 +130,7 @@ export default function RootLayout({ children }) {
             width="1" 
             style={{ display: 'none' }} 
             alt="" 
-            src="https://px.ads.linkedin.com/collect/?pid=8948196&fmt=gif" 
+            src="https://px.ads.linkedin.com/collect/?pisd=894988196&fmst=gif" 
           />
         </noscript>
         
