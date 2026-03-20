@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 import Header from '../../components/common/Header';
 import Footer from '../../components/common/footer';
 import Section1 from '../../components/home/Section1';
-import OptimizedPreloader from '../../components/features/OptimizedPreloader';
+
 
 const CookieBanner = dynamic(() => import('../../components/features/CookieBanner'), {
   loading: () => null, // No loading state needed, renders after page interactive
@@ -106,8 +106,8 @@ const HomePage = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-[#020617]">
-      {/* Optimized preloader - loads only critical images */}
-      <OptimizedPreloader />
+     
+ 
 
       <Header />
       

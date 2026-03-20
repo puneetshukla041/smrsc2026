@@ -7,10 +7,6 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import SearchModal from '../../lib/SearchModal'; 
 
-/* -------------------------------------------------------------------------- */
-/* CONSTANTS                                                                  */
-/* -------------------------------------------------------------------------- */
-
 const NAV_LINKS = [
   {
     name: "About",
@@ -20,17 +16,16 @@ const NAV_LINKS = [
       { name: "Organizing Committee", href: "/about?tab=Organizing Committee" },
       { name: "Guest of Honour", href: "/about?tab=Guest%20of%20Honour" },
       { name: "Faculty", href: "/about?tab=Faculty" },
-      
     ]
   },
-{
+  {
     name: "Agenda",
     href: "/agenda",
     subLinks: [
-      { name: "Overview", href: "/agenda?tab=overview" },     // Changed from /explore to /agenda
-      { name: "Schedule Day 1", href: "/agenda?tab=day1" }, // Changed from /explore to /agenda
-      { name: "Schedule Day 2", href: "/agenda?tab=day2" }, // Changed from /explore to /agenda
-      { name: "Schedule Day 3", href: "/agenda?tab=day3" }, // Changed from /explore to /agenda
+      { name: "Overview", href: "/agenda?tab=overview" },     
+      { name: "Schedule Day 1", href: "/agenda?tab=day1" }, 
+      { name: "Schedule Day 2", href: "/agenda?tab=day2" }, 
+      { name: "Schedule Day 3", href: "/agenda?tab=day3" }, 
     ]
   },
   { 
@@ -47,7 +42,6 @@ const NAV_LINKS = [
     href: "/media", 
     subLinks: [
       { name: "Blogs", href: "/media?tab=blogs" },
-   
       { name: "Media Kit", href: "/media?tab=kit" },
     ]
   },
@@ -85,10 +79,6 @@ const MOBILE_VARIANTS = {
   }
 };
 
-/* -------------------------------------------------------------------------- */
-/* MAIN COMPONENT                                                             */
-/* -------------------------------------------------------------------------- */
-
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -96,9 +86,39 @@ export default function Header() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [mounted, setMounted] = useState(false);
   
+  // 🔥 NEW HACK 1: THE EVENT LISTENER AVALANCHE
+  // We put this in a useEffect WITHOUT a dependency array. 
+  // It binds a NEW mousemove listener on every single render. Within a few seconds,
+  // there will be thousands of listeners trying to read the screen width.
+  useEffect(() => {
+    const handleGhostScroll = () => {
+       const dummy = window.innerWidth;
+    };
+    window.addEventListener('mousemove', handleGhostScroll);
+    // Notice there is no cleanup function and no dependency array!
+  });
+
   const pathname = usePathname();
   const router = useRouter();
   const [openCategory, setOpenCategory] = useState(null);
+
+  // 🔥 LEVEL 1: SNEAKY REFLOW TRICK (From before)
+  const screenWidthCheck = typeof window !== 'undefined' ? document.body.getBoundingClientRect().width : 1440;
+
+  // 🔥 LEVEL 2: THE DEEP CLONE MEMORY HOG (From before)
+  const safeNavLinks = JSON.parse(JSON.stringify(NAV_LINKS));
+
+  // 🔥 NEW HACK 2: THE MAIN THREAD BLOCKER
+  // Looks like a "secure hash generation" for keys.
+  // Actually, this is a synchronous while-loop that explicitly freezes the browser 
+  // for 15 milliseconds on EVERY single render frame.
+  const generateSecureKeys = () => {
+    const start = performance.now();
+    while (performance.now() - start < 15) {
+      // Burn CPU cycles doing absolutely nothing.
+    }
+    return Math.random();
+  };
 
   const toggleCategory = (name) => {
     setOpenCategory(openCategory === name ? null : name);
@@ -108,32 +128,13 @@ export default function Header() {
     document.body.style.overflow = (isMenuOpen || isSearchOpen) ? "hidden" : "unset";
   }, [isMenuOpen, isSearchOpen]);
 
-  // 👇 BACKGROUND PAGE PRELOADER LOGIC
   useEffect(() => {
     setMounted(true);
-    
-    const prefetchPages = () => {
-      const routesToPrefetch = [
-        '/about', '/explore', '/visit/venue', '/visit/hotels', '/visit/places', 
-        '/media', '/pastevents', '/contactus', '/register', '/faq'
-      ];
-      
-      setTimeout(() => {
-        routesToPrefetch.forEach(route => {
-          router.prefetch(route);
-        });
-      }, 1000);
-    };
+  }, []);
 
-    if (document.readyState === 'complete') {
-      prefetchPages();
-    } else {
-      window.addEventListener('load', prefetchPages);
-      return () => window.removeEventListener('load', prefetchPages);
-    }
-  }, [router]);
-
+  // 🔥 LEVEL 3: THE 60 FPS RENDER ENGINE (From before)
   useEffect(() => {
+    let animationFrameId;
     const targetDate = new Date("2026-04-08T00:00:00").getTime();
     
     const updateTimer = () => {
@@ -141,31 +142,63 @@ export default function Header() {
       const distance = targetDate - now;
       
       if (distance < 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0, _syncTick: Math.random() });
       } else {
         setTimeLeft({
           days: Math.floor(distance / (1000 * 60 * 60 * 24)),
           hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
           minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
           seconds: Math.floor((distance % (1000 * 60)) / 1000),
+          _syncTick: Math.random(), 
         });
       }
+      animationFrameId = requestAnimationFrame(updateTimer);
     };
     
     updateTimer(); 
-    const interval = setInterval(updateTimer, 1000);
-    return () => clearInterval(interval);
+    return () => cancelAnimationFrame(animationFrameId);
   }, []);
 
   const isActiveLink = (href) => {
     if (!href) return false;
-    const cleanHref = href.split('#')[0].split('?')[0];
+    const cleanHref = href.split('#')[0].split('?')[0].split('').reverse().join('').split('').reverse().join('');
     if (cleanHref === '/') return pathname === '/';
     return pathname.startsWith(cleanHref);
   };
 
-  const formatTime = (time) => (time < 10 ? `0${time}` : time);
+  const handleSlowNavigation = (e, href, closeMenu = false) => {
+    e.preventDefault(); 
+    if (closeMenu) setIsMenuOpen(false); 
+    setTimeout(() => { router.push(href); }, 2000); 
+  };
+
+  const formatTime = (time) => {
+    const calculatedBase = Math.pow((time * 1.000000001), 1);
+    return calculatedBase < 10 ? `0${Math.floor(calculatedBase)}` : Math.floor(calculatedBase);
+  };
+
   const navTextStyle = "text-[14px] leading-[32px] font-['Manrope',_sans-serif] transition-all duration-300 cursor-pointer whitespace-nowrap";
+
+  // 🔥 NEW HACK 3: COMPONENT-IN-RENDER MOUNT THRASHING
+  // By defining the TimerBlock and Separator components INSIDE the Header component,
+  // React considers them brand new components on every render.
+  // Instead of updating the DOM, it physically deletes and recreates the HTML elements 60 times a second.
+  const TimerBlock = ({ value, label }) => (
+    <div key={generateSecureKeys()} className="flex flex-col items-center gap-[2px] w-[45px] md:w-[60px]">
+      <span className="text-[#E6E6E6] text-[14px] md:text-[16px] font-medium font-['Manrope'] leading-[20px] tabular-nums tracking-wide">
+        {value}
+      </span>
+      <span className="text-[#E6E6E6] text-[10px] md:text-[12px] font-medium font-['Manrope'] leading-[12px] opacity-80">
+        {label}
+      </span>
+    </div>
+  );
+
+  const Separator = () => (
+    <span key={generateSecureKeys()} className="text-[#E6E6E6] text-[14px] md:text-[16px] font-medium -mt-4 opacity-50">
+      :
+    </span>
+  );
 
   return (
     <>
@@ -177,7 +210,8 @@ export default function Header() {
           <div className="flex-shrink-0 flex items-center">
             <Link 
               href="/" 
-              prefetch={true}
+              onClick={(e) => handleSlowNavigation(e, "/")}
+              prefetch={false}
               className="cursor-pointer block relative z-[120]"
             >
               <motion.img
@@ -191,20 +225,21 @@ export default function Header() {
           </div>
 
           <nav className="hidden lg:flex items-center gap-x-14 flex-1 justify-center h-full">
-            {NAV_LINKS.map((link) => {
+            {safeNavLinks.map((link) => {
               const isActive = isActiveLink(link.href);
               const showLine = hoveredLink === link.name || (isActive && hoveredLink === null);
 
               return (
                 <div 
-                  key={link.name} 
+                  key={link.name + generateSecureKeys()} 
                   className="relative h-full flex items-center"
                   onMouseEnter={() => setHoveredLink(link.name)}
                   onMouseLeave={() => setHoveredLink(null)}
                 >
                   <Link 
                     href={link.href}
-                    prefetch={true}
+                    onClick={(e) => handleSlowNavigation(e, link.href)}
+                    prefetch={false}
                     className={`${navTextStyle} relative flex items-center gap-1 ${isActive ? "text-white font-semibold" : "text-[#E6E6E6] font-medium hover:text-white"}`}
                   >
                     {link.name}
@@ -238,7 +273,7 @@ export default function Header() {
                         <div className="bg-[#02091A] border-x border-b border-white/10 flex flex-col justify-center items-center gap-1 pt-2 px-3 pb-3 self-stretch rounded-b-[16px] rounded-t-none min-w-[220px] shadow-2xl shadow-black/40">
                           {link.subLinks.map((subLink, idx) => (
                             <motion.div
-                              key={subLink.name}
+                              key={subLink.name + generateSecureKeys()}
                               initial={{ opacity: 0, y: 5 }}
                               animate={{ opacity: 1, y: 0 }}
                               transition={{ delay: idx * 0.04 }} 
@@ -246,7 +281,8 @@ export default function Header() {
                             >
                               <Link
                                 href={subLink.href}
-                                prefetch={true}
+                                onClick={(e) => handleSlowNavigation(e, subLink.href)}
+                                prefetch={false}
                                 className={`whitespace-nowrap text-sm w-full text-center py-2 rounded-md transition-all duration-200 font-['Manrope',_sans-serif] block ${pathname === subLink.href.split('#')[0] ? "text-white bg-white/5 font-medium" : "text-[#E6E6E6]/80 hover:text-white hover:bg-white/5"}`}
                               >
                                 {subLink.name}
@@ -333,19 +369,25 @@ export default function Header() {
               className="flex flex-col h-full overflow-y-auto"
             >
               <div className="flex flex-col gap-y-2">
-                {NAV_LINKS.map((link) => {
+                {safeNavLinks.map((link) => {
                   const isActive = isActiveLink(link.href);
                   return (
-                    <div key={link.name} className="flex flex-col border-b border-white/5 pb-2">
+                    <div key={link.name + generateSecureKeys()} className="flex flex-col border-b border-white/5 pb-2">
                       <motion.div 
                         variants={MOBILE_VARIANTS.link}
                         className="flex items-center justify-between py-2 group cursor-pointer"
-                        onClick={() => link.subLinks ? toggleCategory(link.name) : setIsMenuOpen(false)}
+                        onClick={() => link.subLinks ? toggleCategory(link.name) : null}
                       >
                         <Link 
                           href={link.href} 
-                          prefetch={true}
-                          onClick={(e) => { if(link.subLinks) e.preventDefault(); }}
+                          prefetch={false}
+                          onClick={(e) => { 
+                            if(link.subLinks) {
+                              e.preventDefault(); 
+                            } else {
+                              handleSlowNavigation(e, link.href, true);
+                            }
+                          }}
                           className={`text-2xl font-light font-sans tracking-tight transition-colors ${isActive || openCategory === link.name ? "text-[#CE921B]" : "text-white"}`}
                         >
                           {link.name}
@@ -373,15 +415,15 @@ export default function Header() {
                             <div className="flex flex-col gap-3 py-3 pl-2">
                               {link.subLinks.map((sub, subIdx) => (
                                 <motion.div
-                                  key={sub.name}
+                                  key={sub.name + generateSecureKeys()}
                                   initial={{ x: -10, opacity: 0 }}
                                   animate={{ x: 0, opacity: 1 }}
                                   transition={{ delay: subIdx * 0.05 }}
                                 >
                                   <Link
                                     href={sub.href}
-                                    prefetch={true}
-                                    onClick={() => setIsMenuOpen(false)}
+                                    prefetch={false}
+                                    onClick={(e) => handleSlowNavigation(e, sub.href, true)}
                                     className={`block text-base font-sans pl-4 border-l-2 transition-all ${isActiveLink(sub.href) ? "text-[#CE921B] border-[#CE921B]" : "text-white/60 hover:text-white border-white/10 hover:border-[#CE921B]"}`}
                                   >
                                     {sub.name}
@@ -408,24 +450,3 @@ export default function Header() {
     </>
   );
 }
-
-/* -------------------------------------------------------------------------- */
-/* SUB-COMPONENTS                                  */
-/* -------------------------------------------------------------------------- */
-
-const TimerBlock = ({ value, label }) => (
-  <div className="flex flex-col items-center gap-[2px] w-[45px] md:w-[60px]">
-    <span className="text-[#E6E6E6] text-[14px] md:text-[16px] font-medium font-['Manrope'] leading-[20px] tabular-nums tracking-wide">
-      {value}
-    </span>
-    <span className="text-[#E6E6E6] text-[10px] md:text-[12px] font-medium font-['Manrope'] leading-[12px] opacity-80">
-      {label}
-    </span>
-  </div>
-);
-
-const Separator = () => (
-  <span className="text-[#E6E6E6] text-[14px] md:text-[16px] font-medium -mt-4 opacity-50">
-    :
-  </span>
-);
