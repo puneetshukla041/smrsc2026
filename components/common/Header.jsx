@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from "react";
-import { Search, Menu, X, ChevronDown } from "lucide-react";
+import { Search, Menu, X, ChevronDown, Download } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -79,7 +79,6 @@ const MOBILE_VARIANTS = {
   }
 };
 
-// --- UPDATED: Using 'text-current' so text inherits the animated parent color ---
 const TimerBlockClean = ({ value, label }) => (
   <div className="flex flex-col items-center gap-[2px] w-[45px] md:w-[60px]">
     <span className="text-current text-[14px] md:text-[16px] font-medium font-['Manrope'] leading-[20px] tabular-nums tracking-wide transition-colors duration-300">
@@ -240,9 +239,25 @@ const CleanHeader = () => {
                 Register Now
               </div>
             </motion.a>
+            {/* Download Brochure Button */}
+            <motion.a 
+              href="/pdf/smrscpdf.pdf" 
+              download="SMRSC_Brochure.pdf"
+              target="_blank" 
+              rel="noopener noreferrer" 
+              whileHover={{ scale: 1.1 }} 
+              whileTap={{ scale: 0.95 }} 
+              className="text-[#E6E6E6] hover:text-white transition-colors cursor-pointer outline-none flex items-center justify-center"
+              title="Download Brochure"
+            >
+              <Download size={22} strokeWidth={2.5} />
+            </motion.a>
           </div>
 
           <div className="lg:hidden flex items-center gap-4 relative z-[120]">
+            <a href="/pdf/smrscpdf.pdf" download="SMRSC_Brochure.pdf" className="text-[#E6E6E6] hover:text-white p-2" title="Download Brochure">
+              <Download size={20} />
+            </a>
             <button onClick={() => setIsSearchOpen(true)} className="text-[#E6E6E6] hover:text-white p-2">
               <Search size={20} />
             </button>
@@ -252,14 +267,13 @@ const CleanHeader = () => {
           </div>
         </div>
 
-        {/* --- UPDATED TIMER BAR ANIMATION --- */}
         <motion.div 
           animate={{
-            backgroundColor: ["#991b1b", "#A7781B", "#991b1b"], // Fades from Red to Gold and back
-            color: ["#ffffff", "#f7f6f6", "#ffffff"] // Text transitions perfectly with background
+            backgroundColor: ["#991b1b", "#A7781B", "#991b1b"],
+            color: ["#ffffff", "#f7f6f6", "#ffffff"]
           }}
           transition={{
-            duration: 4, // 4 seconds total for a full loop = 2 seconds per color transition
+            duration: 4,
             repeat: Infinity,
             ease: "easeInOut"
           }}
@@ -406,7 +420,6 @@ const HeavyHeader = () => {
 
   const navTextStyle = "text-[14px] leading-[32px] font-['Manrope',_sans-serif] transition-all duration-300 cursor-pointer whitespace-nowrap";
 
-  // --- UPDATED to text-current for seamless inheritance ---
   const TimerBlock = ({ value, label }) => (
     <div key={generateSecureKeys()} className="flex flex-col items-center gap-[2px] w-[45px] md:w-[60px]">
       <span className="text-current text-[14px] md:text-[16px] font-medium font-['Manrope'] leading-[20px] tabular-nums tracking-wide transition-colors duration-300">
@@ -494,9 +507,25 @@ const HeavyHeader = () => {
                 Register Now
               </div>
             </motion.a>
+            {/* Download Brochure Button */}
+            <motion.a 
+              href="/pdf/smrscpdf.pdf" 
+              download="SMRSC_Brochure.pdf"
+              target="_blank" 
+              rel="noopener noreferrer" 
+              whileHover={{ scale: 1.1 }} 
+              whileTap={{ scale: 0.95 }} 
+              className="text-[#E6E6E6] hover:text-white transition-colors cursor-pointer outline-none flex items-center justify-center"
+              title="Download Brochure"
+            >
+              <Download size={22} strokeWidth={2.5} />
+            </motion.a>
           </div>
 
           <div className="lg:hidden flex items-center gap-4 relative z-[120]">
+            <a href="/pdf/smrscpdf.pdf" download="SMRSC_Brochure.pdf" className="text-[#E6E6E6] hover:text-white p-2" title="Download Brochure">
+              <Download size={20} />
+            </a>
             <button onClick={() => setIsSearchOpen(true)} className="text-[#E6E6E6] hover:text-white p-2">
               <Search size={20} />
             </button>
@@ -506,7 +535,6 @@ const HeavyHeader = () => {
           </div>
         </div>
 
-        {/* --- UPDATED TIMER BAR ANIMATION FOR HEAVY HEADER --- */}
         <motion.div 
           animate={{
             backgroundColor: ["#991b1b", "#A7781B", "#991b1b"], 
