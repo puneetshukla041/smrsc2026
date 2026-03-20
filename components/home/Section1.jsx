@@ -12,7 +12,7 @@ const Section1 = () => {
     "/images/home/section1/image2.webp",
     "/images/home/section1/image3.webp",
     "/images/home/section1/image4.webp",
-    "/images/home/section1/image5.webp",
+    "/images/home/section1/image5.png",
     "/images/home/section1/image6.webp",
   ];
 
