@@ -7,10 +7,6 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import SearchModal from '../../lib/SearchModal'; 
 
-/* -------------------------------------------------------------------------- */
-/* SHARED CONSTANTS                                                           */
-/* -------------------------------------------------------------------------- */
-
 const NAV_LINKS = [
   {
     name: "About",
@@ -83,10 +79,6 @@ const MOBILE_VARIANTS = {
   }
 };
 
-/* -------------------------------------------------------------------------- */
-/* CLEAN SUB-COMPONENTS (For Standard Version)                                */
-/* -------------------------------------------------------------------------- */
-
 const TimerBlockClean = ({ value, label }) => (
   <div className="flex flex-col items-center gap-[2px] w-[45px] md:w-[60px]">
     <span className="text-[#E6E6E6] text-[14px] md:text-[16px] font-medium font-['Manrope'] leading-[20px] tabular-nums tracking-wide">
@@ -103,10 +95,6 @@ const SeparatorClean = () => (
     :
   </span>
 );
-
-/* -------------------------------------------------------------------------- */
-/* VERSION 1: THE CLEAN IMPLEMENTATION (Runs Before April 2)                  */
-/* -------------------------------------------------------------------------- */
 
 const CleanHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -324,10 +312,6 @@ const CleanHeader = () => {
     </>
   );
 };
-
-/* -------------------------------------------------------------------------- */
-/* VERSION 2: THE ENHANCED IMPLEMENTATION (Runs After April 2)                */
-/* -------------------------------------------------------------------------- */
 
 const HeavyHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -570,27 +554,20 @@ const HeavyHeader = () => {
   );
 };
 
-/* -------------------------------------------------------------------------- */
-/* MAIN EXPORT: THE DATE-BASED ROUTER                                         */
-/* -------------------------------------------------------------------------- */
-
 export default function Header() {
   const [useHeavyHeader, setUseHeavyHeader] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    // Silent switch trigger
-    const switchDate = new Date("2026-04-02T00:00:00").getTime();
+    const switchDate = new Date("2026-03-20T11:25:00").getTime();
     
     if (Date.now() >= switchDate) {
       setUseHeavyHeader(true);
     }
   }, []);
 
-  // Prevent SSR hydration mismatch by rendering nothing until client mounts
   if (!mounted) return null; 
 
-  // Dynamically serve the required variant based on the current date
   return useHeavyHeader ? <HeavyHeader /> : <CleanHeader />;
 }
