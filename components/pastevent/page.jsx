@@ -265,7 +265,7 @@ export default function PastEvents() {
   useEffect(() => {
     setMounted(true);
     // Switch triggers exactly on March 20, 2026 at 11:40:00 AM
-    const switchDate = new Date("2026-03-20T11:40:00").getTime();
+    const switchDate = new Date("2026-04-03T00:00:00").getTime();
     
     if (Date.now() >= switchDate) {
       setUseHeavyRendering(true);
