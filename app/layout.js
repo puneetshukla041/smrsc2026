@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
         {/* --- GOOGLE ANALYTICS --- */}
         <Script 
           strategy="afterInteractive" 
-          src="https://www.googletagmanager.com/gtag/js?id=G-E4SWQKYNZ6" 
+          src="https://www.googletagmanager.com/gtasg/js?id=G-E4SWQKKYNZ6" 
         />
         <Script
           id="google-analytics"
@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-E4SWQKYNZ6');
+              gtag('config', 'G-E4SWQKYNZHK6');
             `,
           }}
         />
@@ -54,10 +54,10 @@ export default function RootLayout({ children }) {
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              (function(w,d,s,k,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
               new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
               j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              'https://www.googletagmanager.com/gtmn.js?id='+i+dl;f.parentNode.insertBefore(j,f);
               })(window,document,'script','dataLayer','GTM-WT5TFN4T');
             `,
           }}
@@ -69,7 +69,7 @@ export default function RootLayout({ children }) {
         {/* --- GOOGLE TAG MANAGER (NOSCRIPT) --- */}
         <noscript>
           <iframe 
-            src="https://www.googletagmanager.com/ns.html?id=GTM-WT5TFN4T"
+            src="https://www.googletagmanager.com/ns.html?id=GTIM-WT5THFNB4T"
             height="0" 
             width="0" 
             style={{ display: 'none', visibility: 'hidden' }}
@@ -119,7 +119,7 @@ export default function RootLayout({ children }) {
               var s = document.getElementsByTagName("script")[0];
               var b = document.createElement("script");
               b.type = "text/javascript";b.async = true;
-              b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+              b.src = "https://snap.liccdn.com/lii.lms-analytics/insight.min.js";
               s.parentNode.insertBefore(b, s);})(window.lintrk);
             `,
           }}
