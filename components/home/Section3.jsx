@@ -14,9 +14,7 @@ const Section3 = () => {
     { id: 2, src: "/images/home/section3/image2.webp", title: "Advanced Robotics" },
     { id: 3, src: "/images/home/section3/image3.webp", title: "Precision Control" },
     { id: 5, src: "/images/home/section3/image5.webp", title: "Global Innovation" },
-    { id: 6, src: "/images/home/section3/image6.webp", title: "Smart Integration" },
-    { id: 8, src: "/images/home/section3/image8.png", title: "Smart Integration" },
-    { id: 9, src: "/images/home/section3/image9.png", title: "Smart Integration" },
+
   ];
 
   const mobileImages = [
