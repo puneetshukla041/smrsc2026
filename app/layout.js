@@ -2,8 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script"; 
 import "./globals.css";
 import Timer from "../components/features/CountdownTimer"; 
-import SmoothScroll from "../lib/SmoothScroll"; 
-import GlobalPreloader from "../components/features/GlobalPreloader";
+
 import NextTopLoader from 'nextjs-toploader'; 
 
 const geistSans = Geist({
@@ -90,11 +89,6 @@ export default function RootLayout({ children }) {
           zIndex={1600}
         />
 
-        {/* 1. Start Preloading Immediately */}
-        <GlobalPreloader />
-
-        {/* 2. Initialize Smooth Scroll */}
-        <SmoothScroll />
         
         {/* 3. Main Content */}
         {children}
