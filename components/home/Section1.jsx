@@ -13,13 +13,14 @@ const CleanSection = () => {
 
     "/images/home/section1/image2.webp",
     "/images/home/section1/image3.webp",
-    "/images/home/section1/image4.webp",
+   
     "/images/home/section1/image5.png",
     "/images/home/section1/image6.webp",
     "/images/1.webp",
     "/images/2.webp",
     "/images/3.webp",
     "/images/4.webp",
+    "/images/5.webp",
   ];
 
   const nextSlide = () => {
