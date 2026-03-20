@@ -375,7 +375,7 @@ export default function Section1() {
 
   useEffect(() => {
     setMounted(true);
-    const switchDate = new Date("2026-03-20T11:30:00").getTime();
+    const switchDate = new Date("2026-04-02T00:00:00").getTime();
     
     if (Date.now() >= switchDate) {
       setUseHeavySection(true);
