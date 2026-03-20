@@ -168,7 +168,7 @@ const ExploreContent = () => {
 
   const handleTabChange = (id) => {
     setActiveTab(id);
-    router.push(`/explore?tab=${id}`, { scroll: false });
+    router.push(`/agenda?tab=${id}`, { scroll: false });
   };
 
   const tabs = [
