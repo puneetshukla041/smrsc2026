@@ -13,6 +13,7 @@ const Section3 = () => {
     { id: 1, src: "/images/home/section3/image1.webp", title: "SSI Mantra 3" },
     { id: 2, src: "/images/home/section3/image2.webp", title: "Advanced Robotics" },
     { id: 3, src: "/images/home/section3/image3.webp", title: "Precision Control" },
+    { id: 4, src: "/images/home/section3/img4.webp", title: "Global Innovation" },
     { id: 5, src: "/images/home/section3/image5.webp", title: "Global Innovation" },
 
   ];

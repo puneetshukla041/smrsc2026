@@ -18,7 +18,7 @@ const Section1 = () => {
             priority={true}
             fetchPriority="high"
             loading="eager"
-            unoptimized={true} // ⚡ ZERO BUFFERING
+            unoptimized={true} // 
             className="object-contain"
           />
         </div>
