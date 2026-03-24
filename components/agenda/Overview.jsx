@@ -8,7 +8,7 @@ import Image from 'next/image';
 const Overview = () => {
   const router = useRouter(); 
 
-  // --- Carousel State & Logic (Updated to match Section3) ---
+  // --- Carousel State & Logic ---
   const [page, setPage] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -60,7 +60,7 @@ const Overview = () => {
     router.push(`/explore?tab=${tab}`, { scroll: false });
   };
 
-  // --- Animation Variants (From Section3) ---
+  // --- Animation Variants ---
   const itemVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: { 
@@ -76,6 +76,7 @@ const Overview = () => {
     damping: 30,
   };
 
+  // UPDATED: All cards now have opacity: 1 and brightness(1) to stop fading/darkening
   const cardVariants = {
     center: {
       x: "0%",
@@ -95,7 +96,7 @@ const Overview = () => {
       scale: 1,
       zIndex: 20,
       opacity: 1,
-      filter: "brightness(0.4)",
+      filter: "brightness(1)",
       transition: {
         x: springTransition,
         scale: springTransition,
@@ -108,7 +109,7 @@ const Overview = () => {
       scale: 1,
       zIndex: 20,
       opacity: 1,
-      filter: "brightness(0.4)",
+      filter: "brightness(1)",
       transition: {
         x: springTransition,
         scale: springTransition,
@@ -120,8 +121,8 @@ const Overview = () => {
       x: "-180%",
       scale: 0.8,
       zIndex: 1,
-      opacity: 0,
-      filter: "brightness(0)",
+      opacity: 1,
+      filter: "brightness(1)",
       transition: {
         x: springTransition,
         scale: springTransition,
@@ -132,8 +133,8 @@ const Overview = () => {
       x: "180%",
       scale: 0.8,
       zIndex: 1,
-      opacity: 0,
-      filter: "brightness(0)",
+      opacity: 1,
+      filter: "brightness(1)",
       transition: {
         x: springTransition,
         scale: springTransition,
@@ -143,8 +144,6 @@ const Overview = () => {
   };
 
   // --- Styles ---
-  
-  // Updated arrow class from Section3
   const arrowBtnClass = "flex w-[40px] md:w-[48px] h-[40px] md:h-[48px] p-[8px] md:p-[10px] justify-center items-center gap-[10px] rounded-full bg-white hover:bg-white/90 transition-all shrink-0 z-50 active:scale-95 cursor-pointer shadow-lg";
 
   const indicatorContainerStyle = {
@@ -220,7 +219,6 @@ const Overview = () => {
     <div className="w-full max-w-[100vw] flex flex-col items-center animate-fadeIn overflow-x-hidden">
       
       {/* 1. Top Text Section */}
-      {/* REFACTORED: Added responsive laptop margins (lg:px-16 xl:px-24) to prevent text hitting the screen edge */}
       <div className="w-full max-w-[1380px] px-4 md:px-8 lg:px-16 xl:px-24 2xl:px-8 flex flex-col">
          <p className="text-[#E3F5F6] font-manrope text-[20px] md:text-[24px] lg:text-[28px] xl:text-[32px] font-medium leading-[32px] md:leading-[40px]">
            SMRSC 2026 brings together live surgery, innovation, and global expertise across three focused days. Explore the experiences, sessions, and programs that define the conference.
@@ -253,21 +251,18 @@ const Overview = () => {
       >
         <div className="relative flex items-center justify-center w-full overflow-visible px-4 md:px-10 lg:px-16 xl:px-24">
           
-          {/* LEFT ARROW - Scaled positions for laptops */}
           <div className="absolute left-8 md:left-4 lg:left-12 xl:left-16 z-[60]">
             <button onClick={() => paginate(-1)} className={arrowBtnClass}>
               <ChevronLeft className="text-black w-full h-full" />
             </button>
           </div>
 
-          {/* RIGHT ARROW - Scaled positions for laptops */}
           <div className="absolute right-8 md:right-4 lg:right-12 xl:right-16 z-[60]">
              <button onClick={() => paginate(1)} className={arrowBtnClass}>
                <ChevronRight className="text-black w-full h-full" />
              </button>
           </div>
 
-          {/* IMAGES CONTAINER */}
           <div 
             className={`relative overflow-visible shrink-0 transition-all duration-300 ${
               isMobile 
@@ -297,7 +292,7 @@ const Overview = () => {
                       unoptimized={true}
                       loading="eager"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    {/* Removed the dark bg-gradient here so the image stays fully bright */}
                   </div>
                 </motion.div>
               );
@@ -319,7 +314,6 @@ const Overview = () => {
       </motion.div>
 
       {/* 3. Bottom Section */}
-      {/* REFACTORED: Added responsive laptop margins (lg:px-16 xl:px-24) to the wrapper */}
       <div 
         className="w-full flex flex-col items-center justify-center max-w-[1380px] px-4 md:px-8 lg:px-16 xl:px-24 2xl:px-8 mt-20 md:mt-[230px]"
       >
@@ -359,7 +353,6 @@ const Overview = () => {
         </div>
 
         {/* DAY 1 CARD */}
-        {/* REFACTORED: Switched fixed widths to flexible percentages (lg:w-[55%]) so cards fit cleanly on 13" and 15" laptops */}
         <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12 xl:gap-[80px] mb-20 lg:mb-[150px] xl:mb-[200px]">
            <div className="shrink-0 w-full lg:w-[55%] xl:w-[810px] h-[300px] lg:h-[400px] xl:h-[489px] relative rounded-[24px] overflow-hidden">
              <img 
@@ -370,7 +363,6 @@ const Overview = () => {
            </div>
            
            <div className="flex flex-col items-start justify-center w-full lg:w-[45%] xl:max-w-[445px]">
-             {/* Scaled the text size logically: lg jumps to full size gracefully */}
              <h3 className="text-[28px] leading-[32px] lg:text-[32px] xl:text-[36px] lg:leading-[36px] xl:leading-[40px]" style={dayHeadingStyle}>
                Day 1 - Science, Insight & Discussion
              </h3>
@@ -385,7 +377,6 @@ const Overview = () => {
         </div>
 
         {/* DAY 2 CARD */}
-        {/* REFACTORED: Same flexible percentages applied here */}
         <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12 xl:gap-[80px] mb-20 lg:mb-[150px] xl:mb-[200px]">
            <div className="shrink-0 w-full lg:w-[55%] xl:w-[810px] h-[300px] lg:h-[400px] xl:h-[489px] relative rounded-[24px] overflow-hidden">
              <img 
@@ -410,7 +401,6 @@ const Overview = () => {
         </div>
       
         {/* DAY 3 CARD */}
-        {/* NEWLY ADDED: Day 3 Complex Surgery & Global Expansion */}
         <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12 xl:gap-[80px] mb-20 lg:mb-[150px] xl:mb-[200px]">
            <div className="shrink-0 w-full lg:w-[55%] xl:w-[810px] h-[300px] lg:h-[400px] xl:h-[489px] relative rounded-[24px] overflow-hidden">
              <img 
