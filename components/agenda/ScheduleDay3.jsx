@@ -47,8 +47,7 @@ const ScheduleDay3 = () => {
     { time: "9:40 AM to 9:50 AM", title: "First 100 Robotic Cardiac Cases at Manipal Hospital Jaipur with Mantra System", speaker: "-Dr. Satish", extra: "Manipal Hospital, Jaipur, RJ" },
     { time: "10:10 AM to 10:20 AM", title: "First 50 Robotic Cardiac Cases at Malla Reddy Hospital with Mantra System", speaker: "-Dr. Harish Badami", extra: "Malla Reddy Narayana Multispeciality Hospital, Hyderabad" },
     { time: "10:40 AM to 10:50 AM", title: "Robotic Cardiac Surgery and Its Globalization- What will help", speaker: "-Dr. Sudhir Srivastava", extra: "" },
-    { time: "11:10 AM to 11:20 AM", title: "TBD", speaker: "", extra: "" },
-    { time: "11:40 AM to 11:50 AM", title: "TBD", speaker: "", extra: "" },
+    
     { time: "12:00:00", title: "Tips and Trick: Panel Discussion", speaker: "", extra: "" },
   ];
 
