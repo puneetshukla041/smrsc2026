@@ -14,10 +14,11 @@ const Overview = () => {
 
   // Preserved original images
   const images = [
-    { id: 3, src: "/images/explore/image3.webp", title: "Experience 3" },
-    { id: 4, src: "/images/explore/image4.webp", title: "Experience 4" },
-    { id: 5, src: "/images/explore/image5.webp", title: "Experience 5" },
-    { id: 6, src: "/images/explore/image6.webp", title: "Experience 6" },
+    { id: 2, src: "/images/explore/overview/image1.png", title: "Experience 2" },
+    { id: 3, src: "/images/explore/overview/image2.png", title: "Experience 3" },
+    { id: 4, src: "/images/explore/overview/image3.png", title: "Experience 4" },
+    { id: 5, src: "/images/explore/overview/image4.png", title: "Experience 5" },
+    { id: 6, src: "/images/explore/overview/image5.png", title: "Experience 6" },
   ];
 
   // Mobile detection
