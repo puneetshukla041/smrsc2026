@@ -225,11 +225,20 @@ const ScheduleDay2 = () => {
           </div>
         </div>
 
-        {/* Remaining Morning Presentations */}
-        <div className="flex flex-col mb-4">
-          {cardiacPresentationsMorning.slice(3).map((item, index) => <ScheduleRow key={`cardiac-pres-m-end-${index}`} {...item} />)}
-        </div>
+{/* Remaining Morning Presentations (Aligned with above) */}
+        <div className="flex flex-col lg:flex-row w-full items-stretch gap-2 mb-4">
+          
+          {/* Left Column (Maintains the exact same width as the section above) */}
+          <div className="flex flex-col flex-1 w-full">
+            {cardiacPresentationsMorning.slice(3).map((item, index) => (
+              <ScheduleRow key={`cardiac-pres-m-end-${index}`} {...item} />
+            ))}
+          </div>
 
+          {/* Right Column Spacer (Invisible block that matches the Chairperson card width to force alignment) */}
+          <div className="hidden lg:block lg:w-[260px] xl:w-[280px]"></div>
+          
+        </div>
 
         {/* PLENARY KEYNOTE (CARDIAC REPEAT) */}
         <div className="flex flex-col md:flex-row items-start md:items-center w-full mb-1 mt-4">
