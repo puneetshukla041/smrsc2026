@@ -165,8 +165,7 @@ const ScheduleDay1 = () => {
         </div>
 
         <BeigeEventBar time="4:30:00 PM" title="Faculty Dinner at Dr. Sudhir Srivastava House" extraRight="SSI User Group" />
-
-        {/* AFTERNOON: CARDIAC LOUNGE */}
+{/* AFTERNOON: CARDIAC LOUNGE */}
         <div className="bg-[#8E1616] text-white font-medium text-base md:text-[17px] flex justify-start items-center px-[20px] py-3.5 w-full rounded-md mt-4 mb-8">
           DAY 1: SUMMIT LOUNGE - CARDIAC
         </div>
@@ -180,36 +179,52 @@ const ScheduleDay1 = () => {
           </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row w-full mb-8 gap-2 relative">
-          {/* Cardiac Screens */}
+        {/* Split Layout: Left (Screens & Pres) | Right (Chairperson Card) */}
+        <div className="flex flex-col lg:flex-row w-full items-stretch gap-2 mb-2">
+          
+          {/* Left Column (Flex-1 takes up remaining space) */}
           <div className="flex flex-col flex-1 w-full">
+             {/* Cardiac Screens */}
              {cardiacSurgeryScreens.map((item, index) => (
                <ScheduleRow key={`cardiac-screen-${index}`} {...item} />
              ))}
+
+             {/* Presentations Header */}
+             <div className="flex flex-col md:flex-row items-start md:items-center w-full mt-2 mb-2">
+               <div className="hidden md:block w-[150px] px-4"></div>
+               <div className="flex-1 w-full">
+                  <GoldSessionHeader title="Presentations" />
+               </div>
+             </div>
+
+             {/* First 3 Presentations (Matches the height of the right card) */}
+             {cardiacPresentations.slice(0, 3).map((item, index) => (
+               <ScheduleRow key={`cardiac-pres-${index}`} {...item} />
+             ))}
           </div>
-          
-          {/* Cardiac Sidebar Box */}
-          <div className="lg:w-[240px] bg-[#11244A] rounded-[4px] p-5 text-[13px] text-gray-300 flex flex-col justify-center min-h-[100px] mt-2 lg:mt-0 mb-[6px]">
-            <div className="mb-2 leading-snug"><span className="text-white font-normal">Chairperson:</span> Dr. Husam Balkhy</div>
-            <div className="leading-snug"><span className="text-white font-normal">Moderators:</span> Dr. Nitin Rajput, Dr. Harish Badami, Dr. Yugal K Mishra</div>
+
+          {/* Right Column (Chairperson Card) */}
+          <div className="lg:w-[260px] xl:w-[280px] bg-[#122240] rounded-[4px] p-6 text-[13px] text-gray-200 flex flex-col justify-center">
+            <div className="mb-1.5 leading-relaxed">
+              <span className="text-white font-normal">Chairperson:</span> Dr. Husam Balkhy
+            </div>
+            <div className="leading-relaxed">
+              <span className="text-white font-normal">Moderators:</span> Dr. Nitin Rajput,<br/>
+              Dr. Harish Badami, Dr. Yugal K<br/>
+              Mishra
+            </div>
           </div>
+
         </div>
 
-        <div className="flex flex-col md:flex-row items-start md:items-center w-full mb-1">
-          <div className="hidden md:block w-[150px] px-4"></div>
-          <div className="flex-1 w-full">
-             <GoldSessionHeader title="Presentations" />
-          </div>
-        </div>
-
-        <div className="flex flex-col mb-10">
-          {cardiacPresentations.map((item, index) => (
-            <ScheduleRow key={`cardiac-pres-${index}`} {...item} />
+        {/* Remaining Presentations (Panel Discussion, Adjourn) */}
+        <div className="flex flex-col mb-10 w-full">
+          {cardiacPresentations.slice(3).map((item, index) => (
+            <ScheduleRow key={`cardiac-pres-end-${index}`} {...item} />
           ))}
         </div>
 
         <BeigeEventBar time="4:30:00 PM" title="Faculty Dinner at Dr. Sudhir Srivastava House" extraRight="SSI User Group" />
-
       </div>
     </div>
   );
