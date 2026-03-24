@@ -14,8 +14,6 @@ const Overview = () => {
 
   // Preserved original images
   const images = [
-    { id: 1, src: "/images/explore/image1.webp", title: "Experience 1" },
-    { id: 2, src: "/images/explore/image2.webp", title: "Experience 2" },
     { id: 3, src: "/images/explore/image3.webp", title: "Experience 3" },
     { id: 4, src: "/images/explore/image4.webp", title: "Experience 4" },
     { id: 5, src: "/images/explore/image5.webp", title: "Experience 5" },
