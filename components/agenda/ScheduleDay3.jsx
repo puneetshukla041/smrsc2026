@@ -248,10 +248,19 @@ const ScheduleDay3 = () => {
             </div>
           </div>
         </div>
+{/* Remaining Afternoon Presentations (Aligned with above) */}
+        <div className="flex flex-col lg:flex-row w-full items-stretch gap-2 mb-10">
+          
+          {/* Left Column (Maintains the exact same width as the section above) */}
+          <div className="flex flex-col flex-1 w-full">
+            {cardiacPresentationsAfternoon.slice(3).map((item, index) => (
+              <ScheduleRow key={`cardiac-pres-a-end-${index}`} {...item} />
+            ))}
+          </div>
 
-        {/* Remaining Afternoon Presentations */}
-        <div className="flex flex-col mb-10">
-          {cardiacPresentationsAfternoon.slice(3).map((item, index) => <ScheduleRow key={`cardiac-pres-a-end-${index}`} {...item} />)}
+          {/* Right Column Spacer (Invisible block that matches the Chairperson card width to force alignment) */}
+          <div className="hidden lg:block lg:w-[260px] xl:w-[280px]"></div>
+          
         </div>
 
         <BeigeEventBar time="4:00:00 PM" title="Awards Ceremony" />
