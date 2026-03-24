@@ -95,7 +95,9 @@ const CommitteeTab = () => {
                 </div>
                 <div className="w-full mt-4 flex flex-col gap-1 text-center">
                   <div className="text-white text-[16px] font-semibold leading-[24px]">Dr. Sudhir K Rawal</div>
-                  <div className="text-white/80 text-[12px] font-normal leading-[16px]">Rajiv Gandhi Cancer Institute and Research Center, Delhi</div>
+                  <div className="text-white/80 text-[12px] font-normal leading-[16px]">Medical Director & Chief of Uro-Genito Oncology
+Rajiv Gandhi Cancer Instituteand Research Center
+</div>
                 </div>
               </div>
               
@@ -106,7 +108,10 @@ const CommitteeTab = () => {
                 </div>
                 <div className="w-full mt-4 flex flex-col gap-1 text-center">
                   <div className="text-white text-[16px] font-semibold leading-[24px]">Dr. Somashekhar SP</div>
-                  <div className="text-white/80 text-[12px] font-normal leading-[16px]">Aster DM Healthcare</div>
+                  <div className="text-white/80 text-[12px] font-normal leading-[16px]">Chairman - Medical Advisory Board, 
+Aster DM Healthcare - GCC & India, Global Director 
+Gynaecological Oncology 
+</div>
                 </div>
               </div>
             </div>
@@ -122,7 +127,9 @@ const CommitteeTab = () => {
             </div>
             <div className="w-full mt-4 flex flex-col gap-1 text-center">
               <div className="text-white text-[16px] font-semibold leading-[24px]">Dr. Vishwa Srivastava</div>
-              <div className="text-white/80 text-[12px] font-normal leading-[16px]">President & COO, SS Innovations</div>
+              <div className="text-white/80 text-[12px] font-normal leading-[16px]">Chief Executive Officer - APAC
+SS Innovations International, Inc.
+</div>
             </div>
           </div>
         </div>
