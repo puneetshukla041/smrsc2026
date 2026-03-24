@@ -415,7 +415,7 @@ const Overview = () => {
         <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12 xl:gap-[80px] mb-20 lg:mb-[150px] xl:mb-[200px]">
            <div className="shrink-0 w-full lg:w-[55%] xl:w-[810px] h-[300px] lg:h-[400px] xl:h-[489px] relative rounded-[24px] overflow-hidden">
              <img 
-               src="/images/explore/image10.png" 
+               src="/images/explore/day3.png" 
                alt="Day 3 Complex Surgery & Global Expansion" 
                className="absolute inset-0 w-full h-full object-cover"
              />
