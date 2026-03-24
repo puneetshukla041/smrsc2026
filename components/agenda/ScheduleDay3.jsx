@@ -167,8 +167,7 @@ const ScheduleDay3 = () => {
 
         <BeigeEventBar time="4:00:00 PM" title="Awards Ceremony" />
         <BeigeEventBar time="7:00:00 PM" title="Gala Dinner" />
-
-        {/* CARDIAC SCHEDULE HEADER */}
+{/* CARDIAC SCHEDULE HEADER */}
         <div className="bg-[#8E1616] text-white font-medium text-base md:text-[17px] flex justify-start items-center px-[20px] py-3.5 w-full rounded-md mt-4 mb-8">
           DAY 3: SUMMIT LOUNGE - CARDIAC
         </div>
@@ -179,22 +178,38 @@ const ScheduleDay3 = () => {
           <div className="flex-1 w-full"><GoldSessionHeader title="Cardiac - Live Tele Surgery" /></div>
         </div>
         
-        <div className="flex flex-col lg:flex-row w-full mb-8 gap-2 relative">
+        {/* Morning Split Layout: Left (Screens & Pres) | Right (Chairperson Card) */}
+        <div className="flex flex-col lg:flex-row w-full items-stretch gap-2 mb-2">
+          {/* Left Column */}
           <div className="flex flex-col flex-1 w-full">
             {cardiacSurgeryMorning.map((item, index) => <ScheduleRow key={`cardiac-tele-m-${index}`} {...item} />)}
+            
+            {/* Presentations Header inside Left Column */}
+            <div className="flex flex-col md:flex-row items-start md:items-center w-full mt-2 mb-2">
+              <div className="hidden md:block w-[150px] px-4"></div>
+              <div className="flex-1 w-full"><GoldSessionHeader title="Video Presentations" /></div>
+            </div>
+
+            {/* First 3 Presentations */}
+            {cardiacPresentationsMorning.slice(0, 3).map((item, index) => <ScheduleRow key={`cardiac-pres-m-${index}`} {...item} />)}
           </div>
-          <div className="lg:w-[240px] bg-[#11244A] rounded-[4px] p-5 text-[13px] text-gray-300 flex flex-col justify-center min-h-[100px] mt-2 lg:mt-0 mb-[6px]">
-            <div className="mb-2 leading-snug"><span className="text-white font-normal">Chairperson:</span> Dr. Kunal Sarkar</div>
-            <div className="leading-snug"><span className="text-white font-normal">Moderators:</span> Dr. Anil Mulpur, Dr. S.K Agarwal, Dr. Ajay Kaul</div>
+
+          {/* Right Column */}
+          <div className="lg:w-[260px] xl:w-[280px] bg-[#122240] rounded-[4px] p-6 text-[13px] text-gray-200 flex flex-col justify-center">
+            <div className="mb-1.5 leading-relaxed">
+              <span className="text-white font-normal">Chairperson:</span> Dr. Kunal Sarkar
+            </div>
+            <div className="leading-relaxed">
+              <span className="text-white font-normal">Moderators:</span> Dr. Anil Mulpur,<br/>
+              Dr. S.K Agarwal,<br/>
+              Dr. Ajay Kaul
+            </div>
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row items-start md:items-center w-full mb-1">
-          <div className="hidden md:block w-[150px] px-4"></div>
-          <div className="flex-1 w-full"><GoldSessionHeader title="Video Presentations" /></div>
-        </div>
+        {/* Remaining Morning Presentations */}
         <div className="flex flex-col mb-4">
-          {cardiacPresentationsMorning.map((item, index) => <ScheduleRow key={`cardiac-pres-m-${index}`} {...item} />)}
+          {cardiacPresentationsMorning.slice(3).map((item, index) => <ScheduleRow key={`cardiac-pres-m-end-${index}`} {...item} />)}
         </div>
 
         <BeigeEventBar time="12:30:00 PM" title="Lunch" />
@@ -205,22 +220,38 @@ const ScheduleDay3 = () => {
           <div className="flex-1 w-full"><GoldSessionHeader title="Cardiac - Live Tele Surgery" /></div>
         </div>
         
-        <div className="flex flex-col lg:flex-row w-full mb-8 gap-2 relative">
+        {/* Afternoon Split Layout: Left (Screens & Pres) | Right (Chairperson Card) */}
+        <div className="flex flex-col lg:flex-row w-full items-stretch gap-2 mb-2">
+          {/* Left Column */}
           <div className="flex flex-col flex-1 w-full">
              {cardiacSurgeryAfternoon.map((item, index) => <ScheduleRow key={`cardiac-tele-a-${index}`} {...item} />)}
+             
+             {/* Presentations Header inside Left Column */}
+             <div className="flex flex-col md:flex-row items-start md:items-center w-full mt-2 mb-2">
+               <div className="hidden md:block w-[150px] px-4"></div>
+               <div className="flex-1 w-full"><GoldSessionHeader title="Presentations" /></div>
+             </div>
+
+             {/* First 3 Presentations */}
+             {cardiacPresentationsAfternoon.slice(0, 3).map((item, index) => <ScheduleRow key={`cardiac-pres-a-${index}`} {...item} />)}
           </div>
-          <div className="lg:w-[240px] bg-[#11244A] rounded-[4px] p-5 text-[13px] text-gray-300 flex flex-col justify-center min-h-[100px] mt-2 lg:mt-0 mb-[6px]">
-            <div className="mb-2 leading-snug"><span className="text-white font-normal">Chairperson:</span> Dr. Devendra Saxena</div>
-            <div className="leading-snug"><span className="text-white font-normal">Moderators:</span> Dr. Arul Furtado, Dr. MM Yusuf, Dr. Vivek Jawali, Dr. A.G.K Gokhale, Dr. Milind Hote</div>
+
+          {/* Right Column */}
+          <div className="lg:w-[260px] xl:w-[280px] bg-[#122240] rounded-[4px] p-6 text-[13px] text-gray-200 flex flex-col justify-center">
+            <div className="mb-1.5 leading-relaxed">
+              <span className="text-white font-normal">Chairperson:</span> Dr. Devendra Saxena
+            </div>
+            <div className="leading-relaxed">
+              <span className="text-white font-normal">Moderators:</span> Dr. Arul Furtado,<br/>
+              Dr. MM Yusuf, Dr. Vivek Jawali,<br/>
+              Dr. A.G.K Gokhale, Dr. Milind Hote
+            </div>
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row items-start md:items-center w-full mb-1">
-          <div className="hidden md:block w-[150px] px-4"></div>
-          <div className="flex-1 w-full"><GoldSessionHeader title="Presentations" /></div>
-        </div>
+        {/* Remaining Afternoon Presentations */}
         <div className="flex flex-col mb-10">
-          {cardiacPresentationsAfternoon.map((item, index) => <ScheduleRow key={`cardiac-pres-a-${index}`} {...item} />)}
+          {cardiacPresentationsAfternoon.slice(3).map((item, index) => <ScheduleRow key={`cardiac-pres-a-end-${index}`} {...item} />)}
         </div>
 
         <BeigeEventBar time="4:00:00 PM" title="Awards Ceremony" />
