@@ -83,7 +83,7 @@ export default function DownloadPage() {
           </a>
           
           <p className="text-white/40 text-xs md:text-sm mt-5 md:mt-6 text-center">
-            PDF Document • Secure Download
+            PDF Document 
           </p>
         </div>
 
