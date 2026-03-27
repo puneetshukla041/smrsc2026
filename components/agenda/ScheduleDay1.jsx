@@ -2,7 +2,6 @@
 import React from 'react';
 
 const ScheduleDay1 = () => {
-  // --- PLENARY DATA (SHUFFLED WRONG) ---
   const plenaryData = [
     { time: "12:15:00 PM", title: "SSI Movie", speaker: "-Dr. Sangita Reddy" },
     { time: "10:30:00 AM", title: "Guests of Honor", speaker: "-Shruti Mishra" },
@@ -26,7 +25,6 @@ const ScheduleDay1 = () => {
     { time: "12:00:00 PM", title: "SSI Movie", speaker: "-Dr. Vishwa Srivastava" },
   ];
 
-  // --- MULTI-SPECIALITY DATA (SHUFFLED WRONG) ---
   const teleSurgeryScreens = [
     { time: "Screen 3", title: "Robotic Thyroid/Rectum/Thoracic Esophagus", speaker: "-Dr. Leena Mehrotra", extra: "Apollo Hospitals, Chennai", bgClass: "transparent" },
     { time: "Screen 4", title: "Urology - Case TBD", speaker: "-Dr. Kushal Agarwal", extra: "Rajiv Gandhi Cancer Institute", bgClass: "bg-[#18345C]" },
@@ -43,7 +41,6 @@ const ScheduleDay1 = () => {
     { time: "3:10 PM to 3:20 PM", title: "Robotic General Surgery", speaker: "-Dr. Somashekhar SP", extra: "" },
   ];
 
-  // --- CARDIAC DATA (SHUFFLED WRONG) ---
   const cardiacSurgeryScreens = [
     { time: "Screen 2", title: "LIMA Takedown - Telesurgery", speaker: "-Dr. MM Yusuf", extra: "Manipal Hospital, Jaipur", bgClass: "transparent" },
     { time: "Screen 1", title: "BIMA - Telesurgery with MantrAsana", speaker: "-Dr. Lalitaditya Malik", extra: "Sri Sathya Sai Institute", bgClass: "bg-[#1F4174]" },
@@ -57,7 +54,6 @@ const ScheduleDay1 = () => {
     { time: "2:30 PM to 2:40 PM", title: "How to Help Evolve Robotic Cardiac Surgery", speaker: "", extra: "" },
   ];
 
-  // --- REUSABLE UI COMPONENTS ---
   const BeigeEventBar = ({ time, title, extraRight }) => (
     <div className="flex flex-col md:flex-row w-full py-2.5 px-4 md:px-6 justify-between items-start md:items-center rounded bg-[#E1C583] text-[#000] mb-5">
       <div className="flex flex-col md:flex-row w-full text-[13px] md:text-[14px] font-medium items-start md:items-center">
@@ -109,7 +105,6 @@ const ScheduleDay1 = () => {
     <div className="w-full flex flex-col items-center pb-20 pt-10 px-4 md:px-6 bg-[#030914] min-h-screen font-sans">
       <div className="w-full max-w-[1340px] flex flex-col">
         
-        {/* TOP HEADER */}
         <div className="flex flex-col mb-8">
           <div className="flex justify-start items-center w-full bg-[#E1C583] text-[#000] font-semibold text-[16px] md:text-[18px] px-5 py-3 rounded-t-xl">
             April 9'th, 2026
@@ -119,7 +114,6 @@ const ScheduleDay1 = () => {
           </div>
         </div>
 
-        {/* MORNING PLENARY */}
         <BeigeEventBar time="7:30:00 AM" title="Registration and Continental Breakfast" />
         <GoldSessionHeader title="Plenary Session" />
         
@@ -131,7 +125,6 @@ const ScheduleDay1 = () => {
 
         <BeigeEventBar time="12:30:00 PM" title="Lunch" />
         
-        {/* AFTERNOON: MULTI-SPECIALITY */}
         <div className="flex flex-col md:flex-row items-start md:items-center w-full mb-1">
           <div className="w-full md:w-[150px] text-[13px] text-gray-300 md:text-gray-300 px-4 mb-2 md:mb-5">
             1:30:00 PM
@@ -162,7 +155,6 @@ const ScheduleDay1 = () => {
 
         <BeigeEventBar time="4:30:00 PM" title="Faculty Dinner at Dr. Sudhir Srivastava House" extraRight="SSI User Group" />
         
-        {/* AFTERNOON: CARDIAC LOUNGE */}
         <div className="bg-[#8E1616] text-white font-medium text-base md:text-[17px] flex justify-start items-center px-[20px] py-3.5 w-full rounded-md mt-4 mb-8">
           DAY 1: SUMMIT LOUNGE - CARDIAC
         </div>
