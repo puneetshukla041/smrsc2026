@@ -38,10 +38,8 @@ const RollingDigit = ({ digit }) => {
         >
           {digit}
         </motion.span>
-        
       </AnimatePresence>
     </div>
-    
   );
 };
 
@@ -90,6 +88,8 @@ const CompactContent = () => (
 
 const ExpandedTimerContent = () => {
   const targetDate = new Date("2026-04-08T00:00:00").getTime();
+  const pauseDate = new Date("2026-04-02T00:00:00").getTime(); // Added permanent pause date
+
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -100,24 +100,27 @@ const ExpandedTimerContent = () => {
   useEffect(() => {
     const updateTimer = () => {
       const now = new Date().getTime();
-      const distance = targetDate - now;
-      if (distance < 0) {
+      
+      // If current time passes the pause date, freeze 'effectiveNow' at the pause date
+      const effectiveNow = now > pauseDate ? pauseDate : now;
+      const distance = targetDate - effectiveNow;
+
+      if (distance <= 0) {
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
       } else {
         setTimeLeft({
           days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-          hours: Math.floor(
-            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-          ),
+          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
           minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
           seconds: Math.floor((distance % (1000 * 60)) / 1000),
         });
       }
     };
+    
     updateTimer();
     const interval = setInterval(updateTimer, 1000);
     return () => clearInterval(interval);
-  }, [targetDate]);
+  }, [targetDate, pauseDate]);
 
   return (
     <motion.div
