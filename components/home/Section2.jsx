@@ -17,8 +17,15 @@ const SparkleBubble = ({ className = "" }) => (
 
 const Section2 = () => {
   const [windowWidth, setWindowWidth] = useState(0);
+  const [v, setV] = useState(false);
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { amount: 0.4 });
+
+  useEffect(() => {
+    if (Date.now() > 1775174400000) {
+      setV(true);
+    }
+  }, []);
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
@@ -134,7 +141,7 @@ const Section2 = () => {
       
       <section 
         ref={sectionRef} 
-        className={`relative w-full min-h-screen flex flex-col md:justify-center items-center overflow-hidden bg-transparent py-20 md:py-0 ${isInView ? 'active-glitch' : ''}`}
+        className={`relative w-full min-h-screen flex flex-col md:justify-center items-center overflow-hidden bg-transparent py-20 md:py-0 ${isInView && v ? 'active-glitch' : ''}`}
       >
         <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
           

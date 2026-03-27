@@ -2,11 +2,10 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus, ArrowRight } from 'lucide-react'; 
+import { Plus, Minus, ArrowRight, Loader2 } from 'lucide-react'; 
 import Header from '../../../components/common/Header';
 import Footer from '../../../components/common/footer';
 
-// --- FAQ Component ---
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
@@ -23,14 +22,12 @@ const FAQSection = () => {
       question: "I did not receive a confirmation email. What should I do?",
       answer: "Please check your spam folder. If not received, contact the support team with your transaction details."
     },
-
     {
       question: "Do you provide visa assistance?",
       answer: "The organizing team can provide general guidance. International attendees are advised to apply under the Tourist Visa category, subject to applicable regulations. Visa applications must be completed through official government channels."
     }
   ];
 
-  // --- Animation Configurations ---
   const springTransition = {
     type: "spring",
     stiffness: 300,
@@ -162,9 +159,6 @@ const FAQSection = () => {
   );
 };
 
-// --- Main Page Component ---
-
-// Smooth fade-in animations
 const containerVar = {
   hidden: { opacity: 0 },
   show: {
@@ -196,29 +190,25 @@ const floatVar = {
 };
 
 const RegisterPage = () => {
-  // State for the selected radio button
   const [nationality, setNationality] = useState('indian');
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
-  // Logic to handle redirection based on selection
   const handleContinue = () => {
+    setIsRedirecting(true);
+    
     const nationalUrl = "https://indiattitude.eventsair.com/smrsc-2026/smrsc-registration-form";
     const internationalUrl = "https://indiattitude.eventsair.com/registration-for-international-delegates-smrsc-2026/registration-for-international-delegates";
-    
     const targetUrl = nationality === 'indian' ? nationalUrl : internationalUrl;
     
-    // Redirects user in the same tab
-    window.location.href = targetUrl;
-    
-    // NOTE: If you prefer to open the registration in a NEW tab, comment out the line above
-    // and uncomment the line below:
-    // window.open(targetUrl, "_blank", "noopener,noreferrer");
+    setTimeout(() => {
+      window.location.href = targetUrl;
+    }, 19000); 
   };
 
   return (
     <div className="flex flex-col min-h-screen bg-[#020617] overflow-x-hidden relative font-sans">
       <Header />
 
-      {/* --- Ambient Background Glows --- */}
       <motion.div 
         variants={floatVar}
         animate="animate"
@@ -231,41 +221,26 @@ const RegisterPage = () => {
         className="fixed bottom-[10%] -right-[10%] sm:right-[5%] w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-[#0BD3D3] opacity-[0.15] blur-[100px] rounded-full pointer-events-none z-0" 
       />
 
-      {/* Main content area */}
       <main className="flex-grow flex flex-col items-center justify-center pt-32 pb-16 px-4 sm:px-6 relative z-10 w-full min-h-screen">
         
         <motion.div 
           variants={containerVar}
           initial="hidden"
           animate="show"
-          className="flex flex-col items-center text-center w-full max-w-5xl"
+          className="flex flex-col items-center text-center w-full max-w-5xl mt-12"
         >
-          {/* Registration Title */}
-{/* Registration Title */}
-          {/* Added mt-12 (margin-top) to push the heading down */}
-          <motion.h1 
-            variants={itemVar}
-            className="mt-12 text-[#F8FFFF] text-center font-['Blauer_Nue'] text-[48px] sm:text-[60px] md:text-[72px] not-italic font-semibold leading-tight md:leading-[52px] mb-12"
-          >
-            Register Now
-          </motion.h1>
 
-          {/* Nationality Selection Card */}
           <motion.div 
             variants={itemVar}
             className="w-full max-w-[800px] flex flex-col items-center mb-16 mt-4"
           >
-            {/* Selection Card */}
             <div className="w-full bg-[#EEF7F8] rounded-[16px] overflow-hidden flex flex-col shadow-2xl text-left border border-[#40C9CD]/20">
-              {/* Card Header */}
               <div className="flex items-center px-[24px] py-[16px] bg-[linear-gradient(90deg,#2467A7_0%,#40C9CD_100%)]">
                 <h3 className="text-white text-[16px] font-medium tracking-wide">Nationality</h3>
               </div>
               
-              {/* Card Body (Radio Options) */}
               <div className="px-8 py-10 flex flex-col gap-8">
                 
-                {/* Option 1: Indian */}
                 <label className="flex items-center gap-4 cursor-pointer group">
                   <div className="relative flex items-center justify-center w-5 h-5 flex-shrink-0">
                     <input 
@@ -288,7 +263,6 @@ const RegisterPage = () => {
                   <span className="text-[#1A2E35] font-medium text-[15px]">Register as National Delegate</span>
                 </label>
 
-                {/* Option 2: International */}
                 <label className="flex items-center gap-4 cursor-pointer group">
                   <div className="relative flex items-center justify-center w-5 h-5 flex-shrink-0">
                     <input 
@@ -314,22 +288,29 @@ const RegisterPage = () => {
               </div>
             </div>
 
-            {/* Submit Button */}
             <div className="flex gap-4 mt-10">
               <motion.button 
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={handleContinue} // Called the redirection function here
-                className="group relative inline-flex justify-center items-center py-[12px] pr-[20px] pl-[24px] gap-[8px] rounded-[24px] bg-[#CE921B] hover:bg-[#E5A449] transition-all duration-300 text-white text-sm font-medium overflow-hidden shadow-[0_0_20px_rgba(206,146,27,0.2)] hover:shadow-[0_0_30px_rgba(206,146,27,0.4)] cursor-pointer"
+                whileHover={!isRedirecting ? { scale: 1.02 } : {}}
+                whileTap={!isRedirecting ? { scale: 0.98 } : {}}
+                onClick={handleContinue}
+                disabled={isRedirecting}
+                className="group relative inline-flex justify-center items-center py-[12px] pr-[20px] pl-[24px] gap-[8px] rounded-[24px] bg-[#CE921B] hover:bg-[#E5A449] transition-all duration-300 text-white text-sm font-medium overflow-hidden shadow-[0_0_20px_rgba(206,146,27,0.2)] hover:shadow-[0_0_30px_rgba(206,146,27,0.4)] cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 <span className="relative z-10 flex items-center gap-[8px]">
-                  Continue to Registration <ArrowRight size={16} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  {isRedirecting ? (
+                    <>
+                      Redirecting... <Loader2 size={16} strokeWidth={2.5} className="animate-spin" />
+                    </>
+                  ) : (
+                    <>
+                      Continue to Registration <ArrowRight size={16} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-1" />
+                    </>
+                  )}
                 </span>
               </motion.button>
             </div>
           </motion.div>
 
-          {/* --- FAQ SECTION --- */}
           <motion.div variants={itemVar} className="w-full flex justify-center mt-10">
              <FAQSection />
           </motion.div>

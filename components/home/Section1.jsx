@@ -17,22 +17,10 @@ const CleanSection = () => {
     "/images/1.webp",
     "/images/2.webp",
     "/images/3.webp",
-    "/images/4.webp",
-    "/images/5.webp",
   ];
 
   const realCount = desktopImages.length;
   const trackIndices = [realCount - 1, ...Array.from({ length: realCount }, (_, i) => i), 0];
-
-  const nextSlide = () => {
-    setIsAnimating(true);
-    setCurrentIndex((prev) => prev + 1);
-  };
-
-  const prevSlide = () => {
-    setIsAnimating(true);
-    setCurrentIndex((prev) => prev - 1);
-  };
 
   const goToSlide = (idx) => {
     setIsAnimating(true);
@@ -101,7 +89,6 @@ const CleanSection = () => {
           <motion.button 
             whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.4)" }}
             whileTap={{ scale: 0.9 }}
-            onClick={prevSlide} 
             style={arrowStyle} 
             className="hidden md:flex absolute top-1/2 -translate-y-1/2 z-30 left-2 lg:-left-12 xl:-left-20"
             aria-label="Previous Slide"
@@ -114,8 +101,8 @@ const CleanSection = () => {
           <div 
             className="relative w-full overflow-hidden shadow-2xl transition-all duration-300" 
             style={{ aspectRatio: "175 / 89", borderRadius: responsiveBorderRadius }}
-            onMouseEnter={() => setIsPaused(true)}   /* NEW: Pause on hover */
-            onMouseLeave={() => setIsPaused(false)}  /* NEW: Resume on leave */
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
           >
             <div 
               className="flex w-full h-full"
@@ -172,7 +159,6 @@ const CleanSection = () => {
           <motion.button 
             whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.4)" }}
             whileTap={{ scale: 0.9 }}
-            onClick={nextSlide} 
             style={arrowStyle} 
             className="hidden md:flex absolute top-1/2 -translate-y-1/2 z-30 right-2 lg:-right-12 xl:-right-20"
             aria-label="Next Slide"
@@ -249,9 +235,6 @@ const HeavySection = () => {
   const w = typeof window !== 'undefined' ? window.innerWidth : 1920;
   const isM = w < 768;
 
-  const n = () => { setIsAnimating(true); _s((p) => p + 1); };
-  const p = () => { setIsAnimating(true); _s((prev) => prev - 1); };
-
   const handleTransitionEnd = () => {
     if (s === realCount + 1) {
       setIsAnimating(false);
@@ -324,7 +307,7 @@ const HeavySection = () => {
             <motion.button 
               whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.4)" }}
               whileTap={{ scale: 0.9 }}
-              onClick={p} style={aS} 
+              style={aS} 
               className="hidden md:flex absolute top-1/2 -translate-y-1/2 z-30 left-2 lg:-left-12 xl:-left-20"
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
@@ -335,8 +318,8 @@ const HeavySection = () => {
             <div 
               className="relative w-full overflow-hidden shadow-2xl transition-all duration-300 bg-white/5" 
               style={{ aspectRatio: "175 / 89", borderRadius: rB }}
-              onMouseEnter={() => setIsPaused(true)}  /* NEW: Pause on hover */
-              onMouseLeave={() => setIsPaused(false)} /* NEW: Resume on leave */
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
             >
               <div 
                 className="flex w-full h-full" 
@@ -387,7 +370,7 @@ const HeavySection = () => {
               </div>
             </div>
 
-            <motion.button whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.4)" }} whileTap={{ scale: 0.9 }} onClick={n} style={aS} className="hidden md:flex absolute top-1/2 -translate-y-1/2 z-30 right-2 lg:-right-12 xl:-right-20">
+            <motion.button whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.4)" }} whileTap={{ scale: 0.9 }} style={aS} className="hidden md:flex absolute top-1/2 -translate-y-1/2 z-30 right-2 lg:-right-12 xl:-right-20">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
               </svg>
