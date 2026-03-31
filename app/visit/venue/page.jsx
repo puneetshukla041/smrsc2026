@@ -112,7 +112,7 @@ const VenuePage = () => {
                 <div className="flex flex-col justify-center gap-[10px] p-[20px_16px] rounded-[20px] border border-white/20 bg-transparent w-full lg:flex-1 xl:w-[426px]">
                     <h3 className="text-[#F8FFFF] font-manrope text-[20px] font-normal">Pedestrian Entry</h3>
                     <p className="text-[#E3F5F6] font-manrope text-[16px] font-normal opacity-80">
-                        Use <span className="font-bold text-white">Gate 10</span> if arriving by metro or on foot.
+                        Use <span className="font-bold text-white">Use Gate 10</span> if arriving by metro.
                     </p>
                 </div>
 
